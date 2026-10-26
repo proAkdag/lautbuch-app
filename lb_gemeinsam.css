@@ -1,0 +1,25 @@
+
+@font-face { font-family: Andika; src: url(fonts/Andika-Regular.ttf) format('truetype'); font-weight: 400; font-display: block; }
+@font-face { font-family: Andika; src: url(fonts/Andika-Bold.ttf) format('truetype'); font-weight: 700; font-display: block; }
+
+html { font-feature-settings: "cv39" 1, "liga" 0; font-variant-ligatures: none; }
+
+.vok { color: var(--vok); }
+.kon { color: var(--kon); }
+.verb { color: var(--verb); }
+.klang { color: var(--klang); }
+.zei { color: var(--tinte); }
+
+.wort { display: inline-flex; gap: .04em; white-space: nowrap; }
+.silbe { position: relative; padding-bottom: .22em; }
+.silbe::after {
+  content: ''; position: absolute; left: 10%; right: 10%; bottom: 0; height: .2em;
+  border: 2px solid var(--tinte-30); border-top: 0; border-radius: 0 0 50% 50% / 0 0 100% 100%;
+}
+
+.halt { position: relative; width: 0; }
+.halt::after { content: ''; position: absolute; left: -.08em; bottom: .03em; width: .16em; height: .16em; border-radius: 50%; background: var(--tinte-30); }
+
+.ch-ich { color: #3D6B8E; }
+.ch-ach { color: #B85C3A; }
+.satz { display: inline-flex; flex-wrap: wrap; gap: .1em .38em; justify-content: center; align-items: baseline; }

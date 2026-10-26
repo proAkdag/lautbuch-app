@@ -1,0 +1,1637 @@
+
+@layer reset, base, teile, schmal;
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  button { font: inherit; color: inherit; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-tap-highlight-color: transparent; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --papier: #f6f0e4;
+    --blatt: #e9dfc8;
+    --karte: #fffaf0;
+    --tinte: #2a2520;
+    --tinte-70: rgb(42 37 32 / .72);
+    --tinte-60: rgb(42 37 32 / .6);
+    --tinte-30: rgb(42 37 32 / .3);
+    --tinte-licht: rgb(42 37 32 / .07);
+    --rand: rgb(42 37 32 / .16);
+    --vok: #8b4f12;
+    --kon: #4a4a4a;
+    --verb: #2a5a7a;
+    --klang: #5a3e8a;
+    --gold: #c8860a;
+    --gold-grund: #fff6dc;
+    --asche: #a19a8f;
+    --asche-grund: #efece6;
+    --ueben: #8aabcc;
+    --ueben-dunkel: #4f7598;
+    --zeigen: #c8860a;
+    --oben: 72px;
+
+    --vh: 1dvh;
+    --unten: calc(80px + env(safe-area-inset-bottom));
+    --rand-sicher: max(18px, env(safe-area-inset-left), env(safe-area-inset-right));
+  }
+  body {
+    background: var(--papier);
+    color: var(--tinte);
+    font-family: Andika, system-ui, sans-serif;
+    min-height: calc(100 * var(--vh));
+    touch-action: manipulation;
+    -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+    overflow-x: hidden;
+  }
+  body.boss {
+    --papier: #1c1915; --karte: #26221d; --blatt: #2e2a24;
+    --tinte: #f1e8d6; --tinte-70: rgb(241 232 214 / .72); --tinte-60: rgb(241 232 214 / .6);
+    --tinte-30: rgb(241 232 214 / .28); --tinte-licht: rgb(241 232 214 / .06); --rand: rgb(241 232 214 / .14);
+    --vok: #e2a865; --kon: #d8d1c3; --verb: #9cc3dc; --klang: #c4b0e0; --gold-grund: #3a2e14; --asche: #7b746a; --asche-grund: #2a2723;
+  }
+  main {
+    min-height: calc(100 * var(--vh)); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+    padding: calc(var(--oben) + 8px) var(--rand-sicher) calc(var(--unten) + 12px);
+  }
+
+  body.ohne-unten main { padding-bottom: calc(env(safe-area-inset-bottom) + 16px); }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--tinte-60); outline-offset: 3px; }
+  .sym { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+  .sym .kern { fill: currentColor; }
+}
+
+@layer teile {
+
+  .leiste, .leiste-unten {
+    position: fixed; left: 0; right: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 0 var(--rand-sicher); background: var(--papier);
+  }
+  .leiste { top: 0; height: calc(var(--oben) + env(safe-area-inset-top)); padding-top: env(safe-area-inset-top); }
+  .leiste-unten { bottom: 0; height: var(--unten); padding-bottom: env(safe-area-inset-bottom); border-top: 1px solid var(--rand); }
+  .leiste-unten:empty { display: none; }
+  .platz { width: 56px; }
+
+  .knopf {
+    border: 2px solid var(--rand); background: var(--karte); border-radius: 16px;
+    padding: 0 18px; font-size: 19px; cursor: pointer; min-height: 52px; min-width: 52px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  }
+  .knopf .sym { font-size: 26px; }
+  .knopf[aria-pressed="true"] { border-color: var(--tinte-60); box-shadow: 0 0 0 4px var(--tinte-licht); }
+  .knopf[hidden] { display: none; }
+  .knopf.ikon { width: 56px; height: 56px; padding: 0; color: var(--tinte-70); }
+  .knopf.ikon .sym { font-size: 30px; }
+  .knopf.ikon.gold { color: var(--gold); border-color: var(--gold); background: var(--gold-grund); }
+  .knopf.leise { border-color: transparent; background: transparent; color: var(--tinte-60); }
+
+  .knopf.ikon.schliessen { border-radius: 50%; border: 2px solid color-mix(in srgb, var(--tinte) 45%, transparent); background: var(--karte);
+    color: var(--tinte); font-weight: 700; line-height: 1; }
+  .knopf.klein { font-size: 15px; min-height: 44px; }
+  .knopf.gross { font-size: 26px; padding: 0 48px; min-height: 64px; border-radius: 20px; }
+  .knopf.gelesen { border-color: var(--tinte-60); min-width: 132px; }
+  .mit-symbol { display: inline-flex; align-items: center; gap: 10px; }
+
+  .marke { display: flex; align-items: center; gap: 12px; font-size: 28px; font-weight: 700; color: var(--tinte); }
+  .marke .sym { font-size: 40px; color: var(--tinte-70); }
+  .akt-zeichen { font-size: 38px; font-weight: 700; letter-spacing: .06em; min-width: 56px; text-align: right; }
+
+  .tueren { display: flex; gap: 10px; }
+  .tuer { min-height: 56px; padding: 0 26px; font-size: 21px; border-radius: 18px; }
+  .tuer .sym { font-size: 30px; }
+  .ueben-tuer .sym { color: var(--ueben-dunkel); }
+  .zeigen-tuer .sym { color: var(--zeigen); }
+  .ueben-tuer[aria-pressed="true"] { border-color: var(--ueben); background: rgb(138 171 204 / .14); box-shadow: none; }
+  .zeigen-tuer[aria-pressed="true"] { border-color: var(--zeigen); background: rgb(200 134 10 / .1); box-shadow: none; }
+
+  .kopf {
+    width: calc(var(--feld) * .66); aspect-ratio: 1; justify-self: center; border-radius: 50%;
+    display: grid; place-items: center; font-size: calc(var(--feld) * .44); font-weight: 700; line-height: 1;
+  }
+  .kopf.offen { background: var(--karte); box-shadow: 0 0 0 2px var(--rand), 0 0 0 8px var(--tinte-licht); }
+  .kopf.gold { background: var(--gold-grund); box-shadow: 0 0 0 2px var(--gold), 0 0 24px rgb(200 134 10 / .3); }
+  .kopf.blass { opacity: .26; }
+  .feld {
+    height: calc(var(--feld) * .78); width: 100%; border-radius: 18px; padding: 0;
+    border: 2px solid var(--rand); background: var(--karte);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0;
+    font-size: calc(var(--feld) * .19); font-weight: 700; line-height: 1.18;
+    transition: background .6s, border-color .6s, box-shadow .6s;
+  }
+  button.feld { cursor: pointer; }
+  .feld.jetzt { border-color: var(--tinte-60); box-shadow: 0 0 0 6px var(--tinte-licht); }
+  .feld.gold { background: var(--gold-grund); border-color: var(--gold); box-shadow: 0 0 22px rgb(200 134 10 / .22); }
+  .feld.blass { background: transparent; border: 2px dashed rgb(42 37 32 / .14); opacity: .4; }
+  .boss-feld {
+    justify-self: center; width: calc(var(--feld) * .5); height: calc(var(--feld) * .5); padding: 0; border: 0; background: transparent;
+    display: grid; place-items: center; font-size: calc(var(--feld) * .36); color: var(--tinte);
+  }
+  button.boss-feld { cursor: pointer; border-radius: 50%; min-height: 0; min-width: 0; }
+  .boss-feld .sym, .knopf.boss-feld .sym { font-size: inherit; }
+  .boss-feld.gold { color: var(--gold); }
+  .boss-feld.blass { color: var(--tinte-30); opacity: .6; }
+
+  .blattwahl { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; max-width: 100%; }
+  .knopf.reiter { min-height: 44px; font-size: 17px; border-radius: 12px; padding: 0 16px; }
+  .knopf.reiter[aria-pressed="true"] { border-color: var(--ueben); background: rgb(138 171 204 / .14); box-shadow: none; }
+  .tafel-rahmen { position: relative; padding: 22px; border-radius: 24px; max-width: 100%; border: 2px solid rgb(138 171 204 / .55); }
+  .tafel { display: flex; flex-direction: column; gap: clamp(10px, calc(2 * var(--vh)), 20px); align-items: center; }
+
+  .reihe { display: flex; flex-wrap: nowrap; gap: clamp(8px, 1.6vw, 16px); justify-content: center; }
+  .zelle, .wort { white-space: nowrap; }
+  .zelle {
+    font-size: clamp(32px, min(6vw, calc(7.4 * var(--vh))), 62px); font-weight: 700; line-height: 1.1; text-align: center;
+    min-width: 2.3em; padding: .2em .42em; border-radius: 16px;
+    border: 2px solid var(--rand); background: var(--karte);
+  }
+  .tafel.eng .zelle { font-size: clamp(26px, min(4.8vw, calc(6 * var(--vh))), 52px); min-width: 2em; }
+  .tafel.ketten .zelle { font-size: clamp(22px, min(3.8vw, calc(5 * var(--vh))), 42px); min-width: 0; padding: .2em .5em .14em; }
+  .tafel.woerter .zelle { font-size: clamp(26px, min(4.4vw, calc(6 * var(--vh))), 50px); min-width: 0; padding: .2em .6em .14em; }
+
+  .lochblatt { position: absolute; inset: 0; overflow: hidden; border-radius: 24px; cursor: pointer; }
+  .loch { position: absolute; border-radius: 18px; box-shadow: 0 0 0 300vmax var(--blatt); transition: left .45s ease, top .45s ease, width .45s ease, height .45s ease; }
+  .lochblatt::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(0deg, rgb(0 0 0 / .015) 0 2px, transparent 2px 6px); }
+
+  .werkzeug, .antwort { display: flex; gap: 10px; }
+  .antwort { margin-left: auto; }
+
+  .eingang { display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
+  .eingang .sym.gross { font-size: 88px; color: var(--zeigen); stroke-width: 1.4; }
+  .eingang h2 { font-size: clamp(42px, 6vw, 62px); margin: 0; }
+  .eingang p { margin: 0; font-size: 20px; color: var(--tinte-60); max-width: 30ch; text-wrap: balance; }
+
+  .seite { display: flex; flex-direction: column; align-items: center; gap: clamp(4px, calc(1 * var(--vh)), 12px); width: min(100%, 980px); }
+  .zeile {
+    font-size: clamp(24px, min(4.6vw, calc(5 * var(--vh))), 48px); font-weight: 700; line-height: 1.2;
+    padding: .1em .6em; border-radius: 16px; border: 2px solid transparent; max-width: 100%;
+    opacity: .28; transition: opacity .4s, background .6s, border-color .6s;
+    display: flex; flex-wrap: wrap; gap: .2em .7em; justify-content: center;
+  }
+  .seite.dicht .zeile { font-size: clamp(22px, min(4.2vw, calc(4.3 * var(--vh))), 44px); }
+  .zeile.anlauf { font-weight: 400; }
+  .zeile.jetzt { opacity: 1; border-color: var(--rand); box-shadow: 0 0 0 5px var(--tinte-licht); background: var(--karte); }
+  .zeile.fertig { opacity: .8; }
+  .zeile.gold { opacity: 1; background: var(--gold-grund); border-color: var(--gold); box-shadow: none; }
+  .zeile.erloschen { opacity: 1; background: var(--asche-grund); border: 2px dashed var(--asche); box-shadow: none; }
+  .trenner { width: 40%; border: 0; border-top: 2px dotted var(--tinte-30); margin: 2px 0; }
+
+  .raum .seite.einzeln { flex: 1 1 auto; display: grid; place-items: center; width: 100%; max-height: none; overflow: visible; padding: 0; }
+  .seite.einzeln > .trenner { display: none; }
+  .raum .seite.einzeln > .zeile { grid-area: 1 / 1; opacity: 0; visibility: hidden; max-width: min(100%, 22em);
+    font-size: clamp(34px, min(8vw, calc(9.5 * var(--vh))), 96px); padding: .15em .7em;
+    transition: opacity .3s ease, visibility 0s linear .3s, background-color .4s ease, border-color .4s ease, box-shadow .4s ease; }
+  .raum .seite.einzeln > .zeile.ist-satz { font-size: clamp(28px, min(7vw, calc(7 * var(--vh))), 64px); max-width: min(100%, 18em); text-wrap: balance; }
+  .raum .seite.einzeln > .zeile:is(.jetzt, .nachklang) { opacity: 1; visibility: visible; transition: opacity .3s ease, visibility 0s, background-color .4s ease, border-color .4s ease, box-shadow .4s ease; }
+  .lauf-punkte { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding-top: 2px; }
+  .lauf-punkte.vor-start { visibility: hidden; }
+  .lauf-punkt { width: 12px; height: 12px; border-radius: 50%; background: var(--rand); transition: background-color .5s ease, box-shadow .3s ease, scale .3s ease; }
+  .lauf-punkt.jetzt { background: var(--tinte-60); box-shadow: 0 0 0 4px var(--tinte-licht); scale: 1.15; }
+  .lauf-punkt.gold { background: var(--gold); }
+  .lauf-punkt.asche { background: var(--asche); }
+
+  .ende { display: flex; align-items: center; gap: 14px; margin: 0 auto; }
+  .sym.s-stern { font-size: 52px; stroke-width: 1.4; color: var(--tinte-30); transition: color .6s, fill .6s; }
+  .sym.s-stern.an { color: var(--gold); fill: var(--gold); }
+
+}
+
+@layer schmal {
+  @media (max-width: 760px) {
+    :root { --oben: 64px; }
+    .tuer { padding: 0 14px; font-size: 17px; }
+    .tuer .sym { font-size: 24px; }
+    .akt-zeichen { font-size: 28px; }
+    .marke { font-size: 22px; }
+
+    .feld { border-radius: 12px; }
+    .zelle { padding: .16em .3em; border-radius: 12px; }
+    .werkzeug .mit-symbol span { display: none; }
+  }
+}
+
+@layer teile {
+  .rechts { display: flex; align-items: center; gap: 16px; }
+  .akt-zeichen.prolog .kon, .gross.prolog .kon { color: var(--kon); }
+
+  .knopf.mini-raster {
+    display: grid; grid-template-columns: repeat(var(--spalten), 12px); gap: 3px; padding: 8px 11px;
+    min-height: 0; min-width: 0; border-radius: 12px; background: var(--karte);
+  }
+  .mini-raster i { height: 9px; border-radius: 1.5px; border: 1px solid var(--tinte-30); }
+  .mini-raster i.boss { width: 7px; height: 7px; justify-self: center; transform: rotate(45deg); border-radius: 1px; margin-top: 1px; }
+  .mini-raster i.gold { background: var(--gold); border-color: var(--gold); }
+  .mini-raster i.hier { background: var(--tinte-60); border-color: var(--tinte-60); }
+  .im-ueben .mini-raster i.hier { background: var(--ueben-dunkel); border-color: var(--ueben-dunkel); }
+
+  .kopf { display: flex; align-items: center; justify-content: center; }
+  .kopf.prolog { font-size: calc(var(--feld) * .26); white-space: nowrap; }
+  .kopf.prolog .kon { color: var(--kon); }
+  button.kopf { border: 0; padding: 0; cursor: pointer; color: inherit; font-family: inherit; }
+  .kopf.trenner-links::before, .boss-feld.trenner-links::before { display: none; }
+  .feld.prolog { font-size: calc(var(--feld) * .17); letter-spacing: .04em; }
+
+  .raum-huelle { width: min(100%, 1000px); display: flex; flex-direction: column; flex: 1; max-height: calc(calc(100 * var(--vh)) - var(--oben) - var(--unten) - 20px); }
+  .reiterleiste { display: flex; gap: 6px; padding-left: 26px; position: relative; z-index: 1; margin-bottom: -2px; pointer-events: none; }
+  .reiterleiste > * { pointer-events: auto; }
+  .reiter-tuer {
+    display: inline-flex; align-items: center; gap: 9px; min-height: 50px; padding: 0 22px; font-size: 20px;
+    border-radius: 16px 16px 0 0; border: 2px solid var(--rand); border-bottom-color: transparent;
+    background: var(--papier); color: var(--tinte-60); box-shadow: none !important;
+  }
+  .reiter-tuer .sym { font-size: 26px; }
+  .ueben-tuer .sym { color: var(--ueben-dunkel); }
+  .zeigen-tuer .sym, .boss-tuer .sym { color: var(--zeigen); }
+  .reiter-tuer[aria-pressed="true"] { color: var(--tinte); }
+  .ueben-tuer[aria-pressed="true"] { border-color: var(--ueben); border-bottom-color: #eef3f8; background: #eef3f8; }
+  .zeigen-tuer[aria-pressed="true"] { border-color: var(--zeigen); border-bottom-color: #fbf3e2; background: #fbf3e2; }
+  .boss-tuer { border-color: var(--gold); border-bottom-color: #221e19; background: #221e19; color: var(--tinte); font-size: 20px; }
+  .raum {
+    flex: 1; border-radius: 24px; padding: clamp(10px, calc(2 * var(--vh)), 22px) 18px; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: clamp(10px, calc(2 * var(--vh)), 18px); min-height: 0;
+  }
+  .raum-ueben { border: 2px solid var(--ueben); background: #eef3f8; }
+  .raum-zeigen { border: 2px solid var(--zeigen); background: #fbf3e2; }
+  .raum-boss { border: 2px solid var(--gold); background: #221e19; }
+  .raum .tafel-rahmen { border: 0; padding: 8px; }
+  .raum .zelle { background: var(--karte); }
+
+  .tafel.buchstaben .zelle { font-size: clamp(32px, min(5.6vw, calc(6.6 * var(--vh))), 58px); min-width: 1.7em; padding: .12em .3em; }
+  .tafel.buchstaben .reihe { gap: clamp(8px, 1.4vw, 14px); }
+  .zeile.buchstaben { gap: .2em 1em; }
+
+  .raum .seite { gap: clamp(2px, calc(.8 * var(--vh)), 10px); }
+  .raum .zeile { font-size: clamp(20px, min(4.4vw, calc(4.4 * var(--vh))), 46px); }
+  .raum .seite.dicht .zeile { font-size: clamp(19px, min(4vw, calc(3.8 * var(--vh))), 40px); }
+  .raum .eingang .sym.gross { font-size: 76px; }
+
+  .titel-schwelle { display: flex; flex-direction: column; align-items: center; gap: clamp(20px, calc(5 * var(--vh)), 46px); }
+  .titel-schwelle .gross { font-size: clamp(110px, calc(24 * var(--vh)), 200px); font-weight: 700; line-height: 1; letter-spacing: .06em; }
+  .titel-schwelle .weg { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center; }
+  .titel-schwelle .feld { width: clamp(78px, 10vw, 104px); height: clamp(68px, 9vw, 90px); font-size: clamp(14px, 1.8vw, 19px); cursor: pointer; }
+  .titel-schwelle .boss-feld { width: 64px; height: 64px; font-size: 48px; }
+
+}
+@layer schmal {
+  @media (max-width: 760px) {
+    .reiter-tuer { padding: 0 12px; font-size: 16px; min-height: 44px; }
+    .reiter-tuer .sym { font-size: 20px; }
+    .reiterleiste { padding-left: 12px; }
+    .knopf.mini-raster { display: none; }
+    .raum { padding: 10px 8px; border-radius: 16px; }
+  }
+}
+
+@layer teile {
+  .sym .flaeche { fill: none; }
+
+  .reihen-zeile { display: grid; grid-template-columns: 48px auto 48px; align-items: center; gap: clamp(6px, 1.2vw, 14px); }
+  .knopf.band-knopf { width: 44px; height: 44px; min-width: 0; min-height: 0; padding: 0; border: 0; background: transparent; color: var(--tinte-30); }
+  .knopf.band-knopf .sym { font-size: 30px; }
+  .knopf.band-knopf[aria-pressed="true"] { box-shadow: none; color: var(--ueben-dunkel); }
+  .knopf.band-knopf[aria-pressed="true"] .sym { fill: var(--ueben); }
+  .reihen-zeile.lesezeichen .zelle { border-color: var(--ueben); }
+
+  .tafel-rahmen.mit-karteikarte { flex: 1; width: 100%; display: flex; }
+  .karteikarte-buehne { position: relative; flex: 1; display: grid; place-items: start center; cursor: pointer; min-height: 260px; overflow: hidden;
+    padding: 4px 0 40px; }
+  .karteikarte {
+    grid-area: 1 / 1; display: flex; align-items: center; justify-content: center;
+    min-width: 2.2em; padding: .18em .55em .14em; border-radius: 28px;
+    font-size: clamp(90px, min(16vw, calc(22 * var(--vh))), 190px); font-weight: 700; line-height: 1.1;
+    background: var(--karte); border: 2px solid var(--rand); box-shadow: 0 10px 30px rgb(42 37 32 / .08);
+  }
+  .karteikarte.lang { font-size: clamp(64px, min(11vw, calc(16 * var(--vh))), 130px); }
+  .karteikarte .silbe::after { border-width: 3px; }
+
+  .schreibung { display: inline-flex; border: 2px solid var(--rand); border-radius: 16px; overflow: hidden; background: var(--karte); }
+  .knopf.schreib-wahl { border: 0; border-radius: 0; min-height: 48px; padding: 0 16px; font-size: 17px; background: transparent; }
+  .knopf.schreib-wahl + .knopf.schreib-wahl { border-left: 2px solid var(--rand); }
+  .knopf.schreib-wahl[aria-pressed="true"] { background: #eef3f8; box-shadow: none; color: var(--tinte); }
+
+  .knopf.lesezeichen { font-size: 17px; color: var(--tinte); }
+  .knopf.lesezeichen .sym { font-size: 24px; color: var(--ueben-dunkel); }
+  .knopf.lesezeichen .sym { fill: var(--ueben); }
+  .feld { position: relative; }
+  .feld .feld-band { position: absolute; top: -3px; right: 8px; font-size: 18px; color: var(--ueben-dunkel); stroke-width: 1.6; }
+  .feld .feld-band { fill: var(--ueben); }
+}
+
+@layer teile {
+
+  .tafel .reihen-zeile { transition: opacity .2s; }
+  .tafel.mit-zeig .reihen-zeile:not(.zeig-reihe) { opacity: .38; }
+  .zelle.zeig { border-color: var(--ueben-dunkel); box-shadow: 0 0 0 3px rgb(138 171 204 / .55); }
+
+  .hinweis-karte {
+    position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(var(--unten) + 12px); z-index: 5;
+    width: min(640px, calc(100vw - 32px)); display: flex; align-items: center; gap: 12px; padding: 10px 10px 10px 16px;
+    border-radius: 18px; background: var(--karte); border: 2px solid rgb(138 171 204 / .7); box-shadow: 0 10px 30px rgb(42 37 32 / .12);
+    font-size: 17px; line-height: 1.4; color: var(--tinte);
+  }
+  .hinweis-karte > .sym { flex: none; font-size: 24px; color: var(--ueben-dunkel); }
+  .hinweis-karte > span { flex: 1; }
+  .hinweis-karte .knopf.ikon { flex: none; width: 44px; height: 44px; font-size: 26px; }
+
+  html.ruhig *, html.ruhig *::before, html.ruhig *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+
+  .knopf.reiter.stolper-reiter { border-style: dashed; border-color: var(--asche); gap: 6px; }
+  .knopf.reiter.stolper-reiter .sym { color: var(--asche); font-size: 20px; }
+  @media (max-height: 640px) and (max-width: 600px) {
+    .reiter-tuer .mit-symbol > span { display: none; }
+  }
+  @media (max-height: 640px) and (max-width: 760px) {
+    .knopf.reiter.stolper-reiter .reiter-wort { display: none; }
+    .knopf.reiter.stolper-reiter { padding: 0 10px; }
+  }
+  .knopf.reiter.stolper-reiter[aria-pressed="true"] { background: var(--asche-grund); border-color: var(--asche); }
+  .auswahl-platz { display: flex; justify-content: center; margin-top: 8px; max-width: 100%; flex-wrap: wrap; gap: 6px 14px; }
+  .auswahl-platz:empty { display: none; }
+  .auswahl-platz .knopf.schreib-wahl { min-height: 40px; font-size: 15px; }
+  .knopf.schreib-wahl[aria-disabled="true"] { color: var(--tinte-30); cursor: default; }
+
+  .silbe { border-radius: .18em; transition: background-color .2s; }
+  .silbe::after { transition: border-color .2s; }
+  .silbe.finger { background: rgb(138 171 204 / .2); }
+  .silbe.finger::after { border-color: var(--ueben-dunkel); border-width: 3px; }
+  .zelle { cursor: pointer; }
+
+  @keyframes heute-glanz {
+    0% { box-shadow: 0 0 0 2px var(--gold), 0 0 0 rgb(200 134 10 / 0); }
+    40% { box-shadow: 0 0 0 2px var(--gold), 0 0 36px rgb(200 134 10 / .55); }
+    100% { box-shadow: 0 0 0 2px var(--gold), 0 0 22px rgb(200 134 10 / .22); }
+  }
+  .feld.gold.heute, .kopf.gold.heute { animation: heute-glanz 1.8s ease-out 1 both; }
+  .boss-feld.gold.heute .sym { animation: heute-glanz-sym 1.8s ease-out 1 both; }
+  @keyframes heute-glanz-sym { 40% { filter: drop-shadow(0 0 10px rgb(200 134 10 / .7)); } }
+
+  .marke, .akt-zeichen { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; touch-action: manipulation; }
+  dialog.schublade {
+    width: min(560px, calc(100vw - 32px)); max-height: calc(calc(100 * var(--vh)) - 32px); overflow: auto;
+    padding: 22px 24px 18px; border: 2px solid var(--rand); border-radius: 22px;
+    background: var(--karte); color: var(--tinte); box-shadow: 0 20px 60px rgb(42 37 32 / .25);
+  }
+  dialog.schublade::backdrop { background: rgb(42 37 32 / .35); }
+  .schublade-kopf { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .schublade h2 { margin: 0; font-size: 22px; }
+  .schublade h3 { margin: 18px 0 8px; font-size: 17px; }
+  .schublade-zeile { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; flex-wrap: wrap; }
+  .hinweis-lektion { display: flex; gap: 10px; align-items: flex-start; margin: 14px 0 0; padding: 12px 14px; border-radius: 14px; background: rgb(138 171 204 / .14); font-size: 17px; line-height: 1.4; }
+  .hinweis-lektion .sym { flex: none; font-size: 22px; color: var(--ueben-dunkel); }
+  .schublade-knoepfe { display: flex; align-items: center; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+  .schublade .meldung { color: var(--tinte-60); font-size: 15px; }
+  .schublade p.meldung { margin: 0 0 8px; line-height: 1.4; }
+  .schublade-kopf .knopf.ikon { font-size: 30px; line-height: 1; }
+  .schublade > .knopf.leise { margin-top: 18px; }
+}
+@layer schmal {
+  @media (max-width: 760px) {
+    .reihen-zeile { grid-template-columns: 34px auto 34px; gap: 4px; }
+    .knopf.band-knopf, .knopf.haken-knopf { width: 34px; }
+    .knopf.schreib-wahl { padding: 0 9px; font-size: 14px; }
+    .knopf.lesezeichen > span:not(.mit-symbol), .knopf.lesezeichen .mit-symbol > span { display: none; }
+    .knopf.lesezeichen { min-width: 52px; padding: 0 12px; }
+  }
+  @media (max-width: 440px) {
+    .marke { gap: 8px; font-size: 19px; }
+    .marke .sym { font-size: 30px; }
+
+    .werkzeug { gap: 6px; }
+    .werkzeug .knopf.schreib-wahl { padding: 0 7px; }
+  }
+}
+
+@layer teile {
+  .zelle { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+  .zelle.stein { border-style: dashed; border-color: var(--asche); }
+  .reiter-tuer .tuer-stein { font-size: 20px; color: var(--asche); margin-left: 2px; transition: opacity .3s ease; }
+  .reiter-tuer .tuer-stein.aus { opacity: 0; }
+
+  .stolper-leer { margin: 24px auto; max-width: 520px; padding: 22px 26px; border: 2px dashed var(--asche); border-radius: 18px;
+    background: var(--asche-grund); color: var(--tinte-70); font-size: 20px; line-height: 1.5; text-align: center; }
+  .stolper-leer p { margin: 0; }
+  .stolper-leer .stolper-leer-kopf { color: var(--tinte); font-weight: 700; margin-bottom: 8px; }
+  .stolper-leer .stein-zeichen { display: inline-flex; align-items: center; padding: 0 10px; border: 2px solid var(--rand); border-radius: 12px;
+    background: var(--karte); color: var(--tinte); white-space: nowrap; }
+  .stolper-leer .stein-zeichen .sym { color: var(--asche); }
+
+  .raum-ueben > .tafel-rahmen.mit-stempel { flex-direction: column; align-items: center; justify-content: flex-start; }
+  .stempel-leiste { display: flex; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; }
+  .stempel-leiste .knopf { min-height: 44px; font-size: 16px; padding: 0 14px; }
+  .stempel-leiste .knopf[aria-pressed="true"] { color: var(--tinte); border-color: var(--tinte);
+    background: color-mix(in srgb, var(--tinte) 12%, var(--karte)); box-shadow: inset 0 0 0 1px var(--tinte); }
+  .knopf.stempel-raus .sym { color: var(--asche); }
+  .tafel.stolper .zelle { position: relative; }
+  .tafel.stempelt .zelle { cursor: copy; }
+
+  .zelle .abdruck { position: absolute; top: -.3em; right: .3em; width: 1em; height: 1em; display: grid; place-items: center; font-size: .5em;
+    border: 2px solid var(--tinte); border-radius: 50%; background: var(--karte); color: var(--tinte); rotate: -12deg;
+    opacity: 0; scale: 1.25; transition: opacity .18s ease, scale .22s cubic-bezier(.3,1.4,.5,1); pointer-events: none; }
+  .zelle .abdruck .sym { font-size: .78em; }
+  .zelle.gestempelt .abdruck { opacity: 1; scale: 1; }
+
+  .karteikarte { position: relative; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+  .karteikarte.stein { border-style: dashed; border-color: var(--asche); }
+
+  .karteikarte .abdruck { position: absolute; top: 10px; right: 12px; width: 32px; height: 32px; display: grid; place-items: center;
+    font-size: 24px; line-height: 1; color: var(--asche); rotate: -18deg;
+    opacity: 0; scale: .2; transition: opacity .18s ease, scale .22s cubic-bezier(.3,1.4,.5,1); pointer-events: none; }
+  .karteikarte .abdruck .sym { width: 1em; height: 1em; font-size: 24px; }
+  .karteikarte.stein .abdruck { opacity: 1; scale: 1; }
+
+  .karteikarte.drueckt .abdruck { opacity: .75; scale: 1; transition: opacity .12s ease .15s, scale .45s linear .15s; }
+  .karteikarte.stein.drueckt .abdruck { opacity: .5; scale: .2; }
+  .stein-fliegt { position: fixed; z-index: 20; pointer-events: none; font-size: 24px; line-height: 1; color: var(--asche); }
+  .stein-fliegt .sym { width: 1em; height: 1em; }
+
+  .karteikarte .herkunft { position: absolute; left: 12px; top: auto; bottom: 8px; width: 40px; height: 40px; font-size: 32px;
+    opacity: .45; pointer-events: none; }
+  .karteikarte .herkunft .ort-bild { width: 100%; height: 100%; }
+  .feld .feld-stein { position: absolute; top: 4px; left: 7px; font-size: 17px; color: var(--asche); }
+  .stein-flug { position: fixed; z-index: 20; pointer-events: none; padding: 4px 14px; border-radius: 14px; white-space: nowrap;
+    background: var(--asche-grund); border: 2px dashed var(--asche); color: var(--tinte); font-size: 22px; font-weight: 700; }
+}
+
+@layer teile {
+  .knopf.stein-knopf .sym { color: var(--asche); }
+  .knopf.stein-knopf[aria-pressed="true"] { border-style: dashed; border-color: var(--asche); background: var(--asche-grund); }
+  .knopf.stein-knopf[hidden] { display: none; }
+}
+
+@layer teile {
+  .knopf[hidden] { display: none; }
+  .links { display: flex; align-items: center; gap: 12px; }
+
+  .welt {
+    --zelle: clamp(40px, min(calc((100vw - var(--schiene)) * .104), calc(11.2 * var(--vh))), 100px);
+    display: flex; flex-direction: column; gap: clamp(8px, calc(1.6 * var(--vh)), 16px); align-items: center;
+  }
+  .welt-zone {
+    display: grid; grid-template-columns: repeat(8, var(--zelle)); gap: clamp(6px, calc(1 * var(--vh)), 10px);
+    padding: clamp(6px, calc(1 * var(--vh)), 10px) clamp(8px, 1.4vw, 14px); border-radius: 18px; border-left: 6px solid var(--zrand);
+    background: color-mix(in srgb, var(--zgrund) 45%, transparent);
+  }
+  .welt-zone.vok   { --zgrund: #FEF3CC; --zrand: #E8A800; }
+  .welt-zone.kon   { --zgrund: #F2F0EC; --zrand: #BCBAB4; }
+  .welt-zone.verb  { --zgrund: #EEF3F8; --zrand: #8AABCC; }
+  .welt-zone.klang { --zgrund: #EDE8F5; --zrand: #C4B0E0; }
+  .laut {
+    position: relative; width: var(--zelle); height: var(--zelle); border-radius: 14px; overflow: hidden;
+    display: grid; place-items: center; padding: 0; font-size: calc(var(--zelle) * .34); font-weight: 700; line-height: 1; white-space: nowrap;
+  }
+  .knopf.laut { background: var(--zgrund); border: 2px solid var(--zrand); box-shadow: none; }
+  .knopf.laut.meister { border-color: var(--gold); box-shadow: 0 0 0 2px var(--gold), 0 0 18px rgb(200 134 10 / .25); background: var(--gold-grund); }
+  .laut.nebel, .nebel-schicht {
+    background:
+      radial-gradient(circle at 30% 35%, rgb(255 255 255 / .55) 0 18%, transparent 40%),
+      radial-gradient(circle at 70% 65%, rgb(255 255 255 / .4) 0 16%, transparent 38%),
+      linear-gradient(160deg, #d9d4cb, #c9c3b8);
+  }
+  .laut.nebel { border: 2px dashed color-mix(in srgb, var(--zrand) 70%, transparent); opacity: .75; }
+  .nebel-schicht { position: absolute; inset: 0; animation: lichten 1.8s ease-out forwards; pointer-events: none; }
+  @keyframes lichten { 0% { opacity: 1; filter: blur(0); } 100% { opacity: 0; filter: blur(8px); } }
+
+  .tafel-rahmen.mit-bildern { width: 100%; }
+  .bild { fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; color: var(--tinte); }
+  .bild .v, .bild .p { fill: currentColor; }
+  .bild .p { stroke: none; }
+  .bild .g { fill: #fff; }
+  .bild .f-rosa { fill: #ec9fbe; } .bild .f-lila { fill: #a47fd0; } .bild .f-gruen { fill: #7fbf6a; }
+  .zuordnen { display: flex; flex-direction: column; align-items: center; gap: clamp(14px, calc(3 * var(--vh)), 30px); width: 100%; }
+  .bild-reihe { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, clamp(96px, 15vw, 170px)); gap: clamp(8px, 1.4vw, 16px); justify-content: center; max-width: 100%; }
+  .bild-karte {
+    display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 8px 8px 6px;
+    background: #fff; border: 2px solid var(--rand); border-radius: 20px; transition: border-color .2s, background-color .2s;
+  }
+  .bild-karte .bild { width: 100%; aspect-ratio: 1; height: auto; }
+  .ablage { width: 100%; min-height: clamp(40px, calc(6 * var(--vh)), 58px); display: flex; align-items: center; justify-content: center; border-top: 2px dashed var(--rand); }
+  .bild-karte.belegt { border-color: var(--gold); background: var(--gold-grund); }
+  .bild-karte.belegt .ablage { border-top-color: transparent; }
+  .bild-karte.daneben { border-style: dashed; border-color: var(--asche); background: var(--asche-grund); }
+  .wort-reihe { display: flex; gap: clamp(8px, 1.4vw, 16px); justify-content: center; min-height: clamp(52px, calc(8 * var(--vh)), 72px); }
+  .wort-karte {
+    position: relative; font-size: clamp(22px, min(3.2vw, calc(5 * var(--vh))), 40px); font-weight: 700; padding: .14em .55em .1em;
+    background: var(--karte); border: 2px solid var(--rand); border-radius: 16px; cursor: grab;
+    touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; white-space: nowrap;
+  }
+  .wort-karte.zieht { z-index: 10; cursor: grabbing; box-shadow: 0 12px 28px rgb(42 37 32 / .18); }
+  .wort-karte.gewaehlt { border-color: var(--ueben-dunkel); box-shadow: 0 0 0 3px rgb(138 171 204 / .55); }
+  .wort-karte.richtig { cursor: default; border-color: transparent; background: transparent; font-size: clamp(18px, min(2.4vw, calc(3.6 * var(--vh))), 30px); padding: 0 .2em; }
+
+  .abtippen { display: flex; flex-direction: column; align-items: center; gap: clamp(10px, calc(2.2 * var(--vh)), 22px); width: 100%; }
+  .tipp-vorlage { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .tipp-bild { width: clamp(90px, calc(15 * var(--vh)), 160px); height: auto; aspect-ratio: 1; padding: 8px; background: #fff; border: 2px solid var(--rand); border-radius: 20px; }
+  .tipp-wort { font-size: clamp(28px, calc(5 * var(--vh)), 46px); font-weight: 700; }
+  .tipp-felder { display: flex; gap: 8px; }
+  .tipp-feld { min-width: 1em; height: 1.25em; padding: 0 .08em; display: grid; place-items: center; font-size: clamp(28px, calc(5 * var(--vh)), 46px); font-weight: 700; border-bottom: 3px solid var(--tinte-30); }
+  .tipp-feld.voll { border-bottom-color: var(--ueben); }
+  .tipp-vorlage.fertig .tipp-feld { border-bottom-color: var(--gold); }
+  .tipp-vorlage.fertig .tipp-bild { border-color: var(--gold); background: var(--gold-grund); }
+  .tastatur { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .tasten-reihe { display: flex; gap: 8px; }
+  .taste {
+    min-width: clamp(44px, 6.2vw, 64px); height: clamp(42px, calc(6.4 * var(--vh)), 62px); padding: 0 .3em;
+    font: inherit; font-size: clamp(22px, calc(3.4 * var(--vh)), 32px); font-weight: 700; color: var(--tinte);
+    background: var(--karte); border: 2px solid var(--rand); border-radius: 14px; cursor: pointer;
+    touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+  }
+  .taste:active { transform: translateY(1px); }
+  .taste.daneben { border-style: dashed; border-color: var(--asche); background: var(--asche-grund); }
+}
+@layer schmal {
+  @media (max-width: 760px) {
+    .welt { --zelle: clamp(34px, calc((100vw - var(--schiene) - 32px - 28px - 7 * 6px) / 8), 64px); }
+    .welt-zone { gap: 6px; padding: 6px 8px 6px 8px; border-left-width: 4px; }
+    .laut { border-radius: 10px; }
+  }
+}
+@layer teile {
+
+  @media (orientation: landscape) {
+    .abtippen { flex-direction: row; justify-content: center; align-items: center; gap: clamp(24px, 5vw, 64px); }
+  }
+}
+@layer teile {
+  @media (orientation: portrait) {
+    .tipp-bild { width: clamp(72px, calc(11 * var(--vh)), 150px); }
+    .taste { height: clamp(40px, calc(5.4 * var(--vh)), 60px); }
+    .abtippen { gap: clamp(8px, calc(1.6 * var(--vh)), 18px); }
+  }
+}
+@layer teile {
+
+  .raum-ueben { justify-content: flex-start; }
+  .raum-ueben > .tafel-rahmen { flex: 1; width: 100%; min-height: 0; display: flex; align-items: flex-start; justify-content: center; padding-top: clamp(12px, calc(3 * var(--vh)), 32px); }
+  .raum-ueben > .tafel-rahmen.mit-karteikarte { align-items: stretch; }
+}
+
+@layer teile {
+  .bilder-feld { justify-self: center; width: calc(var(--feld) * .5); height: calc(var(--feld) * .42); padding: 0; border: 0; background: transparent;
+    display: grid; place-items: center; font-size: calc(var(--feld) * .34); color: var(--ueben-dunkel); cursor: pointer; }
+  .bilder-feld.blass { color: var(--tinte-30); opacity: .5; cursor: default; }
+  .bilder-feld.gold { color: var(--gold); }
+  .titel-schwelle .bilder-feld { width: clamp(56px, 7vw, 76px); height: clamp(56px, 7vw, 76px); font-size: clamp(36px, 4.6vw, 52px); }
+  .mini-raster i.bilder { border-radius: 50%; }
+  .raum-bilder > .tafel-rahmen { align-items: center; }
+}
+
+@layer teile {
+  .serie-kopf { display: flex; align-items: center; gap: 10px; padding-top: 4px; border-top: 2px solid var(--rand); width: min(100%, 520px); justify-content: center; }
+  .serie-kopf[hidden] { display: none; }
+  .serie-name { font-size: 16px; color: var(--tinte-60); letter-spacing: .04em; }
+  .serie-punkt { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--tinte-30); background: transparent; transition: background-color .3s, border-color .3s; }
+  .serie-punkt.an { background: var(--tinte-70); border-color: var(--tinte-70); }
+  .serie-punkt.gold { background: var(--gold); border-color: var(--gold); }
+  .serie-knopf { display: flex; gap: 10px; justify-content: center; min-height: 52px; }
+  .serie-knopf:empty { min-height: 0; }
+}
+
+@layer teile {
+  .raum-bilder .wort-reihe { display: grid; grid-template-columns: repeat(3, minmax(max-content, 1fr)); justify-content: center; align-items: center; gap: clamp(8px, calc(1.4 * var(--vh)), 14px) clamp(10px, 1.6vw, 18px); }
+  .wort-platz { border: 2px dashed var(--rand); border-radius: 16px; opacity: .5; }
+}
+@layer teile {
+
+  .raum-bilder .bild-reihe { grid-auto-columns: minmax(0, clamp(84px, min(15vw, calc(19 * var(--vh))), 170px)); }
+  .raum-bilder .ablage { min-height: clamp(36px, calc(5.4 * var(--vh)), 54px); }
+  .raum-bilder .zuordnen { gap: clamp(10px, calc(2 * var(--vh)), 24px); }
+}
+
+@layer teile {
+  img.bild.raster { display: block; object-fit: contain; border-radius: 12px; }
+  .bild-karte img.bild.raster { width: 100%; aspect-ratio: 1; height: auto; }
+}
+@layer teile {
+
+  .bild-karte img.bild.raster, .tipp-bild.raster { mix-blend-mode: multiply; }
+
+  @media (max-height: 640px) {
+    .raum-bilder .bild-reihe { grid-auto-columns: minmax(0, clamp(60px, min(15vw, calc(15 * var(--vh))), 170px)); }
+    .raum-bilder .ablage { min-height: clamp(26px, calc(5 * var(--vh)), 54px); }
+    .raum-bilder .zuordnen { gap: clamp(6px, calc(1.4 * var(--vh)), 24px); }
+    .raum-bilder .wort-reihe { min-height: 0; gap: clamp(6px, calc(1.2 * var(--vh)), 14px) clamp(10px, 1.6vw, 18px); }
+    .raum-bilder .wort-karte { font-size: clamp(18px, calc(4.2 * var(--vh)), 40px); }
+  }
+}
+@layer teile {
+
+  .raum-bilder .ablage { container-type: inline-size; }
+  .raum-bilder .wort-karte.richtig { font-size: min(clamp(18px, min(2.4vw, calc(3.6 * var(--vh))), 30px), 17cqi); }
+  @media (max-height: 640px) {
+    .raum-bilder .bild-reihe { grid-auto-columns: minmax(0, clamp(104px, 13vw, 170px)); }
+    .raum-bilder .bild-karte img.bild.raster, .raum-bilder .bild-karte svg.bild { width: auto; max-width: 100%; height: clamp(56px, calc(14 * var(--vh)), 150px); }
+  }
+}
+
+@layer teile {
+  .raum-bilder .wort-reihe { justify-items: center; }
+  .bilder-feld, .knopf.bilder-feld {
+    width: calc(var(--feld) * .62); height: calc(var(--feld) * .5); min-width: 0; min-height: 0; padding: 0;
+    border-radius: 14px; border: 2px solid var(--ueben); background: var(--karte); color: var(--ueben-dunkel);
+    font-size: calc(var(--feld) * .3); box-shadow: 0 2px 0 rgb(42 37 32 / .08);
+  }
+  .bilder-feld .sym, .knopf.bilder-feld .sym { font-size: inherit; }
+  .bilder-feld.gold { color: var(--gold); border-color: var(--gold); background: var(--gold-grund); box-shadow: 0 0 18px rgb(200 134 10 / .22); }
+  .bilder-feld.blass { background: transparent; border: 2px dashed rgb(42 37 32 / .14); color: var(--tinte-30); opacity: .45; box-shadow: none; }
+  .titel-schwelle .bilder-feld { width: clamp(64px, 8vw, 84px); height: clamp(56px, 7vw, 72px); font-size: clamp(32px, 4vw, 44px); }
+}
+
+@layer teile {
+
+  .knopf.verborgen, .serie-kopf.verborgen { visibility: hidden; opacity: 0; pointer-events: none; }
+  .werkzeug .knopf, .antwort .knopf, .serie-knopf .knopf { transition: opacity .3s ease, visibility .3s, border-color .3s, background-color .3s, box-shadow .3s; }
+
+  .raum-ueben.mit-loch:not(.raum-bilder) > .auswahl-platz { display: flex; min-height: 48px; margin-top: 0; align-items: center; }
+
+  .zelle { transition: border-color .25s ease, box-shadow .25s ease, background-color .3s ease; }
+  .zeile { transition: opacity .4s ease, background-color .6s ease, border-color .6s ease, box-shadow .5s ease; }
+
+  .hinweis-karte { transform: none; translate: -50% 0; }
+
+  .geist { pointer-events: none; }
+  .rahmen-flug { position: fixed; z-index: 7; box-sizing: border-box; border: 2px solid transparent; pointer-events: none; }
+
+  .serie-kopf { gap: 11px; }
+  .serie-name { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; font-weight: 800; color: var(--tinte-60); }
+  .serie-punkt { width: 11px; height: 11px; border: 0; border-radius: 50%; background: var(--rand); transition: background-color .6s ease; }
+  .serie-punkt.an { background: var(--gold); border: 0; }
+
+  .serien-fall {
+    --licht-rand: color-mix(in srgb, var(--tinte) 30%, #eef3f8); --licht-grund: color-mix(in srgb, var(--tinte) 2%, #fbfcfd);
+    border: 2px solid var(--licht-rand); background-color: var(--licht-grund); border-radius: 18px;
+    padding: clamp(8px, calc(1.6 * var(--vh)), 16px) clamp(10px, 1.8vw, 20px);
+    transition: border-color .7s ease, background-color .7s ease;
+  }
+  .serien-fall.freude {
+    border-color: var(--gold-grund); background-color: var(--gold-grund);
+    box-shadow: 0 0 0 6px var(--gold-grund), 0 0 0 9px var(--gold); animation: freude-ein .6s ease-out;
+  }
+  @keyframes freude-ein { from { background-color: rgb(255 246 220 / 0); box-shadow: 0 0 0 6px rgb(255 246 220 / 0), 0 0 0 9px rgb(200 134 10 / 0); } }
+  .serien-fall.erloschen { border-style: dashed; border-color: var(--asche); background-color: var(--asche-grund); }
+  .raum-bilder > .tafel-rahmen { padding: 12px; }
+  .serie-knopf, .serie-knopf:empty { min-height: 52px; }
+
+  .raum-bilder .ablage { height: clamp(36px, calc(5.4 * var(--vh)), 54px); min-height: 0; container-type: size; }
+  .raum-bilder .wort-karte.richtig { font-size: min(clamp(18px, min(2.4vw, calc(3.6 * var(--vh))), 30px), 17cqi, 50cqh); }
+  .wort-karte.fliegt { z-index: 10; }
+}
+@layer teile {
+  @media (max-height: 640px) {
+    .raum-bilder .ablage { height: clamp(26px, calc(5 * var(--vh)), 54px); }
+  }
+}
+
+@layer teile {
+
+  .raum .seite { min-height: 0; max-height: 100%; overflow-y: auto; scrollbar-width: none; padding: 6px 0; }
+  .raum .seite::-webkit-scrollbar { display: none; }
+}
+@layer schmal {
+
+  @media (max-height: 500px) and (orientation: landscape) {
+    :root { --oben: 52px; --unten: calc(58px + env(safe-area-inset-bottom)); }
+    main { gap: 10px; padding-top: calc(var(--oben) + 4px); padding-bottom: calc(var(--unten) + 6px); }
+    body.ohne-unten main { padding-bottom: calc(env(safe-area-inset-bottom) + 8px); }
+    .knopf { min-height: 44px; font-size: 16px; padding: 0 14px; }
+    .knopf.ikon { width: 44px; height: 44px; padding: 0; } .knopf.ikon .sym { font-size: 24px; }
+    .knopf .sym { font-size: 21px; }
+    .marke { font-size: 20px; gap: 8px; } .marke .sym { font-size: 28px; }
+    .akt-zeichen { font-size: 26px; }
+    .knopf.mini-raster { padding: 5px 8px; grid-template-columns: repeat(var(--spalten), 9px); gap: 2px; }
+    .mini-raster i { height: 6px; } .mini-raster i.boss { width: 5px; height: 5px; }
+    .raum-huelle { max-height: calc(calc(100 * var(--vh)) - var(--oben) - var(--unten) - 10px); }
+    .reiter-tuer { min-height: 38px; font-size: 16px; padding: 0 14px; } .reiter-tuer .sym { font-size: 20px; }
+    .raum { padding: 6px 10px; gap: 6px; position: relative; }
+    .raum-ueben > .blattwahl { position: absolute; top: -40px; right: 14px; }
+    .knopf.reiter { min-height: 36px; font-size: 15px; padding: 0 12px; }
+    .raum-ueben:not(.raum-bilder) > .auswahl-platz { position: absolute; top: 6px; left: 50%; translate: -50% 0; min-height: 0; z-index: 2;
+      flex-wrap: nowrap; gap: 8px; }
+    .raum-ueben:not(.raum-bilder) > .auswahl-platz .knopf.schreib-wahl { padding: 0 9px; font-size: 14px; white-space: nowrap; }
+    .raum-ueben.mit-loch > .tafel-rahmen.mit-karteikarte { padding-top: 50px; }
+    .raum-ueben > .tafel-rahmen { padding-top: 4px; }
+    .karteikarte-buehne { min-height: 0; padding-bottom: 14px; }
+    .knopf.schreib-wahl { min-height: 40px; }
+
+    .welt { --zelle: clamp(32px, min(calc((100vw - var(--schiene) - 60px - 14 * 6px) / 15), calc((calc(100 * var(--vh)) - var(--oben) - 90px) / 6)), 64px); gap: 8px; }
+    .welt-zone { grid-template-columns: repeat(15, var(--zelle)); gap: 6px; padding: 6px 10px; }
+
+    .raum-bilder .zuordnen { flex-direction: row; justify-content: center; align-items: center; gap: 18px; }
+    .raum-bilder .bild-reihe { grid-auto-columns: minmax(0, clamp(64px, 11vw, 120px)); }
+    .raum-bilder .bild-karte img.bild.raster, .raum-bilder .bild-karte svg.bild { width: auto; max-width: 100%; height: clamp(40px, calc(16 * var(--vh)), 90px); }
+    .raum-bilder .ablage { height: clamp(24px, calc(7 * var(--vh)), 40px); }
+    .raum-bilder .wort-karte { font-size: clamp(16px, calc(5.6 * var(--vh)), 28px); }
+    .serie-knopf, .serie-knopf:empty { min-height: 44px; }
+
+    .raum .zeile { font-size: clamp(16px, calc(5.6 * var(--vh)), 30px); }
+    .raum .eingang .sym.gross { font-size: 40px; } .eingang h2 { font-size: 30px; } .eingang { gap: 8px; }
+    .eingang p { font-size: 17px; }
+
+    .tipp-bild { width: clamp(60px, calc(22 * var(--vh)), 110px); }
+    .tipp-wort, .tipp-feld { font-size: clamp(20px, calc(7 * var(--vh)), 34px); }
+    .taste { height: clamp(34px, calc(9.5 * var(--vh)), 48px); min-width: clamp(36px, 5vw, 52px); font-size: clamp(18px, calc(5 * var(--vh)), 26px); }
+    .tastatur, .tasten-reihe { gap: 6px; }
+
+    .titel-schwelle .gross { font-size: clamp(70px, calc(26 * var(--vh)), 140px); }
+    .titel-schwelle { gap: 14px; }
+  }
+
+  @media (min-width: 1600px) and (min-height: 900px) {
+    .raum-huelle { width: min(100%, max(1000px, 62vw)); }
+    .zelle { font-size: clamp(32px, min(5vw, calc(7.4 * var(--vh))), 92px); }
+    .tafel.eng .zelle { font-size: clamp(26px, min(4vw, calc(6 * var(--vh))), 78px); }
+    .tafel.ketten .zelle { font-size: clamp(22px, min(3.2vw, calc(5 * var(--vh))), 62px); }
+    .tafel.woerter .zelle { font-size: clamp(26px, min(3.6vw, calc(6 * var(--vh))), 74px); }
+    .tafel.buchstaben .zelle { font-size: clamp(32px, min(4.6vw, calc(6.6 * var(--vh))), 86px); }
+    .raum .zeile { font-size: clamp(20px, min(3.6vw, calc(4.4 * var(--vh))), 64px); }
+    .raum .seite.dicht .zeile { font-size: clamp(19px, min(3.2vw, calc(3.8 * var(--vh))), 56px); }
+    .seite { width: min(100%, 1400px); }
+    .welt { --zelle: clamp(40px, min(calc((100vw - var(--schiene)) * .08), calc(11.2 * var(--vh))), 130px); }
+    .titel-schwelle .gross { font-size: clamp(110px, calc(26 * var(--vh)), 300px); }
+    .titel-schwelle .feld { width: clamp(78px, 8vw, 150px); height: clamp(68px, 7vw, 128px); font-size: clamp(14px, 1.4vw, 26px); }
+    .karteikarte { font-size: clamp(90px, min(14vw, calc(24 * var(--vh))), 300px); }
+    .karteikarte.lang { font-size: clamp(64px, min(10vw, calc(17 * var(--vh))), 210px); }
+    .raum-bilder .bild-reihe { grid-auto-columns: minmax(0, clamp(84px, min(11vw, calc(19 * var(--vh))), 260px)); }
+    .raum-bilder .wort-karte { font-size: clamp(22px, min(2.4vw, calc(5 * var(--vh))), 58px); }
+    .raum-bilder .ablage { height: clamp(36px, calc(5.4 * var(--vh)), 76px); }
+    .raum-bilder .wort-karte.richtig { font-size: min(clamp(18px, min(1.8vw, calc(3.6 * var(--vh))), 44px), 17cqi, 50cqh); }
+    .tipp-bild { width: clamp(90px, calc(18 * var(--vh)), 240px); }
+    .tipp-wort, .tipp-feld { font-size: clamp(28px, calc(5 * var(--vh)), 64px); }
+    .taste { min-width: clamp(44px, 4.4vw, 88px); height: clamp(42px, calc(6.4 * var(--vh)), 84px); font-size: clamp(22px, calc(3.4 * var(--vh)), 42px); }
+  }
+}
+
+@layer teile {
+
+  .raum .seite.gleitet { -webkit-mask-image: linear-gradient(transparent, #000 22px, #000 calc(100% - 22px), transparent); mask-image: linear-gradient(transparent, #000 22px, #000 calc(100% - 22px), transparent); }
+}
+@layer schmal {
+
+  @media (max-width: 480px) {
+    .raum-bilder .bild-reihe { grid-auto-columns: minmax(0, clamp(56px, 19vw, 170px)); gap: 6px; }
+    .bild-karte { padding: 5px 5px 4px; border-radius: 14px; }
+    .raum .zeile { font-size: clamp(16px, min(5vw, calc(4.4 * var(--vh))), 46px); }
+    .raum .seite.dicht .zeile { font-size: clamp(15px, min(4.6vw, calc(3.8 * var(--vh))), 40px); }
+  }
+  @media (max-height: 500px) and (orientation: landscape) {
+
+    .raum-bilder > .auswahl-platz { position: absolute; top: -40px; right: 14px; margin: 0; }
+    .raum-bilder .auswahl-platz .knopf.schreib-wahl { min-height: 36px; }
+
+    .tipp-bild { width: clamp(56px, calc(19 * var(--vh)), 96px); padding: 5px; }
+    .tipp-wort, .tipp-feld { font-size: clamp(18px, calc(6 * var(--vh)), 30px); }
+    .tipp-vorlage { gap: 2px; }
+
+    .laut { font-size: calc(var(--zelle) * .3); line-height: 1.05; }
+    .knopf.laut { min-height: 0; min-width: 0; padding: 0; }
+  }
+}
+
+@layer schmal {
+
+  @media (max-width: 480px) {
+    .raum-bilder .wort-reihe { grid-template-columns: repeat(2, minmax(max-content, 1fr)); }
+    .raum-bilder .wort-karte { font-size: clamp(18px, 5.4vw, 28px); }
+  }
+
+  @media (max-height: 500px) and (orientation: landscape) {
+  }
+}
+@layer schmal {
+
+  @media (max-height: 500px) and (orientation: landscape) {
+  }
+}
+@layer schmal {
+
+  @media (max-height: 500px) and (orientation: landscape) {
+    .raum-bilder > .serie-kopf { position: absolute; top: -34px; left: 50%; translate: -50% 0; width: auto; border-top: 0; padding-top: 0; }
+    .raum-bilder .bild-karte img.bild.raster, .raum-bilder .bild-karte svg.bild { height: clamp(36px, calc(14 * var(--vh)), 90px); }
+    .raum-bilder .ablage { height: clamp(22px, calc(6 * var(--vh)), 40px); }
+  }
+}
+
+@layer teile {
+  :root { --z-kon: #bcbab4; --z-vok: #e8a800; --z-uml: #c4b0e0; --z-zwie: #b9a3dc; --z-regel: #8aabcc; }
+  body.auf-weg main { padding: var(--oben) 0 0; justify-content: stretch; }
+  .weg-land { flex: 1; width: 100%; height: calc(calc(100 * var(--vh)) - var(--oben)); overflow: hidden; position: relative; }
+  .weg-land.hoch { overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; }
+  .weg-land.hoch::-webkit-scrollbar { display: none; }
+  svg.weg-karte { display: block; width: 100%; height: 100%; overflow: visible; }
+  .weg-land.hoch svg.weg-karte { height: auto; }
+  .weg-karte text { font-family: Andika, system-ui, sans-serif; font-weight: 700; }
+  .weg-karte .insel { stroke-width: 2; stroke-opacity: .35; transition: fill-opacity 1.6s ease, fill 1.6s ease; }
+  .weg-karte .umriss { fill: none; stroke: rgb(42 37 32 / .2); stroke-width: 1.6; stroke-dasharray: 3 7; opacity: 0; transition: opacity 1.4s ease; }
+  .weg-karte .umriss.an { opacity: 1; }
+  .weg-karte .gras { fill: none; stroke: rgb(107 125 64 / .55); stroke-width: 1.6; stroke-linecap: round; opacity: 0; transition: opacity 1.4s ease .3s; }
+  .weg-karte .gras.an { opacity: 1; }
+  .weg-karte .weg-vorn { fill: none; stroke: var(--tinte-30); stroke-width: 3.5; stroke-linecap: round; stroke-dasharray: 1 12; }
+  .weg-karte .weg-gegangen { fill: none; stroke: var(--tinte-60); stroke-width: 4; stroke-linecap: round; opacity: 0; }
+  .ort { fill: none; stroke: var(--tinte-70); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; transition: opacity 1.2s ease; }
+  .ort .flaeche { fill: var(--karte); }
+  .ort .wasser { fill: rgb(138 171 204 / .25); stroke: var(--ueben-dunkel); }
+  .ort .voll { fill: var(--tinte-70); stroke: none; }
+  .ort .licht { fill: #ffd98a; stroke: none; opacity: 0; transition: opacity 1.4s ease; }
+  .ort .welle { fill: none; stroke: var(--ueben-dunkel); stroke-width: 1.2; opacity: 0; }
+  .ort .wimpel-gold { fill: var(--gold); stroke: var(--gold); opacity: 0; transition: opacity 1s ease .4s; }
+  .station.meister .ort .licht, .station.hier .ort .licht, .ort-bild.gross .licht { opacity: .9; }
+  .station.meister .ort .wimpel-gold, .ort-bild.meister .wimpel-gold { opacity: 1; }
+  .station.nebel .ort { opacity: 0; }
+  .station.rand .ort { opacity: .32; }
+  .station { cursor: pointer; }
+  .station .druck { transition: transform .25s cubic-bezier(.22,.61,.36,1); transform-box: fill-box; transform-origin: center; }
+  .station:active .druck { transform: translateY(-3px) scale(1.03); }
+  .station .siegel { fill: var(--karte); stroke: rgb(42 37 32 / .2); stroke-width: 2; transition: fill .6s ease, stroke .6s ease; }
+  .station.meister .siegel { fill: var(--gold-grund); stroke: var(--gold); stroke-width: 3; }
+  .station .ring { fill: none; stroke: var(--gold); stroke-width: 1.4; opacity: 0; transition: opacity .8s ease .3s; }
+  .station.meister .ring { opacity: 1; }
+  .station .halo { fill: var(--tinte-licht); opacity: 0; transition: opacity .8s ease; }
+  .station.hier .halo { opacity: 1; }
+  .station.hier .siegel { stroke: var(--tinte-60); stroke-width: 2.5; }
+  .station.rand .siegel { fill: rgb(255 250 240 / .55); stroke: rgb(232 168 0 / .7); stroke-dasharray: 5 5; }
+  .station.nebel .siegel { fill: rgb(255 255 255 / .25); stroke: rgb(42 37 32 / .1); stroke-dasharray: 4 6; }
+  .weg-karte .buchstabe { font-size: 26px; text-anchor: middle; dominant-baseline: central; transition: opacity .8s ease; }
+  .weg-karte .buchstabe .vok { fill: var(--vok); } .weg-karte .buchstabe .kon { fill: var(--kon); } .weg-karte .buchstabe .klang { fill: var(--klang); }
+  .station.rand .buchstabe tspan { fill: transparent; stroke: rgb(139 79 18 / .55); stroke-width: 1.1; }
+  .station.nebel .buchstabe { opacity: 0; }
+  .weg-karte .perle { fill: none; stroke: var(--tinte-30); stroke-width: 1.6; transition: fill .6s ease, stroke .6s ease; }
+  .weg-karte .perle.gold { fill: var(--gold); stroke: var(--gold); }
+  .weg-karte .perle.jetzt { stroke: var(--tinte-60); stroke-width: 2; }
+  .weg-karte .weglein { opacity: 0; transition: opacity .6s ease; }
+  .station.hier .weglein { opacity: 1; }
+
+  .weg-karte .ding { cursor: pointer; }
+  .weg-karte .ding-flaeche { fill: transparent; stroke: none; }
+  .weg-karte .wimpel .band { fill: var(--ueben); stroke: #5f86ad; stroke-width: 1.4; stroke-linejoin: round; }
+  .weg-karte .wimpel line { stroke: var(--tinte-60); stroke-width: 2; stroke-linecap: round; }
+
+  .weg-karte .wimpel.figur > line, .weg-karte .wimpel.figur > .wehen { display: none; }
+  .weg-karte .figur-schatten { fill: rgb(42 37 32 / .16); }
+  .weg-karte .figur-wahl-grund { fill: rgb(255 250 240 / .92); stroke: rgb(42 37 32 / .18); stroke-width: 1; }
+  .weg-karte .wehen { transform-box: fill-box; transform-origin: 0% 0%; animation: wehen 4.8s ease-in-out infinite alternate; }
+  @keyframes wehen { from { transform: rotate(-3deg) skewY(-2deg); } to { transform: rotate(3deg) skewY(2deg); } }
+  .weg-karte .truhe-ding svg { color: var(--gold); }
+
+  .weg-karte .feuer-ding .feuer-schein { fill: var(--gold); opacity: .22; }
+  .weg-karte .feuer-ding .flamme-aussen { fill: #e9a83b; }
+  .weg-karte .feuer-ding .flamme-innen { fill: #fbe3a0; }
+  .weg-karte .feuer-ding .scheit { fill: none; stroke: #8a5a2b; stroke-width: 3.6; stroke-linecap: round; }
+  .weg-karte .feuer-ding .feuer-flamme { transform-box: fill-box; transform-origin: 50% 100%; animation: feuer-flackern 1.7s ease-in-out infinite; }
+  @keyframes feuer-flackern { 0%, 100% { transform: scale(1, 1); } 35% { transform: scale(.94, 1.07) skewX(-2deg); } 65% { transform: scale(1.04, .95) skewX(2deg); } }
+  html.ruhig .weg-karte .feuer-ding .feuer-flamme { animation: none; }
+  .weg-karte .kiesel { fill: #d9d2c4; stroke: rgb(42 37 32 / .35); stroke-width: 1.2; }
+  .weg-karte .kiesel-glanz { fill: rgb(255 255 255 / .7); stroke: none; }
+  .weg-karte .rauch circle { fill: rgb(42 37 32 / .16); transform-box: fill-box; transform-origin: center; animation: rauch 6s ease-out infinite; opacity: 0; }
+  .weg-karte .rauch circle:nth-child(2) { animation-delay: 2s; } .weg-karte .rauch circle:nth-child(3) { animation-delay: 4s; }
+  @keyframes rauch { 0% { opacity: 0; transform: translate(0, 0) scale(.6); } 20% { opacity: .9; } 100% { opacity: 0; transform: translate(10px, -34px) scale(1.6); } }
+  .station.meister .welle, .station.hier .welle { animation: welle 5s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes welle { 0% { opacity: .6; transform: scale(.5); } 100% { opacity: 0; transform: scale(1.3); } }
+  .weg-karte .strahl { transform-box: view-box; animation: strahl 14s ease-in-out infinite alternate; }
+  @keyframes strahl { from { transform: rotate(-22deg); } to { transform: rotate(22deg); } }
+  .weg-karte .ziel-silhouette { fill: none; stroke: rgb(42 37 32 / .42); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .weg-karte .ziel-silhouette .licht { fill: #ffe7a8; stroke: none; opacity: 1; }
+  .weg-karte .nebel-fleck { transform-box: fill-box; transform-origin: center; animation: ziehen var(--d, 18s) ease-in-out infinite alternate; }
+  @keyframes ziehen { from { transform: translate(-6px, 2px); } to { transform: translate(8px, -3px); } }
+  .weg-karte .nebel-gruppe { transition: opacity 1.6s ease; }
+  .weg-karte .nebel-gruppe.duenn { opacity: .55; }
+  .weg-karte .nebel-gruppe.weg { opacity: 0; }
+  .weg-karte .bank { transition: opacity 2s ease; }
+  .weg-karte .bank.gelichtet { opacity: 0; }
+  .weg-karte .wogt { animation: wogt .9s cubic-bezier(.22,.61,.36,1); transform-box: fill-box; transform-origin: center; }
+  @keyframes wogt { 30% { transform: translate(4px, -2px) scale(1.03); } 65% { transform: translate(-4px, 2px) scale(.99); } }
+  html.ruhig .weg-karte .wehen, html.ruhig .weg-karte .rauch circle, html.ruhig .weg-karte .welle, html.ruhig .weg-karte .strahl, html.ruhig .weg-karte .nebel-fleck { animation: none !important; }
+  @media (prefers-reduced-motion: reduce) { .weg-karte .wehen, .weg-karte .rauch circle, .weg-karte .welle, .weg-karte .strahl, .weg-karte .nebel-fleck { animation: none !important; } }
+
+  .ort-bild { overflow: visible; }
+  .ort-bild.klein { width: 1.25em; height: 1.05em; }
+  .ort-bild.klein .ort { stroke-width: 4.5; }
+  .knopf.ort-knopf .ort-bild { width: 34px; height: 30px; }
+  .ort-kopf { display: flex; align-items: flex-end; justify-content: center; gap: clamp(16px, 4vw, 48px); }
+  .ort-bild.gross { width: clamp(120px, calc(26 * var(--vh)), 260px); height: auto; aspect-ratio: 112 / 92; }
+  .ort-ansicht .gross { font-size: clamp(90px, calc(20 * var(--vh)), 190px); }
+  .ort-ansicht .ort-kopf > .gross { white-space: nowrap; }
+
+  .trittsteine { position: relative; }
+  .trittsteine::before { content: ''; position: absolute; left: 4%; right: 4%; top: 50%; border-top: 3px dotted var(--tinte-30); z-index: -1; }
+  .titel-schwelle .feld.trittstein { border-radius: 42% 46% 40% 48% / 48% 42% 46% 40%; }
+  .titel-schwelle .feld.jetzt, .titel-schwelle .bilder-feld.jetzt { border-color: var(--tinte-60); box-shadow: 0 0 0 6px var(--tinte-licht); }
+  .titel-schwelle .boss-feld.jetzt { color: var(--tinte); filter: drop-shadow(0 0 6px rgb(42 37 32 / .18)); }
+  .titel-schwelle .feld.gold, .titel-schwelle .bilder-feld.gold { background: var(--gold-grund); border-color: var(--gold); box-shadow: 0 0 22px rgb(200 134 10 / .22); }
+  .titel-schwelle .boss-feld.gold { color: var(--gold); }
+  .titel-schwelle .feld, .titel-schwelle .bilder-feld { transition: background-color .9s ease, border-color .9s ease, box-shadow .9s ease; }
+  .knopf.truhe-knopf { margin-left: 8px; }
+
+  .knopf.perlen-kopf { display: inline-flex; align-items: center; gap: 6px; padding: 0 12px; min-height: 44px; border-radius: 14px; background: var(--karte); }
+  .perlen-kopf .perle { width: 10px; height: 10px; border-radius: 2px; border: 1.6px solid var(--tinte-30); }
+  .perlen-kopf .perle.rund { border-radius: 50%; }
+  .perlen-kopf .perle.raute { width: 9px; height: 9px; transform: rotate(45deg); margin-left: 3px; }
+  .perlen-kopf .perle.gold { background: var(--gold); border-color: var(--gold); }
+  .perlen-kopf .perle.hier { border-color: var(--ueben-dunkel); box-shadow: 0 0 0 3px rgb(138 171 204 / .35); }
+  .im-zeigen .perlen-kopf .perle.hier, .boss .perlen-kopf .perle.hier { border-color: var(--zeigen); box-shadow: 0 0 0 3px rgb(200 134 10 / .25); }
+
+  .raum { position: relative; }
+  .seite.ruht { opacity: .3; transition: opacity .8s ease; }
+  .stern-gross { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
+  .stern-gross .sym.s-stern { font-size: clamp(110px, calc(26 * var(--vh)), 220px); stroke-width: 1.1; filter: drop-shadow(0 0 28px rgb(200 134 10 / .35)); }
+  .knopf.weiter-knopf { gap: 10px; }
+  .knopf.weiter-knopf .ort-bild.klein { font-size: 26px; }
+}
+@layer schmal {
+  @media (max-width: 760px) and (orientation: portrait) {
+    .ort-kopf { flex-direction: column; align-items: center; gap: 8px; }
+    .ort-bild.gross { width: clamp(100px, 30vw, 180px); }
+  }
+  @media (max-height: 500px) and (orientation: landscape) {
+    .ort-bild.gross { width: clamp(80px, calc(28 * var(--vh)), 150px); }
+    .ort-ansicht .gross { font-size: clamp(60px, calc(22 * var(--vh)), 120px); }
+    .knopf.perlen-kopf { min-height: 36px; padding: 0 8px; gap: 4px; }
+  }
+}
+@layer teile {
+  .ort .wimpel-gold .voll { fill: var(--gold); }
+  .ort .wimpel-gold path:not(.voll) { stroke: var(--gold); }
+  .ort-ansicht > .truhe-knopf { margin: 18px auto 0; }
+}
+@layer teile {
+  body.auf-weg main { height: calc(100 * var(--vh)); overflow: hidden; }
+  .weg-land { flex: none; }
+}
+
+@layer teile {
+  .ort image.ort-linie { display: none; }
+  .station.rand .ort image.ort-farbe { display: none; }
+  .station.rand .ort image.ort-linie { display: inline; }
+  .station.rand .ort { opacity: .45; }
+  .ziel-silhouette image.ort-farbe { display: none; }
+  .ziel-silhouette image.ort-linie { display: inline; opacity: .55; }
+  .weg-karte .schwade { opacity: .9; pointer-events: none; }
+  .station.meister .ort image.ort-farbe, .station.hier .ort image.ort-farbe { filter: drop-shadow(0 2px 2px rgb(42 37 32 / .12)); }
+  .ort-bild.klein image.ort-farbe { filter: none; }
+}
+
+@layer teile {
+  .weg-karte * { pointer-events: none; }
+  .weg-karte .station, .weg-karte .station *, .weg-karte .ding, .weg-karte .ding * { pointer-events: auto; }
+  .marke .ikon-platz { flex: none; width: 56px; height: 56px; display: grid; place-items: center; }
+  .marke .ikon-platz .sym { font-size: 30px; }
+  .marke > .knopf.ikon { flex: none; }
+  .knopf.sammlung-knopf.offen { color: var(--tinte); border-color: var(--tinte-60); background: var(--tinte-licht); }
+}
+@layer schmal {
+  @media (max-height: 500px) and (orientation: landscape) {
+    .marke .ikon-platz { width: 44px; height: 44px; } .marke .ikon-platz .sym { font-size: 24px; }
+  }
+}
+
+@layer teile {
+  .weg-karte .tipp-flaeche { fill: transparent; stroke: none; }
+  .weg-karte .umriss path { fill: none; }
+  .station .krone, .station .edel { fill: none; stroke: var(--tinte-60); stroke-width: 1.8; stroke-linejoin: round; transition: fill .8s ease, stroke .8s ease; }
+  .station.meister .krone, .station.meister .edel { fill: var(--gold); stroke: var(--gold); }
+  .station.rand .krone, .station.rand .edel { stroke: rgb(232 168 0 / .7); stroke-dasharray: 4 3; }
+  .station.nebel .krone, .station.nebel .edel { stroke: rgb(42 37 32 / .12); stroke-dasharray: 3 5; }
+  .station.offen .weglein { opacity: 1; }
+  .station.offen .ort .licht { opacity: .9; }
+  .station .halo { fill: var(--tinte-licht); stroke: none; }
+  .station .ring { stroke-width: 1.6; }
+
+  .knopf.laut.gestalt, .laut.gestalt { background: none; border: none; box-shadow: none; overflow: visible; }
+  .laut.gestalt.nebel { background: none; opacity: 1; }
+  .laut.gestalt > :not(svg) { position: relative; }
+  .laut > svg.siegel-bild { position: absolute; left: -8%; top: -10%; width: 116%; height: 116%; overflow: visible; pointer-events: none; }
+  .siegel-bild .halo, .siegel-bild .ring { display: none; }
+  .siegel-bild .siegel { fill: var(--zgrund); stroke: var(--zrand); stroke-width: 2.4; stroke-linejoin: round; }
+  .siegel-bild .krone, .siegel-bild .edel { fill: none; stroke: var(--zrand); stroke-width: 2; stroke-linejoin: round; }
+  .laut.meister .siegel-bild .siegel { fill: var(--gold-grund); stroke: var(--gold); stroke-width: 3; }
+  .laut.meister .siegel-bild .ring { display: inline; fill: none; stroke: var(--gold); stroke-width: 1.4; }
+  .laut.meister .siegel-bild .krone, .laut.meister .siegel-bild .edel { fill: var(--gold); stroke: var(--gold); }
+  .laut.nebel .siegel-bild .siegel { fill: #d6d0c6; stroke: color-mix(in srgb, var(--zrand) 70%, transparent); stroke-dasharray: 4 4; }
+  .laut.nebel .siegel-bild .krone, .laut.nebel .siegel-bild .edel { stroke: color-mix(in srgb, var(--zrand) 60%, transparent); stroke-dasharray: 3 3; }
+  .laut.gestalt .nebel-schicht { inset: 6%; border-radius: 40%; }
+
+  .siegel-bild .buchstabe { text-anchor: middle; dominant-baseline: central; font-weight: 700; }
+  .siegel-bild .buchstabe .klang { fill: var(--klang); }
+}
+@layer teile {
+
+  .laut.gestalt { display: flex; align-items: center; justify-content: center; gap: .04em; font-size: calc(var(--zelle) * .3); }
+  .laut.gestalt.g-A > :not(svg) { top: 17%; }
+  .laut.gestalt.g-U > :not(svg) { top: -5%; }
+  .laut.gestalt.g-E > :not(svg) { left: -9%; }
+  .laut.gestalt.g-bund { font-size: calc(var(--zelle) * .22); }
+}
+@layer teile { .laut.gestalt.g-lang { flex-direction: column; gap: 0; line-height: .92; font-size: calc(var(--zelle) * .24); } }
+@layer teile {
+  .knopf.laut.gestalt { min-height: 0; min-width: 0; padding: 0; }
+  .laut.meister .siegel-bild .ring { display: none; }
+  .laut > svg.siegel-bild { left: -5%; top: -8%; width: 110%; height: 110%; }
+}
+
+@layer teile {
+  .bild-karte.belegt { border-color: var(--ueben-dunkel); background: var(--karte); }
+  .bild-karte.belegt .ablage { border-top-color: transparent; }
+  .bild-karte.richtig { border-color: var(--gold); background: var(--gold-grund); }
+  .serien-fall.erloschen .bild-karte.belegt { border-color: var(--asche); background: var(--asche-grund); }
+  .wort-heim { display: grid; place-items: center; min-width: var(--heim-b, 0); }
+  .wort-karte.liegt { border-color: transparent; background: transparent; padding: 0 .2em; box-shadow: none; }
+  .raum-bilder .wort-karte.liegt { font-size: min(clamp(18px, min(2.4vw, calc(3.6 * var(--vh))), 30px), 17cqi, 50cqh); }
+  .wort-karte.fest, .kachel.fest { cursor: default; }
+  .knopf.pruefen-knopf { min-width: 9em; }
+
+  .tipp-feld { min-width: 1.15em; height: 1.35em; border: 2px solid var(--tinte-30); border-radius: 12px; border-bottom-width: 3px; background: rgb(255 255 255 / .6); }
+  .tipp-feld.anfang { min-width: 1.3em; height: 1.5em; align-self: flex-end; }
+  .tipp-feld.voll { border-color: var(--ueben-dunkel); }
+  .tipp-vorlage.fertig .tipp-feld { border-color: var(--gold); background: var(--gold-grund); }
+  .tipp-vorlage.erloschen .tipp-feld.voll { border-color: var(--asche); background: var(--asche-grund); border-style: dashed; }
+  .tipp-felder { align-items: flex-end; }
+  .tipp-kacheln { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(6px, 1vw, 10px); max-width: min(100%, 40em); }
+  .kachel-platz { display: grid; place-items: center; width: clamp(44px, 6.4vw, 64px); height: clamp(44px, 6.4vw, 64px); border-radius: 12px; border: 2px dashed rgb(42 37 32 / .1); }
+  .kachel, .tipp-feld > .kachel { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 10px; font-size: clamp(24px, 3.4vw, 34px); font-weight: 700;
+    background: var(--karte); border: 2px solid var(--rand); box-shadow: 0 2px 0 rgb(42 37 32 / .08); cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; }
+  .tipp-feld > .kachel { border: none; box-shadow: none; background: transparent; font-size: inherit; }
+  .kachel.zieht { z-index: 10; cursor: grabbing; box-shadow: 0 12px 28px rgb(42 37 32 / .18); position: relative; }
+  .kachel.fliegt { z-index: 10; position: relative; }
+}
+@layer schmal {
+  @media (max-height: 500px) and (orientation: landscape) {
+    .kachel-platz { width: clamp(36px, calc(9 * var(--vh)), 48px); height: clamp(36px, calc(9 * var(--vh)), 48px); }
+    .kachel { font-size: clamp(18px, calc(5 * var(--vh)), 26px); }
+  }
+}
+@layer teile {
+  .knopf.licht-ruht { opacity: .35; cursor: default; box-shadow: none; }
+  .knopf.pruefen-knopf { transition: opacity .35s ease, border-color .3s, background-color .3s; }
+}
+@layer teile { .wort-heim.leer { outline: 2px dashed var(--rand); outline-offset: -2px; border-radius: 16px; opacity: .5; } }
+@layer teile {
+
+  .tafel.buchstaben { display: grid; justify-content: center; align-items: start; }
+  .tafel.buchstaben > * { justify-self: start; }
+  .tafel.buchstaben .reihe { justify-content: flex-start; }
+}
+@layer teile {
+
+  .abtippen { --kachel: clamp(44px, 6.4vw, 64px); }
+  .kachel-platz { width: var(--kachel); height: var(--kachel); border-color: transparent; }
+  .kachel-platz.leer { border-color: rgb(42 37 32 / .14); }
+  .tipp-feld, .tipp-feld.anfang { width: var(--kachel); height: var(--kachel); min-width: 0; padding: 0; align-self: auto; font-size: clamp(24px, 3.4vw, 34px); border-radius: 12px; }
+  .tipp-felder { gap: clamp(6px, 1vw, 10px); align-items: center; }
+}
+@layer schmal {
+  @media (max-height: 500px) and (orientation: landscape) { .abtippen { --kachel: clamp(36px, calc(9 * var(--vh)), 48px); } .tipp-feld { font-size: clamp(18px, calc(5 * var(--vh)), 26px); } }
+}
+
+@layer teile {
+  @media (orientation: landscape) and (min-height: 501px) {
+    .abtippen { flex-direction: column; justify-content: center; align-items: center; gap: clamp(14px, calc(2.6 * var(--vh)), 28px); }
+  }
+  .abtippen .tipp-vorlage { gap: clamp(10px, calc(2 * var(--vh)), 20px); }
+  .abtippen .tipp-bild { width: clamp(120px, calc(24 * var(--vh)), 260px); }
+}
+@layer schmal {
+  @media (max-height: 500px) and (orientation: landscape) { .abtippen .tipp-bild { width: clamp(56px, calc(19 * var(--vh)), 96px); } }
+  @media (max-width: 760px) and (orientation: portrait) { .abtippen .tipp-bild { width: clamp(110px, 34vw, 200px); } }
+}
+@layer schmal {
+
+  @media (orientation: landscape) and (min-height: 501px) and (max-height: 820px) {
+    .abtippen { --kachel: clamp(40px, calc(7.2 * var(--vh)), 60px); gap: clamp(8px, calc(1.6 * var(--vh)), 18px); }
+    .abtippen .tipp-bild { width: clamp(96px, calc(20 * var(--vh)), 200px); }
+    .abtippen .tipp-vorlage { gap: clamp(8px, calc(1.4 * var(--vh)), 14px); }
+  }
+}
+
+@layer teile {
+  .ort-ansicht > .bonus-reihe { display: flex; gap: 14px; justify-content: center; margin-top: 18px; }
+  .ort-ansicht > .bonus-reihe .truhe-knopf { margin: 0; }
+  .knopf.bonus-bilder { color: var(--ueben-dunkel); border-color: var(--ueben); }
+}
+@layer teile {
+
+  .reiterleiste .hinweis-knopf { margin-left: auto; align-self: center; width: 44px; height: 44px; margin-right: 6px; }
+}
+
+@layer schmal {
+  :root { --schiene: 78px; --schiene-unten: 0px; }
+  .schiene { position: fixed; z-index: 6; left: 0; top: 0; bottom: 0; width: calc(var(--schiene) + env(safe-area-inset-left, 0px)); display: flex; flex-direction: column; align-items: center; gap: 4px;
+    padding: calc(env(safe-area-inset-top) + 10px) 0 calc(env(safe-area-inset-bottom) + 10px); padding-left: env(safe-area-inset-left);
+    background: var(--karte); border-right: 1px solid var(--rand); }
+  .schiene-unten { margin-top: auto; display: flex; flex-direction: column; gap: 4px; align-items: center; }
+  .knopf.schienen-knopf { width: 64px; min-height: 60px; padding: 6px 0 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+    border: 1.5px solid transparent; background: transparent; box-shadow: none; font-size: 12px; font-weight: 400; color: var(--tinte-70); border-radius: 14px; }
+  .knopf.schienen-knopf .sym { font-size: 27px; }
+  .knopf.schienen-knopf.an { background: var(--blatt, var(--papier)); border-color: var(--rand); color: var(--tinte); }
+  .knopf.schienen-knopf[data-ziel="weiter"] .sym { color: var(--ueben); }
+  .leiste { left: calc(var(--schiene) + env(safe-area-inset-left, 0px)); }
+  .leiste-unten { left: calc(var(--schiene) + env(safe-area-inset-left, 0px)); bottom: var(--schiene-unten); }
+  main { padding-left: calc(var(--schiene) + env(safe-area-inset-left, 0px) + 18px); padding-bottom: calc(var(--unten) + var(--schiene-unten) + 12px); }
+  main.kamera { overflow: clip; }
+  body.ohne-unten main { padding-bottom: calc(env(safe-area-inset-bottom) + var(--schiene-unten) + 16px); }
+  body.auf-weg main { padding: var(--oben) env(safe-area-inset-right, 0px) var(--schiene-unten) calc(var(--schiene) + env(safe-area-inset-left, 0px)); }
+  .weg-land { height: calc(calc(100 * var(--vh)) - var(--oben) - var(--schiene-unten)); }
+  .hinweis-karte { left: calc(50% + var(--schiene) / 2); bottom: calc(var(--unten) + var(--schiene-unten) + 12px); width: min(640px, calc(100vw - var(--schiene) - 32px)); }
+
+  .kruemel { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .krume { color: var(--tinte-30); font-size: 24px; line-height: 1; }
+  .lektion-titel { font-size: 18px; color: var(--tinte-70); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .knopf.ort-chip { display: inline-flex; align-items: center; gap: 10px; padding: 0 12px; min-height: 52px; border-radius: 16px; background: var(--karte); font-weight: 700; font-size: 22px; }
+  .ort-chip .ort-bild.klein { width: 34px; height: 30px; }
+  .ort-chip .chip-zeichen { white-space: nowrap; }
+  .ort-chip .perlen-kopf { display: inline-flex; gap: 5px; align-items: center; }
+  @media (orientation: portrait) and (max-width: 699px) {
+
+    :root { --schiene: 0px; --schiene-unten: calc(64px + env(safe-area-inset-bottom)); --unten: 62px; --oben: 62px; }
+    .schiene { top: auto; right: 0; width: auto; height: var(--schiene-unten); flex-direction: row; justify-content: space-around; align-items: center;
+      padding: 2px 6px env(safe-area-inset-bottom); border-right: 0; border-top: 1px solid var(--rand); }
+    .schiene-unten { margin: 0; flex-direction: row; }
+    .knopf.schienen-knopf { width: 60px; min-height: 56px; }
+    .schienen-knopf[data-ziel="vollbild"] { display: none; }
+
+    .schiene-unten { display: contents; }
+    .knopf.schienen-knopf { width: auto; flex: 1 1 0; min-width: 0; max-width: 60px; }
+    .schienen-wort { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; }
+    .lektion-titel { display: none; }
+    .krume { display: none; }
+  }
+  @media (orientation: portrait) and (max-width: 699px) and (max-height: 780px) {
+    .abtippen .tipp-bild { width: clamp(96px, 27vw, 200px); }
+    .raum-bilder .wort-karte { font-size: 19px; }
+    .raum-bilder .ablage { height: 30px; }
+    .raum-bilder .zuordnen { gap: 6px; }
+    .raum-bilder .wort-reihe { row-gap: 6px; }
+    .raum-bilder .tafel-rahmen.mit-bildern { padding-block: 4px; }
+  }
+  @media (max-height: 500px) and (orientation: landscape) {
+    :root { --schiene: 58px; }
+    main { padding-bottom: calc(var(--unten) + 6px); }
+    body.ohne-unten main { padding-bottom: calc(env(safe-area-inset-bottom) + 8px); }
+    .schienen-wort { display: none; }
+    .knopf.schienen-knopf { width: 46px; min-height: 44px; padding: 0; }
+    .knopf.schienen-knopf .sym { font-size: 24px; }
+    .knopf.ort-chip { min-height: 40px; font-size: 18px; gap: 6px; padding: 0 8px; }
+    .ort-chip .ort-bild.klein { width: 26px; height: 22px; }
+    .lektion-titel { font-size: 15px; }
+  }
+}
+
+@layer teile {
+  .knopf.haken-knopf { width: 44px; height: 44px; min-width: 0; min-height: 0; padding: 0; border: 0; background: transparent; box-shadow: none; color: var(--tinte-30); }
+  .knopf.haken-knopf .sym { font-size: 28px; }
+  .knopf.haken-knopf[aria-pressed="true"] { color: var(--ueben-dunkel); }
+  .knopf.haken-knopf[aria-pressed="true"] .sym { fill: color-mix(in srgb, var(--ueben) 45%, transparent); }
+  .laut.gestalt.g-lang > .g-zeile { display: block; }
+  .szene { display: flex; flex-direction: column; align-items: center; gap: clamp(14px, calc(3 * var(--vh)), 32px); padding: 8px 0; }
+  .szene-frage { display: flex; align-items: center; gap: 14px; font-size: clamp(34px, calc(6 * var(--vh)), 64px); }
+  .szene-frage .szene-vorlage { width: clamp(90px, calc(16 * var(--vh)), 170px); height: auto; aspect-ratio: 1; padding: 8px; background: #fff; border: 2px solid var(--rand); border-radius: 20px; }
+  .szene-zeichen { color: var(--tinte-30); font-weight: 700; }
+  .szene-wahl { display: flex; gap: clamp(14px, 3vw, 36px); }
+  .knopf.szene-bild { width: clamp(96px, min(calc(20 * var(--vh)), 40vw), 210px); height: auto; aspect-ratio: 1; padding: 10px; border-radius: 22px; background: #fff;
+    transition: border-color .6s ease, background-color .6s ease, opacity .4s ease, filter .4s ease; }
+  .knopf.szene-bild img.bild.raster { mix-blend-mode: multiply; }
+  .laut.gestalt > .nebel-schicht { position: absolute; }
+  .knopf.szene-bild .bild { width: 100%; height: 100%; }
+  .knopf.szene-bild.gold { border-color: var(--gold); background: #fff6dc; }
+  .knopf.szene-bild.erloschen { opacity: .38; filter: grayscale(1); }
+  @media (max-height: 500px) and (orientation: landscape) {
+    .szene { flex-direction: row; gap: 28px; }
+    .knopf.szene-bild { width: clamp(84px, calc(30 * var(--vh)), 130px); }
+    .szene-frage .szene-vorlage { width: clamp(70px, calc(24 * var(--vh)), 110px); }
+  }
+}
+
+@layer schmal {
+  .titel-schwelle .weg.trittsteine { gap: clamp(10px, 1.8vw, 22px); align-items: center; padding: 12px 0 16px; }
+  .titel-schwelle .feld.trittstein {
+    width: auto; height: auto; min-height: 0; padding: .55em 1.1em .6em; flex-direction: row; gap: .5em;
+    font-size: clamp(17px, 2vw, 24px); line-height: 1.1; white-space: nowrap;
+    border-radius: 46% 54% 44% 56% / 60% 52% 48% 40%; background: var(--karte); border: 2px solid var(--rand);
+    box-shadow: 0 4px 0 -1px rgb(42 37 32 / .08);
+    transform: translateY(-7px) rotate(-1deg);
+    transition: background-color .9s ease, border-color .9s ease, box-shadow .9s ease, transform .3s ease;
+  }
+  .titel-schwelle .feld.trittstein:nth-of-type(even) { transform: translateY(9px) rotate(1.2deg); border-radius: 54% 46% 58% 42% / 44% 58% 42% 56%; }
+  .titel-schwelle .feld.trittstein.jetzt { border-color: var(--tinte-60); box-shadow: 0 0 0 6px var(--tinte-licht), 0 4px 0 -1px rgb(42 37 32 / .08); }
+  .titel-schwelle .feld.trittstein.gold { background: var(--gold-grund); border-color: var(--gold); box-shadow: 0 0 20px rgb(200 134 10 / .2), 0 4px 0 -1px rgb(200 134 10 / .25); }
+  .titel-schwelle .feld.trittstein:active { transform: translateY(-4px) rotate(0deg) scale(.97); }
+  .titel-schwelle .feld.trittstein .feld-band { top: -10px; right: 10px; }
+  .trittsteine::before { top: 52%; left: 2%; right: 2%; border-top: 3px dotted var(--tinte-30); }
+  @media (max-width: 699px) {
+    .titel-schwelle .feld.trittstein { font-size: 16px; padding: .5em .85em .55em; }
+    .trittsteine::before { display: none; }
+  }
+}
+
+@layer teile {
+  dialog.schublade.handreichung { width: min(760px, calc(100vw - 32px)); max-height: calc(calc(100 * var(--vh)) - 40px); padding: 0; display: flex; flex-direction: column; }
+  dialog.schublade.handreichung:not([open]) { display: none; }
+  .handreichung .schublade-kopf { padding: 18px 22px 12px; border-bottom: 1px solid var(--rand); }
+  .hr-inhalt { overflow-y: auto; padding: 6px 26px 28px; font-size: 17px; line-height: 1.55; }
+  .hr-einleitung { font-size: 18px; color: var(--tinte); }
+  .hr-verzeichnis { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 6px; }
+  .knopf.hr-sprung { min-height: 36px; padding: 0 12px; font-size: 14px; font-weight: 400; }
+  .hr-abschnitt { scroll-margin-top: 8px; }
+  .hr-abschnitt h3 { display: flex; align-items: center; gap: 10px; margin: 26px 0 8px; font-size: 20px; }
+  .hr-abschnitt h3 .sym { font-size: 24px; color: var(--ueben-dunkel); flex: none; }
+  .hr-abschnitt p { margin: 0 0 10px; }
+  .hr-abschnitt ul { margin: 0 0 12px; padding-left: 1.2em; }
+  .hr-abschnitt li { margin: 0 0 6px; }
+  .hr-tipp { padding: 10px 14px; border-left: 4px solid var(--gold); background: var(--gold-grund); border-radius: 0 12px 12px 0; }
+  @media (max-width: 699px) { .hr-inhalt { padding: 4px 16px 22px; font-size: 16px; } }
+}
+
+@layer teile {
+  .weg-karte.leuchtet .nebel-fleck, .weg-karte.leuchtet .umriss { opacity: 0; transition: opacity 2.4s ease; }
+  .weg-karte.leuchtet .strahl path { opacity: 1; }
+  .weg-karte.leuchtet .ziel-silhouette .licht { fill: #ffd76a; filter: drop-shadow(0 0 6px #ffe7a8); }
+  .finale { position: fixed; inset: 0; z-index: 30; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(16px, calc(4 * var(--vh)), 36px);
+    background: radial-gradient(circle at 50% 40%, rgb(255 236 180 / .96), rgb(250 244 230 / .97) 60%); padding: 24px; padding-left: calc(var(--schiene) + 24px); }
+  .finale-bilder { display: flex; gap: clamp(12px, 4vw, 40px); }
+  .finale .finale-bild { width: clamp(110px, 22vmin, 220px); height: auto; aspect-ratio: 1; mix-blend-mode: multiply; }
+  .finale-satz { font-size: clamp(44px, 9vmin, 96px); font-weight: 700; }
+}
+@layer schmal { .ort-ansicht .gross.ziel-titel { font-size: clamp(40px, calc(8 * var(--vh)), 88px); letter-spacing: 0; } }
+
+@layer teile {
+  .ende .frage-begleitung { display: flex; align-items: center; gap: 8px; margin: 0 auto 0 0; max-width: 46ch; font-size: clamp(14px, 1.7vw, 18px); line-height: 1.25; color: var(--tinte-60); font-style: italic; }
+  .ende .frage-begleitung .sym { font-size: 1.25em; flex: none; }
+  @media (max-width: 699px) { .ende .frage-begleitung { font-size: 13px; max-width: 26ch; } }
+}
+
+@layer teile {
+  .sinn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(14px, calc(3.2 * var(--vh)), 34px); width: 100%; padding: 6px 0; }
+  .sinn-satz { font-size: clamp(30px, min(5.4vw, calc(6.2 * var(--vh))), 60px); text-align: center; }
+  .sinn-wahl { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(10px, 2.4vw, 30px); width: min(100%, 860px); }
+  .knopf.sinn-bild { width: 100%; height: auto; aspect-ratio: 4 / 3; padding: 8px; border-radius: 22px; background: #fff; border: 2px solid var(--rand); overflow: hidden; }
+  .knopf.sinn-bild .bild.szene-ganz { width: 100%; height: 100%; object-fit: contain; }
+  .knopf.sinn-bild img.bild.raster { mix-blend-mode: multiply; }
+  .knopf.sinn-bild .bild { color: #2a2520; }
+  .knopf.sinn-bild.gold { border-color: var(--gold); background: #fff6dc; box-shadow: 0 0 0 4px rgb(200 134 10 / .25); }
+  .knopf.sinn-bild.erloschen { opacity: .38; filter: grayscale(1); border-style: dashed; border-color: var(--asche); }
+  .sinn-wahl.entschieden .knopf.sinn-bild:not(.gold) { opacity: .3; filter: grayscale(1); }
+
+  .sinn-wahl, .szene-wahl { transition: opacity .3s ease; }
+  .sinn-wahl.lesen, .szene-wahl.lesen { opacity: 0; pointer-events: none; }
+
+  .szene-platzhalter { position: relative; width: 100%; height: 100%; }
+  .szene-platzhalter .sp-wer { position: absolute; left: 2%; bottom: 2%; width: 62%; height: 80%; display: flex; align-items: flex-end; }
+  .szene-platzhalter .sp-wer .bild { flex: 1 1 0; min-width: 0; height: 100%; }
+  .szene-platzhalter .sp-wer.n2 .bild, .szene-platzhalter .sp-wer.n3 .bild { height: 72%; }
+  .szene-platzhalter .sp-wer.n4, .szene-platzhalter .sp-wer.n5 { width: 66%; }
+  .szene-platzhalter .sp-wer.n4 .bild, .szene-platzhalter .sp-wer.n5 .bild { height: 56%; }
+  .szene-platzhalter .sp-tut { position: absolute; right: 3%; top: 3%; width: 34%; height: 44%; }
+  .szene-platzhalter .sp-was { position: absolute; right: 3%; bottom: 3%; width: 34%; height: 44%; }
+  @media (max-width: 699px) and (orientation: portrait) {
+    .sinn-wahl { grid-template-columns: 1fr 1fr; }
+    .sinn-wahl .knopf.sinn-bild:last-child { grid-column: 1 / -1; justify-self: center; width: calc(50% - 6px); }
+  }
+  @media (max-height: 500px) and (orientation: landscape) {
+    .sinn { gap: 8px; }
+    .sinn-satz { font-size: clamp(22px, calc(7 * var(--vh)), 36px); }
+    .sinn-wahl { width: min(100%, calc(120 * var(--vh))); }
+  }
+}
+
+@layer teile {
+
+  .zelle > *, .wort-karte > *, .kachel > *, .karteikarte > * { position: relative; top: var(--ruck, 0px); }
+
+  .abtippen.serien-fall.freude .tipp-feld { border-color: var(--gold); background: var(--gold-grund); }
+}
+
+@layer schmal {
+  .hinweis-karte {
+    left: var(--schiene); right: 0; width: auto; bottom: var(--schiene-unten); height: var(--unten); translate: none; transform: none;
+    border-radius: 0; border: 0; border-top: 2px solid rgb(138 171 204 / .7); box-shadow: 0 -8px 20px rgb(42 37 32 / .07);
+    padding: 6px max(12px, env(safe-area-inset-right)) calc(6px + env(safe-area-inset-bottom)) 18px;
+    font-size: clamp(13px, 1.55vw, 17px); line-height: 1.3; overflow-y: auto; z-index: 6;
+  }
+}
+
+@layer schmal {
+  .weg-karte .ding .ding-ring { fill: var(--tinte-licht); opacity: .9; transform-box: fill-box; transform-origin: 50% 50%; }
+  .weg-karte .ding-koerper { transform-box: fill-box; transform-origin: 50% 100%; }
+
+  .weg-karte .ding.ding-offen .ding-ring { stroke: var(--tinte-60); stroke-width: 1.4; }
+  .weg-karte .ding.ding-gold .ding-ring { fill: var(--gold-grund); stroke: var(--gold); stroke-width: 1.4; opacity: 1; }
+  .weg-karte .ding .ding-bild { overflow: visible; }
+  .weg-karte .ding:hover .ding-bild, .weg-karte .ding:focus-visible .ding-bild { translate: 0 -2px; }
+  .weg-karte .bewohner { pointer-events: none; }
+  .weg-karte .bewohner .platzhalter-bild { color: var(--tinte-60); stroke-width: 4; }
+  .weg-karte .bewohner image:not([href^="data:image/svg"]) { mix-blend-mode: multiply; }
+  .weg-karte .umwelt { pointer-events: none; }
+  .weg-karte .glanz { fill: #fff; opacity: 0; animation: glitzern 7s ease-in-out var(--d, 0s) infinite; }
+  @keyframes glitzern { 0%, 100% { opacity: 0; } 18% { opacity: .95; } 34% { opacity: 0; } }
+  .weg-karte .zug path { fill: none; stroke: var(--tinte-60); stroke-width: 1.6; stroke-linecap: round; }
+  .weg-karte .zug-bahn { animation: zug-ziehen 58s linear 4s infinite; opacity: 0; }
+  @keyframes zug-ziehen { 0% { transform: translateX(0); opacity: 0; } 4% { opacity: .75; } 52% { opacity: .75; } 56% { transform: translateX(var(--weit, 1100px)); opacity: 0; } 100% { transform: translateX(var(--weit, 1100px)); opacity: 0; } }
+  .weg-karte .zug-bahn .zug { --weit: inherit; }
+  .weg-karte .wolke { fill: #fff; opacity: .6; animation: wolke-treiben 46s ease-in-out var(--d, 0s) infinite alternate; }
+  @keyframes wolke-treiben { from { transform: translateX(-30px); } to { transform: translateX(30px); } }
+  html.ruhig .weg-karte .glanz, html.ruhig .weg-karte .zug-bahn { animation: none; opacity: 0; }
+  html.ruhig .weg-karte .wolke { animation: none; }
+
+  .ort-ansicht > .bonus-reihe { gap: clamp(18px, 4vw, 44px); align-items: flex-end; }
+  .knopf.bonus-ding { width: clamp(88px, 13vw, 120px); height: clamp(88px, 13vw, 120px); padding: 6px; border-radius: 50%; border: 0; background: radial-gradient(closest-side, var(--tinte-licht), transparent); box-shadow: none; }
+  .knopf.bonus-ding .ding-bild { width: 100%; height: 100%; transition: translate .25s ease; }
+  .knopf.bonus-ding:hover .ding-bild, .knopf.bonus-ding:active .ding-bild { translate: 0 -4px; }
+  .knopf.bonus-ding.gold { background: radial-gradient(closest-side, var(--gold-grund), transparent); }
+  .knopf.bonus-ding.jetzt { box-shadow: 0 0 0 3px var(--tinte-licht); }
+}
+
+@layer schmal {
+
+  @media (max-width: 480px) {
+    .raum-bilder .bild-reihe { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-columns: auto; width: min(100%, 340px); }
+    .raum-bilder .bild-karte img.bild.raster, .raum-bilder .bild-karte svg.bild { height: clamp(40px, calc(6.4 * var(--vh)), 96px); }
+    .raum-bilder .ablage { height: clamp(38px, calc(5.4 * var(--vh)), 54px); }
+    .raum-bilder .bild-reihe { row-gap: 6px; }
+
+    .raum-bilder { position: relative; }
+    .raum-bilder > .auswahl-platz { position: absolute; top: -46px; right: 6px; margin: 0; min-height: 0; }
+    .raum-bilder .auswahl-platz .knopf.schreib-wahl { min-height: 38px; padding: 0 10px; font-size: 15px; }
+  }
+
+  @media (orientation: portrait) and (max-width: 699px) {
+
+    .raum-huelle { max-height: calc(calc(100 * var(--vh)) - var(--oben) - var(--unten) - var(--schiene-unten) - 20px); }
+  }
+  @media (orientation: portrait) and (max-width: 480px) and (max-height: 780px) {
+    .raum-bilder { gap: 6px; }
+    .raum-bilder .serien-fall:has(> .zuordnen) { padding-block: 6px; }
+    .raum-bilder .bild-karte img.bild.raster, .raum-bilder .bild-karte svg.bild { height: clamp(34px, calc(5 * var(--vh)), 60px); }
+    .raum-bilder .ablage { height: 34px; }
+    .raum-bilder .bild-reihe, .raum-bilder .zuordnen { row-gap: 4px; gap: 4px; }
+    .raum-bilder .wort-karte { font-size: 18px; }
+
+    .ort-ansicht .gross { font-size: clamp(80px, calc(14 * var(--vh)), 150px); }
+    .titel-schwelle .boss-feld.boss-tor { width: 118px; }
+    .ort-ansicht { gap: 10px; }
+  }
+  @media (max-height: 500px) and (orientation: landscape) {
+
+    .raum-bilder .wort-reihe { grid-template-columns: repeat(2, max-content); flex: 0 0 auto; }
+    .raum-bilder .bild-reihe { flex: 1 1 0; min-width: 0; max-width: 560px; grid-auto-columns: minmax(0, 1fr); }
+    .raum-bilder .wort-karte { font-size: clamp(15px, calc(4.6 * var(--vh)), 24px); }
+    .raum-bilder .serien-fall:has(> .zuordnen) { width: 100%; }
+    .raum-bilder .bild-karte img.bild.raster, .raum-bilder .bild-karte svg.bild { height: clamp(34px, calc(12 * var(--vh)), 80px); }
+    .raum-bilder .ablage { height: clamp(32px, calc(9.5 * var(--vh)), 44px); }
+
+    .ort-ansicht:has(> .bonus-reihe) { display: grid; grid-template-columns: auto auto; grid-template-areas: "kopf bonus" "steine steine"; align-items: center; justify-content: center; column-gap: clamp(20px, 4vw, 44px); row-gap: 6px; }
+    .ort-ansicht > .ort-kopf { grid-area: kopf; }
+    .ort-ansicht > .trittsteine { grid-area: steine; }
+    .ort-ansicht > .bonus-reihe { grid-area: bonus; margin-top: 0; }
+    .knopf.bonus-ding { width: clamp(64px, calc(21 * var(--vh)), 96px); height: clamp(64px, calc(21 * var(--vh)), 96px); }
+  }
+}
+
+@layer teile {
+  .kachel-platz.g2 { width: calc(var(--kachel) * 1.42); }
+  .kachel-platz.g3 { width: calc(var(--kachel) * 1.8); }
+
+  .tipp-feld, .tipp-feld.anfang { height: var(--feld, var(--kachel)); }
+  .tipp-feld.g1 { width: max(var(--feld, var(--kachel)), calc(1em + 12px)); }
+  .tipp-feld.g2 { width: max(calc(var(--feld, var(--kachel)) * 1.2), calc(1.4em + 14px)); }
+  .tipp-feld.g3 { width: max(calc(var(--feld, var(--kachel)) * 1.35), calc(2.05em + 14px)); }
+}
+
+@layer teile {
+  .weg-karte .lebt { transform-box: fill-box; transform-origin: 50% 100%; animation: lebt-atmen var(--t, 16s) ease-in-out var(--d, 0s) infinite; }
+  .weg-karte .lebt.schaut { animation-name: lebt-schaut; }
+  .weg-karte .lebt.luft { transform-origin: 50% 50%; animation-name: lebt-schweben; }
+  .weg-karte .lebt.wasser { animation-name: lebt-wiegen; }
+  @keyframes lebt-atmen { 0%, 25%, 50%, 75%, 100% { transform: scale(1, 1); } 12%, 37%, 62%, 87% { transform: scale(1.015, 1.035); } }
+
+  @keyframes lebt-schaut {
+    0%, 20%, 41%, 100% { transform: scale(1, 1); } 10%, 30% { transform: scale(1.015, 1.035); }
+    42%, 58%, 77% { transform: scale(-1, 1); } 50%, 67% { transform: scale(-1.015, 1.035); } 78% { transform: scale(1, 1); }
+  }
+  @keyframes lebt-schweben { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 30% { transform: translate(0, -3px) rotate(-2deg); } 70% { transform: translate(0, -1px) rotate(2deg); } }
+  @keyframes lebt-wiegen { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg) translate(0, 1.5px); } }
+  .ruhig .weg-karte .lebt { animation: none; }
+
+  .weg-karte .baum-krone { fill: #a9c98a; stroke: #6f8f4f; stroke-width: 1.6; }
+  .weg-karte .baum-stamm { fill: #9a6b45; stroke: #6f4a2c; stroke-width: 1; }
+  .weg-karte .baum-licht { fill: none; stroke: rgb(255 255 255 / .55); stroke-width: 2.2; stroke-linecap: round; }
+  .weg-karte .baum-schatten { fill: rgb(42 37 32 / .1); }
+  .weg-karte .lebt.baum { animation-name: baum-wiegen; }
+  @keyframes baum-wiegen { 0%, 100% { transform: rotate(-1.2deg); } 50% { transform: rotate(1.2deg); } }
+}
+
+@layer teile {
+  .titel-schwelle .boss-feld.boss-tor { width: clamp(150px, 18vw, 220px); height: auto; aspect-ratio: 200 / 128; border: 0; background: transparent;
+    padding: 0; border-radius: 24px; display: grid; place-items: stretch; position: relative; }
+  .boss-tor { color: var(--tinte-60); }
+  .boss-tor > * { grid-area: 1 / 1; }
+  .boss-tor .tor { width: 100%; height: 100%; overflow: visible; }
+  .boss-tor .tor .sym { width: 28px; height: 28px; }
+  .boss-tor .tor-boden { fill: rgb(42 37 32 / .12); }
+  .boss-tor .tor-bogen { fill: var(--karte); stroke: var(--tinte-60); stroke-width: 3; }
+  .boss-tor .tor-innen { fill: var(--tinte-licht); }
+  .boss-tor .tor-fluegel { fill: color-mix(in srgb, var(--tinte) 9%, var(--karte)); stroke: var(--tinte-30); stroke-width: 1.5;
+    transform-box: fill-box; transition: transform .42s cubic-bezier(.4, 0, .2, 1); }
+  .boss-tor .tor-fluegel.links { transform-origin: 0% 50%; }
+  .boss-tor .tor-fluegel.rechts { transform-origin: 100% 50%; }
+  .boss-tor.oeffnet .tor-fluegel, .boss-tor.gold .tor-fluegel { transform: scaleX(.12); }
+  .boss-tor .tor-hinter { opacity: .62; transition: opacity .6s ease; }
+  .boss-tor.gold .tor-hinter { opacity: 0; }
+  .boss-tor .tor-laut { align-self: end; justify-self: center; margin-bottom: 9%; font-size: clamp(22px, 2.6vw, 30px); font-weight: 700; line-height: 1; position: relative; }
+  .boss-tor .tor-laut.lang { font-size: clamp(15px, 1.8vw, 20px); white-space: nowrap; }
+  .boss-tor .tor-licht { margin: -16%; border-radius: 50%; background: radial-gradient(closest-side, rgb(42 37 32 / .14), rgb(42 37 32 / 0)); opacity: 0; }
+  .boss-tor.jetzt { color: var(--tinte); }
+  .boss-tor.jetzt .tor-bogen { stroke: var(--tinte); }
+  .boss-tor.jetzt .tor-licht { opacity: 1; animation: tor-atmen 2.8s ease-in-out infinite; }
+  @keyframes tor-atmen { 0%, 100% { transform: scale(.94); opacity: .7; } 50% { transform: scale(1.04); opacity: 1; } }
+  .boss-tor.gold { color: var(--gold); }
+  .boss-tor.gold .tor-bogen { stroke: var(--gold); fill: var(--gold-grund); }
+  .boss-tor.gold .tor-innen { fill: rgb(200 134 10 / .2); }
+  .ruhig .boss-tor .tor-licht { animation: none; }
+  .ruhig .boss-tor .tor-fluegel, .ruhig .boss-tor .tor-hinter { transition: none; }
+}
+
+@layer teile {
+  body.in-galerie main { justify-content: flex-start; }
+  .galerie { width: min(100%, 1100px); display: flex; flex-direction: column; gap: clamp(12px, calc(2.2 * var(--vh)), 24px); }
+  .galerie-ort { display: grid; grid-template-columns: auto 1fr; gap: clamp(10px, 1.6vw, 18px); align-items: start; padding: 12px 14px;
+    border-radius: 20px; background: color-mix(in srgb, var(--karte) 70%, transparent); }
+  .galerie-kopf { display: flex; flex-direction: column; align-items: center; gap: 2px; width: clamp(56px, 7vw, 76px); }
+  .galerie-kopf .ort-bild { width: 100%; height: auto; }
+  .galerie-kopf .chip-zeichen { font-size: clamp(16px, 2vw, 22px); font-weight: 700; white-space: nowrap; }
+  .galerie-reihe { --rahmen: clamp(84px, 11vw, 132px); display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--rahmen), 1fr)); gap: clamp(8px, 1.2vw, 14px); }
+  .knopf.galerie-bild, .galerie-leer { aspect-ratio: 1; width: 100%; height: auto; min-height: 0; min-width: 0; padding: 8%; border-radius: 8px;
+    background: #fffdf8; border: 6px solid #d9c3a0; box-shadow: inset 0 0 0 2px #fff, 0 2px 6px rgb(42 37 32 / .12); }
+  .knopf.galerie-bild > img, .knopf.galerie-bild > svg { width: 100%; height: 100%; object-fit: contain; }
+  .knopf.galerie-bild.gewaehlt { border-color: var(--tinte-60); box-shadow: 0 0 0 6px var(--tinte-licht), inset 0 0 0 2px #fff; }
+  .galerie-leer { position: relative; overflow: hidden; background: transparent; border-color: rgb(217 195 160 / .35); box-shadow: none; }
+  .galerie-nebel { position: absolute; inset: 0; background: radial-gradient(circle at 40% 45%, rgb(253 250 243 / .95), rgb(232 226 214 / .5) 72%); }
+  .galerie-werkzeug { display: flex; gap: 10px; justify-content: center; flex-wrap: nowrap; }
+
+  body.in-druck main { justify-content: center; }
+  .druck-raum { width: 100%; display: flex; align-items: center; justify-content: center; gap: clamp(18px, 3.5vw, 48px); }
+  .druck-stapel { position: relative; flex: none; aspect-ratio: 210 / 297; height: clamp(240px, calc(100 * var(--vh) - 190px), 760px); container-type: size; }
+  .druck-unterblatt, .druck-seite.vorschau { position: absolute; inset: 0; background: #fff; border-radius: 1.5cqw; box-shadow: 0 2px 10px rgb(42 37 32 / .16); }
+  .druck-unterblatt.u1 { transform: translate(2.2cqw, 1.6cqw) rotate(1.2deg); }
+  .druck-unterblatt.u2 { transform: translate(4.2cqw, 3cqw) rotate(2.4deg); }
+  .druck-seite.vorschau { display: grid; gap: 3.8cqw; padding: 6.7cqw; color: #2a2520; }
+  .vorschau .druck-bild { margin: 0; min-width: 0; min-height: 0; display: grid; place-items: center; border: .15cqw solid #bbb; border-radius: 1.4cqw; padding: 1.9cqw; overflow: hidden; }
+  .linie .vorschau .druck-bild { border-color: #ddd; }
+  .vorschau .druck-bild img, .vorschau .druck-bild svg { display: block; width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+  .mit-wort .vorschau .druck-bild { grid-template-rows: minmax(0, 1fr) auto; gap: 1cqw; }
+  .vorschau .druck-wort { font-size: 4cqw; line-height: 1.2; text-align: center; }
+  .linie .vorschau .druck-wort { font-size: 5.7cqw; }
+  .linie .vorschau .druck-wort span { color: #222; }
+
+  :is(.druck-seite, .seite-ikon).je-1 { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); }
+  :is(.druck-seite, .seite-ikon).je-2 { grid-template-columns: minmax(0, 1fr); grid-template-rows: repeat(2, minmax(0, 1fr)); }
+  :is(.druck-seite, .seite-ikon).je-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); }
+  :is(.druck-seite, .seite-ikon).je-6 { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(3, minmax(0, 1fr)); }
+  .druck-steuer { display: flex; flex-direction: column; align-items: stretch; gap: 16px; }
+  .druck-wahl { display: flex; border: 2px solid var(--rand); border-radius: 16px; overflow: hidden; background: var(--karte); }
+  .knopf.wahl { flex: 1; border: 0; border-radius: 0; min-height: 56px; padding: 0 16px; background: transparent; color: var(--tinte-70); white-space: nowrap; }
+  .knopf.wahl + .knopf.wahl { border-left: 2px solid var(--rand); }
+
+  .knopf.wahl[aria-pressed="true"] { color: var(--tinte); background: color-mix(in srgb, var(--tinte) 12%, var(--karte)); box-shadow: inset 0 0 0 2px var(--tinte); }
+  .seite-ikon { display: grid; gap: 2px; padding: 3px; width: 26px; height: 36px; border: 2px solid currentColor; border-radius: 3px; opacity: .55; }
+  .seite-ikon i { border-radius: 1px; background: currentColor; opacity: .5; }
+  .knopf.wahl[aria-pressed="true"] .seite-ikon { opacity: 1; }
+  .knopf.druck-los { min-height: 60px; font-size: 21px; }
+  @media (orientation: portrait) {
+    .druck-raum { flex-direction: column; gap: 18px; }
+    .druck-stapel { height: auto; width: min(80vw, calc((100 * var(--vh) - 360px) * 210 / 297)); }
+    .druck-steuer { width: min(100%, 420px); }
+  }
+  .druckblatt { display: none; }
+}
+@layer schmal {
+
+  @media (max-width: 520px) {
+    .galerie-werkzeug { gap: 6px; }
+    .galerie-werkzeug .knopf { padding: 0 9px; font-size: 15px; gap: 6px; min-height: 44px; }
+    .galerie-werkzeug .knopf .sym { font-size: 20px; }
+    .galerie-ort { grid-template-columns: 1fr; padding: 10px; }
+    .galerie-kopf { flex-direction: row; width: auto; gap: 8px; }
+    .galerie-kopf .ort-bild { width: 44px; }
+  }
+}
+
+@media print {
+  html.druckt body > *:not(.druckblatt):not(.schatz-druck) { display: none !important; }
+  html.druckt .druckblatt, html.druckt .schatz-druck { display: block !important; }
+  html.druckt, html.druckt body { background: #fff !important; }
+
+  .druck-seite { display: grid; gap: 8mm; height: 262mm; }
+  .druck-seite:not(:last-child) { break-after: page; }
+  .druck-bild { margin: 0; min-width: 0; min-height: 0; display: grid; place-items: center; border: .3mm solid #bbb; border-radius: 3mm; padding: 4mm; overflow: hidden; }
+  .druck-bild img, .druck-bild svg { display: block; width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+  .druckblatt.linie .druck-bild { border-color: #ddd; }
+
+  .druckblatt.mit-wort .druck-bild { grid-template-rows: minmax(0, 1fr) auto; gap: 2mm; }
+  .druck-wort { font-size: 24pt; line-height: 1.2; text-align: center; }
+  .druckblatt.linie .druck-wort { font-size: 34pt; }
+  .druckblatt.linie .druck-wort span { color: #222; }
+  @page { size: A4; margin: 14mm; }
+}
+
+@layer teile {
+  .schatz { display: grid; grid-template-areas: "truhe" "buehne" "werkzeug"; justify-items: center; align-items: center; gap: 10px; width: 100%; }
+  .schatz-truhe { grid-area: truhe; line-height: 0; }
+  .schatz-truhe .ding-bild { width: 84px; height: 84px; }
+  .schatz-buehne { grid-area: buehne; position: relative; }
+  .schatz-werkzeug { grid-area: werkzeug; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .schatz-knopf { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 999px; font-size: 18px;
+    background: var(--karte); border: 2px solid var(--rand); color: var(--tinte); }
+  .schatz-knopf .sym { font-size: 22px; }
+  .schatzblatt { position: absolute; left: 50%; top: 50%; width: 1000px; height: 1000px; transform-origin: 50% 50%;
+    background: radial-gradient(ellipse at 50% 45%, var(--karte) 0%, var(--karte) 55%, var(--blatt) 100%);
+    border-radius: 34px; box-shadow: 0 3px 0 var(--rand), 0 18px 40px rgb(42 37 32 / .12); --fund: 46px; }
+  .schatzblatt.gleitet { transition: transform .6s cubic-bezier(.3, .7, .2, 1); }
+  .blatt-zier { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .zier-rahmen { fill: none; stroke: var(--tinte-30); stroke-width: 2.5; stroke-dasharray: 2 9; stroke-linecap: round; }
+  .zier-ranke { fill: none; stroke: var(--gold); stroke-width: 3; stroke-linecap: round; opacity: .55; }
+  .zier-stern { fill: var(--gold); opacity: .32; }
+  .fund { position: absolute; left: 50%; top: 50%; max-width: 12em; width: max-content; font-size: var(--fund); line-height: 1.25;
+    padding: .18em .45em; border-radius: .4em; text-align: center; cursor: pointer; }
+  .fund-text .satz { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: .1em .5em; }
+  .fund.quer { max-width: 8em; }
+  .fund-loesung { display: block; margin-top: .45em; font-size: .62em; opacity: .78; transform: rotate(180deg); }
+  .fund-loesung .satz { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: .1em .4em; }
+  .fund.sprichwort { padding: .3em .7em; border-top: 3px solid var(--gold); border-bottom: 3px solid var(--gold); border-radius: 0; font-weight: 700; }
+  .fund.raetsel { border: 2px dashed var(--tinte-30); }
+  .fund.zunge .fund-text { text-decoration: underline wavy var(--tinte-30); text-underline-offset: .45em; text-decoration-thickness: 2px; }
+  .fund.leuchtet { animation: fund-leuchten 1.3s ease-out; }
+  @keyframes fund-leuchten {
+    0% { background: transparent; box-shadow: 0 0 0 0 transparent; }
+    25% { background: var(--gold-grund); box-shadow: 0 0 0 6px var(--gold); }
+    100% { background: transparent; box-shadow: 0 0 0 14px transparent; }
+  }
+  .schatz-druck { display: none; }
+  body.auf-schatz { overflow: hidden; }
+
+  .galerie-schatz-wand .galerie-kopf .ding-bild { width: 100%; height: auto; }
+  .knopf.galerie-schatz { padding: 10%; }
+  .mini-blatt { position: relative; width: 100%; height: 100%; border-radius: 10%; overflow: hidden;
+    background: radial-gradient(ellipse at 50% 45%, var(--karte) 0%, var(--karte) 50%, var(--blatt) 100%); box-shadow: inset 0 0 0 2px var(--rand); }
+  .mini-zeile { position: absolute; height: 5%; border-radius: 99px; background: var(--tinte-30); }
+  .mini-zeile.z0 { left: 12%; top: 16%; width: 46%; rotate: -8deg; }
+  .mini-zeile.z1 { right: 10%; top: 30%; width: 34%; rotate: 12deg; }
+  .mini-zeile.z2 { left: 14%; bottom: 18%; width: 40%; rotate: 6deg; }
+  .mini-zeile.z3 { right: 8%; bottom: 30%; width: 26%; rotate: -90deg; }
+  .mini-zeichen { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: clamp(14px, 2.4vw, 26px); font-weight: 700; white-space: pre; }
+
+  .mini-blatt { container-type: inline-size; }
+  .mini-zeichen { font-size: min(clamp(14px, 2.4vw, 26px), calc(140cqi / var(--n, 4))); }
+
+  .mini-zeichen.lang { display: block; inset: auto 0; top: 50%; transform: translateY(-50%); white-space: normal; text-align: center; line-height: 1.1; padding: 0 10%;
+    font-size: min(clamp(14px, 2.4vw, 26px), calc(400cqi / var(--n, 4))); }
+}
+@layer schmal {
+  @media (orientation: landscape) and (min-aspect-ratio: 5/4) {
+    .schatz { grid-template-areas: "truhe buehne" "werkzeug buehne"; grid-template-columns: auto auto; justify-content: center; column-gap: 20px; }
+    .schatz-truhe { align-self: end; }
+    .schatz-werkzeug { align-self: start; flex-direction: column; }
+  }
+  @media (max-width: 520px) {
+    .schatz-truhe .ding-bild { width: 60px; height: 60px; }
+    .schatz-knopf { padding: 8px 14px; font-size: 16px; }
+  }
+}
+@media print {
+
+  html.druckt .schatz-druck { display: flex !important; align-items: center; justify-content: center; width: 182mm; height: 265mm; }
+  .schatz-druck .schatzblatt { position: relative; left: auto; top: auto; transform: none; zoom: .68; background: #fff;
+    box-shadow: none; border: .4mm solid #ccc; flex: none; }
+}
+
+.lb-pdf-vorhang { position: fixed; inset: 0; z-index: 2147483000; display: flex; align-items: center; justify-content: center; padding: 24px;
+  background: var(--grund, #f6efe2); color: var(--tinte, #2a2520); font-size: 22px; font-weight: 700; text-align: center; }
+.lb-pdf-fertig { margin-left: .5em; }
+.lb-pdf-buehne { position: fixed; left: 0; top: 0; z-index: 2147482000; background: #fff; color: #2a2520; }
+.lb-pdf-seite { position: relative; overflow: hidden; background: #fff; container-type: inline-size; }
+.lb-pdf-seite .druck-pdf, .lb-pdf-seite .schatz-pdf { position: absolute; inset: 0; }
+.lb-pdf-seite .druck-seite.vorschau { border-radius: 0; box-shadow: none; }
+.lb-pdf-seite .schatz-pdf .schatzblatt { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(.68); background: #fff; box-shadow: none; border: 1.5px solid #ccc; }
+.lb-pdf-ansicht { position: fixed; inset: 0; z-index: 2147483000; display: flex; flex-direction: column; background: #2a2520; }
+.lb-pdf-leiste { display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 10px 14px; background: #fffaf0; color: #2a2520; font-size: 16px; }
+.lb-pdf-zu { flex: none; min-height: 44px; padding: 0 18px; border: 2px solid rgb(42 37 32 / .25); border-radius: 12px; background: #fff; color: #2a2520; font: inherit; font-weight: 700; }
+.lb-pdf-rahmen { flex: 1; border: 0; background: #fff; }
+
+.galerie-reihe.galerie-szenen { --rahmen: clamp(128px, 17vw, 210px); }
+.knopf.galerie-bild.galerie-szene, .galerie-leer.galerie-szene { aspect-ratio: 4 / 3; padding: 4%; }
+.knopf.galerie-szene .szene-ganz { width: 100%; height: 100%; object-fit: contain; }
+.galerie-luecke { min-height: 0; }
+.szene-gross { position: fixed; inset: 0; z-index: 40; display: grid; place-items: center; padding: 16px; background: rgb(42 37 32 / .38); }
+.szene-gross-karte { position: relative; display: flex; flex-direction: column; align-items: center; gap: 14px; width: min(92vw, 760px);
+  max-height: calc(100dvh - 32px); padding: 22px 22px 24px; border-radius: 22px; background: #fffaf0; color: #2a2520; box-shadow: 0 10px 40px rgb(42 37 32 / .25); }
+.szene-gross-karte > .szene-gross-bild { width: 100%; height: auto; aspect-ratio: 4 / 3; max-height: calc(100dvh - 200px); object-fit: contain; }
+.szene-gross-karte > .szene-platzhalter.szene-gross-bild { height: min(calc(100dvh - 200px), 54vw); }
+.szene-gross-satz { font-size: clamp(22px, 3.6vw, 36px); font-weight: 700; line-height: 1.3; text-align: center; text-wrap: balance; }
+.szene-gross-karte > .knopf.schliessen { position: absolute; top: 10px; right: 10px; }
+.vorschau .druck-szene .druck-wort, .linie .vorschau .druck-szene .druck-wort { font-size: 3cqw; text-wrap: balance; }
+
+.raum-bilder .sinn.geschichte { display: flex; flex-direction: column; align-items: center; gap: clamp(12px, calc(2.4 * var(--vh)), 26px); width: 100%; }
+.raum-bilder .sinn.geschichte .sinn-satz { font-size: clamp(24px, min(4.4vw, calc(5.4 * var(--vh))), 46px); font-weight: 700; text-align: center; text-wrap: balance; }

@@ -1,0 +1,141 @@
+
+.lb-buch { position: fixed; inset: 0; z-index: 45; display: grid; grid-template-rows: minmax(0, 1fr) auto; justify-items: center;
+  padding: max(12px, env(safe-area-inset-top)) 16px max(12px, env(safe-area-inset-bottom)); background: rgb(42 37 32 / .8); }
+
+.lb-buch:not(.x) { padding-top: calc(max(12px, env(safe-area-inset-top)) + 56px); }
+
+.buch-blatt { align-self: stretch; width: min(100%, 1180px); height: 100%; min-height: 0; overflow: hidden; touch-action: pan-y; container-type: size; }
+.buch-seite { position: relative; box-sizing: border-box; height: 100%; display: grid; grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, min((100cqw - 36px) * .75, 46cqh)) minmax(0, 1fr); gap: 12px; padding: 16px 18px 18px;
+  border-radius: 6px 18px 18px 6px; background: #fffdf7; color: #2a2520; box-shadow: inset 10px 0 14px -10px rgb(42 37 32 / .28), 0 10px 40px rgb(42 37 32 / .25); }
+.buch-bildfeld { grid-column: 1; grid-row: 1; min-width: 0; min-height: 0; display: grid; place-items: center; container-type: size; }
+.buch-bildfeld > * { width: min(100cqw, 133.33cqh); height: auto; max-height: none; aspect-ratio: 4 / 3; object-fit: contain; }
+.buch-text { grid-column: 1; grid-row: 2; position: relative; min-height: 0; overflow-y: auto; overscroll-behavior: contain; display: flex; flex-direction: column; }
+.buch-text-innen { margin-block: auto; display: flex; flex-direction: column; align-items: center; gap: .35em; }
+.buch-text.rollt:not(.am-ende) { -webkit-mask-image: linear-gradient(#000 82%, transparent); mask-image: linear-gradient(#000 82%, transparent); }
+.buch-mehr { grid-column: 1; grid-row: 2; align-self: end; justify-self: center; pointer-events: none; font-size: 28px; line-height: 1; color: rgb(42 37 32 / .55); }
+.buch-mehr[hidden] { display: none; }
+@container (min-aspect-ratio: 6 / 5) {
+  .buch-seite { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); gap: 0; padding: 0; }
+  .buch-bildfeld { grid-column: 2; grid-row: 1; padding: 18px; box-shadow: inset 18px 0 18px -18px rgb(42 37 32 / .3); }
+  .buch-text { grid-column: 1; grid-row: 1; padding: 18px 30px 18px 26px; box-shadow: inset -18px 0 18px -18px rgb(42 37 32 / .3); }
+  .buch-mehr { grid-column: 1; grid-row: 1; margin-bottom: 8px; }
+}
+
+.buch-zier .buch-text-innen { margin-block: 0 auto; align-items: flex-start; gap: .3em; }
+.buch-zier .buch-satz { text-align: left; text-wrap: pretty; }
+.buch-zier .buch-satz .satz, .buch-pdf.buch-zier .buch-pdf-satz .satz { justify-content: flex-start; }
+.buch-zier .buch-zierband { align-self: flex-start; width: min(62%, 260px); margin-bottom: .25em; justify-content: flex-start; }
+.buch-zier .buch-vignette { align-self: flex-start; }
+.buch-zier .buch-text { padding-bottom: 50px; }
+.buch-seite > .buch-seitenzahl { position: absolute; bottom: 12px; left: calc(50% - 18px); margin: 0; }
+@container (min-aspect-ratio: 6 / 5) {
+  .buch-zier .buch-text { padding: 44px 40px 70px 52px; }
+  .buch-seite > .buch-seitenzahl { left: 26px; bottom: 22px; }
+}
+
+.zier-b1 { --zier: #c2566a; }
+.zier-b2 { --zier: #c08a3e; }
+.zier-b3 { --zier: #4f86a8; }
+.zier-reise { --zier: #a98b5f; }
+.buch-seite.buch-zier { background: #fffdf7; }
+.buch-zier .buch-bildfeld > * { border-radius: 10px; box-shadow: 0 0 0 6px #fffdf7, 0 0 0 9px var(--zier), 0 6px 14px 6px rgb(42 37 32 / .12); }
+
+.buch-zierband, .buch-vignette { flex: none; align-self: center; display: flex; justify-content: center; align-items: center; gap: 6px; height: 26px; }
+.buch-zierband { width: min(70%, 320px); margin-bottom: .1em; overflow: hidden; }
+.zier-glied { flex: none; box-sizing: border-box; }
+.zier-b1 .buch-zierband .zier-glied { width: 10px; height: 10px; border-radius: 50%; background: var(--zier); }
+.zier-b2 .buch-zierband .zier-glied { width: 0; height: 0; border-left: 9px solid transparent; border-right: 9px solid transparent; border-bottom: 14px solid #d9a95b; }
+.zier-b3 .buch-zierband .zier-glied { width: 18px; height: 9px; border: 3px solid #6fa3c4; border-top: 0; border-radius: 0 0 18px 18px; }
+.zier-reise .buch-zierband .zier-glied { width: 10px; height: 3px; background: var(--zier); }
+.buch-vignette { gap: 12px; margin-top: .2em; }
+.buch-vignette .zier-glied { width: 7px; height: 7px; border-radius: 50%; background: var(--zier); }
+.buch-zierband.gemalt, .buch-vignette.gemalt, .buch-seitenzahl.gemalt { background-color: transparent; background-position: center; background-size: auto 100%; background-repeat: repeat-x; }
+
+.buch-zier .buch-zierband.gemalt { width: auto; height: 56px; aspect-ratio: 4 / 1; margin: -12px 0 -6px -30px; background-repeat: no-repeat; background-size: contain; background-position: left center; }
+.buch-vignette.gemalt { width: 120px; height: 60px; background-repeat: no-repeat; background-size: contain; }
+.buch-seitenzahl { flex: none; align-self: center; display: grid; place-items: center; width: 36px; height: 36px; margin-top: 8px; border-radius: 50%;
+  font-weight: 700; font-size: 17px; line-height: 1; color: #fffdf7; background: var(--zier); }
+.buch-seitenzahl.gemalt { background-size: contain; background-repeat: no-repeat; color: #2a2520; }
+@media print { .zier-b1, .zier-b2, .zier-b3, .zier-reise { print-color-adjust: exact; -webkit-print-color-adjust: exact; } }
+.buch-platzhalter { display: grid; place-items: center; border-radius: 12px; background: #f4ead6; height: min(calc(100dvh - 330px), 52vw); }
+.buch-bildfeld > .buch-platzhalter, .buch-bildfeld > .szene-platzhalter { height: auto; }
+.buch-platzhalter-zeichen { font-size: 64px; color: #c9b38a; }
+
+.buch-deckel { position: relative; overflow: hidden; aspect-ratio: 4 / 3; box-shadow: inset 0 0 0 2px rgb(42 37 32 / .18); }
+.buch-deckel .deckel-motiv { width: 78%; height: auto; }
+.buch-platzhalter.buch-regal-bild { height: 100%; }
+.deckel-b1 { background: radial-gradient(circle, #c2566a 0 7%, transparent 9%) 0 0 / 12.5% 16.6%, #f6ecd8; }
+.deckel-b2 { background: #d9a95b; }
+.deckel-b3 { background: radial-gradient(ellipse 50% 30% at 50% 100%, transparent 72%, rgb(255 255 255 / .35) 74% 84%, transparent 86%) 0 0 / 25% 20%, #6fa3c4; }
+.deckel-reise { background: repeating-linear-gradient(0deg, rgb(42 37 32 / .06) 0 1px, transparent 1px 3px), repeating-linear-gradient(90deg, rgb(42 37 32 / .05) 0 1px, transparent 1px 3px), #c9ad83; }
+.deckel-oval { position: absolute; left: 31%; top: 13%; width: 38%; height: 66%; border-radius: 50%; overflow: hidden; background: #f6efe2; box-shadow: inset 0 0 0 3px rgb(90 61 36 / .45); }
+.deckel-oval > * { width: 100%; height: 100%; object-fit: cover; }
+.deckel-band::before, .deckel-band::after { content: ''; position: absolute; background: #d9705c; box-shadow: 0 0 0 1px rgb(90 61 36 / .35); }
+.deckel-band::before { left: 0; right: 0; top: 80%; height: 6%; }
+.deckel-band::after { top: 0; bottom: 0; left: 84%; width: 4.5%; }
+.buch-satz { margin: 0; font-size: var(--buch-schrift, 28px); font-weight: 700; line-height: 1.35; text-align: center; text-wrap: balance; }
+.buch-titel .buch-titelzeile { font-size: clamp(28px, 5vw, 52px); font-weight: 700; text-align: center; text-wrap: balance; }
+
+.buch-bildfeld > .buch-umschlag-rahmen { position: relative; container-type: inline-size; }
+.buch-umschlag-rahmen > .buch-bild { position: absolute; inset: 0; width: 100%; height: 100%; max-height: none; object-fit: cover; border-radius: 10px; }
+.buch-schild { position: absolute; left: 12%; right: 12%; bottom: 7%; min-height: 21%; display: grid; place-items: center; padding: 2cqi 4cqi;
+  border-radius: 1.6cqi; background: #fffdf7; box-shadow: inset 0 0 0 .4cqi rgb(90 61 36 / .35), 0 .8cqi 2cqi rgb(42 37 32 / .2); }
+.buch-schild .buch-titelzeile { font-size: clamp(20px, 5.6cqi, 46px); line-height: 1.2; }
+.buch-fuer { font-size: clamp(22px, 3.6vw, 36px); text-align: center; }
+.buch-name { display: flex; flex-wrap: wrap; justify-content: center; align-items: end; gap: 10px; max-width: 560px; font-size: 16px; }
+.buch-name-text { display: flex; flex-direction: column; gap: 6px; flex: 1 1 260px; color: rgb(42 37 32 / .75); }
+.buch-name-feld { font: inherit; font-size: 22px; padding: 8px 12px; border: 2px solid #c9b38a; border-radius: 12px; background: #fff; color: #2a2520; }
+.buch-name .knopf { min-height: 44px; }
+.buch-leiste { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: min(100%, 1180px); padding-top: 10px; }
+.buch-leiste .knopf.buch-vor, .buch-leiste .knopf.buch-zurueck { min-width: 88px; min-height: 56px; padding: 0 6px; background: none; border: 0; box-shadow: none; }
+.buch-pfeil { display: inline-grid; place-items: center; width: 84px; height: 48px; }
+.buch-pfeil.zurueck { transform: scaleX(-1); }
+.buch-pfeil-bild { width: 84px; height: 48px; object-fit: contain; }
+.buch-pfeil-zeichen { font-size: 34px; color: #fffaf0; }
+.buch-leiste [aria-disabled="true"] { opacity: .3; pointer-events: none; }
+.buch-mitte { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.buch-druck-wahl:not([hidden]) { display: flex; gap: 8px; }
+.knopf.buch-druck, .knopf.buch-druck-art { min-height: 44px; font-size: 16px; }
+.lb-buch > .knopf.buch-zu { position: absolute; top: max(12px, env(safe-area-inset-top)); right: 16px; }
+.buch-seite.kommt-rechts { animation: buch-rechts .32s ease-out; }
+.buch-seite.kommt-links { animation: buch-links .32s ease-out; }
+@keyframes buch-rechts { from { opacity: 0; transform: translateX(40px); } }
+@keyframes buch-links { from { opacity: 0; transform: translateX(-40px); } }
+@media (prefers-reduced-motion: reduce) { .buch-seite.kommt-rechts, .buch-seite.kommt-links { animation: none; } }
+
+@media (max-height: 560px) and (orientation: landscape) {
+  .lb-buch, .lb-buch:not(.x) { padding-top: max(10px, env(safe-area-inset-top)); grid-template-columns: auto minmax(0, 1fr) auto; grid-template-rows: minmax(0, 1fr); column-gap: 6px; padding-left: max(8px, env(safe-area-inset-left)); padding-right: max(8px, env(safe-area-inset-right)); }
+  .buch-blatt { grid-column: 2; grid-row: 1; }
+  .buch-leiste { display: contents; }
+  .buch-leiste .knopf.buch-zurueck { grid-column: 1; grid-row: 1; align-self: center; min-width: 64px; }
+  .buch-leiste .knopf.buch-vor { grid-column: 3; grid-row: 1; align-self: center; min-width: 64px; }
+  .buch-pfeil, .buch-pfeil-bild { width: 60px; height: 36px; }
+  .buch-mitte { position: absolute; left: max(8px, env(safe-area-inset-left)); top: max(10px, env(safe-area-inset-top)); z-index: 1; }
+  .knopf.buch-druck { min-height: 40px; font-size: 14px; padding: 0 10px; }
+  .lb-buch > .knopf.buch-zu { right: max(10px, env(safe-area-inset-right)); }
+  .buch-seite { padding: 10px 12px 12px; gap: 8px; }
+  .buch-zier .buch-text { padding: 14px 18px 42px 22px; }
+  .buch-seite > .buch-seitenzahl { bottom: 8px; left: 14px; width: 30px; height: 30px; font-size: 14px; }
+}
+
+.lb-pdf-seite .buch-pdf { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 70px 64px; background: #fff; color: #2a2520; font-family: Andika, system-ui, sans-serif; }
+.buch-pdf-titel, .buch-pdf-inhalt { display: flex; flex-direction: column; align-items: center; gap: 28px; width: 100%; }
+.buch-pdf .buch-pdf-bild { width: 100%; height: auto; max-height: 640px; aspect-ratio: 4 / 3; object-fit: contain; }
+.buch-pdf .szene-platzhalter.buch-pdf-bild, .buch-pdf .buch-platzhalter.buch-pdf-bild { height: 500px; }
+.buch-pdf-titelzeile { font-size: 56px; font-weight: 700; text-align: center; }
+.buch-pdf-fuer { font-size: 36px; }
+.buch-pdf-satz { margin: 0; font-size: 34px; font-weight: 700; line-height: 1.4; text-align: center; }
+
+.lb-pdf-seite .buch-pdf.buch-zier { align-items: flex-start; padding: 72px 84px 130px; }
+.buch-pdf.buch-zier .buch-pdf-inhalt { align-items: flex-start; gap: 20px; }
+.buch-pdf.buch-zier .buch-pdf-bild { align-self: center; flex: none; box-sizing: border-box; width: 600px; height: 450px; max-height: none; padding: 8px; border: 4px solid var(--zier); border-radius: 16px; background: #fff; margin-bottom: 8px; }
+.buch-pdf.buch-zier .buch-pdf-satz { text-align: left; }
+.lb-pdf-seite .buch-pdf.buch-zier.klein { padding-top: 60px; padding-bottom: 120px; }
+.buch-pdf.buch-zier.klein .buch-pdf-inhalt { gap: 12px; }
+.buch-pdf.buch-zier.klein .buch-pdf-bild { width: 480px; height: 360px; }
+.buch-pdf.buch-zier.klein .buch-pdf-satz { font-size: 26px; }
+.buch-pdf .buch-zierband { width: 300px; height: 30px; align-self: flex-start; justify-content: flex-start; }
+.buch-pdf .buch-zierband.gemalt { width: 256px; height: 64px; margin: 0 0 -10px -34px; background-repeat: no-repeat; background-size: contain; background-position: left center; }
+.buch-pdf .buch-vignette { align-self: flex-start; }
+.buch-pdf > .buch-seitenzahl { position: absolute; bottom: 60px; left: calc(50% - 22px); width: 44px; height: 44px; font-size: 20px; margin: 0; }

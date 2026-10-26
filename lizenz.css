@@ -1,0 +1,7 @@
+
+body.lizenz { margin: 0; background: #f6f0e4; color: #2a2520; font-family: Andika, system-ui, sans-serif; }
+body.lizenz main { max-width: 760px; margin: 0 auto; padding: 24px 16px calc(32px + env(safe-area-inset-bottom)); }
+body.lizenz h1 { font-size: 28px; }
+body.lizenz h2 { font-size: 20px; margin-top: 32px; }
+body.lizenz pre { white-space: pre-wrap; word-break: break-word; font-family: inherit; font-size: 14px; line-height: 1.5; background: #fffaf0; border: 1px solid rgb(42 37 32 / .16); border-radius: 12px; padding: 14px; }
+body.lizenz .zurueck { display: inline-flex; align-items: center; min-height: 44px; color: #8b4f12; font-size: 18px; }

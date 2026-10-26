@@ -1,0 +1,11 @@
+
+.weg-karte .bewohner.figur { pointer-events: auto; touch-action: none; cursor: grab; -webkit-user-select: none; user-select: none; }
+.weg-karte .bewohner.figur * { pointer-events: auto; }
+.weg-karte .bewohner.figur.gezogen { cursor: grabbing; }
+.weg-karte .bewohner.figur.gezogen .lebt, .weg-karte .bewohner.figur.wandert .lebt { animation-play-state: paused; }
+.weg-karte .figur-zugaben, .weg-karte .figur-zugaben * { pointer-events: none; }
+.weg-karte .bewohner.im-haus { display: none; }
+.weg-karte .bewohner.figur.geht, .weg-karte .bewohner.figur.geht * { pointer-events: none; }
+
+.weg-karte .bewohner.figur.kommt, .weg-karte .bewohner.figur.kommt * { pointer-events: none; }
+.weg-karte .bewohner.figur.wartet { visibility: hidden; }

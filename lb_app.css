@@ -1,0 +1,23 @@
+
+@layer teile {
+
+  .lb-app-band {
+    position: fixed; z-index: 40; left: 50%; translate: -50% 0;
+    bottom: calc(14px + env(safe-area-inset-bottom));
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center;
+    max-width: calc(100vw - 32px); padding: 8px 10px 8px 18px;
+    background: var(--karte); color: var(--tinte-70); border: 1px solid var(--rand); border-radius: 999px;
+    box-shadow: 0 6px 20px rgb(42 37 32 / .12); font-size: 16px;
+  }
+  .lb-app-band .knopf { min-height: 44px; }
+
+  .lb-app-neu .schienen-knopf[data-ziel="mehr"] { position: relative; }
+  .lb-app-neu .schienen-knopf[data-ziel="mehr"]::after {
+    content: ''; position: absolute; top: 8px; right: 8px; width: 10px; height: 10px; border-radius: 50%;
+    background: var(--vok); border: 2px solid var(--papier);
+  }
+  .lb-app-qr { display: grid; place-items: center; margin: 12px auto; width: min(78vw, 62vh, 460px); aspect-ratio: 1; background: #fff; border-radius: 12px; }
+  .lb-app-qr svg { width: 100%; height: 100%; }
+  .lb-app-video { display: block; width: 100%; max-height: 50vh; margin-top: 12px; border-radius: 12px; background: var(--tinte); object-fit: cover; }
+  .lb-app-lizenz { text-decoration: none; display: inline-flex; align-items: center; }
+}

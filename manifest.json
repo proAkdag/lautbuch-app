@@ -1,0 +1,17 @@
+{
+  "name": "Mein Lautbuch",
+  "short_name": "Lautbuch",
+  "description": "Leselern-Buch nach dem Elif-Bâ-Aufbau. Der Lernstand bleibt auf dem Gerät.",
+  "lang": "de",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f6f0e4",
+  "theme_color": "#f6f0e4",
+  "categories": ["education", "books"],
+  "icons": [
+    { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

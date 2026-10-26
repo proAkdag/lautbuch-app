@@ -1,0 +1,13 @@
+
+.weg-karte .haus-ding .haus-schatten { fill: rgb(42 37 32 / .10); }
+.weg-karte .haus-ding .haus-bild, .weg-karte .haus-ding .haus-licht { transition: translate .25s ease; }
+.weg-karte .haus-ding:hover :is(.haus-bild, .haus-licht), .weg-karte .haus-ding:focus-visible :is(.haus-bild, .haus-licht) { translate: 0 -2px; }
+.weg-karte .haus-ding.nimmt :is(.haus-bild, .haus-licht) { translate: 0 -3px; }
+.weg-karte .haus-ding:focus { outline: none; }
+.weg-karte .haus-ding:focus-visible .haus-schatten { fill: var(--tinte-licht); }
+.weg-karte .haus-ding .haus-licht { opacity: 0; pointer-events: none; }
+.weg-karte .haus-ding.wartet .haus-licht { opacity: 1; }
+
+.weg-karte .haus-ding .haus-licht rect { fill: #f2dc9a; stroke: #8a6d1f; stroke-width: .6; }
+.weg-karte .haus-ding .haus-licht rect.scheibe { stroke: none; }
+.weg-karte .haus-ding .haus-licht .kreuz { fill: none; stroke: #6b4a2e; stroke-width: .9; }
