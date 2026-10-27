@@ -864,6 +864,7 @@
     { s: 'elif', bw: 'bw-elif', name: 'Elif', a: { kopf: [0.49, 0.11, 0.26], hals: [0.49, 0.47, 0.12], brust: [0.64, 0.6, 0.18], tasche: [0.35, 0.55, 0.22], fuesse: [0.49, 0.93, 0.2] } },
     { s: 'conrad', bw: 'bw-conrad', name: 'Conrad', a: { kopf: [0.5, 0.11, 0.26], hals: [0.5, 0.47, 0.12], brust: [0.65, 0.6, 0.18], tasche: [0.36, 0.55, 0.22], fuesse: [0.5, 0.93, 0.2] } },
     { s: 'locken', bw: 'bw-toni', name: 'Toni', a: { kopf: [0.5, 0.11, 0.26], hals: [0.5, 0.47, 0.12], brust: [0.65, 0.6, 0.18], tasche: [0.36, 0.55, 0.22], fuesse: [0.5, 0.93, 0.2] } },
+    { s: 'kopftuch', bw: 'bw-nora', name: 'Nora', a: { kopf: [0.5, 0.11, 0.26], hals: [0.5, 0.47, 0.12], brust: [0.65, 0.6, 0.18], tasche: [0.36, 0.55, 0.22], fuesse: [0.5, 0.93, 0.2] } },
     { s: 'schaf', name: 'Schaf', a: { kopf: [.19, .14, .3], hals: [.3, .44, .2], brust: [.26, .56, .22], tasche: [.6, .44, .28], fuesse: [.25, .9, .2] } },
     { s: 'lama', name: 'Lama', a: { kopf: [.21, .1, .28], hals: [.27, .38, .18], brust: [.3, .55, .2], tasche: [.62, .5, .28], fuesse: [.3, .92, .2] } },
     { s: 'bw-eule-luna', name: 'Luna', a: { kopf: [.5, .12, .3], hals: [.5, .45, .2], brust: [.5, .62, .22], tasche: [.78, .66, .26], fuesse: [.5, .95, .2] } },
@@ -892,12 +893,13 @@
     elif: { kopf: [0.49, 0.11, 0.26], hals: [0.49, 0.47, 0.12], brust: [0.64, 0.6, 0.18], tasche: [0.35, 0.55, 0.22], fuesse: [0.49, 0.93, 0.2] },
     conrad: { kopf: [0.5, 0.11, 0.26], hals: [0.5, 0.47, 0.12], brust: [0.65, 0.6, 0.18], tasche: [0.36, 0.55, 0.22], fuesse: [0.5, 0.93, 0.2] },
     locken: { kopf: [0.5, 0.11, 0.26], hals: [0.5, 0.47, 0.12], brust: [0.65, 0.6, 0.18], tasche: [0.36, 0.55, 0.22], fuesse: [0.5, 0.93, 0.2] },
+    kopftuch: { kopf: [0.5, 0.11, 0.26], hals: [0.5, 0.47, 0.12], brust: [0.65, 0.6, 0.18], tasche: [0.36, 0.55, 0.22], fuesse: [0.5, 0.93, 0.2] },
     schaf: { kopf: [.5, .11, .28], hals: [.5, .5, .14], brust: [.5, .63, .18], tasche: [.73, .55, .24], fuesse: [.5, .93, .2] },
     lama: { kopf: [.5, .13, .22], hals: [.5, .47, .12], brust: [.5, .61, .16], tasche: [.65, .6, .22], fuesse: [.5, .93, .18] },
     'bw-eule-luna': { kopf: [.5, .1, .3], hals: [.5, .5, .16], brust: [.5, .64, .2], tasche: [.78, .68, .24], fuesse: [.5, .93, .22] },
     'bw-maus': { kopf: [.55, .1, .26], hals: [.55, .53, .12], brust: [.55, .65, .16], tasche: [.3, .62, .22], fuesse: [.55, .93, .2] }
   };
-  const FIGUR_BILD = { kind: ['fig-junge-vorn', 'fig-kind-vorn', 'kind'], maedchen: ['fig-maedchen-vorn', 'mädchen'], brille: ['fig-brille-vorn'], elif: ['fig-elif-vorn'], conrad: ['fig-conrad-vorn'], locken: ['fig-locken-vorn'], schaf: ['fig-schaf-vorn', 'schaf'], lama: ['fig-lama-vorn', 'lama'],
+  const FIGUR_BILD = { kind: ['fig-junge-vorn', 'fig-kind-vorn', 'kind'], maedchen: ['fig-maedchen-vorn', 'mädchen'], brille: ['fig-brille-vorn'], elif: ['fig-elif-vorn'], conrad: ['fig-conrad-vorn'], locken: ['fig-locken-vorn'], kopftuch: ['fig-kopftuch-vorn'], schaf: ['fig-schaf-vorn', 'schaf'], lama: ['fig-lama-vorn', 'lama'],
     'bw-eule-luna': ['fig-luna-vorn', 'bw-eule-luna'], 'bw-maus': ['fig-maus-vorn', 'bw-maus'] };
   const figurBild = (f) => (FIGUR_BILD[f.s] || [f.s]).find(k => bildDaten(k) && bildDaten(k).farbe) || null;
   const figurAnker = (f) => /-vorn$/.test(figurBild(f) || '') ? (VORN[f.s] || f.a) : f.a;
@@ -1015,7 +1017,7 @@
     });
     K.E.dinge.append(reihe);
   }
-  const FIGUR_SEITE = { kind: 'fig-junge-seite', maedchen: 'fig-maedchen-seite', brille: 'fig-brille-seite', elif: 'fig-elif-seite', conrad: 'fig-conrad-seite', locken: 'fig-locken-seite', schaf: 'fig-schaf-seite', lama: 'fig-lama-seite', 'bw-eule-luna': 'fig-luna-seite', 'bw-maus': 'fig-maus-seite' };
+  const FIGUR_SEITE = { kind: 'fig-junge-seite', maedchen: 'fig-maedchen-seite', brille: 'fig-brille-seite', elif: 'fig-elif-seite', conrad: 'fig-conrad-seite', locken: 'fig-locken-seite', kopftuch: 'fig-kopftuch-seite', schaf: 'fig-schaf-seite', lama: 'fig-lama-seite', 'bw-eule-luna': 'fig-luna-seite', 'bw-maus': 'fig-maus-seite' };
   const figurSchritte = (K, ms, dx = 1) => {
     const fk = K.wimpel.querySelector('.figur-koerper'); if (!fk || ruhig()) return;
     fk.style.transformBox = 'fill-box'; fk.style.transformOrigin = '50% 100%';

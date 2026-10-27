@@ -145,7 +145,8 @@ window.LAUTBUCH_TEILE.r3 = {
   },
   bewohner: [
     { s: 'bw-pinguin', wer: 'Pinguin', bild: 'Ein Pinguin mit Taxifahrer-Mütze steht aufrecht und winkt mit einem Flügel.' },
-    { s: 'bw-storch', wer: 'Storch', bild: 'Ein weißer Storch mit roten Beinen steht auf einem Bein und lächelt.' }
+    { s: 'bw-storch', wer: 'Storch', bild: 'Ein weißer Storch mit roten Beinen steht auf einem Bein und lächelt.' },
+    { s: 'bw-nora', wer: 'Nora', bild: 'Ein Kind mit rosa-rotem Kopftuch, cremefarbenem Pullover, Jeans und rosa Turnschuhen steht ruhig da, die Arme leicht vom Körper.' }
   ],
   schatz: [
     { art: 'sprichwort', text: 'Ü-bung macht den Meis-ter.' },
