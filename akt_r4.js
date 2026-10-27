@@ -145,7 +145,8 @@ window.LAUTBUCH_TEILE.r4 = {
   },
   bewohner: [
     { s: 'bw-kuh', wer: 'Kuh', bild: 'Eine gefleckte Kuh mit runder Brille steht da und hält ein aufgeschlagenes Buch in den Vorderhufen.' },
-    { s: 'bw-schnecke', wer: 'Schnecke', bild: 'Eine kleine Schnecke mit gestreiftem Haus reckt stolz die Fühler und trägt eine winzige Siegerschleife.' }
+    { s: 'bw-schnecke', wer: 'Schnecke', bild: 'Eine kleine Schnecke mit gestreiftem Haus reckt stolz die Fühler und trägt eine winzige Siegerschleife.' },
+    { s: 'bw-ida', wer: 'Ida', bild: 'Ein Kind mit runder Brille, hohem blondem Pferdeschwanz, senfgelber Latzhose und roten Turnschuhen steht ruhig da, die Arme leicht vom Körper.' }
   ],
   schatz: [
     { art: 'sprichwort', text: 'Hun-de, die bel-len, bei-ßen nicht.' },

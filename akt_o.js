@@ -170,7 +170,8 @@ window.LAUTBUCH_TEILE.o = {
   },
   bewohner: [
     { s: 'bw-robo', wer: 'Robo', bild: 'Ein kleiner, freundlicher Roboter mit runden Augen und einer Antenne hält eine Tafel Schokolade und winkt.' },
-    { s: 'bw-nashorn', wer: 'Nashorn', bild: 'Ein gemütliches Nashorn steht von der Seite und lächelt, auf seinem Horn sitzt ein kleines Huhn.' }
+    { s: 'bw-nashorn', wer: 'Nashorn', bild: 'Ein gemütliches Nashorn steht von der Seite und lächelt, auf seinem Horn sitzt ein kleines Huhn.' },
+    { s: 'bw-toni', wer: 'Toni', bild: 'Ein Kind mit dichten kurzen dunklen Locken, cremeweißem Kapuzenpulli, Jeans und roten Turnschuhen steht ruhig da, die Arme leicht vom Körper.' }
   ],
   schatz: [
     { art: 'raetsel', text: 'Ma-mas Pa-pa ist O-pa. Pa-pas Ma-ma ist …?', loesung: 'O-ma' },

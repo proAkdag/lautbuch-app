@@ -86,6 +86,7 @@
             sg.drawImage(c, 0, i * sh, c.width, sh, 0, 0, seite.width, seite.height);
             if (a + i) doc.addPage('a4', opt.quer ? 'landscape' : 'portrait');
             doc.addImage(seite.toDataURL('image/jpeg', 0.85), 'JPEG', 0, 0, pw, ph);
+            for (const l of (opt.links && opt.links[a + i]) || []) doc.link(l.x * pw / bw, l.y * ph / bh, l.w * pw / bw, l.h * ph / bh, { pageNumber: l.seite });
           }
           c.width = c.height = 0; gruppe.remove();
         }

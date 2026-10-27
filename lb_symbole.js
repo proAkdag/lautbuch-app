@@ -19,7 +19,9 @@
     laute: '<rect x="3.5" y="3.5" width="7.5" height="7.5" rx="2"/><rect x="13" y="3.5" width="7.5" height="7.5" rx="2"/><rect x="3.5" y="13" width="7.5" height="7.5" rx="2"/><rect x="13" y="13" width="7.5" height="7.5" rx="2"/><path class="kern" fill="currentColor" d="M5.8 5.8h2.9v2.9H5.8z"/>',
     stapel: '<path d="M8 3.5h12v13"/><path d="M4 7.5h12.5v13H4z"/><path d="M7.5 12h5.5M7.5 15.5h4"/>',
     drehen: '<path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3"/><path d="M19.8 3.5v3.7h-3.7"/>',
-    vollbild: '<path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/>'
+    vollbild: '<path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/>',
+    zurueck: '<path d="M20 12H5"/><path d="M11 6l-6 6 6 6"/>',
+    vor: '<path d="M4 12h15"/><path d="M13 6l6 6-6 6"/>'
   };
   const NS = 'http://www.w3.org/2000/svg';
   let sprite = null;

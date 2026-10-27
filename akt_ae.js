@@ -122,7 +122,8 @@ window.LAUTBUCH_TEILE.ae = {
     ]
   },
   bewohner: [
-    { s: 'bw-kraehe', wer: 'Krähe Kala', bild: 'Eine freundliche schwarze Krähe mit glänzenden Federn steht auf beiden Beinen und hält ein kleines Stück Käse im Schnabel.' }
+    { s: 'bw-kraehe', wer: 'Krähe Kala', bild: 'Eine freundliche schwarze Krähe mit glänzenden Federn steht auf beiden Beinen und hält ein kleines Stück Käse im Schnabel.' },
+    { s: 'bw-elif', wer: 'Elif', bild: 'Ein Kind mit langem, glattem, sehr dunklem Haar und violettem Pullover steht ruhig da, die Arme leicht vom Körper.' }
   ],
   schatz: [
     { art: 'sprichwort', text: 'Kal-te Hän-de, war-mes Herz.' },

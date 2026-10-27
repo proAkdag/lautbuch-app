@@ -640,7 +640,7 @@
   }
   const bewohnerJetzt = () => {
     const stand = wegStand(), liste = [];
-    WEG.teile.forEach((w, i) => { const o = ortVon(w); if (o && stand[w.id] === 'meister' && o.ids.includes('boss')) for (const b of o.t.bewohner || []) liste.push([b, i]); });
+    WEG.teile.forEach((w, i) => { const o = ortVon(w); if (o && stand[w.id] === 'meister' && o.ids.includes('boss')) for (const b of o.t.bewohner || []) if (b.s !== figurBewohner()) liste.push([b, i]); });
     return liste;
   };
   function zimmer() {
@@ -860,6 +860,10 @@
   const FIGUREN = [
     { s: 'kind', name: 'Junge', a: { kopf: [.5, .1, .3], hals: [.5, .33, .2], brust: [.68, .58, .2], tasche: [.33, .56, .26], fuesse: [.5, .93, .2] } },
     { s: 'maedchen', name: 'Mädchen', a: { kopf: [.5, .1, .3], hals: [.5, .33, .2], brust: [.68, .58, .2], tasche: [.33, .56, .26], fuesse: [.5, .93, .2] } },
+    { s: 'brille', bw: 'bw-ida', name: 'Ida', a: { kopf: [0.53, 0.11, 0.28], hals: [0.53, 0.47, 0.12], brust: [0.68, 0.6, 0.18], tasche: [0.39, 0.55, 0.22], fuesse: [0.53, 0.93, 0.2] } },
+    { s: 'elif', bw: 'bw-elif', name: 'Elif', a: { kopf: [0.49, 0.11, 0.26], hals: [0.49, 0.47, 0.12], brust: [0.64, 0.6, 0.18], tasche: [0.35, 0.55, 0.22], fuesse: [0.49, 0.93, 0.2] } },
+    { s: 'conrad', bw: 'bw-conrad', name: 'Conrad', a: { kopf: [0.5, 0.11, 0.26], hals: [0.5, 0.47, 0.12], brust: [0.65, 0.6, 0.18], tasche: [0.36, 0.55, 0.22], fuesse: [0.5, 0.93, 0.2] } },
+    { s: 'locken', bw: 'bw-toni', name: 'Toni', a: { kopf: [0.5, 0.11, 0.26], hals: [0.5, 0.47, 0.12], brust: [0.65, 0.6, 0.18], tasche: [0.36, 0.55, 0.22], fuesse: [0.5, 0.93, 0.2] } },
     { s: 'schaf', name: 'Schaf', a: { kopf: [.19, .14, .3], hals: [.3, .44, .2], brust: [.26, .56, .22], tasche: [.6, .44, .28], fuesse: [.25, .9, .2] } },
     { s: 'lama', name: 'Lama', a: { kopf: [.21, .1, .28], hals: [.27, .38, .18], brust: [.3, .55, .2], tasche: [.62, .5, .28], fuesse: [.3, .92, .2] } },
     { s: 'bw-eule-luna', name: 'Luna', a: { kopf: [.5, .12, .3], hals: [.5, .45, .2], brust: [.5, .62, .22], tasche: [.78, .66, .26], fuesse: [.5, .95, .2] } },
@@ -884,17 +888,22 @@
   const VORN = {
     kind: { kopf: [.5, .11, .3], hals: [.5, .47, .12], brust: [.65, .6, .18], tasche: [.36, .55, .22], fuesse: [.5, .93, .2] },
     maedchen: { kopf: [.5, .11, .32], hals: [.5, .47, .12], brust: [.66, .6, .18], tasche: [.33, .55, .22], fuesse: [.5, .93, .2] },
+    brille: { kopf: [0.53, 0.11, 0.28], hals: [0.53, 0.47, 0.12], brust: [0.68, 0.6, 0.18], tasche: [0.39, 0.55, 0.22], fuesse: [0.53, 0.93, 0.2] },
+    elif: { kopf: [0.49, 0.11, 0.26], hals: [0.49, 0.47, 0.12], brust: [0.64, 0.6, 0.18], tasche: [0.35, 0.55, 0.22], fuesse: [0.49, 0.93, 0.2] },
+    conrad: { kopf: [0.5, 0.11, 0.26], hals: [0.5, 0.47, 0.12], brust: [0.65, 0.6, 0.18], tasche: [0.36, 0.55, 0.22], fuesse: [0.5, 0.93, 0.2] },
+    locken: { kopf: [0.5, 0.11, 0.26], hals: [0.5, 0.47, 0.12], brust: [0.65, 0.6, 0.18], tasche: [0.36, 0.55, 0.22], fuesse: [0.5, 0.93, 0.2] },
     schaf: { kopf: [.5, .11, .28], hals: [.5, .5, .14], brust: [.5, .63, .18], tasche: [.73, .55, .24], fuesse: [.5, .93, .2] },
     lama: { kopf: [.5, .13, .22], hals: [.5, .47, .12], brust: [.5, .61, .16], tasche: [.65, .6, .22], fuesse: [.5, .93, .18] },
     'bw-eule-luna': { kopf: [.5, .1, .3], hals: [.5, .5, .16], brust: [.5, .64, .2], tasche: [.78, .68, .24], fuesse: [.5, .93, .22] },
     'bw-maus': { kopf: [.55, .1, .26], hals: [.55, .53, .12], brust: [.55, .65, .16], tasche: [.3, .62, .22], fuesse: [.55, .93, .2] }
   };
-  const FIGUR_BILD = { kind: ['fig-junge-vorn', 'fig-kind-vorn', 'kind'], maedchen: ['fig-maedchen-vorn', 'mädchen'], schaf: ['fig-schaf-vorn', 'schaf'], lama: ['fig-lama-vorn', 'lama'],
+  const FIGUR_BILD = { kind: ['fig-junge-vorn', 'fig-kind-vorn', 'kind'], maedchen: ['fig-maedchen-vorn', 'mädchen'], brille: ['fig-brille-vorn'], elif: ['fig-elif-vorn'], conrad: ['fig-conrad-vorn'], locken: ['fig-locken-vorn'], schaf: ['fig-schaf-vorn', 'schaf'], lama: ['fig-lama-vorn', 'lama'],
     'bw-eule-luna': ['fig-luna-vorn', 'bw-eule-luna'], 'bw-maus': ['fig-maus-vorn', 'bw-maus'] };
   const figurBild = (f) => (FIGUR_BILD[f.s] || [f.s]).find(k => bildDaten(k) && bildDaten(k).farbe) || null;
   const figurAnker = (f) => /-vorn$/.test(figurBild(f) || '') ? (VORN[f.s] || f.a) : f.a;
   const figurWahlen = () => FIGUREN.filter(figurBild);
   const figurVon = (s) => figurWahlen().find(f => f.s === s) || null;
+  const figurBewohner = () => { const f = figurVon(figurStand().wer); return f ? (f.bw || f.s) : null; };
   const mbId = (m) => m[0] + '.' + m[1];
   const mbStand = (t) => lies('lautbuch.akt.' + t + '.v1', {}) || {};
   const mbGelesen = (teil, lv) => {
@@ -983,7 +992,7 @@
     const wahl = figurWahlen(); if (!wahl.length) return;
     const tr = (K.wimpel.getAttribute('transform') || '').match(/translate\(([-\d.]+)[ ,]+([-\d.]+)\)/); if (!tr) return;
     K.wimpel.style.display = 'none';
-    const ab = K.lage === WEG.hoch ? 62 : 48, S = ab * .92, breit = ab * wahl.length + 12;
+    const ab = Math.min(K.lage === WEG.hoch ? 62 : 48, (K.lage.w - 28) / wahl.length), S = ab * .92, breit = ab * wahl.length + 12;
     const x0 = Math.max(8, Math.min(K.lage.w - breit - 8, +tr[1] - breit / 2)), y = Math.max(S + 12, +tr[2] + 10);
     const reihe = sv('g', { class: 'figur-wahl' }, [sv('rect', { x: x0, y: y - S - 8, width: breit, height: S + 18, rx: 14, class: 'figur-wahl-grund' })]);
     wahl.forEach((f, k) => {
@@ -1006,7 +1015,7 @@
     });
     K.E.dinge.append(reihe);
   }
-  const FIGUR_SEITE = { kind: 'fig-junge-seite', maedchen: 'fig-maedchen-seite', schaf: 'fig-schaf-seite', lama: 'fig-lama-seite', 'bw-eule-luna': 'fig-luna-seite', 'bw-maus': 'fig-maus-seite' };
+  const FIGUR_SEITE = { kind: 'fig-junge-seite', maedchen: 'fig-maedchen-seite', brille: 'fig-brille-seite', elif: 'fig-elif-seite', conrad: 'fig-conrad-seite', locken: 'fig-locken-seite', schaf: 'fig-schaf-seite', lama: 'fig-lama-seite', 'bw-eule-luna': 'fig-luna-seite', 'bw-maus': 'fig-maus-seite' };
   const figurSchritte = (K, ms, dx = 1) => {
     const fk = K.wimpel.querySelector('.figur-koerper'); if (!fk || ruhig()) return;
     fk.style.transformBox = 'fill-box'; fk.style.transformOrigin = '50% 100%';
@@ -1067,7 +1076,7 @@
     const platzAlt = ((lies(PLATZ_KEY, {}) || {})[platzLage]) || {}, platzNeu = {}, reserviert = new Set();
     for (const [k, v] of Object.entries(platzAlt)) {
       if (!Array.isArray(v)) continue;
-      const istBaum = k.startsWith('baum:'), w = istBaum ? (+v[2] || 48) : 40, h = istBaum ? (+v[3] || 64) : 40;
+      const istBaum = k.startsWith('baum:'), fuss = LEBENSRAUM[k] === 'luft' ? 40 : 28, w = istBaum ? (+v[2] || 48) : fuss, h = istBaum ? (+v[3] || 64) : fuss;
       frei.reserviere('res:' + k, { x0: v[0] - w / 2, y0: v[1] - h / 2, x1: v[0] + w / 2, y1: v[1] + h / 2 }); reserviert.add('res:' + k);
     }
     const platzFrei = (k) => { if (reserviert.delete('res:' + k)) frei.freigeben('res:' + k); };
@@ -1099,7 +1108,7 @@
       if (!o || st === 'nebel' || st === 'rand') return;
       const t = o.t;
       if (st === 'meister' && o.ids.includes('boss')) {
-        for (const b of t.bewohner || []) if (b.s !== figurStand().wer) bewohner.push([b, i]);
+        for (const b of t.bewohner || []) if (b.s !== figurBewohner()) bewohner.push([b, i]);
       }
       const mitSteinen = o.lv.find(lv => (licht[t.id].stolper || {})[lv.id]?.length);
       if (mitSteinen) {
@@ -1149,7 +1158,7 @@
       if (imZimmer.has(b.s)) bw.classList.add('im-haus');
       const alt = platzAlt[b.s];
       const baumAlt = alt && alt[2] && alt[2].startsWith('baum') ? baeume.find(t => t.id === alt[2] && t.frei && alt[0] > t.box.x0 && alt[0] < t.box.x1 && alt[1] > t.box.y0 - 24 && alt[1] < t.box.y1) : null;
-      if (alt && (art !== 'luft' || baumAlt || !alt[2]) && frei.setzeBei(bw, alt[0], alt[1], [0, 0, 40, 40], [alt[2], 'res:' + b.s].filter(Boolean), undefined, !baumAlt)) {
+      if (alt && (art !== 'luft' || baumAlt || !alt[2]) && frei.setzeBei(bw, alt[0], alt[1], art === 'luft' ? [0, 0, 40, 40] : [6, 6, 34, 34], [alt[2], 'res:' + b.s].filter(Boolean), undefined, !baumAlt)) {
         if (baumAlt) { baumAlt.frei = false; bw.dataset.baum = baumAlt.id; }
         if (alt[2] && alt[2].startsWith('station')) bw.dataset.ohne = alt[2];
       } else if (art === 'wasser' && WASSERORT[b.s]) {
@@ -1159,7 +1168,7 @@
           if (ok) bw.dataset.ohne = 'station' + j;
           return ok;
         }));
-        if (!ok) frei.setze(bw, i, { box: [0, 0, 40, 40], nah: [70, 420], lage: k });
+        if (!ok) frei.setze(bw, i, { box: [6, 6, 34, 34], nah: [70, 420], lage: k });
       } else if (art === 'wasser') {
         const [x0, y0] = P(i); let best = Infinity, j0 = i;
         WEG.teile.forEach((w, j) => { const s = stand[w.id]; if (!WEG.wasser.has(w.ort) || s === 'nebel' || s === 'rand') return; const [x, y] = P(j), d = Math.hypot(x - x0, y - y0); if (d < best && d < 520) { best = d; j0 = j; } });
@@ -1170,7 +1179,7 @@
         const baum = reihe.find(t => frei.setzeBei(bw, (t.box.x0 + t.box.x1) / 2, t.box.y0 + 12 * t.gr, [0, 0, 40, 40], t.id));
         if (baum) { baum.frei = false; bw.dataset.baum = baum.id; }
         else frei.setze(bw, i, { box: [0, 0, 40, 40], nah: [30, 330], am: 'oben', hoch: true, lage: k });
-      } else frei.setze(bw, i, { box: [0, 0, 40, 40], nah: [70, 420], lage: k });
+      } else frei.setze(bw, i, { box: [6, 6, 34, 34], nah: [70, 420], lage: k });
       platzFrei(b.s);
     };
     const vogel = ([b]) => LEBENSRAUM[b.s] === 'luft';
@@ -1591,13 +1600,20 @@
   };
 
 
+  const SCHWELLE_WISCHEN = 60;
+  const WISCHEN_STEIL = 1.5;
   function karteikarte(buehne, quelle, opt = {}) {
     const folgeVon = (liste) => { let i = 0; return () => liste[i++ % liste.length]; };
     let naechste = (opt.folge ? folgeVon : ziehung)(quelle.schluessel());
     const verlauf = [];
     let pos = -1, aktuell = null;
     const flaeche = el('div', 'karteikarte-buehne');
-    buehne.replaceChildren(flaeche);
+    const nav = el('div', 'karte-nav');
+    const knZurueck = knopf('karte-nav-knopf', mitSymbol('zurueck', 'zurück'), () => { if (knZurueck.getAttribute('aria-disabled') !== 'true') zurueck(); }, 'vorige Karte');
+    const knVor = knopf('karte-nav-knopf', mitSymbol('vor', 'vor'), () => vor(), 'nächste Karte');
+    nav.append(knZurueck, knVor);
+    const navRuhe = () => { const aus = pos <= 0; knZurueck.setAttribute('aria-disabled', String(aus)); knZurueck.classList.toggle('licht-ruht', aus); };
+    buehne.replaceChildren(flaeche, nav);
     const zeige = (schl, richtung) => {
       const neu = el('div', 'karteikarte');
       const f = quelle.form(schl);
@@ -1605,6 +1621,7 @@
       neu.classList.toggle('lang', f.lang);
       const alt = aktuell;
       aktuell = neu;
+      navRuhe();
       if (opt.amZeigen) opt.amZeigen(schl, neu);
       flaeche.querySelectorAll('.karteikarte').forEach(k => { if (k !== alt) k.remove(); });
       if (!alt) { flaeche.append(neu); return; }
@@ -1622,10 +1639,10 @@
       const schl = naechste(); verlauf.push(schl); pos = verlauf.length - 1; zeige(schl, 1);
     };
     const zurueck = () => { if (pos > 0) { pos--; zeige(verlauf[pos], -1); } };
-    let x0 = null, langT = null, langFertig = false;
+    let x0 = null, y0 = null, langT = null, langFertig = false;
     const langWeg = () => { clearTimeout(langT); langT = null; if (aktuell) aktuell.classList.remove('drueckt'); };
     flaeche.addEventListener('pointerdown', (e) => {
-      x0 = e.clientX; langFertig = false; langWeg();
+      x0 = e.clientX; y0 = e.clientY; langFertig = false; langWeg();
       if (!opt.lang) return;
       if (aktuell) aktuell.classList.add('drueckt');
       langT = setTimeout(() => { langT = null; langFertig = true; if (aktuell) aktuell.classList.remove('drueckt'); opt.lang(); }, 600);
@@ -1633,13 +1650,11 @@
     flaeche.addEventListener('pointermove', (e) => { if (langT && x0 != null && Math.abs(e.clientX - x0) > 12) langWeg(); });
     ['pointerleave', 'pointercancel'].forEach(ev => flaeche.addEventListener(ev, langWeg));
     if (opt.lang) flaeche.addEventListener('contextmenu', (e) => e.preventDefault());
-    flaeche.addEventListener('pointerup', (e) => { langWeg(); if (langFertig) { langFertig = false; x0 = null; e.stopImmediatePropagation(); } });
+    flaeche.addEventListener('pointerup', (e) => { langWeg(); if (langFertig) { langFertig = false; x0 = y0 = null; e.stopImmediatePropagation(); } });
     flaeche.addEventListener('pointerup', tipp((e) => {
-      const dx = x0 == null ? 0 : e.clientX - x0; x0 = null;
-      if (dx < -40) return vor();
-      if (dx > 40) return zurueck();
-      const r = flaeche.getBoundingClientRect();
-      if (e.clientX < r.left + r.width / 3) zurueck(); else vor();
+      const dx = x0 == null ? 0 : e.clientX - x0, dy = y0 == null ? 0 : e.clientY - y0; x0 = y0 = null;
+      if (Math.abs(dx) < SCHWELLE_WISCHEN || Math.abs(dx) < WISCHEN_STEIL * Math.abs(dy)) return;
+      if (dx < 0) vor(); else zurueck();
     }));
     vor();
     return {
@@ -2712,31 +2727,283 @@
   }
   const SCHATZ_QUER = '(orientation: landscape) and (min-aspect-ratio: 5/4)';
 
+  const HR_PDF_NAME = 'Mein_Lautbuch_Handreichung.pdf';
+  const handreichungSeiten = () => {
+    const H = window.LAUTBUCH_HANDREICHUNG;
+    const bloecke = [];
+    const kopfBlock = el('div', 'hr-pdf-titel');
+    const heute = new Date().toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' });
+    kopfBlock.append(el('div', 'hr-pdf-marke', 'Mein Lautbuch'), el('h1', null, H.titel), el('div', 'hr-pdf-unter', 'Handreichung für die Begleitperson · Stand ' + heute));
+    bloecke.push([kopfBlock]);
+    if (H.einleitung) bloecke.push([el('p', 'hr-pdf-p hr-pdf-einleitung', H.einleitung)]);
+    const verz = el('div', 'hr-pdf-verz'); verz.append(el('div', 'hr-pdf-verz-kopf', 'Inhalt'));
+    const verzZeilen = [], titelKoepfe = [], hochMarken = [];
+    (H.abschnitte || []).forEach((a, i) => {
+      const z = el('div', 'hr-pdf-verz-zeile'), nr = el('span', 'hr-pdf-verz-nr', '00');
+      z.append(el('span', 'hr-pdf-verz-titel', (i + 1) + '. ' + a.titel), el('span', 'hr-pdf-verz-punkte'), nr);
+      verz.append(z); verzZeilen.push([z, nr]);
+    });
+    bloecke.push([verz]);
+    (H.abschnitte || []).forEach((a, i) => {
+      const h = el('h2'), hoch = el('span', 'hr-pdf-hoch', '↑ Inhalt');
+      h.append(el('span', null, (i + 1) + '. ' + a.titel), hoch); titelKoepfe.push(h); hochMarken.push(hoch);
+      const teile = [];
+      for (const t of a.teile || []) {
+        if (t.p) teile.push(el('p', 'hr-pdf-p', t.p));
+        if (t.tipp) teile.push(el('p', 'hr-pdf-tipp', t.tipp));
+        if (t.liste) for (const x of t.liste) teile.push(el('p', 'hr-pdf-punkt', x));
+      }
+      bloecke.push([h, ...teile.splice(0, 1)]);
+      for (const t of teile) bloecke.push([t]);
+    });
+    const bank = el('div', 'hr-pdf-bank'); document.body.append(bank);
+    const seiten = [];
+    const neu = () => { const s = el('div', 'hr-pdf-seite'), i = el('div', 'hr-pdf-inhalt'); s.append(i); bank.append(s); seiten.push([s, i]); return i; };
+    let inhalt = neu();
+    const passt = () => inhalt.scrollHeight <= inhalt.clientHeight + 1;
+    for (const gruppe of bloecke) {
+      inhalt.append(...gruppe);
+      if (passt()) continue;
+      gruppe.forEach(g => g.remove());
+      if (inhalt.children.length) inhalt = neu();
+      inhalt.append(...gruppe);
+    }
+    seiten.forEach(([s], i) => { const fuss = el('div', 'hr-pdf-fuss'); fuss.append(el('span', null, 'Mein Lautbuch · Handreichung'), el('span', null, 'Seite ' + (i + 1) + ' von ' + seiten.length)); s.append(fuss); });
+    try { window.__lbHrAbgeschnitten = seiten.filter(([, i]) => i.scrollHeight > i.clientHeight + 1).length; } catch {}
+    const seiteVon = (e) => seiten.findIndex(([s]) => s.contains(e));
+    const abschnittSeite = titelKoepfe.map(seiteVon);
+    verzZeilen.forEach(([, nr], i) => { nr.textContent = String(abschnittSeite[i] + 1); });
+    const links = seiten.map(() => []);
+    const flaeche = (e, s) => { const r = e.getBoundingClientRect(), p = seiten[s][0].getBoundingClientRect(); return { x: r.left - p.left, y: r.top - p.top, w: r.width, h: r.height }; };
+    verzZeilen.forEach(([z], i) => { const s = seiteVon(z); links[s].push(Object.assign(flaeche(z, s), { seite: abschnittSeite[i] + 1 })); });
+    const verzSeite = seiteVon(verz);
+    hochMarken.forEach((m, i) => { const s = abschnittSeite[i]; links[s].push(Object.assign(flaeche(m, s), { seite: verzSeite + 1 })); });
+    try { window.__lbHrAbschnittSeiten = abschnittSeite.map(x => x + 1); window.__lbHrVerzNr = verzZeilen.map(([, nr]) => nr.textContent); } catch {}
+    const ergebnis = seiten.map(([s]) => s);
+    ergebnis.forEach(s => s.remove());
+    bank.remove();
+    return { seiten: ergebnis, links };
+  };
+  async function handreichungPdf() {
+    if (!window.LB_AUSGABE || !window.LAUTBUCH_HANDREICHUNG) return;
+    try { if (document.fonts && document.fonts.ready) await document.fonts.ready; } catch {}
+    const { seiten, links } = handreichungSeiten();
+    try { window.__lbHrSeiten = seiten.length; window.__lbHrText = seiten.map(s => s.textContent); } catch {}
+    window.LB_AUSGABE.pdf(seiten, HR_PDF_NAME, { satz: '… die Handreichung wird gemacht', hinweis: 'Die Handreichung. Zum Sichern das Teilen-Symbol des Geräts nutzen.', links });
+  }
+
   function handreichung() {
     const H = window.LAUTBUCH_HANDREICHUNG;
     const d = el('dialog', 'schublade handreichung');
     d.setAttribute('aria-label', H.titel);
     const zu = () => geht(d, 12).then(() => d.close());
     const kopf = el('div', 'schublade-kopf');
-    kopf.append(el('h2', null, H.titel), knopf('ikon schliessen', '×', zu, 'schließen'));
+    kopf.append(el('h2', null, H.titel));
+    if (window.LB_AUSGABE && window.jspdf && typeof html2canvas !== 'undefined') kopf.append(knopf('hr-pdf', 'Als PDF speichern', () => zu().then(() => handreichungPdf()), 'Handreichung als PDF speichern'));
+    kopf.append(knopf('ikon schliessen', '×', zu, 'schließen'));
     const inhalt = el('div', 'hr-inhalt');
     if (H.einleitung) inhalt.append(el('p', 'hr-einleitung', H.einleitung));
     const verzeichnis = el('nav', 'hr-verzeichnis'); verzeichnis.setAttribute('aria-label', 'Inhalt');
     inhalt.append(verzeichnis);
-    for (const a of H.abschnitte || []) {
-      const sek = el('section', 'hr-abschnitt');
-      const h = el('h3'); if (a.symbol) h.append(sym(a.symbol)); h.append(el('span', null, a.titel));
-      sek.append(h);
+    const springe = (e) => e.scrollIntoView({ behavior: ruhig() ? 'auto' : 'smooth', block: 'start' });
+    (H.abschnitte || []).forEach((a, i) => {
+      const sek = el('section', 'hr-abschnitt'), nr = (i + 1) + '. ';
+      const h = el('h3'); if (a.symbol) h.append(sym(a.symbol)); h.append(el('span', null, nr + a.titel));
+      const zeile = el('div', 'hr-titelzeile');
+      zeile.append(h, knopf('hr-hoch', '↑ Inhalt', () => springe(verzeichnis), 'Zurück zum Inhaltsverzeichnis'));
+      sek.append(zeile);
       for (const t of a.teile || []) {
         if (t.p) sek.append(el('p', null, t.p));
         if (t.tipp) sek.append(el('p', 'hr-tipp', t.tipp));
         if (t.liste) { const ul = el('ul'); for (const x of t.liste) ul.append(el('li', null, x)); sek.append(ul); }
       }
       inhalt.append(sek);
-      verzeichnis.append(knopf('hr-sprung', a.titel, () => sek.scrollIntoView({ behavior: ruhig() ? 'auto' : 'smooth', block: 'start' })));
-    }
+      verzeichnis.append(knopf('hr-sprung', nr + a.titel, () => springe(sek)));
+    });
     d.append(kopf, inhalt);
     d.addEventListener('close', () => d.remove());
+    document.body.append(d);
+    d.showModal();
+    kommt(d, 0, 16, 360);
+  }
+
+  const bestaetigt = (b, frage) => {
+    if (b.dataset.frage) return true;
+    const alt = b.textContent;
+    b.dataset.frage = '1'; b.textContent = frage;
+    setTimeout(() => { delete b.dataset.frage; if (b.isConnected) b.textContent = alt; }, 4000);
+    return false;
+  };
+
+  const LOESCH_UMFANG = [
+    ['lichter', 'Lichter und Boss', false, true],
+    ['haken', 'Zeilen-Haken', false, true],
+    ['steine', 'Stolpersteine', false, true],
+    ['gold', 'Gold der Bilder- und Abtipp-Aufgaben, Schatz', false, true],
+    ['galerie', 'Galerie', false, false],
+    ['mitbringsel', 'Mitbringsel und Bewohner-Plätze', false, false],
+    ['figur', 'Gewählte Figur', true, false],
+    ['zimmer', 'Zimmer', true, false],
+    ['buecher', 'Bücher', false, false],
+    ['name', 'Name', true, false],
+    ['einst', 'Einstellungen', true, false]
+  ];
+  const LOESCH_KEYS = { bwGesehen: 'lautbuch.bewohner.gesehen.v1', bwPlatz: 'lautbuch.bewohner.platz.v1', zimmer: ['lautbuch.zimmer.v1', 'lautbuch.zimmer.karten.v1', 'lautbuch.zimmer.rad.v1'],
+    buecher: 'lautbuch.buecher.v1', name: 'lautbuch.name.v1', einst: [EINST_KEY, 'lautbuch.schreibung.v1'] };
+  const entferne = (k) => { try { localStorage.removeItem(k); } catch {} };
+  const loeschTeile = () => ((window.LAUTBUCH_FOLGE || {}).FOLGE || []).map(f => TEILE[f.teil]).filter(Boolean);
+  const loescheWahl = (start, umfang) => {
+    const F = loeschTeile(), ab = !!start;
+    const teilWeg = (t) => !ab || F.indexOf(t) >= start.ti;
+    const behalte = (t, lvId) => {
+      if (!ab) return false;
+      const i = F.indexOf(t);
+      return i < start.ti || (i === start.ti && t.level.slice(0, start.li).some(l => l.id === lvId));
+    };
+    for (const t of F) {
+      const o = licht[t.id]; if (!o) continue;
+      if (umfang.lichter) for (const k of Object.keys(o)) if (/^(l\d+|p\d+|boss)$/.test(k) && !behalte(t, k)) delete o[k];
+      if (umfang.gold && teilWeg(t)) for (const k of ['bilder', 'tippen', 'geschichte', 'bilderOffen', 'schatz']) delete o[k];
+      for (const [feld, schalter] of [['marken', 'haken'], ['stolper', 'steine']]) {
+        if (!umfang[schalter] || !o[feld]) continue;
+        for (const k of Object.keys(o[feld])) if (!behalte(t, feld === 'marken' ? k.split('|')[0] : k)) delete o[feld][k];
+        if (!Object.keys(o[feld]).length) delete o[feld];
+      }
+      speichern(t.id);
+    }
+    if (umfang.lichter || umfang.haken || umfang.steine || umfang.gold) {
+      if (!ab) entferne(LESEZEICHEN_KEY);
+      else { const t = F[start.ti], lv = t.level[start.li]; schreib(LESEZEICHEN_KEY, { teil: t.id, level: lv.id, blatt: (lv.blaetter || t.blaetter)[0][0] }); }
+    }
+    if (umfang.galerie) {
+      if (!ab) entferne(GALERIE_KEY);
+      else {
+        const g = lies(GALERIE_KEY, {}) || {}, bleibt = new Set();
+        for (const t of F) if (!teilWeg(t)) for (const w of bildPool(t)) bleibt.add(bildSchluessel(w));
+        for (const t of F) if (teilWeg(t)) for (const w of bildPool(t)) { const k = bildSchluessel(w); if (!bleibt.has(k)) delete g[k]; }
+        schreib(GALERIE_KEY, g);
+      }
+    }
+    if (umfang.mitbringsel || umfang.figur) {
+      const fs = figurStand();
+      if (umfang.mitbringsel) fs.gezeigt = !ab ? [] : (fs.gezeigt || []).filter(id => { const p = String(id).split('.'); return behalte(TEILE[p[0]], p[1]); });
+      if (umfang.figur) fs.wer = null;
+      schreib(FIGUR_KEY, fs);
+    }
+    if (umfang.mitbringsel) {
+      const weg_ = new Set();
+      for (const t of F) if (teilWeg(t)) for (const b of t.bewohner || []) weg_.add(b.s);
+      const gesehen = lies(LOESCH_KEYS.bwGesehen, null);
+      if (!ab) entferne(LOESCH_KEYS.bwGesehen); else if (Array.isArray(gesehen)) schreib(LOESCH_KEYS.bwGesehen, gesehen.filter(s => !weg_.has(s)));
+      const platz = lies(LOESCH_KEYS.bwPlatz, null);
+      if (!ab) entferne(LOESCH_KEYS.bwPlatz);
+      else if (platz && typeof platz === 'object') { for (const lage of Object.values(platz)) if (lage && typeof lage === 'object') for (const s of weg_) delete lage[s]; schreib(LOESCH_KEYS.bwPlatz, platz); }
+      const z = lies(LOESCH_KEYS.zimmer[0], null);
+      if (z && typeof z === 'object') {
+        if (Array.isArray(z.drinnen)) z.drinnen = z.drinnen.filter(s => !weg_.has(s));
+        if (Array.isArray(z.hinaus)) z.hinaus = z.hinaus.filter(s => !weg_.has(s));
+        for (const s of weg_) if (z.seit) delete z.seit[s];
+        if (z.sicht && Array.isArray(z.sicht.bew)) z.sicht.bew = z.sicht.bew.filter(s => !weg_.has(s));
+        schreib(LOESCH_KEYS.zimmer[0], z);
+      }
+    }
+    if (umfang.zimmer) LOESCH_KEYS.zimmer.forEach(entferne);
+    if (umfang.buecher || umfang.name) {
+      const bs = lies(LOESCH_KEYS.buecher, null);
+      if (bs && typeof bs === 'object') {
+        if (umfang.buecher) for (const f of ['gefunden', 'seite', 'gelesen']) {
+          if (!bs[f]) continue;
+          if (!ab) delete bs[f];
+          else for (const id of Object.keys(bs[f])) {
+            const nach = id === 'reise' ? 'ziel' : ((window.LAUTBUCH_BUECHER || {})[id] || {}).nach;
+            if (teilWeg(TEILE[nach] || F[F.length - 1])) delete bs[f][id];
+          }
+        }
+        if (umfang.name) delete bs.ohneName;
+        schreib(LOESCH_KEYS.buecher, bs);
+      }
+      if (umfang.name) entferne(LOESCH_KEYS.name);
+    }
+    if (umfang.einst) { LOESCH_KEYS.einst.forEach(entferne); for (const k of Object.keys(einst)) delete einst[k]; einst.schreibung = 'gross'; }
+  };
+
+  const loeschTeilName = (t) => t.art === 'prolog' ? 'Prolog' : t.art === 'ziel' ? 'Leuchtturm' : t.art === 'regel' ? 'Tor ' + t.id.slice(1) : t.zeichen;
+  function loeschenDialog(schublade) {
+    const d = el('dialog', 'schublade loeschen');
+    d.setAttribute('aria-label', 'Lichter löschen');
+    const zu = () => geht(d, 12).then(() => d.close());
+    const kopf = el('div', 'schublade-kopf');
+    kopf.append(el('h2', null, 'Lichter löschen'), knopf('ikon schliessen', '×', zu, 'schließen'));
+    const F = loeschTeile();
+    let bereich = 'alles', ti = -1, li = -1;
+    const umfang = Object.fromEntries(LOESCH_UMFANG.map(([k, , , v]) => [k, v]));
+    const wirkt = (k) => umfang[k] && !(bereich === 'ab' && LOESCH_UMFANG.find(u => u[0] === k)[2]);
+    const bereichWahl = gruppe('Bereich', [['alles', 'Alles'], ['ab', 'Ab einer Lektion']], bereich, (w) => { bereich = w; neu(); });
+    const teilBox = el('div', 'loesch-chips'), lvBox = el('div', 'loesch-chips');
+    const abBlock = el('div', 'loesch-block');
+    abBlock.append(el('h3', null, 'Ab welcher Lektion?'), teilBox, lvBox);
+    const haken = LOESCH_UMFANG.map(([k, text, nurAlles]) => {
+      const kasten = el('span', 'loesch-kasten'); kasten.append(sym('haken'));
+      const b = knopf('loesch-haken', [kasten, el('span', null, text)], () => {
+        if (b.getAttribute('aria-disabled') === 'true') return;
+        umfang[k] = !umfang[k]; neu();
+      });
+      b.setAttribute('role', 'checkbox'); b.dataset.umfang = k;
+      return [k, nurAlles, b];
+    });
+    const hakenBox = el('div', 'loesch-block loesch-haken-liste');
+    hakenBox.append(el('h3', null, 'Was wird gelöscht?'), ...haken.map(h => h[2]));
+    const zusammen = el('p', 'meldung loesch-zusammen');
+    zusammen.setAttribute('aria-live', 'polite');
+    const loeschKnopf = knopf('leise loesch-los', 'Löschen', () => {
+      if (loeschKnopf.getAttribute('aria-disabled') === 'true') return;
+      if (!bestaetigt(loeschKnopf, 'Wirklich löschen?')) return;
+      const u = {}; for (const [k] of LOESCH_UMFANG) if (wirkt(k)) u[k] = true;
+      loescheWahl(bereich === 'alles' ? null : { ti, li }, u);
+      d.close(); schublade.close(); weg();
+    });
+    const abbrechen = knopf('leise', 'Abbrechen', zu);
+    const aktionen = el('div', 'schublade-knoepfe'); aktionen.append(loeschKnopf, abbrechen);
+    function neu() {
+      bereichWahl.querySelectorAll('.schreib-wahl').forEach((b, i) => b.setAttribute('aria-pressed', String(['alles', 'ab'][i] === bereich)));
+      abBlock.hidden = bereich !== 'ab';
+      teilBox.replaceChildren(...F.map((t, i) => {
+        const b = knopf('loesch-chip', loeschTeilName(t), () => { ti = i; li = -1; neu(); });
+        b.setAttribute('aria-pressed', String(i === ti)); b.dataset.teil = t.id;
+        return b;
+      }));
+      lvBox.replaceChildren(...(ti < 0 ? [] : F[ti].level.map((lv, i) => {
+        const b = knopf('loesch-chip', 'Lektion ' + (i + 1), () => { li = i; neu(); });
+        b.setAttribute('aria-pressed', String(i === li)); b.dataset.lektion = lv.id;
+        return b;
+      })));
+      lvBox.hidden = ti < 0;
+      for (const [k, nurAlles, b] of haken) {
+        const aus = bereich === 'ab' && nurAlles;
+        b.setAttribute('aria-checked', String(!aus && !!umfang[k]));
+        b.setAttribute('aria-disabled', String(aus)); b.classList.toggle('licht-ruht', aus);
+        b.title = aus ? 'Nur bei „Alles“' : '';
+      }
+      const was = LOESCH_UMFANG.filter(([k]) => wirkt(k)).map(([, text]) => text);
+      const fortschritt = ['lichter', 'haken', 'steine', 'gold'].some(wirkt);
+      let text, bereit = true;
+      if (!was.length) { text = 'Nichts gewählt.'; bereit = false; }
+      else if (bereich === 'ab' && li < 0) { text = 'Bitte die Lektion wählen, ab der gelöscht wird.'; bereit = false; }
+      else {
+        const wo = bereich === 'alles' ? 'alles' : 'ab ' + loeschTeilName(F[ti]) + ' · Lektion ' + (li + 1);
+        text = 'Gelöscht wird ' + wo + ': ' + was.join(', ') + '.' + (bereich === 'ab' ? ' Alles davor bleibt.' : '')
+          + (fortschritt ? (bereich === 'alles' ? ' Das Lesezeichen wird entfernt.' : ' Das Lesezeichen springt zu dieser Lektion.') : '');
+      }
+      zusammen.textContent = text;
+      loeschKnopf.setAttribute('aria-disabled', String(!bereit)); loeschKnopf.classList.toggle('licht-ruht', !bereit);
+      delete loeschKnopf.dataset.frage; loeschKnopf.textContent = 'Löschen';
+    }
+    const inhalt = el('div', 'loesch-inhalt'), fuss = el('div', 'loesch-fuss');
+    inhalt.append(el('p', 'meldung', 'Bereich und Umfang wählen. Zum Löschen zweimal „Löschen“ tippen.'), bereichWahl, abBlock, hakenBox);
+    fuss.append(zusammen, aktionen);
+    d.append(kopf, inhalt, fuss);
+    d.addEventListener('close', () => d.remove());
+    neu();
     document.body.append(d);
     d.showModal();
     kommt(d, 0, 16, 360);
@@ -2761,14 +3028,6 @@
       d.append(zv);
     }
 
-
-    const bestaetigt = (b, frage) => {
-      if (b.dataset.frage) return true;
-      const alt = b.textContent;
-      b.dataset.frage = '1'; b.textContent = frage;
-      setTimeout(() => { delete b.dataset.frage; if (b.isConnected) b.textContent = alt; }, 4000);
-      return false;
-    };
     const eintraege = () => {
       const o = {};
       try { for (let k = 0; k < localStorage.length; k++) { const n = localStorage.key(k); if (n.startsWith('lautbuch.')) o[n] = localStorage.getItem(n); } } catch {}
@@ -2833,12 +3092,7 @@
       sk);
     d.append(s);
 
-    const loeschen = knopf('leise', 'Lichter löschen', () => {
-      if (!bestaetigt(loeschen, 'Wirklich alles löschen?')) return;
-      for (const id of Object.keys(licht)) { licht[id] = {}; speichern(id); }
-      try { localStorage.removeItem(LESEZEICHEN_KEY); } catch {}
-      d.close(); weg();
-    });
+    const loeschen = knopf('leise', 'Lichter löschen', () => loeschenDialog(d));
     if (window.LB_APP) window.LB_APP.schublade(d, zu);
     d.append(loeschen);
     d.addEventListener('close', () => d.remove());

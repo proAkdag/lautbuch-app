@@ -299,9 +299,14 @@
   .knopf.band-knopf[aria-pressed="true"] .sym { fill: var(--ueben); }
   .reihen-zeile.lesezeichen .zelle { border-color: var(--ueben); }
 
-  .tafel-rahmen.mit-karteikarte { flex: 1; width: 100%; display: flex; }
-  .karteikarte-buehne { position: relative; flex: 1; display: grid; place-items: start center; cursor: pointer; min-height: 260px; overflow: hidden;
+  .tafel-rahmen.mit-karteikarte { flex: 1; width: 100%; display: flex; flex-direction: column; }
+  .karteikarte-buehne { position: relative; flex: 1; display: grid; place-items: start center; cursor: default; touch-action: pan-y; min-height: 260px; overflow: hidden;
     padding: 4px 0 40px; }
+
+  .karte-nav { flex: none; display: flex; justify-content: center; gap: 16px; padding: 4px 0 10px; }
+  .knopf.karte-nav-knopf { min-width: 132px; min-height: 56px; font-size: 18px; }
+
+  .raum[data-ort="wiederholen"] .karteikarte-buehne { place-items: center; padding-top: 40px; }
   .karteikarte {
     grid-area: 1 / 1; display: flex; align-items: center; justify-content: center;
     min-width: 2.2em; padding: .18em .55em .14em; border-radius: 28px;
@@ -390,6 +395,28 @@
   .schublade p.meldung { margin: 0 0 8px; line-height: 1.4; }
   .schublade-kopf .knopf.ikon { font-size: 30px; line-height: 1; }
   .schublade > .knopf.leise { margin-top: 18px; }
+
+  dialog.schublade.loeschen { width: min(720px, calc(100vw - 32px)); max-height: calc(calc(100 * var(--vh)) - 32px); padding: 0; display: flex; flex-direction: column; overflow: hidden; }
+  dialog.schublade.loeschen:not([open]) { display: none; }
+  .loeschen .schublade-kopf { padding: 18px 22px 12px; border-bottom: 1px solid var(--rand); }
+  .loesch-inhalt { overflow-y: auto; padding: 4px 22px 14px; }
+  .loesch-inhalt > p.meldung { margin: 12px 0 10px; }
+  .loesch-fuss { padding: 10px 22px 16px; border-top: 1px solid var(--rand); }
+  .loesch-block { margin-top: 14px; }
+  .loesch-block[hidden], .loesch-chips[hidden] { display: none; }
+  .loesch-block h3 { margin: 0 0 8px; font-size: 17px; }
+  .loesch-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .knopf.loesch-chip { min-height: 44px; padding: 0 14px; font-size: 16px; }
+  .loesch-haken-liste { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2px 12px; }
+  .loesch-haken-liste h3 { grid-column: 1 / -1; }
+  .knopf.loesch-haken { justify-content: flex-start; gap: 12px; width: 100%; min-height: 48px; padding: 4px 10px; border-color: transparent; background: transparent; text-align: left; font-size: 17px; font-weight: 400; }
+  .loesch-kasten { flex: none; display: grid; place-items: center; width: 28px; height: 28px; border: 2px solid var(--tinte-60); border-radius: 8px; background: var(--karte); color: transparent; }
+  .loesch-kasten .sym { font-size: 20px; }
+  .knopf.loesch-haken[aria-checked="true"] .loesch-kasten { color: var(--tinte); background: var(--tinte-licht); }
+  .knopf.loesch-haken[aria-disabled="true"] .loesch-kasten { border-style: dashed; border-color: var(--tinte-30); }
+  .loesch-zusammen { margin: 0; min-height: 3.2em; }
+  .knopf.loesch-los { border-color: var(--tinte-60); color: var(--tinte); }
+  .knopf.loesch-los.licht-ruht { border-color: transparent; color: var(--tinte-60); }
 }
 @layer schmal {
   @media (max-width: 760px) {
@@ -717,6 +744,8 @@
     .raum-ueben.mit-loch > .tafel-rahmen.mit-karteikarte { padding-top: 50px; }
     .raum-ueben > .tafel-rahmen { padding-top: 4px; }
     .karteikarte-buehne { min-height: 0; padding-bottom: 14px; }
+    .karte-nav { padding: 0 0 6px; }
+    .knopf.karte-nav-knopf { min-height: 48px; min-width: 112px; }
     .knopf.schreib-wahl { min-height: 40px; }
 
     .welt { --zelle: clamp(32px, min(calc((100vw - var(--schiene) - 60px - 14 * 6px) / 15), calc((calc(100 * var(--vh)) - var(--oben) - 90px) / 6)), 64px); gap: 8px; }
@@ -1236,13 +1265,40 @@
   .hr-verzeichnis { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 6px; }
   .knopf.hr-sprung { min-height: 36px; padding: 0 12px; font-size: 14px; font-weight: 400; }
   .hr-abschnitt { scroll-margin-top: 8px; }
-  .hr-abschnitt h3 { display: flex; align-items: center; gap: 10px; margin: 26px 0 8px; font-size: 20px; }
+  .hr-titelzeile { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 26px 0 8px; }
+  .hr-abschnitt h3 { display: flex; align-items: center; gap: 10px; margin: 0; font-size: 20px; }
+  .knopf.hr-hoch { flex: none; min-height: 36px; padding: 0 12px; font-size: 14px; font-weight: 400; }
   .hr-abschnitt h3 .sym { font-size: 24px; color: var(--ueben-dunkel); flex: none; }
   .hr-abschnitt p { margin: 0 0 10px; }
   .hr-abschnitt ul { margin: 0 0 12px; padding-left: 1.2em; }
   .hr-abschnitt li { margin: 0 0 6px; }
   .hr-tipp { padding: 10px 14px; border-left: 4px solid var(--gold); background: var(--gold-grund); border-radius: 0 12px 12px 0; }
   @media (max-width: 699px) { .hr-inhalt { padding: 4px 16px 22px; font-size: 16px; } }
+  .knopf.hr-pdf { min-height: 44px; margin-left: auto; padding: 0 16px; font-size: 16px; }
+  .handreichung .schublade-kopf h2 { flex: 0 1 auto; }
+  @media (max-width: 520px) { .handreichung .schublade-kopf { flex-wrap: wrap; } .handreichung .schublade-kopf h2 { flex: 1 1 0; } .knopf.hr-pdf { order: 3; margin-left: 0; } }
+
+  .hr-pdf-bank { position: fixed; left: -12000px; top: 0; width: 794px; }
+  .hr-pdf-seite { position: relative; width: 794px; height: 1123px; box-sizing: border-box; padding: 64px 68px 84px; background: #fff; color: var(--tinte); font-size: 15px; line-height: 1.5; }
+  .hr-pdf-inhalt { height: 975px; overflow: hidden; }
+  .hr-pdf-titel { margin: 0 0 16px; padding-bottom: 14px; border-bottom: 2px solid var(--rand); }
+  .hr-pdf-marke { font-size: 15px; color: var(--tinte-60); }
+  .hr-pdf-titel h1 { margin: 6px 0 4px; font-size: 34px; line-height: 1.15; }
+  .hr-pdf-unter { font-size: 15px; color: var(--tinte-60); }
+  .hr-pdf-seite h2 { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 22px 0 8px; padding-bottom: 4px; border-bottom: 1.5px solid var(--rand); font-size: 21px; line-height: 1.2; }
+  .hr-pdf-hoch { flex: none; font-size: 12.5px; font-weight: 400; color: var(--tinte-60); }
+  .hr-pdf-p { margin: 0 0 8px; }
+  .hr-pdf-einleitung { font-size: 16px; }
+  .hr-pdf-punkt { position: relative; margin: 0 0 6px; padding-left: 20px; }
+  .hr-pdf-punkt::before { content: ''; position: absolute; left: 6px; top: .62em; width: 6px; height: 6px; border-radius: 50%; background: var(--tinte-60); }
+  .hr-pdf-tipp { margin: 4px 0 10px; padding: 8px 14px; border-left: 4px solid var(--gold); background: var(--gold-grund); border-radius: 0 10px 10px 0; }
+  .hr-pdf-verz { margin: 6px 0 4px; padding: 10px 16px; border: 1.5px solid var(--rand); border-radius: 12px; }
+  .hr-pdf-verz-kopf { font-weight: 700; margin-bottom: 4px; }
+  .hr-pdf-verz-zeile { display: flex; align-items: baseline; gap: 8px; padding: 1px 0; }
+  .hr-pdf-verz-titel { flex: none; }
+  .hr-pdf-verz-punkte { flex: 1; height: 1px; border-bottom: 1.5px dotted var(--tinte-30); }
+  .hr-pdf-verz-nr { flex: none; min-width: 2ch; text-align: right; }
+  .hr-pdf-fuss { position: absolute; left: 68px; right: 68px; bottom: 36px; display: flex; justify-content: space-between; padding-top: 8px; border-top: 1px solid var(--rand); font-size: 12.5px; color: var(--tinte-60); }
 }
 
 @layer teile {

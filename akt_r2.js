@@ -135,7 +135,8 @@ window.LAUTBUCH_TEILE.r2 = {
   },
   bewohner: [
     { s: 'bw-elch', wer: 'Elch', bild: 'Ein freundlicher Elch mit großem Geweih und Kochmütze hält einen Kochlöffel hoch.' },
-    { s: 'bw-drachenbaby', wer: 'Drachenbaby', bild: 'Ein kleines grünes Drachenbaby mit runden Flügelchen sitzt in einer Eierschale und lacht.' }
+    { s: 'bw-drachenbaby', wer: 'Drachenbaby', bild: 'Ein kleines grünes Drachenbaby mit runden Flügelchen sitzt in einer Eierschale und lacht.' },
+    { s: 'bw-conrad', wer: 'Conrad', bild: 'Ein Kind mit zerzaustem dunkelblondem Haar und Sommersprossen, graugrünem Pullover und Jeans steht ruhig da, die Arme leicht vom Körper.' }
   ],
   schatz: [
     { art: 'sprichwort', text: 'Das Le-ben ist kein Po-ny-hof.' },

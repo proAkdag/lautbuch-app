@@ -64,7 +64,7 @@
   };
 
   let LEBR = {};
-  const MENSCH = new Set(['bw-zauberer', 'bw-robo']);
+  const MENSCH = new Set(['bw-zauberer', 'bw-robo', 'bw-elif', 'bw-conrad', 'bw-nora', 'bw-ida', 'bw-toni']);
   const ART = (x) => MENSCH.has(x) ? 'mensch' : LEBR[x] || 'land';
   const ESSEN = { 'bw-moewe': 'brot', 'bw-elch': 'kuchen', 'bw-drachenbaby': 'kuchen', 'bw-hirsch': 'kiwi', 'bw-robo': 'schoko' };
   const HUT = ['bw-kuh-hut', 'bw-zauberer', 'bw-pinguin'];
@@ -97,6 +97,19 @@
     { a: 'bw-kueken', b: HUT, tun: [({ ich, du, z }) => { GESTE.wackeln(ich); nach(500, () => { GESTE.nicken(du); z('funke', du); }); }] },
     { a: 'bw-kamel', b: (x) => ART(x) === 'luft', tun: [({ ich, du, z }) => { GESTE.luft(du); nach(300, () => z('noten', ich)); nach(600, () => z('noten', du)); }] },
     { a: 'bw-nashorn', b: (x) => ART(x) === 'luft', tun: [({ ich, du, z }) => { GESTE.luft(du); nach(500, () => { GESTE.nicken(ich); z('funke', ich); }); }] },
+    { a: 'bw-elif', b: 'bw-kraehe', tun: [({ ich, du, d, z }) => {
+      d.zeige(ich, 'kamera', 16); nach(400, () => { z('funke', du); GESTE.zurueck(du); });
+      if (gemeistert('ziel')) { nach(1000, () => d.wandere('käse', du, ich)); nach(2000, () => { z('licht', null); GESTE.nicken(ich); }); } else nach(1000, () => d.zeige(du, 'käse', 14)); }] },
+    { a: 'bw-elif', b: 'bw-conrad', tun: [({ ich, du, d }) => { d.zeige(ich, 'ding-pfeil', 16); nach(500, () => GESTE.drehen(du)); nach(1300, () => { GESTE.drehen(du); GESTE.nicken(ich); }); }] },
+    { a: 'bw-conrad', b: 'bw-drachenbaby', tun: [({ ich, du, d, z }) => { d.zeige(ich, 'comic', 16); nach(500, () => z('flamme', du)); nach(900, () => GESTE.wackeln(ich)); nach(1200, () => z('woelkchen', ich)); }] },
+    { a: 'bw-nora', b: 'bw-storch', tun: [({ ich, du, d }) => { d.zeige(ich, 'stern', 12); nach(500, () => { d.zeige(du, 'stern', 12); GESTE.nicken(ich); }); nach(1100, () => GESTE.wackeln(du)); }] },
+    { a: 'bw-ida', b: 'bw-kuh', tun: [({ ich, du, d }) => { d.zeige(ich, 'buch', 14); d.zeige(du, 'buch', 14); GESTE.nicken(ich); nach(400, () => GESTE.nicken(du)); }] },
+    { a: 'bw-ida', b: 'bw-eule-luna', tun: [({ ich, du, d, z }) => {
+      if (gemeistert('ziel')) { d.wandere('brille', du, ich); nach(1300, () => { z('licht', ich); GESTE.land(ich); }); }
+      else { d.wandere('hut', du, ich); nach(1100, () => { d.wandere('würfel', du, ich); GESTE.wackeln(ich); }); } }] },
+    { a: 'bw-toni', b: 'bw-robo', tun: [({ ich, du, z }) => {
+      for (let k = 0; k < 3; k++) { nach(k * 700, () => GESTE.wackeln(ich)); nach(k * 700 + 350, () => GESTE.wackeln(du)); }
+      nach(300, () => z('noten', ich)); if (gemeistert('ziel')) nach(1800, () => z('licht', null)); }] },
     { a: 'bw-ara', b: '*', tun: [({ ich, du, wer }) => { const g = GESTE[ART(Object.keys(wer).find(k => wer[k] === du))] || GESTE.land; g(du); nach(700, () => g(ich)); }] },
     { a: 'bw-schnecke', b: '*', tun: [({ ich, du, z }) => { GESTE.land(du); nach(300, () => z('funke', ich)); }] },
     { a: 'bw-robo', b: '*', tun: [
@@ -243,6 +256,7 @@
     else reihe([[0, 0], [.12, 0, 6], [.2, 0, 0], [.32, 0, 6], [.4, 0, 0], [.58, 0, 0], [.66, -22, -4, .96, 1.05], [.76, 0, 0], [.84, 0, -8], [.92, 0, 6], [1, 0, 0]], 2500, T);
     return 2550;
   };
+  let fotoMal = 0;
   let zuletzt = null;
   const VARIANTEN = {
     'bw-ara': { v: [
@@ -341,6 +355,36 @@
       (T) => { GESTE.wasser(T.g); T.z('ring'); return 1000; },
       (T) => { reihe([[0, 0, 0], [.5, -60, 180], [1, 0, 360]], 1200, T, { easing: 'ease-in-out' }); T.z('tropfen', [0, 6]); return 1300; },
       (T) => { GESTE.wasser(T.g); zeige(T, 'brief', 12, -8, 12, 1600, 300); return 1700; }] },
+    'bw-elif': { v: [
+      (T) => { zeige(T, 'kamera', 16, 6, 16, 1700); setTimeout(() => T.z('funke', [16, 0]), 500); GESTE.nicken(T.g); return 1750; },
+      (T) => { zeige(T, 'kamera', 14, 2, 14, 1700); zeige(T, ['apfel', 'brot', 'ball'][fotoMal++ % 3], 26, 12, 12, 1500, 300); setTimeout(() => T.z('funke', [14, 0]), 450); wipp(T, 1500, 2, 3); return 1750; },
+      (T) => { zeige(T, 'ding-rahmen', 18, 8, 16, 1900); reihe([[0, 0], [.4, 0, 0, 1.03, .97], [.7, 0, -5], [1, 0]], 1900, T); return 1950; }],
+      selten: (T) => { GESTE.drehen(T.g); [0, 1, 2].forEach(k => setTimeout(() => T.z('funke', [14, -4 - k * 3]), 200 + k * 300)); return 1300; },
+      nach: ['ziel', (T) => { zeige(T, 'ding-rahmen', 18, 8, 16, 2000); setTimeout(() => T.z('licht', [18, 8]), 500); GESTE.nicken(T.g); return 2100; }] },
+    'bw-conrad': { v: [
+      (T) => { zeige(T, 'comic', 18, 6, 16, 1800); wipp(T, 1800, 6, 3); setTimeout(() => T.z('funke', [0, -16]), 900); return 1850; },
+      (T) => { const c = T.ding('comic', 18, 2, 16); if (c) T.lauf(c, [...auf(), { opacity: 1, transform: 'translateY(-16px) rotate(20deg)', offset: .45 }, { opacity: 1, transform: 'none', offset: .8 }, { opacity: 0, transform: 'none' }], 1800); huepf(T, 700); return 1850; },
+      (T) => { wipp(T, 1100, 4, 6); setTimeout(() => T.z('funke', [0, -18]), 400); return 1200; }],
+      selten: (T) => { const c = T.ding('comic', 18, 6, 16); if (c) T.lauf(c, [{ opacity: 0, transform: 'rotate(180deg) scale(.3)' }, { opacity: 1, transform: 'rotate(180deg)', offset: .2 }, { opacity: 1, transform: 'rotate(180deg)', offset: .55 }, { opacity: 1, transform: 'rotate(0deg)', offset: .7 }, { opacity: 0, transform: 'rotate(0deg)' }], 2200); reihe([[0, 0], [.5, 0, 0], [.6, -6, -8], [1, 0]], 2200, T); return 2250; },
+      nach: ['ziel', (T) => { zeige(T, 'buch', 18, 6, 16, 2000); reihe([[0, 0], [.4, 0, 6], [.5, 0, -4], [.6, 0, 6], [1, 0]], 2000, T); setTimeout(() => T.z('funke', [18, -4]), 1200); return 2050; }] },
+    'bw-nora': { v: [
+      (T) => { [-8, 0, 8].forEach((dx, k) => zeige(T, 'stern', dx, -26, 10, 1900 - k * 300, k * 350)); GESTE.nicken(T.g); return 1950; },
+      (T) => { const b = T.ding('ballon', 18, -4, 16); if (b) T.lauf(b, [{ opacity: 0, transform: 'translateY(8px) scale(.3)' }, { opacity: 1, transform: 'translateY(0px) scale(.7)', offset: .3 }, { opacity: 1, transform: 'translateY(-4px) scale(1.15)', offset: .7 }, { opacity: 0, transform: 'translateY(-14px) scale(1.15)' }], 2000); wipp(T, 1400, 3, 3); return 2050; },
+      (T) => { GESTE.nicken(T.g); setTimeout(() => T.z('funke', [14, -8]), 300); return 800; }],
+      selten: (T) => { const b = T.ding('ballon', 16, -6, 16); if (b) T.lauf(b, [{ opacity: 1, transform: 'none' }, { opacity: 1, transform: 'translate(6px,-24px)', offset: .5 }, { opacity: 0, transform: 'translate(10px,-48px) scale(.7)' }], 2200); reihe([[0, 0], [.4, 0, -5], [.8, 0, -5], [1, 0]], 2200, T); return 2250; },
+      nach: ['ziel', (T) => { [-8, 0, 8].forEach((dx, k) => zeige(T, 'stern', dx, -26, 10, 2000, k * 250)); setTimeout(() => T.z('licht', [0, -26]), 500); GESTE.nicken(T.g); return 2100; }] },
+    'bw-ida': { v: [
+      (T) => { zeige(T, 'brille', 16, -4, 13, 1800); setTimeout(() => T.z('woelkchen', [16, -6]), 300); wipp(T, 1500, 4, 4); return 1850; },
+      (T) => { zeige(T, 'buch', 18, 8, 16, 1900); reihe([[0, 0], [.3, 0, 5], [.45, 0, 2], [.6, 0, 5], [.75, 0, 2], [1, 0]], 1900, T); return 1950; },
+      (T) => { zeige(T, 'brille', 0, -26, 12, 2000); reihe([[0, 0, 0], [.25, 0, -10], [.5, 0, 10], [.75, 0, -6], [1, 0, 0]], 2000, T); return 2050; }],
+      selten: (T) => { T.z('funke', [-5, -9]); setTimeout(() => T.z('funke', [5, -9]), 250); huepf(T, 600, -8); return 900; },
+      nach: ['ziel', (T) => { zeige(T, 'buch', 18, 8, 16, 2000); T.z('noten', [16, -8]); reihe([[0, 0], [.3, 0, 5], [.5, 0, 2], [.7, 0, 5], [1, 0]], 2000, T); return 2050; }] },
+    'bw-toni': { v: [
+      (T) => { wipp(T, 1500, 6, 6); T.z('noten', [8, -4]); setTimeout(() => T.z('noten', [-8, -8]), 500); return 1600; },
+      (T) => { GESTE.drehen(T.g); setTimeout(() => T.z('funke', [0, -16]), 300); return 900; },
+      (T) => { zeige(T, 'radio', 18, 10, 16, 1900); huepf(T, 650); setTimeout(() => huepf(T, 650), 800); T.z('noten', [18, 0]); return 1950; }],
+      selten: (T) => { huepf(T, 600, -16); setTimeout(() => huepf(T, 600, -18), 650); setTimeout(() => T.z('funke', [0, -18]), 1000); return 1300; },
+      nach: ['ziel', (T) => { wipp(T, 1800, 8, 7); T.z('noten', [8, -4]); setTimeout(() => T.z('noten', [-8, -8]), 500); setTimeout(() => T.z('licht', [0, -10]), 900); return 1900; }] },
     'bw-ziege': { v: [
       (T) => { reihe([[0, 0, 0], [.25, 0, -12], [.5, 0, 12], [.75, 0, -6], [1, 0, 0]], 1600, T); return 1600; },
       (T) => { [0, 1, 2, 3].forEach(k => zeige(T, 'schuh', -12 + k * 8, 18, 10, 2600 - k * 400, k * 400)); wipp(T, 2600, 4, 5); return 2650; }],
