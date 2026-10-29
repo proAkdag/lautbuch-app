@@ -544,7 +544,7 @@
   .bild-karte.daneben { border-style: dashed; border-color: var(--asche); background: var(--asche-grund); }
   .wort-reihe { display: flex; gap: clamp(8px, 1.4vw, 16px); justify-content: center; min-height: clamp(52px, calc(8 * var(--vh)), 72px); }
   .wort-karte {
-    position: relative; font-size: clamp(22px, min(3.2vw, calc(5 * var(--vh))), 40px); font-weight: 700; padding: .14em .55em .1em;
+    position: relative; font-size: calc(clamp(22px, min(3.2vw, calc(5 * var(--vh))), 40px) * var(--zs, 1)); font-weight: 700; padding: .14em .55em .1em;
     background: var(--karte); border: 2px solid var(--rand); border-radius: 16px; cursor: grab;
     touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; white-space: nowrap;
   }
@@ -621,14 +621,15 @@
 }
 
 @layer teile {
-  .raum-bilder .wort-reihe { display: grid; grid-template-columns: repeat(3, minmax(max-content, 1fr)); justify-content: center; align-items: center; gap: clamp(8px, calc(1.4 * var(--vh)), 14px) clamp(10px, 1.6vw, 18px); }
+
+  .raum-bilder .wort-reihe { display: grid; grid-template-columns: repeat(3, minmax(max-content, 1fr)); justify-content: center; align-items: center; gap: calc(clamp(8px, calc(1.4 * var(--vh)), 14px) * var(--zs, 1)) clamp(10px, 1.6vw, 18px); }
   .wort-platz { border: 2px dashed var(--rand); border-radius: 16px; opacity: .5; }
 }
 @layer teile {
 
-  .raum-bilder .bild-reihe { grid-auto-columns: minmax(0, clamp(84px, min(15vw, calc(19 * var(--vh))), 170px)); }
+  .raum-bilder .bild-reihe { grid-auto-columns: minmax(0, calc(clamp(84px, min(15vw, calc(19 * var(--vh))), 170px) * var(--zs, 1))); }
   .raum-bilder .ablage { min-height: clamp(36px, calc(5.4 * var(--vh)), 54px); }
-  .raum-bilder .zuordnen { gap: clamp(10px, calc(2 * var(--vh)), 24px); }
+  .raum-bilder .zuordnen { gap: calc(clamp(10px, calc(2 * var(--vh)), 24px) * var(--zs, 1)); }
 }
 
 @layer teile {
@@ -705,7 +706,7 @@
   .raum-bilder > .tafel-rahmen { padding: 12px; }
   .serie-knopf, .serie-knopf:empty { min-height: 52px; }
 
-  .raum-bilder .ablage { height: clamp(36px, calc(5.4 * var(--vh)), 54px); min-height: 0; container-type: size; }
+  .raum-bilder .ablage { height: calc(clamp(36px, calc(5.4 * var(--vh)), 54px) * var(--zs, 1)); min-height: 0; container-type: size; }
   .raum-bilder .wort-karte.richtig { font-size: min(clamp(18px, min(2.4vw, calc(3.6 * var(--vh))), 30px), 17cqi, 50cqh); }
   .wort-karte.fliegt { z-index: 10; }
 }

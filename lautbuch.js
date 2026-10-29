@@ -2049,6 +2049,13 @@
     let punkte = 0, modus = 'zuordnen';
     const goldSchl = () => modus === 'tippen' ? 'tippen' : modus === 'geschichte' ? 'geschichte' : 'bilder';
     const gesichert = () => !!opt.galerie || !!licht[teil.id][goldSchl()];
+    const serieStand = () => opt.galerie ? 0 : Math.min(ZIEL - 1, (licht[teil.id].serie || {})[goldSchl()] | 0);
+    const serieSetzen = (n) => {
+      const o = licht[teil.id];
+      if (n) (o.serie || (o.serie = {}))[goldSchl()] = n;
+      else if (o.serie) { delete o.serie[goldSchl()]; if (!Object.keys(o.serie).length) delete o.serie; }
+      speichern(teil.id);
+    };
     const kopf = el('div', 'serie-kopf');
     kopf.append(el('span', 'serie-name', 'Serie'));
     const punktEl = Array.from({ length: ZIEL }, () => { const p = el('i', 'serie-punkt'); kopf.append(p); return p; });
@@ -2056,13 +2063,13 @@
     const vier = () => { const t = []; let n = 0; while (t.length < Math.min(4, pool.length) && n++ < 50) { const w = zieh(); if (!t.includes(w)) t.push(w); } return t; };
     const knopfPlatz = el('div', 'serie-knopf');
     const knoepfe = (...k) => { knopfPlatz.replaceChildren(...k); k.forEach(x => kommt(x, 0, 8, 360)); };
-    const amFehler = () => { if (!gesichert() && punkte) { punkte = 0; punkteZeichnen(); } };
+    const amFehler = () => { if (!gesichert() && punkte) { punkte = 0; serieSetzen(0); punkteZeichnen(); } };
     const amEnde = (fall, ohneFehler) => {
       if (!ohneFehler) { fall.classList.add('freude'); lauf(); return; }
       if (gesichert()) { lauf(); return; }
       punkte++; punkteZeichnen();
-      if (punkte < ZIEL) { lauf(); return; }
-      licht[teil.id][goldSchl()] = true; speichern(teil.id);
+      if (punkte < ZIEL) { serieSetzen(punkte); lauf(); return; }
+      licht[teil.id][goldSchl()] = true; serieSetzen(0);
       punkteZeichnen();
       fall.classList.add('freude');
       const o = ortZu(teil, 'bilder'), w = o && o.w;
@@ -2079,18 +2086,17 @@
       : zuordnen(teil, daten, buehne, { treffer: vier(), fehler: amFehler, fertig: amEnde, pruefPlatz: knopfPlatz });
     const inhalt = () => {
       knopfPlatz.replaceChildren();
-      punkte = 0; punkteZeichnen();
+      punkte = serieStand(); punkteZeichnen();
       baueFall();
     };
     const aufgaben = [['zuordnen', 'zuordnen'], ...(tippOk ? [['tippen', 'abtippen']] : []), ...(ziehG ? [['geschichte', 'Geschichte']] : [])];
     if (aufgaben.length > 1) auswahl.append(gruppe('Aufgabe', aufgaben, modus, (w) => { modus = w; tausche(buehne, inhalt); }));
     if (!opt.galerie) auswahl.after(kopf);
     buehne.after(knopfPlatz);
-    const werkzeug = el('div', 'werkzeug');
-    werkzeug.append(schreibSchalter(() => tausche(buehne, inhalt)));
-    unten.append(werkzeug);
     punkteZeichnen();
     inhalt();
+    if (window.ResizeObserver) { const ro = new ResizeObserver(() => passeLauf(buehne)); ro.observe(buehne); abbau.push(() => ro.disconnect()); }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (buehne.isConnected) passeLauf(buehne); });
   }
 
   const tippenFrei = (teil) => !!(teil.abtippen && licht[teil.id][teil.abtippen]);
@@ -2183,6 +2189,22 @@
     buehne.replaceChildren(fall);
     return fall;
   }
+  const passeLauf = (buehne) => {
+    buehne.style.removeProperty('--zs');
+    const fall = buehne.querySelector('.serien-fall');
+    if (!fall || !fall.querySelector('.zuordnen')) return;
+    const cs = getComputedStyle(buehne);
+    const hoch = buehne.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+    const breit = buehne.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    if (hoch < 60 || breit < 60) return;
+    let zs = 1;
+    for (let k = 0; k < 8 && zs > .5; k++) {
+      const f = Math.min(hoch / fall.getBoundingClientRect().height, breit / Math.max(fall.offsetWidth, fall.scrollWidth));
+      if (f >= .999) break;
+      zs = Math.max(.5, zs * f * .995);
+      buehne.style.setProperty('--zs', zs.toFixed(3));
+    }
+  };
   function zuordnen(teil, lv, buehne, ctx = {}) {
     const treffer = ctx.treffer || mische(lv.bilder).slice(0, 4);
     let fehler = false;
@@ -2243,7 +2265,7 @@
     });
     for (const w of woerter) {
       const c = el('div', 'wort-karte'); c.dataset.b = bildSchluessel(w);
-      c.append(wort(inForm(w, 'woerter', false)));
+      c.append(wort(w));
       const h = el('div', 'wort-heim'); h.append(c); heim.set(c, h); karten.push(c);
       ziehbar(c, tippen, abgelegt);
       wortReihe.append(h);
@@ -2253,6 +2275,7 @@
     feld.append(bildReihe, wortReihe);
     fall.append(feld);
     buehne.replaceChildren(fall);
+    passeLauf(buehne);
     return fall;
   }
   const FOLGE = window.LAUTBUCH_FOLGE.TASTEN.flat();
@@ -2269,13 +2292,12 @@
     let ziel = [], felder = [], kacheln = [], heim = new Map(), anfang = false, zeileJetzt = null, wortJetzt = null;
     const ordnen = () => { if (!feld.isConnected || !zeileJetzt) return; felderPassen(feld, zeileJetzt); reihenGleich(ablage); };
     if (window.ResizeObserver) { const ro = new ResizeObserver(() => { if (!feld.isConnected && !buehne.isConnected) ro.disconnect(); else ordnen(); }); ro.observe(feld); }
-    const gross = () => einst.schreibung === 'gross';
     const zeichne = (c) => {
       const imAnfang = anfang && c.parentElement === felder[0];
-      const t = gross() || imAnfang ? window.LB.gross(c.dataset.g) : c.dataset.g;
+      const t = imAnfang ? window.LB.gross(c.dataset.g) : c.dataset.g;
       if (c.dataset.zeigt === t) return;
       c.dataset.zeigt = t; c.replaceChildren(faerbe(t.length > 1 && imAnfang ? t[0] + t.slice(1).toLowerCase() : t));
-      if (imAnfang && !gross() && !ruhig()) anim(c, [{ transform: 'scale(.7)' }, { transform: 'scale(1)' }], { duration: 360 });
+      if (imAnfang && !ruhig()) anim(c, [{ transform: 'scale(.7)' }, { transform: 'scale(1)' }], { duration: 360 });
     };
     const stand = () => {
       felder.forEach(f => f.classList.toggle('voll', !!f.firstElementChild));
@@ -2320,9 +2342,9 @@
     });
     const rundeBauen = () => {
       vorlage.classList.remove('fertig', 'erloschen');
-      const roh = naechstes(), form = inForm(roh, 'woerter', false);
+      const roh = naechstes();
       wortJetzt = roh;
-      ziel = zerlege(form);
+      ziel = zerlege(roh);
       anfang = /^[A-ZÄÖÜ]/.test(ziel[0]) && !/^[A-ZÄÖÜ]{2}/.test(ziel.join(''));
       const zeile = el('div', 'tipp-felder');
       const breite = (g) => ' g' + Math.min(3, g.length);
@@ -2865,7 +2887,7 @@
     for (const t of F) {
       const o = licht[t.id]; if (!o) continue;
       if (umfang.lichter) for (const k of Object.keys(o)) if (/^(l\d+|p\d+|boss)$/.test(k) && !behalte(t, k)) delete o[k];
-      if (umfang.gold && teilWeg(t)) for (const k of ['bilder', 'tippen', 'geschichte', 'bilderOffen', 'schatz']) delete o[k];
+      if (umfang.gold && teilWeg(t)) for (const k of ['bilder', 'tippen', 'geschichte', 'serie', 'bilderOffen', 'schatz']) delete o[k];
       for (const [feld, schalter] of [['marken', 'haken'], ['stolper', 'steine']]) {
         if (!umfang[schalter] || !o[feld]) continue;
         for (const k of Object.keys(o[feld])) if (!behalte(t, feld === 'marken' ? k.split('|')[0] : k)) delete o[feld][k];

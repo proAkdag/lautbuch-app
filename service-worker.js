@@ -1,8 +1,8 @@
 
-const VERSION = '1.0.3';
+const VERSION = '1.0.4';
 const ORT = new URL(self.registration.scope).pathname;
 const FAMILIE = 'lautbuch' + ORT + 'app-v';
-const CACHE_NAME = FAMILIE + VERSION + '-' + '57baa27075';
+const CACHE_NAME = FAMILIE + VERSION + '-' + '99e236aa68';
 const BILD_CACHE = 'lautbuch' + ORT + 'bilder';
 const ZEIGER = 'lautbuch' + ORT + 'zeiger';
 const APP = ["./","./DRITTE.md","./LICENSE","./README.md","./akt_a.js","./akt_ae.js","./akt_au.js","./akt_e.js","./akt_ei.js","./akt_eu.js","./akt_i.js","./akt_o.js","./akt_oe.js","./akt_r1.js","./akt_r2.js","./akt_r3.js","./akt_r4.js","./akt_u.js","./akt_ue.js","./akt_ziel.js","./buch_1.js","./buch_2.js","./buch_3.js","./fonts/Andika-Bold.ttf","./fonts/Andika-Regular.ttf","./fonts/OFL-Andika.txt","./html2canvas.min.js","./icon-180.png","./icon-192.png","./icon-512.png","./index.html","./jspdf.umd.min.js","./lautbuch.css","./lautbuch.js","./lb_app.css","./lb_app.js","./lb_ausgabe.js","./lb_bilder.js","./lb_bilder_daten.js","./lb_buecher.css","./lb_buecher.js","./lb_figuren.css","./lb_figuren.js","./lb_folge.js","./lb_gemeinsam.css","./lb_handreichung.js","./lb_haus.css","./lb_haus.js","./lb_karte.js","./lb_platzhalter_1.js","./lb_platzhalter_2.js","./lb_platzhalter_3.js","./lb_schrift.js","./lb_symbole.js","./lb_weg.js","./lb_weg_daten.js","./lb_welt.js","./lb_zimmer.css","./lb_zimmer.js","./lizenz.css","./lizenz.html","./manifest.json","./prolog.js","./vendor/LICENSE-jsqr.txt","./vendor/jsqr.js","./vendor/qrcode.js"];
