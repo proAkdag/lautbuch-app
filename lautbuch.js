@@ -262,12 +262,12 @@
   const mischForm = (text, art) => {
     if (art === 'buchstaben') return fall(text);
     const k = text.toLowerCase();
-    if (art === 'woerter' && text !== window.LB.gross(text)) return text.charAt(0) !== k.charAt(0) ? anfangGross(text) : Math.random() < .5 ? k : anfangGross(text);
     const r = Math.random();
     return r < 1 / 3 ? window.LB.gross(text) : r < 2 / 3 ? k : anfangGross(text);
   };
   const inForm = (text, art, loch) => {
     if (einst.schreibung === 'gross') return window.LB.gross(text);
+    if (art === 'woerter' && text !== window.LB.gross(text)) return text;
     if (einst.schreibung === 'gemischt' && loch) return mischForm(text, art);
     return text.toLowerCase();
   };
@@ -2514,7 +2514,7 @@
       form: (schl) => {
         const e = pool.get(schl);
         const a = e.prolog ? 'buchstaben' : e.art;
-        const f = e.form === 'fest' ? e.text : e.form === 'gross' ? window.LB.gross(e.text) : e.form === 'klein' ? e.text.toLowerCase()
+        const f = e.form === 'fest' || (a === 'woerter' && e.form !== 'gross' && e.text !== window.LB.gross(e.text)) ? e.text : e.form === 'gross' ? window.LB.gross(e.text) : e.form === 'klein' ? e.text.toLowerCase()
           : mischForm(e.text, a);
         return { knoten: (a === 'ketten' || a === 'woerter') ? wort(f) : faerbe(f), lang: f.replace(/-/g, '').length > 4 };
       }
