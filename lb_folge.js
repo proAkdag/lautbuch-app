@@ -36,5 +36,14 @@
     return g;
   };
   const stelle = (id) => FOLGE.findIndex(f => f.teil === id);
-  window.LAUTBUCH_FOLGE = { FOLGE, GRAPHEME, TASTEN, zerlege, stelle };
+  const AEHNLICH = {
+    a: ['o', 'ä'], e: ['ä', 'o'], i: ['l', 'j'], o: ['a', 'u'], u: ['n', 'o'],
+    ä: ['a', 'e'], ö: ['o', 'ü'], ü: ['u', 'ö'],
+    ie: ['ei', 'i'], ei: ['ie', 'eu'], au: ['eu', 'a'], eu: ['äu', 'au'], äu: ['eu', 'ä'],
+    m: ['n', 'w'], n: ['m', 'u'], l: ['i', 't'], s: ['z', 'f'], f: ['t', 'v'], r: ['n', 'h'], h: ['n', 'k'],
+    p: ['b', 'd'], t: ['f', 'd'], k: ['g', 'h'], b: ['d', 'p'], g: ['k', 'j'], d: ['b', 't', 'p'],
+    w: ['v', 'm'], j: ['i', 'g'], z: ['s', 't'], sch: ['ch', 's'], ch: ['sch', 'k'],
+    v: ['f', 'w'], y: ['j', 'v'], c: ['e', 'k'], sp: ['st', 'sch'], st: ['sp', 'sch'], qu: ['k', 'p'], ng: ['n', 'g'], x: ['k', 'z'], 'ß': ['s', 'z']
+  };
+  window.LAUTBUCH_FOLGE = { FOLGE, GRAPHEME, TASTEN, AEHNLICH, zerlege, stelle };
 })();

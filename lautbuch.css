@@ -32,6 +32,8 @@
     --gold-grund: #fff6dc;
     --asche: #a19a8f;
     --asche-grund: #efece6;
+    --anfang-grund: color-mix(in srgb, var(--klang) 11%, white);
+    --anfang-rand: color-mix(in srgb, var(--klang) 34%, transparent);
     --ueben: #8aabcc;
     --ueben-dunkel: #4f7598;
     --zeigen: #c8860a;
@@ -1080,7 +1082,15 @@
   .tipp-vorlage.fertig .tipp-feld { border-color: var(--gold); background: var(--gold-grund); }
   .tipp-vorlage.erloschen .tipp-feld.voll { border-color: var(--asche); background: var(--asche-grund); border-style: dashed; }
   .tipp-felder { align-items: flex-end; }
-  .tipp-kacheln { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(6px, 1vw, 10px); max-width: min(100%, 40em); }
+
+  .tipp-kacheln { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: clamp(8px, 1.6vw, 20px); max-width: 100%; }
+  .kachel-bereich { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(6px, 1vw, 10px); }
+
+  .kachel-bereich.anfang { flex-wrap: nowrap; }
+  .kachel-bereich.anfang .kachel { background: var(--anfang-grund); border-color: var(--anfang-rand); }
+  .tipp-feld.anfang { background: var(--anfang-grund); border-color: var(--anfang-rand); }
+  .tipp-feld.anfang.voll { border-color: var(--ueben-dunkel); }
+  .tipp-vorlage.fertig .tipp-feld.anfang.voll { border-color: var(--gold); }
   .kachel-platz { display: grid; place-items: center; width: clamp(44px, 6.4vw, 64px); height: clamp(44px, 6.4vw, 64px); border-radius: 12px; border: 2px dashed rgb(42 37 32 / .1); }
   .kachel, .tipp-feld > .kachel { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 10px; font-size: clamp(24px, 3.4vw, 34px); font-weight: 700;
     background: var(--karte); border: 2px solid var(--rand); box-shadow: 0 2px 0 rgb(42 37 32 / .08); cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; }
@@ -1107,9 +1117,13 @@
 }
 @layer teile {
 
-  .abtippen { --kachel: clamp(44px, 6.4vw, 64px); }
-  .kachel-platz { width: var(--kachel); height: var(--kachel); border-color: transparent; }
-  .kachel-platz.leer { border-color: rgb(42 37 32 / .14); }
+  .abtippen { --kachel: max(44px, calc(clamp(44px, 6.4vw, 64px) * var(--zs, 1))); }
+
+  .kachel-platz { width: var(--kachel); height: var(--kachel); border: 0; outline: 2px dashed transparent; outline-offset: -2px; }
+  .kachel-platz.leer { outline-color: rgb(42 37 32 / .14); }
+
+  .abtippen .kachel, .abtippen .tipp-feld { line-height: 1; }
+  .abtippen .kachel-platz > .kachel { font-size: min(clamp(24px, 3.4vw, 34px), calc(var(--kachel) * .66)); }
   .tipp-feld, .tipp-feld.anfang { width: var(--kachel); height: var(--kachel); min-width: 0; padding: 0; align-self: auto; font-size: clamp(24px, 3.4vw, 34px); border-radius: 12px; }
   .tipp-felder { gap: clamp(6px, 1vw, 10px); align-items: center; }
 }
@@ -1121,8 +1135,8 @@
   @media (orientation: landscape) and (min-height: 501px) {
     .abtippen { flex-direction: column; justify-content: center; align-items: center; gap: clamp(14px, calc(2.6 * var(--vh)), 28px); }
   }
-  .abtippen .tipp-vorlage { gap: clamp(10px, calc(2 * var(--vh)), 20px); }
-  .abtippen .tipp-bild { width: clamp(120px, calc(24 * var(--vh)), 260px); }
+  .abtippen .tipp-vorlage { gap: calc(clamp(10px, calc(2 * var(--vh)), 20px) * var(--zs, 1)); }
+  .abtippen .tipp-bild { width: calc(clamp(120px, calc(24 * var(--vh)), 260px) * var(--zs, 1)); }
 }
 @layer schmal {
   @media (max-height: 500px) and (orientation: landscape) { .abtippen .tipp-bild { width: clamp(56px, calc(19 * var(--vh)), 96px); } }
@@ -1131,9 +1145,9 @@
 @layer schmal {
 
   @media (orientation: landscape) and (min-height: 501px) and (max-height: 820px) {
-    .abtippen { --kachel: clamp(40px, calc(7.2 * var(--vh)), 60px); gap: clamp(8px, calc(1.6 * var(--vh)), 18px); }
-    .abtippen .tipp-bild { width: clamp(96px, calc(20 * var(--vh)), 200px); }
-    .abtippen .tipp-vorlage { gap: clamp(8px, calc(1.4 * var(--vh)), 14px); }
+    .abtippen { --kachel: max(44px, calc(clamp(40px, calc(7.2 * var(--vh)), 60px) * var(--zs, 1))); gap: calc(clamp(8px, calc(1.6 * var(--vh)), 18px) * var(--zs, 1)); }
+    .abtippen .tipp-bild { width: calc(clamp(96px, calc(20 * var(--vh)), 200px) * var(--zs, 1)); }
+    .abtippen .tipp-vorlage { gap: calc(clamp(8px, calc(1.4 * var(--vh)), 14px) * var(--zs, 1)); }
   }
 }
 
