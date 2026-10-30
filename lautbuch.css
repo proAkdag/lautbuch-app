@@ -39,6 +39,8 @@
     --zeigen: #c8860a;
     --oben: 72px;
 
+    --oben-voll: calc(var(--oben) + env(safe-area-inset-top, 0px));
+
     --vh: 1dvh;
     --unten: calc(80px + env(safe-area-inset-bottom));
     --rand-sicher: max(18px, env(safe-area-inset-left), env(safe-area-inset-right));
@@ -60,7 +62,7 @@
   }
   main {
     min-height: calc(100 * var(--vh)); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
-    padding: calc(var(--oben) + 8px) var(--rand-sicher) calc(var(--unten) + 12px);
+    padding: calc(var(--oben-voll) + 8px) var(--rand-sicher) calc(var(--unten) + 12px);
   }
 
   body.ohne-unten main { padding-bottom: calc(env(safe-area-inset-bottom) + 16px); }
@@ -240,7 +242,7 @@
   .kopf.trenner-links::before, .boss-feld.trenner-links::before { display: none; }
   .feld.prolog { font-size: calc(var(--feld) * .17); letter-spacing: .04em; }
 
-  .raum-huelle { width: min(100%, 1000px); display: flex; flex-direction: column; flex: 1; max-height: calc(calc(100 * var(--vh)) - var(--oben) - var(--unten) - 20px); }
+  .raum-huelle { width: min(100%, 1000px); display: flex; flex-direction: column; flex: 1; max-height: calc(calc(100 * var(--vh)) - var(--oben-voll) - var(--unten) - 20px); }
   .reiterleiste { display: flex; gap: 6px; padding-left: 26px; position: relative; z-index: 1; margin-bottom: -2px; pointer-events: none; }
   .reiterleiste > * { pointer-events: auto; }
   .reiter-tuer {
@@ -362,6 +364,7 @@
   .auswahl-platz { display: flex; justify-content: center; margin-top: 8px; max-width: 100%; flex-wrap: wrap; gap: 6px 14px; }
   .auswahl-platz:empty { display: none; }
   .auswahl-platz .knopf.schreib-wahl { min-height: 40px; font-size: 15px; }
+  .raum-bilder .auswahl-platz .knopf.schreib-wahl { min-height: 44px; }
   .knopf.schreib-wahl[aria-disabled="true"] { color: var(--tinte-30); cursor: default; }
 
   .silbe { border-radius: .18em; transition: background-color .2s; }
@@ -727,7 +730,7 @@
 
   @media (max-height: 500px) and (orientation: landscape) {
     :root { --oben: 52px; --unten: calc(58px + env(safe-area-inset-bottom)); }
-    main { gap: 10px; padding-top: calc(var(--oben) + 4px); padding-bottom: calc(var(--unten) + 6px); }
+    main { gap: 10px; padding-top: calc(var(--oben-voll) + 4px); padding-bottom: calc(var(--unten) + 6px); }
     body.ohne-unten main { padding-bottom: calc(env(safe-area-inset-bottom) + 8px); }
     .knopf { min-height: 44px; font-size: 16px; padding: 0 14px; }
     .knopf.ikon { width: 44px; height: 44px; padding: 0; } .knopf.ikon .sym { font-size: 24px; }
@@ -736,7 +739,7 @@
     .akt-zeichen { font-size: 26px; }
     .knopf.mini-raster { padding: 5px 8px; grid-template-columns: repeat(var(--spalten), 9px); gap: 2px; }
     .mini-raster i { height: 6px; } .mini-raster i.boss { width: 5px; height: 5px; }
-    .raum-huelle { max-height: calc(calc(100 * var(--vh)) - var(--oben) - var(--unten) - 10px); }
+    .raum-huelle { max-height: calc(calc(100 * var(--vh)) - var(--oben-voll) - var(--unten) - 10px); }
     .reiter-tuer { min-height: 38px; font-size: 16px; padding: 0 14px; } .reiter-tuer .sym { font-size: 20px; }
     .raum { padding: 6px 10px; gap: 6px; position: relative; }
     .raum-ueben > .blattwahl { position: absolute; top: -40px; right: 14px; }
@@ -751,7 +754,7 @@
     .knopf.karte-nav-knopf { min-height: 48px; min-width: 112px; }
     .knopf.schreib-wahl { min-height: 40px; }
 
-    .welt { --zelle: clamp(32px, min(calc((100vw - var(--schiene) - 60px - 14 * 6px) / 15), calc((calc(100 * var(--vh)) - var(--oben) - 90px) / 6)), 64px); gap: 8px; }
+    .welt { --zelle: clamp(32px, min(calc((100vw - var(--schiene) - 60px - 14 * 6px) / 15), calc((calc(100 * var(--vh)) - var(--oben-voll) - 90px) / 6)), 64px); gap: 8px; }
     .welt-zone { grid-template-columns: repeat(15, var(--zelle)); gap: 6px; padding: 6px 10px; }
 
     .raum-bilder .zuordnen { flex-direction: row; justify-content: center; align-items: center; gap: 18px; }
@@ -851,8 +854,8 @@
 
 @layer teile {
   :root { --z-kon: #bcbab4; --z-vok: #e8a800; --z-uml: #c4b0e0; --z-zwie: #b9a3dc; --z-regel: #8aabcc; }
-  body.auf-weg main { padding: var(--oben) 0 0; justify-content: stretch; }
-  .weg-land { flex: 1; width: 100%; height: calc(calc(100 * var(--vh)) - var(--oben)); overflow: hidden; position: relative; }
+  body.auf-weg main { padding: var(--oben-voll) 0 0; justify-content: stretch; }
+  .weg-land { flex: 1; width: 100%; height: calc(calc(100 * var(--vh)) - var(--oben-voll)); overflow: hidden; position: relative; }
   .weg-land.hoch { overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; }
   .weg-land.hoch::-webkit-scrollbar { display: none; }
   svg.weg-karte { display: block; width: 100%; height: 100%; overflow: visible; }
@@ -1177,8 +1180,8 @@
   main { padding-left: calc(var(--schiene) + env(safe-area-inset-left, 0px) + 18px); padding-bottom: calc(var(--unten) + var(--schiene-unten) + 12px); }
   main.kamera { overflow: clip; }
   body.ohne-unten main { padding-bottom: calc(env(safe-area-inset-bottom) + var(--schiene-unten) + 16px); }
-  body.auf-weg main { padding: var(--oben) env(safe-area-inset-right, 0px) var(--schiene-unten) calc(var(--schiene) + env(safe-area-inset-left, 0px)); }
-  .weg-land { height: calc(calc(100 * var(--vh)) - var(--oben) - var(--schiene-unten)); }
+  body.auf-weg main { padding: var(--oben-voll) env(safe-area-inset-right, 0px) var(--schiene-unten) calc(var(--schiene) + env(safe-area-inset-left, 0px)); }
+  .weg-land { height: calc(calc(100 * var(--vh)) - var(--oben-voll) - var(--schiene-unten)); }
   .hinweis-karte { left: calc(50% + var(--schiene) / 2); bottom: calc(var(--unten) + var(--schiene-unten) + 12px); width: min(640px, calc(100vw - var(--schiene) - 32px)); }
 
   .kruemel { display: flex; align-items: center; gap: 10px; min-width: 0; }
@@ -1340,6 +1343,9 @@
   .sinn-wahl { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(10px, 2.4vw, 30px); width: min(100%, 860px); }
   .knopf.sinn-bild { width: 100%; height: auto; aspect-ratio: 4 / 3; padding: 8px; border-radius: 22px; background: #fff; border: 2px solid var(--rand); overflow: hidden; }
   .knopf.sinn-bild .bild.szene-ganz { width: 100%; height: 100%; object-fit: contain; }
+
+  img.bild.szene-ganz, .bild-karte img.bild, img.bild.tipp-bild { transition: opacity .35s ease; }
+  img.bild.szene-ganz.laedt, .bild-karte img.bild.laedt, img.bild.tipp-bild.laedt { opacity: 0; }
   .knopf.sinn-bild img.bild.raster { mix-blend-mode: multiply; }
   .knopf.sinn-bild .bild { color: #2a2520; }
   .knopf.sinn-bild.gold { border-color: var(--gold); background: #fff6dc; box-shadow: 0 0 0 4px rgb(200 134 10 / .25); }
@@ -1432,13 +1438,29 @@
     .raum-bilder .bild-reihe { row-gap: 6px; }
 
     .raum-bilder { position: relative; }
-    .raum-bilder > .auswahl-platz { position: absolute; top: -46px; right: 6px; margin: 0; min-height: 0; }
-    .raum-bilder .auswahl-platz .knopf.schreib-wahl { min-height: 38px; padding: 0 10px; font-size: 15px; }
+    .raum-bilder > .auswahl-platz { position: absolute; top: -48px; right: 6px; margin: 0; min-height: 0; }
+
+    .raum-bilder .auswahl-platz .knopf.schreib-wahl { min-height: 44px; padding: 0 7px; font-size: 14px; white-space: nowrap; }
+    body:has(.raum-bilder) .reiter-tuer { padding: 0 9px; gap: 6px; }
+  }
+  @media (max-width: 400px) {
+    body:has(.raum-bilder) .reiter-tuer { padding: 0 7px; gap: 4px; font-size: 15px; }
+    body:has(.raum-bilder) .reiter-tuer .sym { font-size: 18px; }
+    body:has(.raum-bilder) .reiterleiste { padding-left: 8px; }
+    .raum-bilder > .auswahl-platz { right: 4px; }
+    .raum-bilder .auswahl-platz .knopf.schreib-wahl { padding: 0 6px; }
+  }
+  @media (max-width: 380px) {
+    .raum-bilder .auswahl-platz .knopf.schreib-wahl { padding: 0 5px; font-size: 13px; }
+  }
+  @media (max-width: 340px) {
+    body:has(.raum-bilder) .reiter-tuer .mit-symbol > span { display: none; }
+    body:has(.raum-bilder) .reiter-tuer { min-width: 44px; justify-content: center; }
   }
 
   @media (orientation: portrait) and (max-width: 699px) {
 
-    .raum-huelle { max-height: calc(calc(100 * var(--vh)) - var(--oben) - var(--unten) - var(--schiene-unten) - 20px); }
+    .raum-huelle { max-height: calc(calc(100 * var(--vh)) - var(--oben-voll) - var(--unten) - var(--schiene-unten) - 20px); }
   }
   @media (orientation: portrait) and (max-width: 480px) and (max-height: 780px) {
     .raum-bilder { gap: 6px; }

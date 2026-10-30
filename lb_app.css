@@ -2,14 +2,20 @@
 @layer teile {
 
   .lb-app-band {
-    position: fixed; z-index: 40; left: 50%; translate: -50% 0;
-    bottom: calc(14px + env(safe-area-inset-bottom));
-    display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center;
-    max-width: calc(100vw - 32px); padding: 8px 10px 8px 18px;
-    background: var(--karte); color: var(--tinte-70); border: 1px solid var(--rand); border-radius: 999px;
-    box-shadow: 0 6px 20px rgb(42 37 32 / .12); font-size: 16px;
+    position: fixed; z-index: 40; left: calc(50% + var(--schiene, 0px) / 2); translate: -50% 0;
+    bottom: calc(max(var(--schiene-unten, 0px), env(safe-area-inset-bottom)) + 12px);
+    display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 8px 10px;
+    width: min(420px, calc(100vw - var(--schiene, 0px) - 24px)); box-sizing: border-box; padding: 12px 14px 12px;
+    background: var(--karte); color: var(--tinte-70); border: 1px solid var(--rand); border-radius: 18px;
+    box-shadow: 0 0 0 3px var(--tinte-licht), 0 6px 20px rgb(42 37 32 / .12); font-size: 16px;
   }
-  .lb-app-band .knopf { min-height: 44px; }
+  .lb-app-band-text { grid-column: 1 / -1; text-align: center; line-height: 1.35; }
+  .lb-app-band .knopf { min-height: 44px; min-width: 0; width: 100%; }
+  @media (min-width: 560px) {
+    .lb-app-band { grid-template-columns: 1fr auto auto; width: max-content; max-width: calc(100vw - var(--schiene, 0px) - 24px); padding: 8px 10px 8px 18px; gap: 12px; }
+    .lb-app-band-text { grid-column: auto; text-align: left; }
+    .lb-app-band .knopf { width: auto; }
+  }
 
   .lb-app-neu .schienen-knopf[data-ziel="mehr"] { position: relative; }
   .lb-app-neu .schienen-knopf[data-ziel="mehr"]::after {

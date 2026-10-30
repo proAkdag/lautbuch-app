@@ -1,9 +1,9 @@
 
 @layer schmal {
-  body.im-zimmer main { padding: var(--oben) 0 var(--schiene-unten) var(--schiene); justify-content: stretch; gap: 0; }
+  body.im-zimmer main { padding: var(--oben-voll) 0 var(--schiene-unten) var(--schiene); justify-content: stretch; gap: 0; }
 }
 @layer teile {
-  .zimmer-land { container: zimmer / size; width: 100%; height: calc(calc(100 * var(--vh)) - var(--oben) - var(--schiene-unten)); display: grid; place-items: center; overflow: hidden; position: relative; }
+  .zimmer-land { container: zimmer / size; width: 100%; height: calc(calc(100 * var(--vh)) - var(--oben-voll) - var(--schiene-unten)); display: grid; place-items: center; overflow: hidden; position: relative; }
   .z-szene { position: relative; width: min(100cqw, 133.333cqh); aspect-ratio: 4 / 3; overflow: hidden; font-size: calc(min(100cqw, 133.333cqh) / 100); --boden: 30%; color: #2a2520; }
   .z-szene img.bild.raster { border-radius: 0; }
 

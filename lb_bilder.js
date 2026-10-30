@@ -108,8 +108,16 @@
   };
   const szeneTeile = (b) => { const n = ZAHL[String(b.wer || '').toLowerCase().split(' ')[0]] || 1; return { n, wer: teilSchluessel(b.wer, '', n > 1), tut: teilSchluessel(b.tut, 'tut-'), was: b.was ? teilSchluessel(b.was) : null }; };
   const hatSzene = (b) => { if (vorhanden(b.s)) return true; const t = szeneTeile(b); return !!(t.wer && t.tut && (!b.was || t.was)); };
-  const szeneBild = (b, cls) => {
-    if (vorhanden(b.s)) return bild(b.s, 'szene-ganz' + (cls ? ' ' + cls : ''));
+  const weichEin = (img) => {
+    if (!img.decode) return img;
+    let da = false; const fertig = () => { da = true; img.classList.remove('laedt'); };
+    img.decode().then(fertig, fertig);
+    requestAnimationFrame(() => { if (!da) img.classList.add('laedt'); });
+    setTimeout(fertig, 2000);
+    return img;
+  };
+  const szeneBild = (b, cls, weich = false) => {
+    if (vorhanden(b.s)) { const i = bild(b.s, 'szene-ganz' + (cls ? ' ' + cls : '')); return weich ? weichEin(i) : i; }
     const t = szeneTeile(b), box = document.createElement('div');
     box.className = 'szene-platzhalter' + (cls ? ' ' + cls : ''); box.setAttribute('aria-hidden', 'true');
     const wer = document.createElement('div'); wer.className = 'sp-wer n' + Math.min(t.n, 5);
@@ -118,7 +126,7 @@
     if (b.was) box.append(bild(t.was || '', 'sp-was'));
     return box;
   };
-  window.LB = Object.assign(window.LB || {}, { szeneTeile, hatSzene, szeneBild });
+  window.LB = Object.assign(window.LB || {}, { szeneTeile, hatSzene, szeneBild, weichEin });
   window.LB = Object.assign(window.LB || {}, { bild, bildSchluessel, bildPool, ablenkerWoerter, hatBild:(w) => !!(B[bildSchluessel(w)] || (window.LB_BILDDATEN || {})[bildSchluessel(w)] || (window.LB_PLATZHALTER || {})[bildSchluessel(w)]) });
   window.LB_BILDER = Object.keys(B);
 })();

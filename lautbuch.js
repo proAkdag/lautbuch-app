@@ -543,11 +543,40 @@
   const gemalt = (s) => !!(window.LB_BILDDATEN || {})[s];
   const sinnDa = (lv, sn) => sn === lv.sinn || sn.wahl.every(b => gemalt(b.s));
   const sinnRunde = new Map();
-  const waehleSinn = (teil, lv) => {
+  const sinnPeek = (teil, lv) => {
     const da = sinne(lv).filter(sn => sinnDa(lv, sn));
-    const k = teil.id + '|' + lv.id, n = sinnRunde.get(k) || 0;
-    sinnRunde.set(k, n + 1);
+    const n = sinnRunde.get(teil.id + '|' + lv.id) || 0;
     return da.length ? da[n % da.length] : lv.sinn;
+  };
+  const waehleSinn = (teil, lv) => {
+    const sn = sinnPeek(teil, lv), k = teil.id + '|' + lv.id;
+    sinnRunde.set(k, (sinnRunde.get(k) || 0) + 1);
+    return sn;
+  };
+  const SINN_HALT = [];
+  const sinnVorladen = (teil, lv) => {
+    const sn = lv && lv.sinn && sinnPeek(teil, lv); if (!sn) return;
+    const D = window.LB_BILDDATEN || {}, uris = sn.wahl.map(b => (D[b.s] || {}).farbe).filter(Boolean);
+    if (!uris.length || SINN_HALT.some(h => h.schl === sn.richtig)) return;
+    const warte = typeof requestIdleCallback === 'function' ? (f) => requestIdleCallback(f, { timeout: 600 }) : (f) => setTimeout(f, 120);
+    warte(() => {
+      if (SINN_HALT.some(h => h.schl === sn.richtig)) return;
+      const bilder = uris.map(u => { const i = new Image(); i.decoding = 'async'; i.src = u; i.decode().catch(() => {}); return i; });
+      SINN_HALT.push({ schl: sn.richtig, bilder });
+      while (SINN_HALT.length > 2) SINN_HALT.shift();
+    });
+  };
+  const BILD_HALT = new Map();
+  const bilderVorladen = (schluessel) => {
+    const D = window.LB_BILDDATEN || {}, uris = [...new Set(schluessel.map(k => (D[k] || {}).farbe).filter(Boolean))].filter(u => !BILD_HALT.has(u));
+    if (!uris.length) return;
+    const warte = typeof requestIdleCallback === 'function' ? (f) => requestIdleCallback(f, { timeout: 600 }) : (f) => setTimeout(f, 120);
+    const schritt = () => {
+      for (let n = 0; n < 3 && uris.length; n++) { const u = uris.shift(), i = new Image(); i.decoding = 'async'; i.src = u; BILD_HALT.set(u, i); i.decode().catch(() => {}); }
+      while (BILD_HALT.size > 14) BILD_HALT.delete(BILD_HALT.keys().next().value);
+      if (uris.length) warte(schritt);
+    };
+    warte(schritt);
   };
   const sammleSzene = (s) => {
     const g = lies(GALERIE_KEY, {}) || {};
@@ -1554,6 +1583,7 @@
   function titel(teil, opt = {}) {
     leer();
     document.body.classList.add('ohne-unten', 'am-ort');
+     bilderVorladen(bildPool(teil).slice(0, 14).map(bildSchluessel));
     const o = (opt.ort && ortVon(wegTeil(opt.ort))) || ortZu(teil, opt.neu || (teil.level[0] && teil.level[0].id));
     const w = o && o.w;
     const box = el('div', 'titel-schwelle ort-ansicht');
@@ -1612,6 +1642,7 @@
     ueb.append(sym('stein', 'tuer-stein' + (stolper(teil, lv).length ? '' : ' aus')));
     zei.setAttribute('aria-pressed', String(modus === 'zeigen'));
     document.body.classList.add(modus === 'ueben' ? 'im-ueben' : 'im-zeigen');
+     sinnVorladen(teil, lv);
     const raum = raumHuelle([ueb, zei], modus === 'ueben' ? 'raum-ueben' : 'raum-zeigen', teil.id + '|' + lv.id);
     if (modus === 'ueben') ueben(teil, lv, raum, blatt); else lauf(teil, lv, raum, false);
   }
@@ -2115,7 +2146,15 @@
     kopf.append(el('span', 'serie-name', 'Serie'));
     const punktEl = Array.from({ length: ZIEL }, () => { const p = el('i', 'serie-punkt'); kopf.append(p); return p; });
     const punkteZeichnen = () => punktEl.forEach((p, i) => p.classList.toggle('an', gesichert() || i < punkte));
-    const vier = () => { const t = []; let n = 0; while (t.length < Math.min(4, pool.length) && n++ < 50) { const w = zieh(); if (!t.includes(w)) t.push(w); } return t; };
+    const vierZiehen = () => { const t = []; let n = 0; while (t.length < Math.min(4, pool.length) && n++ < 50) { const w = zieh(); if (!t.includes(w)) t.push(w); } return t; };
+    let vorab = null, vorabG = null;
+    const vier = () => { const t = vorab || vierZiehen(); vorab = null; return t; };
+    const holeG = () => { const s = vorabG || ziehG(); vorabG = null; return s; };
+    const vorausziehen = () => {
+      if (ziehG) { if (!vorabG) vorabG = ziehG(); bilderVorladen(vorabG.wahl.map(b => b.s)); }
+      if (!vorab) vorab = vierZiehen();
+      bilderVorladen(vorab.map(bildSchluessel));
+    };
     const knopfPlatz = el('div', 'serie-knopf');
     const knoepfe = (...k) => { knopfPlatz.replaceChildren(...k); k.forEach(x => kommt(x, 0, 8, 360)); };
     const amFehler = () => { if (!gesichert() && punkte) { punkte = 0; serieSetzen(0); punkteZeichnen(); } };
@@ -2134,11 +2173,15 @@
       knopfPlatz.querySelectorAll('.pruefen-knopf').forEach(k => ruhe(k, true));
       serienWechsel(buehne.querySelector('.serien-fall'), baueFall, opt);
     };
-    const baueFall = () => modus === 'geschichte' && ziehG
-      ? geschichte(teil, buehne, { zieh: ziehG, fehler: amFehler, fertig: amEnde })
-      : modus === 'tippen' && tippOk
-      ? abtippen(teil, daten, buehne, { fehler: amFehler, fertig: amEnde, pruefPlatz: knopfPlatz })
-      : zuordnen(teil, daten, buehne, { treffer: vier(), fehler: amFehler, fertig: amEnde, pruefPlatz: knopfPlatz });
+    const baueFall = () => {
+      const f = modus === 'geschichte' && ziehG
+        ? geschichte(teil, buehne, { zieh: holeG, fehler: amFehler, fertig: amEnde })
+        : modus === 'tippen' && tippOk
+        ? abtippen(teil, daten, buehne, { fehler: amFehler, fertig: amEnde, pruefPlatz: knopfPlatz })
+        : zuordnen(teil, daten, buehne, { treffer: vier(), fehler: amFehler, fertig: amEnde, pruefPlatz: knopfPlatz });
+      setTimeout(vorausziehen, 400);
+      return f;
+    };
     const inhalt = () => {
       knopfPlatz.replaceChildren();
       punkte = serieStand(); punkteZeichnen();
@@ -2230,7 +2273,7 @@
     const wahl = el('div', 'sinn-wahl');
     let fehler = false, fertig = false;
     for (const b of mische(sn.wahl.slice())) {
-      const kn = knopf('sinn-bild', window.LB.szeneBild(b), () => {
+      const kn = knopf('sinn-bild', window.LB.szeneBild(b, '', true), () => {
         if (fertig || kn.classList.contains('erloschen')) return;
         if (b.s !== sn.richtig) { kn.classList.add('erloschen'); kn.setAttribute('aria-disabled', 'true'); fehler = true; if (ctx.fehler) ctx.fehler(); return; }
         fertig = true; kn.classList.add('gold'); wahl.classList.add('entschieden'); sammleSzene(sn.richtig);
@@ -2270,7 +2313,7 @@
     const fall = el('div', 'serien-fall');
     const feld = el('div', 'zuordnen');
     const bildReihe = el('div', 'bild-reihe'), wortReihe = el('div', 'wort-reihe');
-    for (const b of bilder) { const k = el('div', 'bild-karte'); k.dataset.b = b; k.append(bild(b), el('div', 'ablage')); bildReihe.append(k); }
+    for (const b of bilder) { const k = el('div', 'bild-karte'); k.dataset.b = b; k.append(window.LB.weichEin(bild(b)), el('div', 'ablage')); bildReihe.append(k); }
     let gewaehlt = null;
     const heim = new Map();
     const karten = [];
@@ -2408,7 +2451,7 @@
       const zeile = el('div', 'tipp-felder');
       const breite = (g) => ' g' + Math.min(3, g.length);
       felder = ziel.map((g, k) => { const f = el('span', 'tipp-feld' + (k === 0 ? ' anfang' : '') + breite(g)); zeile.append(f); return f; });
-      vorlage.replaceChildren(bild(bildSchluessel(roh), 'tipp-bild'), zeile);
+      vorlage.replaceChildren(window.LB.weichEin(bild(bildSchluessel(roh), 'tipp-bild')), zeile);
       const frei = new Set();
       for (const z of WELT.zonen) for (const l of z.laute) if (WELT.stand(l, licht) !== 'nebel') frei.add(l.k);
       const g0 = ziel[0].toLowerCase();
@@ -2489,6 +2532,7 @@
     kopfLeiste(teil, 'boss', teil.boss);
     const r = el('span', 'reiter-tuer boss-tuer'); r.setAttribute('aria-pressed', 'true'); r.append(mitSymbol('boss', 'Boss'));
     const raum = raumHuelle([r], 'raum-boss', teil.id + '|boss');
+     sinnVorladen(teil, teil.boss);
     lauf(teil, teil.boss, raum, true);
     if (teil.boss.hinweis) hinweisKarte(teil.boss);
   }
@@ -2640,7 +2684,7 @@
       const bilder = () => {
         fertig = false; wahl.replaceChildren();
         for (const b of mische(sn.wahl.slice())) {
-          const kn = knopf('sinn-bild', window.LB.szeneBild(b), () => {
+          const kn = knopf('sinn-bild', window.LB.szeneBild(b, '', true), () => {
             if (fertig || kn.classList.contains('erloschen')) return;
             if (b.s !== sn.richtig) { kn.classList.add('erloschen'); kn.setAttribute('aria-disabled', 'true'); fertig = true; nochmalLesen(wahl, ++fehl, bilder); return; }
             fertig = true; kn.classList.add('gold'); wahl.classList.add('entschieden'); sammleSzene(sn.richtig);
