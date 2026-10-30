@@ -1390,6 +1390,14 @@
 
   .weg-karte .ding.ding-offen .ding-ring { stroke: var(--tinte-60); stroke-width: 1.4; }
   .weg-karte .ding.ding-gold .ding-ring { fill: var(--gold-grund); stroke: var(--gold); stroke-width: 1.4; opacity: 1; }
+
+  .weg-karte .ding .ding-hinweis { stroke: var(--tinte-60); stroke-width: 1.2; animation: ding-atmen 3.6s ease-in-out infinite; }
+  .weg-karte .feuer-ding .ding-hinweis { animation-delay: -1.2s; }
+  .weg-karte .haus-ding .ding-hinweis { animation-delay: -2.4s; }
+  @keyframes ding-atmen { 0%, 100% { opacity: .95; } 50% { opacity: .5; } }
+  html.ruhig .weg-karte .ding .ding-hinweis { animation: none; }
+  .weg-karte :is(.feuer-ding .feuer-flamme, .wimpel.figur .figur-koerper, .haus-ding .haus-bild) { transition: translate .2s ease; }
+  .weg-karte :is(.feuer-ding:active .feuer-flamme, .wimpel.figur:active .figur-koerper, .haus-ding:active .haus-bild) { translate: 0 -3px; }
   .weg-karte .ding .ding-bild { overflow: visible; }
   .weg-karte .ding:hover .ding-bild, .weg-karte .ding:focus-visible .ding-bild { translate: 0 -2px; }
   .weg-karte .bewohner { pointer-events: none; }
@@ -1529,7 +1537,7 @@
   body.in-galerie main { justify-content: flex-start; }
   .galerie { width: min(100%, 1100px); display: flex; flex-direction: column; gap: clamp(12px, calc(2.2 * var(--vh)), 24px); }
   .galerie-ort { display: grid; grid-template-columns: auto 1fr; gap: clamp(10px, 1.6vw, 18px); align-items: start; padding: 12px 14px;
-    border-radius: 20px; background: color-mix(in srgb, var(--karte) 70%, transparent); }
+    border-radius: 20px; background: color-mix(in srgb, var(--karte) 70%, transparent); content-visibility: auto; contain-intrinsic-size: auto 170px; }
   .galerie-kopf { display: flex; flex-direction: column; align-items: center; gap: 2px; width: clamp(56px, 7vw, 76px); }
   .galerie-kopf .ort-bild { width: 100%; height: auto; }
   .galerie-kopf .chip-zeichen { font-size: clamp(16px, 2vw, 22px); font-weight: 700; white-space: nowrap; }

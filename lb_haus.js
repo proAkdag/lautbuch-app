@@ -16,7 +16,8 @@
     const roh = (BILDER.map(([k]) => daten[k]).find(d => d && d.farbe) || {}).farbe;
     const haus = s('g', { class: 'haus-ding ding', role: 'button', 'aria-label': 'Mein Zimmer', tabindex: '0' });
     haus.dataset.ort = 'zimmer';
-    haus.append(s('ellipse', { cx: GROESSE / 2, cy: GROESSE * ((fenster && fenster.boden) || .9), rx: GROESSE * .42, ry: 6, class: 'haus-schatten' }),
+    haus.append(s('ellipse', { cx: GROESSE / 2, cy: GROESSE * ((fenster && fenster.boden) || .9) + 1, rx: GROESSE * .5, ry: 8, class: 'ding-ring ding-hinweis' }),
+      s('ellipse', { cx: GROESSE / 2, cy: GROESSE * ((fenster && fenster.boden) || .9), rx: GROESSE * .42, ry: 6, class: 'haus-schatten' }),
       s('rect', { x: 0, y: 0, width: GROESSE, height: GROESSE, class: 'ding-flaeche' }));
     if (roh) haus.append(s('image', { href: roh, x: 0, y: 0, width: GROESSE, height: GROESSE, class: 'haus-bild' }));
     const licht = s('g', { class: 'haus-licht', 'aria-hidden': 'true' });

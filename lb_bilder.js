@@ -71,12 +71,12 @@
       <circle class="p" cx="84" cy="43" r="1.6"/><circle class="v" cx="96" cy="46" r="1.6"/>`
   };
   const NS = 'http://www.w3.org/2000/svg';
-  const bild = (schl, cls, fassung = 'farbe') => {
+  const bild = (schl, cls, fassung = 'farbe', klein = false) => {
     const roh = (window.LB_BILDDATEN || {})[schl];
     if (roh && roh[fassung]) {
       const img = document.createElement('img');
       img.className = 'bild raster' + (cls ? ' ' + cls : '');
-      img.src = roh[fassung]; img.alt = ''; img.setAttribute('aria-hidden', 'true'); img.draggable = false;
+      img.src = (klein && fassung === 'farbe' && roh.klein) || roh[fassung]; img.alt = ''; img.setAttribute('aria-hidden', 'true'); img.draggable = false;
       return img;
     }
     const svg = document.createElementNS(NS, 'svg');

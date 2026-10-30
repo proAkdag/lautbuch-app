@@ -124,22 +124,32 @@
   document.addEventListener('pointerdown', (e) => { getippt = e.target.closest ? e.target.closest('[data-ort]') : null; }, true);
   document.addEventListener('keydown', () => { getippt = null; }, true);
   const stilVon = (e) => { const c = getComputedStyle(e); return { borderRadius: c.borderRadius, backgroundColor: c.backgroundColor, borderTopColor: c.borderTopColor, borderTopStyle: c.borderTopStyle }; };
-  const sanft = (fn) => (...args) => {
+  const sanft = (fn, rahmenZuerst = false) => (...args) => {
     if (imWechsel || !main.childElementCount) return fn(...args);
     const haupt = main.querySelector('[data-haupt]');
-    const quelle = getippt && getippt.isConnected && main.contains(getippt) ? getippt : haupt;
+    const durchTipp = !!(getippt && getippt.isConnected && main.contains(getippt));
+    const quelle = durchTipp ? getippt : haupt;
     getippt = null;
     const ort = quelle ? quelle.dataset.ort : null, von = quelle ? quelle.getBoundingClientRect() : null, vs = quelle ? stilVon(quelle) : null;
     const geister = [main, oben, unten].filter(b => b.childElementCount && b.getClientRects().length).map(b => [b, geist(b)]);
     imWechsel = true;
+    const frueh = (rahmenZuerst === true || (rahmenZuerst === 'beiTipp' && durchTipp)) && !ruhig();
+    const danach = () => {
+      const neu = main.querySelector('[data-haupt]');
+      const amOrt = !!(haupt && neu && haupt.dataset.ort === neu.dataset.ort);
+      if (!frueh) for (const [b, k] of geister) { b.after(k); geistTakt(k); geht(k, b === main && !amOrt ? -10 : 0).then(() => k.remove()); }
+      const ziel = !amOrt && !ruhig() && ort ? main.querySelector('[data-ort="' + ort + '"]') : null;
+      const fliegt = !!(ziel && rahmenFlug(von, vs, ziel));
+      for (const b of [oben, unten]) for (const c of b.children) if (!c.classList.contains('geist')) kommt(c, 60, 0);
+      for (const c of main.children) if (getComputedStyle(c).position !== 'fixed') kommt(c, fliegt ? 260 : 80, amOrt ? 0 : 14);
+    };
+    if (frueh) {
+      for (const [b, k] of geister) { b.after(k); geistTakt(k); geht(k, b === main ? -10 : 0).then(() => k.remove()); b.replaceChildren(); }
+      requestAnimationFrame(() => setTimeout(() => { try { fn(...args); } finally { imWechsel = false; } danach(); }, 0));
+      return;
+    }
     try { fn(...args); } finally { imWechsel = false; }
-    const neu = main.querySelector('[data-haupt]');
-    const amOrt = !!(haupt && neu && haupt.dataset.ort === neu.dataset.ort);
-    for (const [b, k] of geister) { b.after(k); geistTakt(k); geht(k, b === main && !amOrt ? -10 : 0).then(() => k.remove()); }
-    const ziel = !amOrt && !ruhig() && ort ? main.querySelector('[data-ort="' + ort + '"]') : null;
-    const fliegt = !!(ziel && rahmenFlug(von, vs, ziel));
-    for (const b of [oben, unten]) for (const c of b.children) if (!c.classList.contains('geist')) kommt(c, 60, 0);
-    for (const c of main.children) if (getComputedStyle(c).position !== 'fixed') kommt(c, fliegt ? 260 : 80, amOrt ? 0 : 14);
+    danach();
   };
 
   let wach = null;
@@ -209,7 +219,7 @@
   const sLaute = schKnopf('laute', 'laute', 'Laute', () => sammlung());
   const sGalerie = schKnopf('galerie', 'bild', 'Galerie', () => galerie());
   const zimmerDa = VERSUCH.zimmer && !!window.LB_ZIMMER;
-  const sZimmer = zimmerDa ? schKnopf('zimmer', 'haus', 'Zimmer', () => zimmer()) : null;
+  const sZimmer = zimmerDa ? schKnopf('zimmer', 'haus', 'Zimmer', () => zimmerMitGang()) : null;
   const sHinweis = schKnopf('hinweis', 'hinweis', 'Hinweis', () => { if (schieneZustand.lv) hinweisKarte(schieneZustand.lv, { immer: true }); });
   const sMehr = schKnopf('mehr', 'mehr', 'Begleitung', () => schublade(schieneZustand.teil || undefined, schieneZustand.lv || undefined));
   const vollbildDa = !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
@@ -510,7 +520,7 @@
   const sammle = (woerter) => {
     const g = lies(GALERIE_KEY, {}) || {}; let neu = false;
     for (const w of woerter) { const k = bildSchluessel(w); if (!g[k]) { g[k] = 1; neu = true; } }
-    if (neu) schreib(GALERIE_KEY, g);
+    if (neu) { schreib(GALERIE_KEY, g); if (window.LB_VORLADEN) setTimeout(window.LB_VORLADEN.starten, 3000); }
   };
   const istGesammelt = (teil, w, g) => !!(licht[teil.id].bilder || licht[teil.id].tippen || g[bildSchluessel(w)]);
   const galerieOrte = () => {
@@ -565,7 +575,7 @@
     const wand = el('div', 'galerie');
     wand.dataset.haupt = ''; wand.dataset.ort = 'galerie';
     const gewaehlt = galerieWahl, gesammelt = [];
-    for (const { w, t, pool } of galerieOrte()) {
+    const baueOrt = ({ w, t, pool }) => {
       const gruppeEl = el('section', 'galerie-ort');
       const kopf = el('div', 'galerie-kopf');
       const z = el('span', 'chip-zeichen'); z.append(faerbe(w.teil ? w.zeichen.join('') : t.zeichen));
@@ -573,7 +583,7 @@
       const reihe = el('div', 'galerie-reihe');
       for (const wort of pool) {
         if (istGesammelt(t, wort, g)) {
-          const k = knopf('galerie-bild', bild(bildSchluessel(wort)), () => {
+          const k = knopf('galerie-bild', bild(bildSchluessel(wort), '', 'farbe', true), () => {
             const an = !gewaehlt.has(wort);
             if (an) gewaehlt.add(wort); else gewaehlt.delete(wort);
             k.classList.toggle('gewaehlt', an); k.setAttribute('aria-pressed', String(an));
@@ -605,9 +615,10 @@
         gruppeEl.append(kopf, reihe, el('div', 'galerie-luecke'), sr);
       } else gruppeEl.append(kopf, reihe);
       wand.append(gruppeEl);
-    }
+    };
     const truhen = window.LAUTBUCH_FOLGE.FOLGE.map(f => TEILE[f.teil]).filter(t => t && t.schatz && licht[t.id].boss);
-    if (truhen.length) {
+    const schatzWand = () => {
+      if (!truhen.length) return;
       const gruppeEl = el('section', 'galerie-ort galerie-schatz-wand');
       const kopf = el('div', 'galerie-kopf'); kopf.append(WEG.dingBild('truhe', 64), el('span', 'chip-zeichen', 'Schatz'));
       const reihe = el('div', 'galerie-reihe');
@@ -622,7 +633,9 @@
         } else { const f = el('div', 'galerie-leer'); f.setAttribute('aria-hidden', 'true'); f.append(el('i', 'galerie-nebel')); reihe.append(f); }
       }
       gruppeEl.append(kopf, reihe); wand.append(gruppeEl);
-    }
+    };
+    const orte = galerieOrte(), offen = orte.splice(2);
+    orte.forEach(baueOrt);
     main.append(wand);
     const auswahl = () => gewaehlt.size ? gesammelt.filter(([w]) => gewaehlt.has(w)) : gesammelt;
     const ueben = knopf('galerie-ueben', [sym('bild'), el('span', null, 'Üben')], () => {
@@ -633,7 +646,18 @@
     }, 'Üben');
     const farbig = knopf('galerie-druck', 'farbig drucken', () => { const ws = auswahl(); if (ws.length) druckRaum(ws.map(([w]) => w), 'farbe'); }, 'farbig drucken');
     const malen = knopf('galerie-druck', 'zum Ausmalen', () => { const ws = auswahl(); if (ws.length) druckRaum(ws.map(([w]) => w), 'linie'); }, 'zum Ausmalen');
-    if (!gesammelt.length) [ueben, farbig, malen].forEach(k => ruhe(k, true));
+    const knoepfe = [ueben, farbig, malen];
+    const fertig = () => { schatzWand(); knoepfe.forEach(k => ruhe(k, !gesammelt.length)); };
+    if (offen.length) {
+      knoepfe.forEach(k => ruhe(k, true));
+      const haeppchen = () => {
+        if (!wand.isConnected) return;
+        const t0 = performance.now();
+        try { do baueOrt(offen.shift()); while (offen.length && performance.now() - t0 < 10); }
+        finally { if (offen.length) setTimeout(haeppchen, 0); else fertig(); }
+      };
+      setTimeout(haeppchen, 700);
+    } else fertig();
     const werkzeug = el('div', 'werkzeug galerie-werkzeug');
     werkzeug.append(ueben, farbig, malen);
     unten.append(werkzeug);
@@ -643,6 +667,35 @@
     WEG.teile.forEach((w, i) => { const o = ortVon(w); if (o && stand[w.id] === 'meister' && o.ids.includes('boss')) for (const b of o.t.bewohner || []) if (b.s !== figurBewohner()) liste.push([b, i]); });
     return liste;
   };
+  let wegKarte = null, imGang = false;
+  const zumHausGehen = (danach) => {
+    if (imGang) return;
+    const K = wegKarte, w = K && K.wimpel, h = K && K.E.dinge.querySelector('.haus-ding');
+    const tr = w && (w.getAttribute('transform') || '').match(/translate\(([-\d.]+)[ ,]+([-\d.]+)\)/), tuer = h && (h.dataset.tuer || '').split(' ').map(Number);
+    if (!tr || !tuer || tuer.length < 2 || ruhig() || !w.animate || !w.isConnected || !document.body.classList.contains('auf-weg') || getComputedStyle(w).display === 'none') return danach();
+    const dx = tuer[0] - +tr[1], dy = tuer[1] - +tr[2], dauer = Math.round(Math.max(500, Math.min(1100, Math.hypot(dx, dy) * 9)));
+    let los = false;
+    imGang = true;
+    const festhalten = () => { try { a.commitStyles(); } catch (e) {  } a.cancel(); };
+    const weiter = () => {
+      if (los) return; los = true; imGang = false; document.removeEventListener('pointerdown', abkuerzen, true);
+      if (!w.isConnected || !document.body.classList.contains('auf-weg')) return;
+      festhalten(); danach();
+    };
+    const abkuerzen = (e) => {
+      const ziel = e.target.closest && e.target.closest('.schienen-knopf, [data-ort], .haus-ding');
+      if (!ziel || ziel.matches('.haus-ding, [data-ziel="zimmer"]')) return a.finish();
+      if (performance.now() < gesperrtBis) return;
+      los = true; imGang = false; document.removeEventListener('pointerdown', abkuerzen, true); festhalten();
+    };
+    figurSchritte(K, dauer, dx);
+    const a = w.animate([{ translate: '0px 0px' }, { translate: `${dx}px ${dy}px` }], { duration: dauer, easing: 'ease-in-out', fill: 'forwards' });
+    a.onfinish = weiter;
+    setTimeout(weiter, dauer + 500);
+    setTimeout(() => { if (!los) document.addEventListener('pointerdown', abkuerzen, true); }, 150);
+    if (window.LB_VORLADEN) window.LB_VORLADEN.starten();
+  };
+  const zimmerMitGang = () => { if (imWechsel || document.body.classList.contains('im-zimmer')) return; zumHausGehen(() => zimmer()); };
   function zimmer() {
     leer();
     document.body.classList.add('im-zimmer', 'ohne-unten');
@@ -952,14 +1005,14 @@
     svg.append(figurKoerper(f, S, 0, 0)); return svg;
   };
   function figurMalen(K) {
-    K.wimpel.querySelectorAll('.figur-koerper, .figur-schatten').forEach(x => x.remove());
+    K.wimpel.querySelectorAll('.figur-koerper, .figur-schatten, .figur-ring').forEach(x => x.remove());
     const f = figurVon(figurStand().wer);
     K.wimpel.classList.toggle('figur', !!f);
     const flaeche = K.wimpel.querySelector('.ding-flaeche');
     if (!f) { flaeche.setAttribute('x', -8); flaeche.setAttribute('y', -40); flaeche.setAttribute('width', 64); flaeche.setAttribute('height', 48); return; }
     const { H, S } = figurMass(K), x0 = -S * .3, y0 = -S * .95;
     const g = figurKoerper(f, S, x0, y0);
-    K.wimpel.append(sv('ellipse', { cx: x0 + S / 2, cy: 1, rx: S * .3, ry: 3, class: 'figur-schatten' }), g);
+    K.wimpel.append(sv('ellipse', { cx: x0 + S / 2, cy: 2, rx: S * .46, ry: 5.5, class: 'ding-ring ding-hinweis figur-ring' }), sv('ellipse', { cx: x0 + S / 2, cy: 1, rx: S * .3, ry: 3, class: 'figur-schatten' }), g);
     flaeche.setAttribute('x', x0 - 4); flaeche.setAttribute('y', y0 - 4); flaeche.setAttribute('width', S + 8); flaeche.setAttribute('height', S + 8);
     K.wimpel.setAttribute('aria-label', 'Lesezeichen · ' + f.name);
     if (K.nachGang) { K.nachGang = false; if (!ruhig()) g.querySelectorAll('.mb-ding').forEach(d => d.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 320, easing: 'ease-out' })); }
@@ -1046,6 +1099,7 @@
     });
   }
   function wegMalen(K) {
+    wegKarte = K;
     const { E, P, stand } = K;
     let hierI = WEG.teile.findIndex(w => stand[w.id] === 'hier');
     if (hierI < 0) { hierI = WEG.teile.map(w => stand[w.id]).lastIndexOf('meister'); }
@@ -1073,7 +1127,7 @@
     figurMalen(K);
     E.dinge.querySelectorAll('.truhe-ding, .staffelei-ding, .buch-ding, .bewohner, .kiesel-ding, .feuer-ding, .baum-ding').forEach(x => x.remove());
     const frei = freiePlaetze(K);
-    if (window.LB_HAUS && zimmerDa) window.LB_HAUS(K, { frei, ruhig, zimmer: () => zimmer(), neu: () => !!(window.LB_ZIMMER.neu && window.LB_ZIMMER.neu(zimmerApi())) });
+    if (window.LB_HAUS && zimmerDa) window.LB_HAUS(K, { frei, ruhig, zimmer: () => zimmerMitGang(), neu: () => !!(window.LB_ZIMMER.neu && window.LB_ZIMMER.neu(zimmerApi())) });
     const PLATZ_KEY = 'lautbuch.bewohner.platz.v1', platzLage = Math.round(K.lage.w) + 'x' + Math.round(K.lage.h);
     const platzAlt = ((lies(PLATZ_KEY, {}) || {})[platzLage]) || {}, platzNeu = {}, reserviert = new Set();
     for (const [k, v] of Object.entries(platzAlt)) {
@@ -1125,6 +1179,7 @@
     if (wiederholenPool().size > 1 && hierI >= 0) {
       const kr = K.svg.getBoundingClientRect(), masz = kr.width ? Math.min(kr.width / K.lage.w, kr.height / K.lage.h) : 1, seite = Math.max(34, 46 / masz);
       const sp = sv('g', { class: 'feuer-ding ding', role: 'button', 'aria-label': 'Wiederholen' }, [sv('rect', { x: 13 - seite / 2, y: 13 - seite / 2, width: seite, height: seite, class: 'ding-flaeche' }),
+        sv('ellipse', { cx: 13, cy: 27, rx: 20, ry: 6, class: 'ding-ring ding-hinweis' }),
         sv('ellipse', { cx: 13, cy: 26, rx: 15, ry: 4, class: 'feuer-schein' }),
         sv('g', { class: 'feuer-flamme' }, [pf('M13 1 C19 8 23 13 21 19 C19.5 23.5 6.5 23.5 5 19 C3.5 14 8 11 10 6 C11 10 13.5 11 13 1 Z', 'flamme-aussen'),
           pf('M13.5 10 C17 14 17.5 18.5 14.5 20.5 C12 21.5 9.5 19.5 11 16 C11.8 14.5 13 13 13.5 10 Z', 'flamme-innen')]),
@@ -1624,7 +1679,7 @@
       const alt = aktuell;
       aktuell = neu;
       navRuhe();
-      if (opt.amZeigen) opt.amZeigen(schl, neu);
+      if (opt.amZeigen) opt.amZeigen(schl, neu, pos);
       flaeche.querySelectorAll('.karteikarte').forEach(k => { if (k !== alt) k.remove(); });
       if (!alt) { flaeche.append(neu); return; }
       alt.getAnimations?.().forEach(a => a.cancel());
@@ -2398,10 +2453,14 @@
     const r = el('span', 'reiter-tuer ueben-tuer'); r.setAttribute('aria-pressed', 'true'); r.append(mitSymbol('stapel', 'Wiederholen'));
     const raum = raumHuelle([r], 'raum-ueben', 'wiederholen');
     const buehne = el('div', 'tafel-rahmen mit-karteikarte');
-    raum.append(buehne);
     const pool = wiederholenPool();
     const auswahl = gewichtetZiehen(pool, WIEDERHOLEN_KARTEN);
+    const punkte = el('div', 'lauf-punkte wiederholen-punkte'), punktEl = auswahl.map(() => { const p = el('i', 'lauf-punkt'); punkte.append(p); return p; });
+    punkte.setAttribute('aria-hidden', 'true');
+    const punkteSetzen = (pos) => punktEl.forEach((p, k) => { p.classList.toggle('jetzt', k === pos); p.classList.toggle('gold', k < pos); });
+    raum.append(punkte, buehne);
     const amEnde = () => {
+      punktEl.forEach(p => { p.classList.remove('jetzt'); p.classList.add('gold'); });
       if (unten.querySelector('.weiter-knopf')) return;
       const box = el('div', 'ende');
       box.append(knopf('gelesen weiter-knopf', [sym('band'), el('span', null, 'weiter')], () => weiterLesen(), 'weiter'));
@@ -2416,7 +2475,7 @@
           : mischForm(e.text, a);
         return { knoten: (a === 'ketten' || a === 'woerter') ? wort(f) : faerbe(f), lang: f.replace(/-/g, '').length > 4 };
       }
-    }, { folge: true, hoechstens: auswahl.length, amEnde });
+    }, { folge: true, hoechstens: auswahl.length, amEnde, amZeigen: (schl, karte, pos) => punkteSetzen(pos) });
     hoere(document, 'keydown', (e) => {
       if (e.target.closest?.('button')) return;
       if (e.key === ' ' || e.key === 'ArrowRight') { e.preventDefault(); kk.weiter(); }
@@ -3183,8 +3242,32 @@
   addEventListener('resize', mittigBald);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(mittigBald);
 
-  weg = sanft(weg); sammlung = sanft(sammlung); titel = sanft(titel); level = sanft(level); bilderRaum = sanft(bilderRaum);
-  wiederholen = sanft(wiederholen); bossRaum = sanft(bossRaum); schatz = sanft(schatz);
-  galerie = sanft(galerie); druckRaum = sanft(druckRaum); zimmer = sanft(zimmer);
+  weg = sanft(weg, true); sammlung = sanft(sammlung, true); titel = sanft(titel, true); level = sanft(level, 'beiTipp'); bilderRaum = sanft(bilderRaum, 'beiTipp');
+  wiederholen = sanft(wiederholen, 'beiTipp'); bossRaum = sanft(bossRaum, 'beiTipp'); schatz = sanft(schatz, 'beiTipp');
+  galerie = sanft(galerie, true); druckRaum = sanft(druckRaum, 'beiTipp'); zimmer = sanft(zimmer, true);
+  const HALT = new Map();
+  const vorladen = () => {
+    const D = window.LB_BILDDATEN || {}, g = lies(GALERIE_KEY, {}) || {}, schl = ['ding-rahmen'];
+    for (const { t, pool } of galerieOrte()) for (const w of pool) if (istGesammelt(t, w, g)) schl.push(bildSchluessel(w));
+    const szenen = [];
+    for (const { t } of galerieOrte()) for (const lv of [...t.level, t.boss].filter(Boolean)) for (const sn of sinne(lv)) {
+      const b = sinnDa(lv, sn) && sn.wahl.find(x => x.s === sn.richtig);
+      if (b && (g[b.s] || (sn === lv.sinn && licht[t.id][lv.id]))) szenen.push((D[b.s] || {}).farbe);
+    }
+    const wer = (figurStand() || {}).wer, moebel = ['ding-teppich', 'ding-pfeil', 'ding-regal', 'ding-klotz', 'ding-truhe', 'ding-truhe-offen', 'ding-tuer', 'ding-fenster',
+      ...(FIGUR_BILD[wer] || []), FIGUR_SEITE[wer]].map(k => (D[k] || {}).farbe);
+    const warteschlange = [...new Set([...[...new Set(schl)].map(k => (D[k] || {}).klein), ...szenen, ...moebel])].filter(p => p && !HALT.has(p));
+    const warte = typeof requestIdleCallback === 'function' ? (f) => requestIdleCallback(f, { timeout: 800 }) : (f) => setTimeout(() => f({ timeRemaining: () => 8 }), 60);
+    const schritt = (dl) => {
+      for (let n = 0; n < 6 && warteschlange.length && dl.timeRemaining() > 3; n++) {
+        const p = warteschlange.shift(), i = new Image();
+        i.decoding = 'async'; i.src = p; HALT.set(p, i); i.decode().catch(() => {});
+      }
+      if (warteschlange.length) warte(schritt);
+    };
+    if (warteschlange.length) warte(schritt);
+  };
+  window.LB_VORLADEN = { starten: vorladen, gehalten: () => HALT.size };
   weg();
+  setTimeout(vorladen, 1200);
 })();

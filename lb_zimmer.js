@@ -172,10 +172,10 @@
       for (const wort of pool) {
         const k = LB().bildSchluessel(wort), hat = gesammeltVon(t, wort, g);
         const r = el('div', 'z-rahmen' + (hat ? '' : ' offen'));
-        const rahmenBild = ding('ding-rahmen', 'z-rahmen-bild'); if (rahmenBild) r.append(rahmenBild);
+        const rahmenBild = gemalt('ding-rahmen') ? LB().bild('ding-rahmen', 'z-rahmen-bild', 'farbe', true) : null; if (rahmenBild) r.append(rahmenBild);
         if (hat) {
           alleGesammelt.push(k);
-          const innen = el('div', 'z-rahmen-innen', LB().bild(k));
+          const innen = el('div', 'z-rahmen-innen', LB().bild(k, '', 'farbe', true));
           r.prepend(innen); r.dataset.k = k;
           tipp(r, () => {
             const name = el('div', 'z-name z-bildwort', LB().wort(wort));
