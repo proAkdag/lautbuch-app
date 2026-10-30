@@ -10,14 +10,14 @@ window.LAUTBUCH_TEILE.i = {
   level: [
     {
       id: 'l1',
-      hinweis: 'Das I hell sprechen, die Lippen breit wie beim Lächeln. Den Laut halten und ins I gleiten: mmm-iii → MI. Bei Mi-a beide Laute einzeln hören lassen: I, dann A.',
+      hinweis: 'Das I hell sprechen, die Lippen breit wie beim Lächeln. Den Laut halten und ins I gleiten: mmm-iii → MI. Bei Mi-a beide Laute einzeln hören lassen: I, dann A; ebenso bei Ma-ri-a und A-ri-a.',
       tafel: [['I', 'MI', 'LI', 'NI'], ['SI', 'FI', 'RI', 'HI'],
               ['MA', 'MI', 'LA', 'LI'], ['NA', 'NI', 'SA', 'SI']],
       ketten: [['MI-LI', 'LI-HA', 'NI-MA', 'SI-FA'],
                ['FI-RA', 'RI-HI', 'HI-MA', 'LA-SI'],
                ['MI-LA-NI', 'SA-FI-RA', 'HI-LI-MA'],
                ['NI-SA-LI', 'FI-LI-LA', 'RI-MA-HI']],
-      woerter: [['Mi-a', 'Li-la', 'Ni-na'], ['Hi-hi', 'Mi-ni', 'Sa-fa-ri']],
+      woerter: [['Mi-a', 'Li-la', 'Ni-na'], ['Hi-hi', 'Mi-ni', 'Sa-fa-ri'], ['Ma-ri-a', 'Ma-ri-na', 'Li-sa'], ['Li-ma', 'A-ri-a']],
       anlauf: ['MI', 'LI', 'NI', 'SI', 'FI', 'RI', 'HI', 'I'],
       z4: ['Li-la', 'Mi-ni'],
       z5: ['Sa-la-mi', 'I-a'],

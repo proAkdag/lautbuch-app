@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const APP_VERSION = '1.0.13';
+  const APP_VERSION = '1.0.14';
   const VOR = 'lautbuch.';
   const GESICHERT_KEY = 'lautbuch-app.gesichert.v1', SPAETER_KEY = 'lautbuch-app.spaeter.v1';
   const TEIL_LAENGE = 675, TAKT_MS = 800, MAX_TEILE = 40, MAX_KLAR = 1048576;

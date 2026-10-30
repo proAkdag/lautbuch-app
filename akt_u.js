@@ -10,14 +10,14 @@ window.LAUTBUCH_TEILE.u = {
   level: [
     {
       id: 'l1',
-      hinweis: 'Lippen rund wie zum Pusten: uuu. Den Laut halten und ins U gleiten: mmm-uuu → MU. Erst langsam ziehen, dann schneller.',
+      hinweis: 'Lippen rund wie zum Pusten: uuu. Den Laut halten und ins U gleiten: mmm-uuu → MU. Erst langsam ziehen, dann schneller. Bei Lu-i-sa erst U, dann I einzeln hören lassen.',
       tafel: [['U', 'MU', 'LU', 'NU'], ['SU', 'FU', 'RU', 'HU'],
               ['LO', 'LU', 'NO', 'NU'], ['SI', 'SU', 'FI', 'FU']],
       ketten: [['MU-LA', 'LU-NI', 'NU-MO', 'SU-LU'],
                ['FU-RA', 'RU-HO', 'HU-MI', 'LO-SU'],
                ['MU-LA-NU', 'SU-FI-RU', 'HU-LO-MA'],
                ['NO-SU-LU', 'FU-LU-NA', 'RO-MU-HA']],
-      woerter: [['U-hu', 'U-fo', 'Lu-na'], ['Hu-la', 'Na-nu', 'Su-si']],
+      woerter: [['U-hu', 'U-fo', 'Lu-na'], ['Hu-la', 'Na-nu', 'Su-si'], ['Lu-i-sa', 'Lu-si']],
       anlauf: ['MU', 'LU', 'NU', 'SU', 'FU', 'RU', 'HU', 'U'],
       z4: ['U-hu', 'Na-nu'],
       z5: ['Hu-hu', 'Hu-la-la'],
