@@ -88,9 +88,9 @@ window.LAUTBUCH_TEILE.u = {
           satz: 'Pu-ma turnt mit O-pas Hut!',
           richtig: 'sz-u-l3-s2-1',
           wahl: [
-            { s: 'sz-u-l3-s2-1', wer: 'puma', tut: 'turnt', was: 'opas hut', bild: 'Im selben Bus macht der Puma zwischen den Sitzen einen Handstand und trägt dabei Opas grünen Filzhut mit Feder; Opa sitzt daneben ohne Hut und staunt.' },
+            { s: 'sz-u-l3-s2-1', wer: 'puma', tut: 'turnt', was: 'opas hut', bild: 'Im selben Bus springt der Puma turnend zwischen den Sitzen durch die Luft (Turnsprung, alle vier Pfoten sichtbar, der Schwanz geschwungen) und trägt dabei Opas grünen Filzhut mit Feder; Opa sitzt daneben ohne Hut und staunt.' },
             { s: 'sz-u-l3-s2-2', wer: 'kakadu', tut: 'turnt', was: 'opas hut', bild: 'Im selben Bus macht ein Kakadu zwischen den Sitzen einen Handstand und trägt dabei Opas grünen Filzhut mit Feder; Opa sitzt daneben ohne Hut und staunt.' },
-            { s: 'sz-u-l3-s2-3', wer: 'puma', tut: 'turnt', was: 'omas hut', bild: 'Im selben Bus macht der Puma zwischen den Sitzen einen Handstand und trägt dabei Omas Strohhut mit Blumen; Oma sitzt daneben ohne Hut und staunt.' }
+            { s: 'sz-u-l3-s2-3', wer: 'puma', tut: 'turnt', was: 'omas hut', bild: 'Im selben Bus springt der Puma turnend zwischen den Sitzen durch die Luft (Turnsprung, alle vier Pfoten sichtbar, der Schwanz geschwungen) und trägt dabei Omas Strohhut mit Blumen; Oma sitzt daneben ohne Hut und staunt.' }
           ]
         }
       ]
