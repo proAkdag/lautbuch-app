@@ -1,0 +1,64 @@
+
+.st-raum { position: fixed; inset: 0; z-index: 1999; perspective: 1800px; overflow: hidden; font-family: Andika, sans-serif; color: #2a2016;
+  -webkit-user-select: none; user-select: none; touch-action: manipulation;
+  background: url(start/st-wand-quer.jpg) 50% 75% / cover no-repeat, linear-gradient(#f9efe2, #efd6b8); }
+
+@media (max-aspect-ratio: 2/3) { .st-raum { background: url(start/st-wand-hoch.jpg) 50% 78% / cover no-repeat, linear-gradient(#f9efe2, #efd6b8); } }
+
+.st-brett-oben { position: absolute; transform-origin: 50% 100%; transform: rotateX(90deg); border-radius: 3px 3px 0 0;
+  background: linear-gradient(rgb(70 40 15 / .5), rgb(70 40 15 / .12) 35%, transparent 70%, rgb(255 235 200 / .2)), url(start/st-holz-oben.jpg) 0 0 / auto 100% repeat-x, #c8945c; }
+.st-brett-kante { position: absolute; border-radius: 0 0 3px 3px;
+  background: linear-gradient(rgb(255 230 190 / .3), transparent 35%, rgb(50 25 5 / .35)), url(start/st-holz-kante.jpg) 0 50% / auto 100% repeat-x, #8a5a2e;
+  box-shadow: 0 20px 34px -12px rgb(90 50 20 / .5); }
+
+.st-konsole { position: absolute; transform-origin: 0 0; background: url(start/st-konsole.png) 0 0 / 100% 100% no-repeat; }
+.st-fleck { position: absolute; border-radius: 50%; background: radial-gradient(closest-side, rgb(70 35 10 / .5), rgb(70 35 10 / .18) 60%, rgb(70 35 10 / 0)); }
+
+.st-vorn > * { opacity: 0; }
+
+.st-buch { position: absolute; left: 0; top: 0; width: var(--st-w); height: var(--st-h); padding: 0; border: 0; background: none; cursor: pointer;
+  transform-style: preserve-3d; transform-origin: 50% 50%; -webkit-tap-highlight-color: transparent; }
+.st-buch > * { position: absolute; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.st-buch:focus-visible { outline: 3px solid #b85c3a; outline-offset: 6px; }
+.st-ruecken { left: calc((var(--st-w) - var(--st-d)) / 2); top: 0; width: var(--st-d); height: var(--st-h); border-radius: 3px 0 0 3px;
+  transform: rotateY(-90deg) translateZ(calc(var(--st-w) / 2));
+  background: linear-gradient(90deg, var(--st-dunkel), transparent 22%, transparent 78%, var(--st-dunkel)), var(--st-leinen) 50% 50% / 256px, var(--st-farbe);
+  display: flex; flex-direction: column; align-items: center; padding: calc(var(--st-d) * .14) 0; gap: calc(var(--st-d) * .12); overflow: hidden; }
+.st-ruecken .st-bild { width: calc(var(--st-d) * .78); height: calc(var(--st-d) * .78); border-radius: 50%; background: #fff8ec; border: 2px solid rgb(255 248 236 / .7);
+  display: grid; place-items: center; overflow: hidden; flex: none; font-size: calc(var(--st-d) * .32); font-weight: 700; color: #9c7130; }
+.st-bild img { width: 118%; height: 118%; object-fit: cover; object-position: 50% 12%; }
+.st-ruecken .st-titel { writing-mode: vertical-rl; font-size: calc(var(--st-d) * .26); color: rgb(255 248 236 / .92); letter-spacing: .04em; flex: none; }
+.st-ruecken .st-siegel { display: flex; flex-direction: column; gap: calc(var(--st-d) * .07); flex: 1; justify-content: center; }
+.st-ruecken .st-siegel i { width: calc(var(--st-d) * .13); height: calc(var(--st-d) * .13); border-radius: 50%; background: #f2c14e; box-shadow: 0 0 0 1px rgb(120 80 10 / .35); }
+.st-ruecken .st-name { writing-mode: vertical-rl; transform: rotate(180deg); font-size: calc(var(--st-d) * .3); font-weight: 700; color: #fff8ec; flex: none; }
+.st-schnitt { left: calc((var(--st-w) - var(--st-d)) / 2); top: 4px; width: calc(var(--st-d) - 4px); height: calc(var(--st-h) - 8px);
+  transform: rotateY(90deg) translateZ(calc(var(--st-w) / 2 - 3px)); background: repeating-linear-gradient(90deg, #f6ecdb 0 2px, #e3d4bb 2px 3px); }
+.st-kopf, .st-fuss { left: 0; width: var(--st-w); height: var(--st-d); top: calc((var(--st-h) - var(--st-d)) / 2); background: var(--st-dunkel); }
+.st-kopf { transform: rotateX(90deg) translateZ(calc(var(--st-h) / 2)); }
+.st-fuss { transform: rotateX(-90deg) translateZ(calc(var(--st-h) / 2)); }
+.st-rueckdeckel { inset: 0; width: var(--st-w); height: var(--st-h); border-radius: 3px 8px 8px 3px; background: var(--st-dunkel); transform: translateZ(calc(var(--st-d) / -2)) rotateY(180deg); }
+
+.st-innen { left: 0; top: 4px; width: calc(var(--st-w) - 4px); height: calc(var(--st-h) - 8px); border-radius: 2px 6px 6px 2px; overflow: hidden;
+  transform: translateZ(calc(var(--st-d) / 2 - 2px)); background: #fbf3e4; }
+.st-innen .st-schatten { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(60 30 10 / .28), rgb(60 30 10 / .1) 18%, transparent 40%); }
+.st-deckel { inset: 0; width: var(--st-w); height: var(--st-h); transform-origin: 0 50%; transform-style: preserve-3d; backface-visibility: visible; -webkit-backface-visibility: visible;
+  transform: translateZ(calc(var(--st-d) / 2)); }
+.st-deckel > * { position: absolute; inset: 0; border-radius: 3px 8px 8px 3px; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.st-vorn { background: linear-gradient(90deg, var(--st-dunkel) 0, transparent 6%, transparent 94%, var(--st-dunkel)), var(--st-leinen) 50% 50% / 256px, var(--st-farbe);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(var(--st-h) * .035); color: #fff8ec; box-shadow: inset 0 0 0 2px rgb(255 248 236 / .18); }
+.st-vorn .st-bild { width: 52%; aspect-ratio: 1; border-radius: 50%; background: #fff8ec; overflow: hidden; display: grid; place-items: center;
+  box-shadow: 0 0 0 calc(var(--st-h) * .012) rgb(255 248 236 / .5); font-size: calc(var(--st-h) * .1); font-weight: 700; color: #9c7130; }
+.st-vorn .st-bild img { width: 112%; height: 112%; object-position: 50% 10%; }
+.st-vorn .st-titel { font-size: calc(var(--st-h) * .07); font-weight: 700; letter-spacing: .02em; }
+.st-vorn .st-vokale { display: flex; gap: calc(var(--st-h) * .02); }
+.st-vorn .st-vokale b { width: calc(var(--st-h) * .07); height: calc(var(--st-h) * .07); border-radius: 50%; display: grid; place-items: center;
+  font-size: calc(var(--st-h) * .042); background: rgb(255 248 236 / .16); color: rgb(255 248 236 / .55); }
+.st-vorn .st-vokale b.st-an { background: #f2c14e; color: #6b4410; }
+.st-innenseite { transform: rotateY(180deg); background: #f3e6cf; border-radius: 8px 3px 3px 8px; }
+
+.st-buch { --st-leinen: url(start/st-leinen-hell.jpg); }
+.st-buch.st-ocker { --st-leinen: url(start/st-leinen-ocker.jpg); }
+.st-buch.st-leer .st-ruecken { background: linear-gradient(90deg, rgb(150 125 95 / .45), transparent 22%, transparent 78%, rgb(150 125 95 / .45)), var(--st-leinen) 50% 50% / 256px, #e3d7c3; box-shadow: inset 0 0 0 2px rgb(150 120 90 / .3), 0 2px 6px rgb(90 60 30 / .18); }
+.st-buch.st-leer .st-ruecken::after { content: ""; position: absolute; inset: calc(var(--st-d) * .16); border: 2px dashed rgb(150 120 90 / .35); border-radius: 4px; }
+
+main.st-waechst { position: relative; z-index: 2000; transform-origin: 50% 50%; will-change: transform, clip-path; background: var(--papier, #f5efe4); }

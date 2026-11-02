@@ -3210,6 +3210,11 @@
       zh.append(el('span', null, 'Wie begleite ich?'), knopf('', mitSymbol('stern', 'Handreichung'), () => zu().then(() => handreichung()), 'Handreichung'));
       d.append(zh);
     }
+    if (window.LB_START) {
+      const zr = el('div', 'schublade-zeile');
+      zr.append(el('span', null, 'Startbildschirm'), knopf('', mitSymbol('band', 'Regal'), () => zu().then(startZeigen), 'zum Regal'));
+      d.append(zr);
+    }
     if (vollbildDa && getComputedStyle(sVoll).display === 'none') {
       const zv = el('div', 'schublade-zeile');
       zv.append(el('span', null, 'Bildschirm'), knopf('', mitSymbol('vollbild', imVollbild() ? 'Fenster' : 'Vollbild'), () => zu().then(vollbildUmschalten), 'Vollbild'));
@@ -3353,7 +3358,13 @@
     };
     if (warteschlange.length) warte(schritt);
   };
+  const startBuch = () => {
+    const st = wegStand(), D = window.LB_BILDDATEN || {}, k = (FIGUR_BILD[figurStand().wer] || [])[0];
+    return { name: String(lies('lautbuch.name.v1', '') || '').trim(), bild: k && D[k] ? (D[k].klein || D[k].farbe) : null,
+      orte: WEG.teile.filter(w => st[w.id] === 'meister').length, vokale: ['a', 'i', 'o', 'u', 'e'].map(id => !!(licht[id] && licht[id].boss)) };
+  };
+  const startZeigen = () => window.LB_START.zeigen({ buch: startBuch(), weg, ruhig, main });
   window.LB_VORLADEN = { starten: vorladen, gehalten: () => HALT.size };
-  weg();
+  if (window.LB_START) startZeigen(); else weg();
   setTimeout(vorladen, 1200);
 })();

@@ -19,7 +19,8 @@ window.LAUTBUCH_HANDREICHUNG = {
     {
       id: 'weg', titel: 'Der Weg', symbol: 'welt',
       teile: [
-        { p: 'Beim Öffnen sehen Sie eine Karte. Jeder Ort hat die Gestalt seines Buchstabens. Was noch nicht erforscht ist, liegt im Nebel. Ein Ort öffnet sich, wenn der Boss des vorigen Orts geschafft ist.' },
+        { p: 'Beim Öffnen steht das Lautbuch Ihres Kindes im Regal. Auf dem Rücken stehen seine Figur und sein Name, dazu für jeden geschafften Ort ein goldener Punkt. Ein Tipp nimmt das Buch heraus und schlägt es auf: Auf dem Deckel leuchten die Vokale, deren Boss geschafft ist, dann öffnet sich die Karte. Die zwei freien Plätze daneben sind für weitere Kinder gedacht und kommen mit einer späteren Fassung. Zurück zum Regal geht es über die Schublade „Begleitung“.' },
+        { p: 'Auf der Karte hat jeder Ort die Gestalt seines Buchstabens. Was noch nicht erforscht ist, liegt im Nebel. Ein Ort öffnet sich, wenn der Boss des vorigen Orts geschafft ist.' },
         { liste: [
           'Prolog: drei Orte für die Konsonanten, als Laut, groß und klein.',
           'Die Vokale: A, I, O, U, E. Das E kommt zuletzt, weil es zwei Klänge hat.',
@@ -103,7 +104,7 @@ window.LAUTBUCH_HANDREICHUNG = {
           'Zimmer: das Zimmer Ihres Kindes mit Bildern, Lauten, Büchern, Bewohnern und der Pinnwand.',
           'Vollbild: blendet die Leisten des Browsers aus, ein zweiter Tipp holt sie zurück. Der Knopf erscheint nur, wo das Gerät Vollbild erlaubt; fehlt er in der Leiste (Handy hochkant), steht er in der Schublade.',
           'Hinweis: ein kurzer Tipp zur aktuellen Lektion. Er erscheint beim ersten Öffnen einmal von selbst.',
-          'Begleitung: die Schublade für Sie, mit Hinweis, dieser Handreichung, der Sicherung, den Zeilen der App (Aktualisieren, Stand auf ein anderes Gerät) und „Lichter löschen“. Eine neue Fassung der App zeigt ein kleiner Punkt an diesem Knopf an. Diese Handreichung lässt sich oben im Fenster mit „Als PDF speichern“ als Datei sichern oder teilen (Mein_Lautbuch_Handreichung.pdf).'
+          'Begleitung: die Schublade für Sie, mit Hinweis, dieser Handreichung, der Sicherung, dem Weg zurück zum Regal (Startbildschirm), den Zeilen der App (Aktualisieren, Stand auf ein anderes Gerät) und „Lichter löschen“. Eine neue Fassung der App zeigt ein kleiner Punkt an diesem Knopf an. Diese Handreichung lässt sich oben im Fenster mit „Als PDF speichern“ als Datei sichern oder teilen (Mein_Lautbuch_Handreichung.pdf).'
         ] },
         { p: 'Lesen Sie den Hinweis kurz, bevor Ihr Kind eine neue Lektion beginnt. Er sagt in ein bis drei Sätzen, worauf es dort ankommt.' }
       ]
