@@ -1706,6 +1706,18 @@
     nav.append(knZurueck, knVor);
     const navRuhe = () => { const aus = pos <= 0; knZurueck.setAttribute('aria-disabled', String(aus)); knZurueck.classList.toggle('licht-ruht', aus); };
     buehne.replaceChildren(flaeche, nav);
+    const einpassenKarte = (k) => {
+      if (!k || !k.isConnected) return;
+      k.style.fontSize = '';
+      const cs = getComputedStyle(flaeche), basis = parseFloat(getComputedStyle(k).fontSize);
+      const breit = flaeche.clientWidth - 32, hoch = (flaeche.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom)) * .8;
+      if (breit < 60 || hoch < 60 || !k.offsetWidth) return;
+      const passt = basis * Math.min(breit / k.offsetWidth, hoch / k.offsetHeight);
+      const neuPx = Math.max(32, Math.min(passt, window.innerWidth < 600 ? 260 : basis));
+      if (Math.abs(neuPx - basis) > .5) { k.style.fontSize = neuPx.toFixed(1) + 'px'; mittigAlle(k); }
+    };
+    if (window.ResizeObserver) { const ro = new ResizeObserver(() => { if (!flaeche.isConnected) ro.disconnect(); else einpassenKarte(aktuell); }); ro.observe(flaeche); }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => einpassenKarte(aktuell));
     const zeige = (schl, richtung) => {
       const neu = el('div', 'karteikarte');
       const f = quelle.form(schl);
@@ -1716,10 +1728,10 @@
       navRuhe();
       if (opt.amZeigen) opt.amZeigen(schl, neu, pos);
       flaeche.querySelectorAll('.karteikarte').forEach(k => { if (k !== alt) k.remove(); });
-      if (!alt) { flaeche.append(neu); return; }
+      if (!alt) { flaeche.append(neu); einpassenKarte(neu); return; }
       alt.getAnimations?.().forEach(a => a.cancel());
-      if (ruhig() || !alt.animate) { alt.replaceWith(neu); return; }
-      flaeche.append(neu);
+      if (ruhig() || !alt.animate) { alt.replaceWith(neu); einpassenKarte(neu); return; }
+      flaeche.append(neu); einpassenKarte(neu);
       const d = 350, kurve = 'cubic-bezier(.4,0,.2,1)', s = richtung < 0 ? -1 : 1;
       alt.animate([{ transform: 'translateX(0)', opacity: 1 }, { transform: `translateX(${-45 * s}%)`, opacity: 0 }], { duration: d, easing: kurve, fill: 'forwards' });
       neu.animate([{ transform: `translateX(${45 * s}%)`, opacity: 0 }, { transform: 'translateX(0)', opacity: 1 }], { duration: d, easing: kurve });
@@ -2506,7 +2518,7 @@
   const WIEDERHOLEN_KARTEN = 10;
   function wiederholen() {
     leer();
-    document.body.classList.add('im-ueben');
+    document.body.classList.add('im-ueben', 'feuer');
     oben.append(titelZeile('Wiederholen'));
     const r = el('span', 'reiter-tuer ueben-tuer'); r.setAttribute('aria-pressed', 'true'); r.append(mitSymbol('stapel', 'Wiederholen'));
     const raum = raumHuelle([r], 'raum-ueben', 'wiederholen');
@@ -2591,6 +2603,21 @@
     for (const z of zeilen) if (z.dataset.block === '2') { const p = el('i', 'lauf-punkt'); punkte.append(p); punktVon.set(z, p); }
     punkte.classList.add('vor-start');
     raum.append(punkte, seite);
+    const zeilenEinpassen = () => {
+      if (!seite.isConnected) return;
+      const breit = seite.clientWidth - 8; if (breit < 100) return;
+      for (const z of zeilen) {
+        z.style.fontSize = '';
+        if (z.classList.contains('ist-satz')) continue;
+        const basis = parseFloat(getComputedStyle(z).fontSize);
+        z.style.maxWidth = 'none'; const w = z.offsetWidth; z.style.maxWidth = '';
+        if (!w) continue;
+        const ziel = Math.min(basis * breit / w, window.innerWidth < 600 ? basis * 2 : basis);
+        if (Math.abs(ziel - basis) > .5) z.style.fontSize = ziel.toFixed(1) + 'px';
+      }
+    };
+    if (window.ResizeObserver) { let b0 = 0; const ro = new ResizeObserver(() => { if (!seite.isConnected) { ro.disconnect(); return; } const b = seite.clientWidth; if (b !== b0) { b0 = b; zeilenEinpassen(); } }); ro.observe(seite); }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(zeilenEinpassen);
 
     let i = 0, ohneStocken = true, wechselt = false, nachLesen = null, inSchwelle = false;
     const weiter = knopf('gelesen', 'weiter', () => nachLesen ? nachLesen() : naechste(true));

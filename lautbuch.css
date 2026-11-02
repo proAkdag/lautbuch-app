@@ -311,6 +311,22 @@
   .knopf.karte-nav-knopf { min-width: 132px; min-height: 56px; font-size: 18px; }
 
   .raum[data-ort="wiederholen"] .karteikarte-buehne { place-items: center; padding-top: 40px; }
+
+  body.feuer { --feuer-rand: #b85c3a; --feuer-flamme: #c8641e; --tinte-licht: rgb(184 92 58 / .16); }
+  body.feuer main { background: linear-gradient(#f9efe2, #f3dcc2); }
+  body.feuer .raum-ueben { border-color: var(--feuer-rand); background: linear-gradient(#fdf5ea 40%, #f6d9b8); }
+  body.feuer .ueben-tuer[aria-pressed="true"] { border-color: var(--feuer-rand); border-bottom-color: #fdf5ea; background: #fdf5ea; }
+  body.feuer .ueben-tuer .sym { color: var(--feuer-flamme); }
+  body.feuer .lauf-punkt { background: rgb(184 92 58 / .3); }
+  body.feuer .lauf-punkt.jetzt { background: var(--feuer-rand); }
+  body.feuer .lauf-punkt.gold { background: var(--gold); }
+
+  body.feuer .karteikarte { z-index: 1; background: #fffaf2; border-color: #e8b98c; box-shadow: 0 22px 30px -16px rgb(200 100 30 / .38); }
+  body.feuer .knopf.karte-nav-knopf { background: #fffaf2; border-color: #e3bf9c; }
+
+  body.feuer .karteikarte-buehne::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(55% 45% at 50% 62%, rgb(232 140 60 / .22), transparent 70%); animation: glut-atmen 3.6s ease-in-out infinite alternate; }
+  @keyframes glut-atmen { from { opacity: .7; } to { opacity: 1; } }
   .karteikarte {
     grid-area: 1 / 1; display: flex; align-items: center; justify-content: center;
     min-width: 2.2em; padding: .18em .55em .14em; border-radius: 28px;
@@ -817,8 +833,9 @@
   @media (max-width: 480px) {
     .raum-bilder .bild-reihe { grid-auto-columns: minmax(0, clamp(56px, 19vw, 170px)); gap: 6px; }
     .bild-karte { padding: 5px 5px 4px; border-radius: 14px; }
-    .raum .zeile { font-size: clamp(16px, min(5vw, calc(4.4 * var(--vh))), 46px); }
-    .raum .seite.dicht .zeile { font-size: clamp(15px, min(4.6vw, calc(3.8 * var(--vh))), 40px); }
+
+    .raum .seite:not(.einzeln) .zeile { font-size: clamp(16px, min(5vw, calc(4.4 * var(--vh))), 46px); }
+    .raum .seite.dicht:not(.einzeln) .zeile { font-size: clamp(15px, min(4.6vw, calc(3.8 * var(--vh))), 40px); }
   }
   @media (max-height: 500px) and (orientation: landscape) {
 
