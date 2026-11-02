@@ -41,8 +41,8 @@ window.LAUTBUCH_TEILE.ziel = {
         richtig: 'sz-ziel-l1-1',
         wahl: [
           { s: 'sz-ziel-l1-1', wer: 'ziege', tut: 'öffnet', was: 'kiste', bild: 'Oben im runden Leuchtturmzimmer am Festtisch öffnet die weiße Ziege mit kleinem Kinnbart mit beiden Vorderhufen den Deckel ihrer Holzkiste.' },
-          { s: 'sz-ziel-l1-2', wer: 'uhu', tut: 'öffnet', was: 'kiste', bild: 'Oben im runden Leuchtturmzimmer öffnet ein Uhu mit beiden Flügeln den Deckel einer Holzkiste.' },
-          { s: 'sz-ziel-l1-3', wer: 'ziege', tut: 'öffnet', was: 'fenster', bild: 'Oben im runden Leuchtturmzimmer am Festtisch öffnet die weiße Ziege mit kleinem Kinnbart mit beiden Vorderhufen ein Fenster.' }
+          { s: 'sz-ziel-l1-2', wer: 'uhu', tut: 'öffnet', was: 'kiste', satz: 'Der U-hu öff-net die Kis-te.', bild: 'Oben im runden Leuchtturmzimmer öffnet ein Uhu mit beiden Flügeln den Deckel einer Holzkiste.' },
+          { s: 'sz-ziel-l1-3', wer: 'ziege', tut: 'öffnet', was: 'fenster', satz: 'Die Zie-ge öff-net das Fens-ter.', bild: 'Oben im runden Leuchtturmzimmer am Festtisch öffnet die weiße Ziege mit kleinem Kinnbart mit beiden Vorderhufen ein Fenster.' }
         ]
       },
       sinnMehr: [
@@ -51,8 +51,8 @@ window.LAUTBUCH_TEILE.ziel = {
           richtig: 'sz-ziel-l1-s2-1',
           wahl: [
             { s: 'sz-ziel-l1-s2-1', wer: 'lama + schaf', tut: 'segeln', was: 'nacht', bild: 'Ein Lama und ein Schaf sitzen in einem kleinen Segelboot und segeln über das Meer, am dunklen Himmel stehen Mond und Sterne.' },
-            { s: 'sz-ziel-l1-s2-2', wer: 'lama + hund', tut: 'segeln', was: 'nacht', bild: 'Ein Lama und ein Hund sitzen in demselben Segelboot und segeln über das Meer, am dunklen Himmel stehen Mond und Sterne.' },
-            { s: 'sz-ziel-l1-s2-3', wer: 'lama + schaf', tut: 'segeln', was: 'tag', bild: 'Ein Lama und ein Schaf sitzen in demselben Segelboot und segeln über das Meer, am hellen Himmel scheint die Sonne.' }
+            { s: 'sz-ziel-l1-s2-2', wer: 'lama + hund', tut: 'segeln', was: 'nacht', satz: 'La-ma und Hund se-geln durch die Nacht.', bild: 'Ein Lama und ein Hund sitzen in demselben Segelboot und segeln über das Meer, am dunklen Himmel stehen Mond und Sterne.' },
+            { s: 'sz-ziel-l1-s2-3', wer: 'lama + schaf', tut: 'segeln', was: 'tag', satz: 'La-ma und Schaf se-geln in der Son-ne.', bild: 'Ein Lama und ein Schaf sitzen in demselben Segelboot und segeln über das Meer, am hellen Himmel scheint die Sonne.' }
           ]
         },
         {
@@ -60,8 +60,8 @@ window.LAUTBUCH_TEILE.ziel = {
           richtig: 'sz-ziel-l1-s3-1',
           wahl: [
             { s: 'sz-ziel-l1-s3-1', wer: 'delfin', tut: 'schwimmt mit', was: 'wind', bild: 'Neben dem Segelboot mit Lama und Schaf springt in der Nacht ein Delfin aus den Wellen, der Wind bläht das Segel und zerzaust die Wolle.' },
-            { s: 'sz-ziel-l1-s3-2', wer: 'fisch', tut: 'schwimmt mit', was: 'wind', bild: 'Neben demselben Segelboot springt in der Nacht ein großer Fisch aus den Wellen, der Wind bläht das Segel und zerzaust die Wolle.' },
-            { s: 'sz-ziel-l1-s3-3', wer: 'delfin', tut: 'schwimmt mit', was: 'windstill', bild: 'Neben demselben Segelboot springt in der Nacht ein Delfin aus dem spiegelglatten Wasser, das Segel hängt schlaff herab.' }
+            { s: 'sz-ziel-l1-s3-2', wer: 'fisch', tut: 'schwimmt mit', was: 'wind', satz: 'Der Wind pfeift. Ein Fisch schwimmt mit.', bild: 'Neben demselben Segelboot springt in der Nacht ein großer Fisch aus den Wellen, der Wind bläht das Segel und zerzaust die Wolle.' },
+            { s: 'sz-ziel-l1-s3-3', wer: 'delfin', tut: 'schwimmt mit', was: 'windstill', satz: 'Kein Wind weht. Ein Del-fin schwimmt mit.', bild: 'Neben demselben Segelboot springt in der Nacht ein Delfin aus dem spiegelglatten Wasser, das Segel hängt schlaff herab.' }
           ]
         },
         {
@@ -69,8 +69,8 @@ window.LAUTBUCH_TEILE.ziel = {
           richtig: 'sz-ziel-l1-s4-1',
           wahl: [
             { s: 'sz-ziel-l1-s4-1', wer: 'schaf', tut: 'flüstert', was: '', bild: 'Im Segelboot in der Nacht beugt sich das Schaf zum Lama und flüstert ihm etwas ins Ohr, beide schauen fragend in die Dunkelheit.' },
-            { s: 'sz-ziel-l1-s4-2', wer: 'lama', tut: 'flüstert', was: '', bild: 'Im selben Segelboot in der Nacht beugt sich das Lama zum Schaf und flüstert ihm etwas ins Ohr, beide schauen fragend in die Dunkelheit.' },
-            { s: 'sz-ziel-l1-s4-3', wer: 'schaf', tut: 'schläft', was: '', bild: 'Im selben Segelboot in der Nacht liegt das Schaf zusammengerollt und schläft, das Lama schaut in die Dunkelheit.' }
+            { s: 'sz-ziel-l1-s4-2', wer: 'lama', tut: 'flüstert', was: '', satz: 'Das La-ma flüs-tert: Wo ist das Fest?', bild: 'Im selben Segelboot in der Nacht beugt sich das Lama zum Schaf und flüstert ihm etwas ins Ohr, beide schauen fragend in die Dunkelheit.' },
+            { s: 'sz-ziel-l1-s4-3', wer: 'schaf', tut: 'schläft', was: '', satz: 'Das Schaf schläft ganz fest.', bild: 'Im selben Segelboot in der Nacht liegt das Schaf zusammengerollt und schläft, das Lama schaut in die Dunkelheit.' }
           ]
         },
         {
@@ -78,8 +78,8 @@ window.LAUTBUCH_TEILE.ziel = {
           richtig: 'sz-ziel-l1-s11-1',
           wahl: [
             { s: 'sz-ziel-l1-s11-1', wer: 'zauberer', tut: 'zündet licht', was: '', bild: 'Oben auf der Galerie des Leuchtturms schwingt der Zauberer mit langem Bart und schwarzem Zylinderhut seinen Zauberstab, und die große Lampe flammt hell auf; der Lichtstrahl fällt über das nächtliche Meer auf das kleine Segelboot.' },
-            { s: 'sz-ziel-l1-s11-2', wer: 'lama', tut: 'zündet licht', was: '', bild: 'Oben auf der Galerie desselben Leuchtturms schwingt das Lama mit der Strumpfhose auf dem Kopf einen Zauberstab, und die große Lampe flammt hell auf; der Lichtstrahl fällt auf das kleine Segelboot.' },
-            { s: 'sz-ziel-l1-s11-3', wer: 'zauberer', tut: 'zaubert ravioli', was: '', bild: 'Oben auf der Galerie desselben Leuchtturms schwingt der Zauberer mit Zylinderhut seinen Zauberstab, doch die Lampe bleibt dunkel, und aus dem Stab regnet es Ravioli ins Meer.' }
+            { s: 'sz-ziel-l1-s11-2', wer: 'lama', tut: 'zündet licht', was: '', satz: 'Sim-sa-la-bim! Das La-ma zün-det das Licht.', bild: 'Oben auf der Galerie desselben Leuchtturms schwingt das Lama mit der Strumpfhose auf dem Kopf einen Zauberstab, und die große Lampe flammt hell auf; der Lichtstrahl fällt auf das kleine Segelboot.' },
+            { s: 'sz-ziel-l1-s11-3', wer: 'zauberer', tut: 'zaubert ravioli', was: '', satz: 'Sim-sa-la-bim! Der Zau-be-rer zau-bert Ra-vi-o-li.', bild: 'Oben auf der Galerie desselben Leuchtturms schwingt der Zauberer mit Zylinderhut seinen Zauberstab, doch die Lampe bleibt dunkel, und aus dem Stab regnet es Ravioli ins Meer.' }
           ]
         },
         {
@@ -87,8 +87,8 @@ window.LAUTBUCH_TEILE.ziel = {
           richtig: 'sz-ziel-l1-s6-1',
           wahl: [
             { s: 'sz-ziel-l1-s6-1', wer: 'leo + esel + uhu + hund + elch', tut: 'winken', was: '', bild: 'Am Fuß des leuchtenden Leuchtturms stehen ein Löwe, ein Esel, ein Uhu, ein Hund und ein Elch auf dem Steg und winken dem Segelboot zu.' },
-            { s: 'sz-ziel-l1-s6-2', wer: 'leo + esel + uhu + hund + kuh', tut: 'winken', was: '', bild: 'Am Fuß desselben Leuchtturms stehen ein Löwe, ein Esel, ein Uhu, ein Hund und eine Kuh auf dem Steg und winken dem Segelboot zu.' },
-            { s: 'sz-ziel-l1-s6-3', wer: 'leo + esel + uhu + hund + elch', tut: 'schlafen', was: '', bild: 'Am Fuß desselben Leuchtturms sitzen ein Löwe, ein Esel, ein Uhu, ein Hund und ein Elch auf dem Steg und schlafen.' }
+            { s: 'sz-ziel-l1-s6-2', wer: 'leo + esel + uhu + hund + kuh', tut: 'winken', was: '', satz: 'Le-o, E-sel, U-hu, Hund und Kuh win-ken!', bild: 'Am Fuß desselben Leuchtturms stehen ein Löwe, ein Esel, ein Uhu, ein Hund und eine Kuh auf dem Steg und winken dem Segelboot zu.' },
+            { s: 'sz-ziel-l1-s6-3', wer: 'leo + esel + uhu + hund + elch', tut: 'schlafen', was: '', satz: 'Le-o, E-sel, U-hu, Hund und Elch schla-fen!', bild: 'Am Fuß desselben Leuchtturms sitzen ein Löwe, ein Esel, ein Uhu, ein Hund und ein Elch auf dem Steg und schlafen.' }
           ]
         },
         {
@@ -96,8 +96,8 @@ window.LAUTBUCH_TEILE.ziel = {
           richtig: 'sz-ziel-l1-s12-1',
           wahl: [
             { s: 'sz-ziel-l1-s12-1', wer: 'alle', tut: 'jubeln', was: 'schaf', bild: 'Auf dem Steg vor dem leuchtenden Leuchtturm hängen Girlanden über dem Festtisch der Maus; alle jubeln dem Schaf zu, das mit offenem Mund aus dem Boot steigt: vorn das Kind in Latzhose mit ausgebreiteten Armen, der Hund mit Clownsnase, Papa, Mama außer Atem, Oma, Opa, die Kühe mit gebügelten Hüten; auf dem Tisch steht ein angenaschter Kuchen.' },
-            { s: 'sz-ziel-l1-s12-2', wer: 'alle', tut: 'jubeln', was: 'lama', bild: 'Auf demselben Steg unter denselben Girlanden jubeln alle dem Lama zu, das mit offenem Mund aus dem Boot steigt; das Schaf steht unbeachtet daneben.' },
-            { s: 'sz-ziel-l1-s12-3', wer: 'alle', tut: 'stehen herum', was: 'schaf', bild: 'Auf demselben Steg ohne Girlanden und ohne Festtisch stehen alle stumm herum, das Schaf steigt aus dem Boot und schaut sich um.' }
+            { s: 'sz-ziel-l1-s12-2', wer: 'alle', tut: 'jubeln', was: 'lama', satz: 'Ü-ber-ra-schung! Das Fest ist für das La-ma!', bild: 'Auf demselben Steg unter denselben Girlanden jubeln alle dem Lama zu, das mit offenem Mund aus dem Boot steigt; das Schaf steht unbeachtet daneben.' },
+            { s: 'sz-ziel-l1-s12-3', wer: 'alle', tut: 'stehen herum', was: 'schaf', satz: 'Na-nu? Kein Fest für das Schaf?', bild: 'Auf demselben Steg ohne Girlanden und ohne Festtisch stehen alle stumm herum, das Schaf steigt aus dem Boot und schaut sich um.' }
           ]
         },
         {
@@ -105,8 +105,8 @@ window.LAUTBUCH_TEILE.ziel = {
           richtig: 'sz-ziel-l1-s8-1',
           wahl: [
             { s: 'sz-ziel-l1-s8-1', wer: 'kiste', tut: 'liegt', was: 'buch mit roter schleife', bild: 'Oben im runden Leuchtturmzimmer steht die geöffnete Holzkiste der Ziege, darin liegt ein großes Buch, um das die rote Schleife des Schweins gebunden ist.' },
-            { s: 'sz-ziel-l1-s8-2', wer: 'kiste', tut: 'liegt', was: 'buch mit blauer schleife', bild: 'Oben im selben Leuchtturmzimmer steht dieselbe geöffnete Holzkiste, darin liegt dasselbe große Buch mit einer blauen Schleife.' },
-            { s: 'sz-ziel-l1-s8-3', wer: 'kiste', tut: 'liegt', was: 'ball mit roter schleife', bild: 'Oben im selben Leuchtturmzimmer steht dieselbe geöffnete Holzkiste, darin liegt ein bunter Ball mit der roten Schleife.' }
+            { s: 'sz-ziel-l1-s8-2', wer: 'kiste', tut: 'liegt', was: 'buch mit blauer schleife', satz: 'Da-rin liegt ein Buch mit blau-er Schlei-fe.', bild: 'Oben im selben Leuchtturmzimmer steht dieselbe geöffnete Holzkiste, darin liegt dasselbe große Buch mit einer blauen Schleife.' },
+            { s: 'sz-ziel-l1-s8-3', wer: 'kiste', tut: 'liegt', was: 'ball mit roter schleife', satz: 'Da-rin liegt ein Ball mit ro-ter Schlei-fe.', bild: 'Oben im selben Leuchtturmzimmer steht dieselbe geöffnete Holzkiste, darin liegt ein bunter Ball mit der roten Schleife.' }
           ]
         },
         {
@@ -114,8 +114,8 @@ window.LAUTBUCH_TEILE.ziel = {
           richtig: 'sz-ziel-l1-s9-1',
           wahl: [
             { s: 'sz-ziel-l1-s9-1', wer: 'schaf', tut: 'fragt', was: 'buch', bild: 'Oben im Leuchtturmzimmer schnuppert das Schaf neugierig an dem großen Buch aus der Kiste und schaut das Lama fragend an.' },
-            { s: 'sz-ziel-l1-s9-2', wer: 'uhu', tut: 'fragt', was: 'buch', bild: 'Oben im selben Leuchtturmzimmer schnuppert der Uhu neugierig an dem großen Buch aus der Kiste und schaut das Lama fragend an.' },
-            { s: 'sz-ziel-l1-s9-3', wer: 'schaf', tut: 'liest', was: 'buch', bild: 'Oben im selben Leuchtturmzimmer sitzt das Schaf vor dem großen Buch aus der Kiste und liest darin.' }
+            { s: 'sz-ziel-l1-s9-2', wer: 'uhu', tut: 'fragt', was: 'buch', satz: 'Der U-hu fragt: Kann man das es-sen?', bild: 'Oben im selben Leuchtturmzimmer schnuppert der Uhu neugierig an dem großen Buch aus der Kiste und schaut das Lama fragend an.' },
+            { s: 'sz-ziel-l1-s9-3', wer: 'schaf', tut: 'liest', was: 'buch', satz: 'Das Schaf liest in dem Buch.', bild: 'Oben im selben Leuchtturmzimmer sitzt das Schaf vor dem großen Buch aus der Kiste und liest darin.' }
           ]
         },
         {
@@ -123,8 +123,8 @@ window.LAUTBUCH_TEILE.ziel = {
           richtig: 'sz-ziel-l1-s10-1',
           wahl: [
             { s: 'sz-ziel-l1-s10-1', wer: 'lama', tut: 'lacht', was: 'buch', bild: 'Oben im Leuchtturmzimmer hält das Lama das große Buch aufgeschlagen hoch und lacht herzlich, das Schaf schaut staunend zu.' },
-            { s: 'sz-ziel-l1-s10-2', wer: 'schaf', tut: 'lacht', was: 'buch', bild: 'Oben im selben Leuchtturmzimmer hält das Schaf das große Buch aufgeschlagen hoch und lacht herzlich, das Lama schaut staunend zu.' },
-            { s: 'sz-ziel-l1-s10-3', wer: 'lama', tut: 'gähnt', was: 'buch', bild: 'Oben im selben Leuchtturmzimmer hält das Lama das große Buch aufgeschlagen hoch und gähnt müde, das Schaf schaut zu.' }
+            { s: 'sz-ziel-l1-s10-2', wer: 'schaf', tut: 'lacht', was: 'buch', satz: 'Das Schaf lacht: Das kann man le-sen!', bild: 'Oben im selben Leuchtturmzimmer hält das Schaf das große Buch aufgeschlagen hoch und lacht herzlich, das Lama schaut staunend zu.' },
+            { s: 'sz-ziel-l1-s10-3', wer: 'lama', tut: 'gähnt', was: 'buch', satz: 'Das La-ma gähnt mü-de.', bild: 'Oben im selben Leuchtturmzimmer hält das Lama das große Buch aufgeschlagen hoch und gähnt müde, das Schaf schaut zu.' }
           ]
         }
       ]
@@ -148,8 +148,8 @@ window.LAUTBUCH_TEILE.ziel = {
       richtig: 'sz-ziel-boss-1',
       wahl: [
         { s: 'sz-ziel-boss-1', wer: 'kind', tut: 'liest', was: 'buch', bild: 'Oben im Leuchtturm sitzt das Kind mit Latzhose und liest stolz in einem großen aufgeschlagenen Buch, durchs Fenster scheint das Licht.' },
-        { s: 'sz-ziel-boss-2', wer: 'lama', tut: 'liest', was: 'buch', bild: 'Oben im Leuchtturm sitzt ein Lama und liest stolz in einem großen aufgeschlagenen Buch, durchs Fenster scheint das Licht.' },
-        { s: 'sz-ziel-boss-3', wer: 'kind', tut: 'malt', was: 'buch', bild: 'Oben im Leuchtturm sitzt das Kind mit Latzhose und malt mit Buntstiften in ein großes aufgeschlagenes Buch, durchs Fenster scheint das Licht.' }
+        { s: 'sz-ziel-boss-2', wer: 'lama', tut: 'liest', was: 'buch', satz: 'Ge-schafft, das La-ma hat al-les sel-ber ge-le-sen!', bild: 'Oben im Leuchtturm sitzt ein Lama und liest stolz in einem großen aufgeschlagenen Buch, durchs Fenster scheint das Licht.' },
+        { s: 'sz-ziel-boss-3', wer: 'kind', tut: 'malt', was: 'buch', satz: 'Ge-schafft, du hast al-les sel-ber ge-malt!', bild: 'Oben im Leuchtturm sitzt das Kind mit Latzhose und malt mit Buntstiften in ein großes aufgeschlagenes Buch, durchs Fenster scheint das Licht.' }
       ]
     },
     sinnMehr: [
@@ -158,8 +158,8 @@ window.LAUTBUCH_TEILE.ziel = {
         richtig: 'sz-ziel-boss-s1-1',
         wahl: [
           { s: 'sz-ziel-boss-s1-1', wer: 'lama', tut: 'schlägt auf', was: 'buch', bild: 'Oben im Leuchtturm schlägt ein Lama ein großes Buch auf, durchs Fenster scheint das Licht.' },
-          { s: 'sz-ziel-boss-s1-2', wer: 'kind', tut: 'schlägt auf', was: 'buch', bild: 'Oben im selben Leuchtturm schlägt das Kind mit Latzhose dasselbe große Buch auf, durchs Fenster scheint das Licht.' },
-          { s: 'sz-ziel-boss-s1-3', wer: 'lama', tut: 'klappt zu', was: 'buch', bild: 'Oben im selben Leuchtturm klappt ein Lama dasselbe große Buch zu, durchs Fenster scheint das Licht.' }
+          { s: 'sz-ziel-boss-s1-2', wer: 'kind', tut: 'schlägt auf', was: 'buch', satz: 'Das Kind schlägt das Buch auf.', bild: 'Oben im selben Leuchtturm schlägt das Kind mit Latzhose dasselbe große Buch auf, durchs Fenster scheint das Licht.' },
+          { s: 'sz-ziel-boss-s1-3', wer: 'lama', tut: 'klappt zu', was: 'buch', satz: 'Das La-ma klappt das Buch zu.', bild: 'Oben im selben Leuchtturm klappt ein Lama dasselbe große Buch zu, durchs Fenster scheint das Licht.' }
         ]
       },
       {
@@ -167,8 +167,8 @@ window.LAUTBUCH_TEILE.ziel = {
         richtig: 'sz-ziel-boss-s4-1',
         wahl: [
           { s: 'sz-ziel-boss-s4-1', wer: 'buch', tut: 'zeigt', was: 'bilder der reise', bild: 'Nahaufnahme des aufgeschlagenen Geschenkbuchs im Leuchtturm: gemalte Bilder der Reise, das Schaf schlafend im Käse, Puma mit Opas Hut, das Kajak mit Wäschesegel; daneben hält das Lama stolz einen Pinsel.' },
-          { s: 'sz-ziel-boss-s4-2', wer: 'buch', tut: 'zeigt', was: 'leere seiten', bild: 'Nahaufnahme desselben aufgeschlagenen Buchs im Leuchtturm: die Seiten sind ganz leer und weiß; daneben hält das Lama einen Pinsel.' },
-          { s: 'sz-ziel-boss-s4-3', wer: 'buch', tut: 'zeigt', was: 'blumen', bild: 'Nahaufnahme desselben aufgeschlagenen Buchs im Leuchtturm: auf den Seiten sind nur gepresste Blumen; daneben hält das Lama einen Pinsel.' }
+          { s: 'sz-ziel-boss-s4-2', wer: 'buch', tut: 'zeigt', was: 'leere seiten', satz: 'Da-rin hat das La-ma noch nichts ge-malt.', bild: 'Nahaufnahme desselben aufgeschlagenen Buchs im Leuchtturm: die Seiten sind ganz leer und weiß; daneben hält das Lama einen Pinsel.' },
+          { s: 'sz-ziel-boss-s4-3', wer: 'buch', tut: 'zeigt', was: 'blumen', satz: 'Da-rin hat das La-ma Blu-men ge-sam-melt.', bild: 'Nahaufnahme desselben aufgeschlagenen Buchs im Leuchtturm: auf den Seiten sind nur gepresste Blumen; daneben hält das Lama einen Pinsel.' }
         ]
       },
       {
@@ -176,8 +176,8 @@ window.LAUTBUCH_TEILE.ziel = {
         richtig: 'sz-ziel-boss-s5-1',
         wahl: [
           { s: 'sz-ziel-boss-s5-1', wer: 'schaf', tut: 'zeigt auf sich', was: '', bild: 'Oben im Leuchtturm zeigt das Schaf mit dem Huf auf ein Bild im Geschenkbuch, auf dem es selbst im Käse schläft, und strahlt über das ganze Gesicht; das Kind in Latzhose lacht mit.' },
-          { s: 'sz-ziel-boss-s5-2', wer: 'lama', tut: 'zeigt auf sich', was: '', bild: 'Oben im selben Leuchtturm zeigt das Lama mit dem Huf auf ein Bild im Geschenkbuch, auf dem es selbst mit der Strumpfhose als Hut zu sehen ist, und strahlt; das Kind lacht mit.' },
-          { s: 'sz-ziel-boss-s5-3', wer: 'schaf', tut: 'schläft', was: '', bild: 'Oben im selben Leuchtturm ist das Schaf mit dem Kopf auf dem aufgeschlagenen Geschenkbuch eingeschlafen; das Kind in Latzhose deckt es zu.' }
+          { s: 'sz-ziel-boss-s5-2', wer: 'lama', tut: 'zeigt auf sich', was: '', satz: 'Das La-ma ruft: Da bin ja ich!', bild: 'Oben im selben Leuchtturm zeigt das Lama mit dem Huf auf ein Bild im Geschenkbuch, auf dem es selbst mit der Strumpfhose als Hut zu sehen ist, und strahlt; das Kind lacht mit.' },
+          { s: 'sz-ziel-boss-s5-3', wer: 'schaf', tut: 'schläft', was: '', satz: 'Das Schaf schläft auf dem Buch.', bild: 'Oben im selben Leuchtturm ist das Schaf mit dem Kopf auf dem aufgeschlagenen Geschenkbuch eingeschlafen; das Kind in Latzhose deckt es zu.' }
         ]
       },
       {
@@ -185,8 +185,8 @@ window.LAUTBUCH_TEILE.ziel = {
         richtig: 'sz-ziel-boss-s3-1',
         wahl: [
           { s: 'sz-ziel-boss-s3-1', wer: 'schaf', tut: 'flüstert', was: '', bild: 'Oben im Leuchtturm flüstert das Schaf dem Kind mit Latzhose etwas ins Ohr, und beide beugen sich zusammen mit dem Lama wieder über das große Buch.' },
-          { s: 'sz-ziel-boss-s3-2', wer: 'hund', tut: 'flüstert', was: '', bild: 'Oben im selben Leuchtturm flüstert ein Hund dem Kind mit Latzhose etwas ins Ohr, und beide beugen sich zusammen mit dem Lama wieder über das große Buch.' },
-          { s: 'sz-ziel-boss-s3-3', wer: 'schaf', tut: 'schläft', was: '', bild: 'Oben im selben Leuchtturm schläft das Schaf zusammengerollt neben dem Kind mit Latzhose, das mit dem Lama über dem großen Buch sitzt.' }
+          { s: 'sz-ziel-boss-s3-2', wer: 'hund', tut: 'flüstert', was: '', satz: 'Der Hund flüs-tert: Und jetzt? Jetzt le-sen wir wei-ter!', bild: 'Oben im selben Leuchtturm flüstert ein Hund dem Kind mit Latzhose etwas ins Ohr, und beide beugen sich zusammen mit dem Lama wieder über das große Buch.' },
+          { s: 'sz-ziel-boss-s3-3', wer: 'schaf', tut: 'schläft', was: '', satz: 'Das Schaf schläft. Die an-de-ren le-sen wei-ter.', bild: 'Oben im selben Leuchtturm schläft das Schaf zusammengerollt neben dem Kind mit Latzhose, das mit dem Lama über dem großen Buch sitzt.' }
         ]
       }
     ]

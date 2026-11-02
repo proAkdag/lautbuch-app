@@ -49,8 +49,8 @@ window.LAUTBUCH_TEILE.e = {
         richtig: 'sz-e-l2-1',
         wahl: [
           { s: 'sz-e-l2-1', wer: 'zwei hasen', tut: 'lesen', was: '', bild: 'Zwei Hasen sitzen auf einem Teppich in einer gemütlichen Bücherecke und lesen jeder in einem Buch.' },
-          { s: 'sz-e-l2-2', wer: 'zwei esel', tut: 'lesen', was: '', bild: 'Zwei Esel sitzen auf demselben Teppich in derselben Bücherecke und lesen jeder in einem Buch.' },
-          { s: 'sz-e-l2-3', wer: 'zwei hasen', tut: 'malen', was: '', bild: 'Zwei Hasen sitzen auf demselben Teppich in derselben Bücherecke und malen jeder auf einem Blatt.' }
+          { s: 'sz-e-l2-2', wer: 'zwei esel', tut: 'lesen', was: '', satz: 'Ru-he! E-sel le-sen.', bild: 'Zwei Esel sitzen auf demselben Teppich in derselben Bücherecke und lesen jeder in einem Buch.' },
+          { s: 'sz-e-l2-3', wer: 'zwei hasen', tut: 'malen', was: '', satz: 'Ru-he! Ha-sen ma-len.', bild: 'Zwei Hasen sitzen auf demselben Teppich in derselben Bücherecke und malen jeder auf einem Blatt.' }
         ]
       },
       szene: { heft: 'Wer liest? Hasen oder Esel? Lesen oder malen? Beides steht im Satz.' }
@@ -78,8 +78,8 @@ window.LAUTBUCH_TEILE.e = {
         richtig: 'sz-e-l3-1',
         wahl: [
           { s: 'sz-e-l3-1', wer: 'kamel', tut: 'badet', was: 'enten', bild: 'Ein Kamel sitzt in einer Badewanne voller Schaum, der Höcker ragt deutlich aus dem Schaum, um es herum schwimmen drei kleine Enten.' },
-          { s: 'sz-e-l3-2', wer: 'lama', tut: 'badet', was: 'enten', bild: 'Ein Lama sitzt in derselben Badewanne voller Schaum, um es herum schwimmen drei kleine Enten.' },
-          { s: 'sz-e-l3-3', wer: 'kamel', tut: 'badet', was: 'amseln', bild: 'Ein Kamel sitzt in derselben Badewanne voller Schaum, der Höcker ragt deutlich aus dem Schaum, um es herum planschen drei Amseln.' }
+          { s: 'sz-e-l3-2', wer: 'lama', tut: 'badet', was: 'enten', satz: 'Das La-ma ba-det mit En-ten.', bild: 'Ein Lama sitzt in derselben Badewanne voller Schaum, um es herum schwimmen drei kleine Enten.' },
+          { s: 'sz-e-l3-3', wer: 'kamel', tut: 'badet', was: 'amseln', satz: 'Das Ka-mel ba-det mit Am-seln.', bild: 'Ein Kamel sitzt in derselben Badewanne voller Schaum, der Höcker ragt deutlich aus dem Schaum, um es herum planschen drei Amseln.' }
         ]
       }
     },
@@ -108,8 +108,8 @@ window.LAUTBUCH_TEILE.e = {
         richtig: 'sz-e-l4-1',
         wahl: [
           { s: 'sz-e-l4-1', wer: 'schaf', tut: 'kuschelt', was: 'zebra', bild: 'Ein Schaf und ein Zebra liegen auf einer Wiese dicht beieinander und kuscheln sich aneinander.' },
-          { s: 'sz-e-l4-2', wer: 'schaf', tut: 'tanzt', was: 'zebra', bild: 'Ein Schaf und ein Zebra tanzen auf derselben Wiese miteinander.' },
-          { s: 'sz-e-l4-3', wer: 'schaf', tut: 'kuschelt', was: 'welpe', bild: 'Ein Schaf und ein kleiner Welpe liegen auf derselben Wiese dicht beieinander und kuscheln sich aneinander.' }
+          { s: 'sz-e-l4-2', wer: 'schaf', tut: 'tanzt', was: 'zebra', satz: 'Das Schaf tanzt mit dem Ze-bra.', bild: 'Ein Schaf und ein Zebra tanzen auf derselben Wiese miteinander.' },
+          { s: 'sz-e-l4-3', wer: 'schaf', tut: 'kuschelt', was: 'welpe', satz: 'Das Schaf ku-schelt mit dem Wel-pen.', bild: 'Ein Schaf und ein kleiner Welpe liegen auf derselben Wiese dicht beieinander und kuscheln sich aneinander.' }
         ]
       },
       sinnMehr: [
@@ -118,8 +118,8 @@ window.LAUTBUCH_TEILE.e = {
           richtig: 'sz-e-l4-s1-1',
           wahl: [
             { s: 'sz-e-l4-s1-1', wer: 'zebra', tut: 'ruft', was: 'schaf', bild: 'Ein Zebra steht auf einer Wiese und ruft mit weit offenem Maul, im Gras dahinter liegt ein Schaf zusammengerollt wie eine kleine weiße Wolke.' },
-            { s: 'sz-e-l4-s1-2', wer: 'esel', tut: 'ruft', was: 'schaf', bild: 'Ein Esel steht auf derselben Wiese und ruft mit weit offenem Maul, im Gras dahinter liegt dasselbe Schaf zusammengerollt wie eine kleine weiße Wolke.' },
-            { s: 'sz-e-l4-s1-3', wer: 'zebra', tut: 'schläft', was: 'schaf', bild: 'Ein Zebra liegt auf derselben Wiese und schläft, im Gras dahinter liegt dasselbe Schaf zusammengerollt wie eine kleine weiße Wolke.' }
+            { s: 'sz-e-l4-s1-2', wer: 'esel', tut: 'ruft', was: 'schaf', satz: 'E-sel ruft: Schaf, wo bist du?', bild: 'Ein Esel steht auf derselben Wiese und ruft mit weit offenem Maul, im Gras dahinter liegt dasselbe Schaf zusammengerollt wie eine kleine weiße Wolke.' },
+            { s: 'sz-e-l4-s1-3', wer: 'zebra', tut: 'schläft', was: 'schaf', ohneSatz: 'holprig nach Pruefer 02.11. (PRUEFUNG_SAETZE.md), Zero: rausnehmen; nie Ziel der Geschichte', bild: 'Ein Zebra liegt auf derselben Wiese und schläft, im Gras dahinter liegt dasselbe Schaf zusammengerollt wie eine kleine weiße Wolke.' }
           ]
         }
       ]
@@ -142,8 +142,8 @@ window.LAUTBUCH_TEILE.e = {
       richtig: 'sz-e-boss-1',
       wahl: [
         { s: 'sz-e-boss-1', wer: 'lama', tut: 'malt rosa', was: 'esel', bild: 'Ein Lama tupft mit einem Pinsel große Tupfen in hellem Rosa auf das Fell eines Esels, der geduldig auf einer Wiese steht.' },
-        { s: 'sz-e-boss-2', wer: 'lama', tut: 'malt lila', was: 'esel', bild: 'Ein Lama tupft mit einem Pinsel große Tupfen in kräftigem Dunkellila auf das Fell eines Esels, der geduldig auf derselben Wiese steht.' },
-        { s: 'sz-e-boss-3', wer: 'lama', tut: 'malt rosa', was: 'kamel', bild: 'Ein Lama tupft mit einem Pinsel große Tupfen in hellem Rosa auf das Fell eines Kamels, das geduldig auf derselben Wiese steht.' }
+        { s: 'sz-e-boss-2', wer: 'lama', tut: 'malt lila', was: 'esel', satz: 'Hi-hi! Das La-ma malt den E-sel li-la.', bild: 'Ein Lama tupft mit einem Pinsel große Tupfen in kräftigem Dunkellila auf das Fell eines Esels, der geduldig auf derselben Wiese steht.' },
+        { s: 'sz-e-boss-3', wer: 'lama', tut: 'malt rosa', was: 'kamel', satz: 'Hi-hi! Das La-ma malt das Ka-mel ro-sa.', bild: 'Ein Lama tupft mit einem Pinsel große Tupfen in hellem Rosa auf das Fell eines Kamels, das geduldig auf derselben Wiese steht.' }
       ]
     },
     sinnMehr: [
@@ -152,8 +152,8 @@ window.LAUTBUCH_TEILE.e = {
         richtig: 'sz-e-boss-s1-1',
         wahl: [
           { s: 'sz-e-boss-s1-1', wer: 'lama', tut: 'holt', was: 'pinsel', bild: 'Ein Lama schleicht auf Zehenspitzen über eine Wiese und trägt einen großen Pinsel im Maul.' },
-          { s: 'sz-e-boss-s1-2', wer: 'esel', tut: 'holt', was: 'pinsel', bild: 'Ein Esel schleicht auf Zehenspitzen über dieselbe Wiese und trägt einen großen Pinsel im Maul.' },
-          { s: 'sz-e-boss-s1-3', wer: 'lama', tut: 'holt', was: 'besen', bild: 'Ein Lama schleicht auf Zehenspitzen über dieselbe Wiese und trägt einen Besen im Maul.' }
+          { s: 'sz-e-boss-s1-2', wer: 'esel', tut: 'holt', was: 'pinsel', satz: 'Pst! E-sel holt den Pin-sel.', bild: 'Ein Esel schleicht auf Zehenspitzen über dieselbe Wiese und trägt einen großen Pinsel im Maul.' },
+          { s: 'sz-e-boss-s1-3', wer: 'lama', tut: 'holt', was: 'besen', satz: 'Pst! Das La-ma holt den Be-sen.', bild: 'Ein Lama schleicht auf Zehenspitzen über dieselbe Wiese und trägt einen Besen im Maul.' }
         ]
       },
       {
@@ -161,8 +161,8 @@ window.LAUTBUCH_TEILE.e = {
         richtig: 'sz-e-boss-s3-1',
         wahl: [
           { s: 'sz-e-boss-s3-1', wer: 'hasen + enten + zebra', tut: 'rufen rosa', was: '', bild: 'Zwei Hasen, zwei Enten und ein Zebra stehen auf derselben Wiese in einer Reihe vor dem Lama mit dem Pinsel, recken Pfoten, Flügel und Huf hoch und rufen begeistert; daneben strahlt der Esel mit seinen hellrosa Tupfen.' },
-          { s: 'sz-e-boss-s3-2', wer: 'hasen + enten + kamel', tut: 'rufen rosa', was: '', bild: 'Zwei Hasen, zwei Enten und ein Kamel stehen auf derselben Wiese in einer Reihe vor dem Lama mit dem Pinsel, recken Pfoten, Flügel und Huf hoch und rufen begeistert; daneben strahlt der Esel mit seinen hellrosa Tupfen.' },
-          { s: 'sz-e-boss-s3-3', wer: 'hasen + enten + zebra', tut: 'laufen weg', was: '', bild: 'Zwei Hasen, zwei Enten und ein Zebra rennen auf derselben Wiese vor dem Lama mit dem Pinsel davon; daneben steht der Esel mit seinen hellrosa Tupfen.' }
+          { s: 'sz-e-boss-s3-2', wer: 'hasen + enten + kamel', tut: 'rufen rosa', was: '', satz: 'Ha-sen, En-ten, Ka-mel ru-fen: Ro-sa! Ro-sa!', bild: 'Zwei Hasen, zwei Enten und ein Kamel stehen auf derselben Wiese in einer Reihe vor dem Lama mit dem Pinsel, recken Pfoten, Flügel und Huf hoch und rufen begeistert; daneben strahlt der Esel mit seinen hellrosa Tupfen.' },
+          { s: 'sz-e-boss-s3-3', wer: 'hasen + enten + zebra', tut: 'laufen weg', was: '', satz: 'Ha-sen, En-ten, Ze-bra ra-sen fort!', bild: 'Zwei Hasen, zwei Enten und ein Zebra rennen auf derselben Wiese vor dem Lama mit dem Pinsel davon; daneben steht der Esel mit seinen hellrosa Tupfen.' }
         ]
       }
     ]

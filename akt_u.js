@@ -48,8 +48,8 @@ window.LAUTBUCH_TEILE.u = {
         richtig: 'sz-u-l2-1',
         wahl: [
           { s: 'sz-u-l2-1', wer: 'zwei uhus', tut: 'sitzt', was: 'mus', bild: 'Zwei Uhus sitzen in einer großen Schüssel Apfelmus auf einem Küchentisch und schauen erstaunt.' },
-          { s: 'sz-u-l2-2', wer: 'zwei ufos', tut: 'sitzt', was: 'mus', bild: 'Zwei kleine Ufos stecken in derselben Schüssel Apfelmus auf demselben Küchentisch.' },
-          { s: 'sz-u-l2-3', wer: 'zwei uhus', tut: 'sitzt', was: 'pasta', bild: 'Zwei Uhus sitzen in derselben Schüssel auf demselben Küchentisch, die voller Nudeln ist, und schauen erstaunt.' }
+          { s: 'sz-u-l2-2', wer: 'zwei ufos', tut: 'sitzt', was: 'mus', satz: 'Na-nu? U-fos im Mus!', bild: 'Zwei kleine Ufos stecken in derselben Schüssel Apfelmus auf demselben Küchentisch.' },
+          { s: 'sz-u-l2-3', wer: 'zwei uhus', tut: 'sitzt', was: 'pasta', satz: 'Na-nu? U-hus in Pas-ta!', bild: 'Zwei Uhus sitzen in derselben Schüssel auf demselben Küchentisch, die voller Nudeln ist, und schauen erstaunt.' }
         ]
       },
       szene: { heft: 'Uhus oder Ufos? Nur ein Laut ist anders: H oder F. Und worin sitzen sie?' }
@@ -79,8 +79,8 @@ window.LAUTBUCH_TEILE.u = {
         richtig: 'sz-u-l3-1',
         wahl: [
           { s: 'sz-u-l3-1', wer: 'puma', tut: 'turnt', was: 'bus', bild: 'Ein Puma macht in einem Bus zwischen den Sitzen einen Handstand.' },
-          { s: 'sz-u-l3-2', wer: 'puma', tut: 'hupt', was: 'bus', bild: 'Ein Puma sitzt im selben Bus vorn am Lenkrad und drückt fröhlich auf die Hupe.' },
-          { s: 'sz-u-l3-3', wer: 'kakadu', tut: 'turnt', was: 'bus', bild: 'Ein Kakadu macht im selben Bus zwischen den Sitzen einen Handstand.' }
+          { s: 'sz-u-l3-2', wer: 'puma', tut: 'hupt', was: 'bus', satz: 'Tut, tut! Pu-ma hupt im Bus!', bild: 'Ein Puma sitzt im selben Bus vorn am Lenkrad und drückt fröhlich auf die Hupe.' },
+          { s: 'sz-u-l3-3', wer: 'kakadu', tut: 'turnt', was: 'bus', satz: 'Tut, tut! Ka-ka-du turnt im Bus!', bild: 'Ein Kakadu macht im selben Bus zwischen den Sitzen einen Handstand.' }
         ]
       },
       sinnMehr: [
@@ -89,8 +89,8 @@ window.LAUTBUCH_TEILE.u = {
           richtig: 'sz-u-l3-s2-1',
           wahl: [
             { s: 'sz-u-l3-s2-1', wer: 'puma', tut: 'turnt', was: 'opas hut', bild: 'Im selben Bus springt der Puma turnend zwischen den Sitzen durch die Luft (Turnsprung, alle vier Pfoten sichtbar, der Schwanz geschwungen) und trägt dabei Opas grünen Filzhut mit Feder; Opa sitzt daneben ohne Hut und staunt.' },
-            { s: 'sz-u-l3-s2-2', wer: 'kakadu', tut: 'turnt', was: 'opas hut', bild: 'Im selben Bus macht ein Kakadu zwischen den Sitzen einen Handstand und trägt dabei Opas grünen Filzhut mit Feder; Opa sitzt daneben ohne Hut und staunt.' },
-            { s: 'sz-u-l3-s2-3', wer: 'puma', tut: 'turnt', was: 'omas hut', bild: 'Im selben Bus springt der Puma turnend zwischen den Sitzen durch die Luft (Turnsprung, alle vier Pfoten sichtbar, der Schwanz geschwungen) und trägt dabei Omas Strohhut mit Blume; Oma sitzt daneben ohne Hut und staunt.' }
+            { s: 'sz-u-l3-s2-2', wer: 'kakadu', tut: 'turnt', was: 'opas hut', satz: 'Ka-ka-du turnt mit O-pas Hut!', bild: 'Im selben Bus macht ein Kakadu zwischen den Sitzen einen Handstand und trägt dabei Opas grünen Filzhut mit Feder; Opa sitzt daneben ohne Hut und staunt.' },
+            { s: 'sz-u-l3-s2-3', wer: 'puma', tut: 'turnt', was: 'omas hut', satz: 'Pu-ma turnt mit O-mas Hut!', bild: 'Im selben Bus springt der Puma turnend zwischen den Sitzen durch die Luft (Turnsprung, alle vier Pfoten sichtbar, der Schwanz geschwungen) und trägt dabei Omas Strohhut mit Blume; Oma sitzt daneben ohne Hut und staunt.' }
           ]
         }
       ]
@@ -120,8 +120,8 @@ window.LAUTBUCH_TEILE.u = {
         richtig: 'sz-u-l4-1',
         wahl: [
           { s: 'sz-u-l4-1', wer: 'schaf', tut: 'nascht', was: 'busch', bild: 'Ein Schaf steht in einem grünen Busch neben einer Bushaltestelle und knabbert an den Blättern.' },
-          { s: 'sz-u-l4-2', wer: 'schaf', tut: 'nascht', was: 'bus', bild: 'Ein Schaf sitzt in einem Bus an derselben Haltestelle und knabbert an einem Blatt.' },
-          { s: 'sz-u-l4-3', wer: 'lama', tut: 'nascht', was: 'busch', bild: 'Ein Lama steht in demselben grünen Busch neben der Bushaltestelle und knabbert an den Blättern.' }
+          { s: 'sz-u-l4-2', wer: 'schaf', tut: 'nascht', was: 'bus', satz: 'Das Schaf nascht im Bus.', bild: 'Ein Schaf sitzt in einem Bus an derselben Haltestelle und knabbert an einem Blatt.' },
+          { s: 'sz-u-l4-3', wer: 'lama', tut: 'nascht', was: 'busch', satz: 'Das La-ma nascht im Busch.', bild: 'Ein Lama steht in demselben grünen Busch neben der Bushaltestelle und knabbert an den Blättern.' }
         ]
       },
       sinnMehr: [
@@ -130,8 +130,8 @@ window.LAUTBUCH_TEILE.u = {
           richtig: 'sz-u-l4-s1-1',
           wahl: [
             { s: 'sz-u-l4-s1-1', wer: 'lama', tut: 'hupt', was: 'bus', bild: 'Ein Lama sitzt am Steuer eines Busses an der Bushaltestelle und drückt kräftig auf die Hupe.' },
-            { s: 'sz-u-l4-s1-2', wer: 'schaf', tut: 'hupt', was: 'bus', bild: 'Ein Schaf sitzt am Steuer desselben Busses an der Bushaltestelle und drückt kräftig auf die Hupe.' },
-            { s: 'sz-u-l4-s1-3', wer: 'lama', tut: 'hupt', was: 'busch', bild: 'Ein Lama steht im grünen Busch neben derselben Bushaltestelle und drückt kräftig auf eine Fahrradhupe.' }
+            { s: 'sz-u-l4-s1-2', wer: 'schaf', tut: 'hupt', was: 'bus', satz: 'Das Schaf hupt im Bus.', bild: 'Ein Schaf sitzt am Steuer desselben Busses an der Bushaltestelle und drückt kräftig auf die Hupe.' },
+            { s: 'sz-u-l4-s1-3', wer: 'lama', tut: 'hupt', was: 'busch', satz: 'Das La-ma hupt im Busch.', bild: 'Ein Lama steht im grünen Busch neben derselben Bushaltestelle und drückt kräftig auf eine Fahrradhupe.' }
           ]
         }
       ]
@@ -154,8 +154,8 @@ window.LAUTBUCH_TEILE.u = {
       richtig: 'sz-u-boss-1',
       wahl: [
         { s: 'sz-u-boss-1', wer: 'uhu', tut: 'turnt', was: 'ufo', bild: 'Ein Uhu schlägt in einem runden Ufo mit Fenstern einen Purzelbaum.' },
-        { s: 'sz-u-boss-2', wer: 'puma', tut: 'turnt', was: 'ufo', bild: 'Ein Puma schlägt im selben runden Ufo mit Fenstern einen Purzelbaum.' },
-        { s: 'sz-u-boss-3', wer: 'uhu', tut: 'turnt', was: 'bus', bild: 'Ein Uhu schlägt in einem Bus zwischen den Sitzen einen Purzelbaum.' }
+        { s: 'sz-u-boss-2', wer: 'puma', tut: 'turnt', was: 'ufo', satz: 'A-ha! Pu-ma turnt im U-fo!', bild: 'Ein Puma schlägt im selben runden Ufo mit Fenstern einen Purzelbaum.' },
+        { s: 'sz-u-boss-3', wer: 'uhu', tut: 'turnt', was: 'bus', satz: 'A-ha! U-hu turnt im Bus!', bild: 'Ein Uhu schlägt in einem Bus zwischen den Sitzen einen Purzelbaum.' }
       ]
     },
     sinnMehr: [
@@ -164,8 +164,8 @@ window.LAUTBUCH_TEILE.u = {
         richtig: 'sz-u-boss-s1-1',
         wahl: [
           { s: 'sz-u-boss-s1-1', wer: 'busch', tut: 'rumst', was: '', bild: 'Ein großer grüner Busch neben der Bushaltestelle wackelt heftig, Blätter und kleine Staubwolken fliegen heraus.' },
-          { s: 'sz-u-boss-s1-2', wer: 'bus', tut: 'rumst', was: '', bild: 'Der Bus an derselben Bushaltestelle wackelt heftig und kleine Staubwolken fliegen heraus, der grüne Busch daneben steht still.' },
-          { s: 'sz-u-boss-s1-3', wer: 'busch', tut: 'steht still', was: '', bild: 'Derselbe große grüne Busch neben der Bushaltestelle steht ganz still in der Sonne.' }
+          { s: 'sz-u-boss-s1-2', wer: 'bus', tut: 'rumst', was: '', satz: 'Na-nu, was rumst da im Bus?', bild: 'Der Bus an derselben Bushaltestelle wackelt heftig und kleine Staubwolken fliegen heraus, der grüne Busch daneben steht still.' },
+          { s: 'sz-u-boss-s1-3', wer: 'busch', tut: 'steht still', was: '', ohneSatz: 'still im U-Lautvorrat nicht sagbar, Satz passte auch zu Bild 2 (Prüfer 02.11.); nie Ziel der Geschichte', bild: 'Derselbe große grüne Busch neben der Bushaltestelle steht ganz still in der Sonne.' }
         ]
       },
       {
@@ -173,8 +173,8 @@ window.LAUTBUCH_TEILE.u = {
         richtig: 'sz-u-boss-s3-1',
         wahl: [
           { s: 'sz-u-boss-s3-1', wer: 'puma + schaf', tut: 'turnt + hupt', was: '', bild: 'Im runden Ufo schlagen ein Uhu und ein Puma zusammen einen Purzelbaum, davor steht ein Schaf und drückt auf eine große Hupe.' },
-          { s: 'sz-u-boss-s3-2', wer: 'lama + schaf', tut: 'turnt + hupt', was: '', bild: 'Im selben runden Ufo schlagen der Uhu und ein Lama zusammen einen Purzelbaum, davor steht ein Schaf und drückt auf eine große Hupe.' },
-          { s: 'sz-u-boss-s3-3', wer: 'puma + schaf', tut: 'turnt + schläft', was: '', bild: 'Im selben runden Ufo schlagen der Uhu und ein Puma zusammen einen Purzelbaum, davor liegt ein Schaf und schläft.' }
+          { s: 'sz-u-boss-s3-2', wer: 'lama + schaf', tut: 'turnt + hupt', was: '', satz: 'Hu-hu! La-ma turnt mit, das Schaf hupt!', bild: 'Im selben runden Ufo schlagen der Uhu und ein Lama zusammen einen Purzelbaum, davor steht ein Schaf und drückt auf eine große Hupe.' },
+          { s: 'sz-u-boss-s3-3', wer: 'puma + schaf', tut: 'turnt + schläft', was: '', satz: 'Hu-hu! Pu-ma turnt mit. Schlaf, Schaf, schlaf!', bild: 'Im selben runden Ufo schlagen der Uhu und ein Puma zusammen einen Purzelbaum, davor liegt ein Schaf und schläft.' }
         ]
       }
     ]

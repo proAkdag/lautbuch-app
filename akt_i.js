@@ -48,8 +48,8 @@ window.LAUTBUCH_TEILE.i = {
         richtig: 'sz-i-l2-1',
         wahl: [
           { s: 'sz-i-l2-1', wer: 'drei mini-lamas', tut: 'stehen', was: 'im film', bild: 'Ein großer Fernseher in einem Wohnzimmer zeigt drei winzige Babylamas auf einer Wiese, jedes nur so groß wie die Salami, die im Film neben ihnen liegt.' },
-          { s: 'sz-i-l2-2', wer: 'drei lamas', tut: 'stehen', was: 'im film', bild: 'Derselbe Fernseher im selben Wohnzimmer zeigt drei große Lamas auf einer Wiese, die weit über die Salami neben ihnen hinausragen.' },
-          { s: 'sz-i-l2-3', wer: 'drei mini-lamas', tut: 'stehen', was: 'im zimmer', bild: 'Drei winzige Babylamas, jedes nur so groß wie die Salami neben ihnen, stehen im selben Wohnzimmer vor dem ausgeschalteten Fernseher.' }
+          { s: 'sz-i-l2-2', wer: 'drei lamas', tut: 'stehen', was: 'im film', ohneSatz: 'holprig nach Pruefer 02.11. (PRUEFUNG_SAETZE.md), Zero: rausnehmen; nie Ziel der Geschichte', bild: 'Derselbe Fernseher im selben Wohnzimmer zeigt drei große Lamas auf einer Wiese, die weit über die Salami neben ihnen hinausragen.' },
+          { s: 'sz-i-l2-3', wer: 'drei mini-lamas', tut: 'stehen', was: 'im zimmer', ohneSatz: 'holprig nach Pruefer 02.11. (PRUEFUNG_SAETZE.md), Zero: rausnehmen; nie Ziel der Geschichte', bild: 'Drei winzige Babylamas, jedes nur so groß wie die Salami neben ihnen, stehen im selben Wohnzimmer vor dem ausgeschalteten Fernseher.' }
         ]
       },
       szene: { heft: 'Kleine Lamas oder große? Im Film oder echt im Zimmer? Beides steht im Satz: Mi-ni und im Film.' }
@@ -77,8 +77,8 @@ window.LAUTBUCH_TEILE.i = {
         richtig: 'sz-i-l3-1',
         wahl: [
           { s: 'sz-i-l3-1', wer: 'lama', tut: 'filmt', was: 'bambi', bild: 'Ein Lama hält eine kleine Kamera und filmt ein Rehkitz, das in einem Tipi sitzt.' },
-          { s: 'sz-i-l3-2', wer: 'lama', tut: 'malt', was: 'bambi', bild: 'Ein Lama steht vor demselben Tipi an einer Staffelei und malt das Rehkitz, das darin sitzt.' },
-          { s: 'sz-i-l3-3', wer: 'lama', tut: 'filmt', was: 'pirat', bild: 'Ein Lama hält eine kleine Kamera und filmt einen kleinen Piraten mit Augenklappe, der in demselben Tipi sitzt.' }
+          { s: 'sz-i-l3-2', wer: 'lama', tut: 'malt', was: 'bambi', satz: 'Das La-ma malt Bam-bi im Ti-pi.', bild: 'Ein Lama steht vor demselben Tipi an einer Staffelei und malt das Rehkitz, das darin sitzt.' },
+          { s: 'sz-i-l3-3', wer: 'lama', tut: 'filmt', was: 'pirat', satz: 'Das La-ma filmt Pi-rat Tim im Ti-pi.', bild: 'Ein Lama hält eine kleine Kamera und filmt einen kleinen Piraten mit Augenklappe, der in demselben Tipi sitzt.' }
         ]
       }
     },
@@ -107,8 +107,8 @@ window.LAUTBUCH_TEILE.i = {
         richtig: 'sz-i-l4-1',
         wahl: [
           { s: 'sz-i-l4-1', wer: 'lama', tut: 'fischt', was: 'kiwis', bild: 'Ein Lama steht am Ufer eines Sees und zieht mit einer Angel drei Kiwis aus dem Wasser.' },
-          { s: 'sz-i-l4-2', wer: 'hirsch', tut: 'fischt', was: 'kiwis', bild: 'Ein Hirsch steht am selben Ufer und zieht mit einer Angel drei Kiwis aus dem Wasser.' },
-          { s: 'sz-i-l4-3', wer: 'lama', tut: 'fischt', was: 'fisch', bild: 'Ein Lama steht am selben Ufer und zieht mit einer Angel einen Fisch aus dem Wasser.' }
+          { s: 'sz-i-l4-2', wer: 'hirsch', tut: 'fischt', was: 'kiwis', satz: 'Hi-hi! Hirsch fischt Ki-wis.', bild: 'Ein Hirsch steht am selben Ufer und zieht mit einer Angel drei Kiwis aus dem Wasser.' },
+          { s: 'sz-i-l4-3', wer: 'lama', tut: 'fischt', was: 'fisch', satz: 'Hi-hi! Das La-ma fischt Fisch.', bild: 'Ein Lama steht am selben Ufer und zieht mit einer Angel einen Fisch aus dem Wasser.' }
         ]
       },
       sinnMehr: [
@@ -117,8 +117,8 @@ window.LAUTBUCH_TEILE.i = {
           richtig: 'sz-i-l4-s1-1',
           wahl: [
             { s: 'sz-i-l4-s1-1', wer: 'schaf + lama', tut: 'wischt + fischt', was: '', bild: 'Am Ufer eines Sees wischt ein Schaf mit einem Mopp den Holzsteg, daneben steht ein Lama und angelt mit einer Angel.' },
-            { s: 'sz-i-l4-s1-2', wer: 'hirsch + lama', tut: 'wischt + fischt', was: '', bild: 'Am selben Ufer wischt ein Hirsch mit einem Mopp den Holzsteg, daneben steht das Lama und angelt mit einer Angel.' },
-            { s: 'sz-i-l4-s1-3', wer: 'schaf + lama', tut: 'wischt + schläft', was: '', bild: 'Am selben Ufer wischt ein Schaf mit einem Mopp den Holzsteg, daneben liegt das Lama im Gras und schläft.' }
+            { s: 'sz-i-l4-s1-2', wer: 'hirsch + lama', tut: 'wischt + fischt', was: '', satz: 'Hirsch wischt, das La-ma fischt.', bild: 'Am selben Ufer wischt ein Hirsch mit einem Mopp den Holzsteg, daneben steht das Lama und angelt mit einer Angel.' },
+            { s: 'sz-i-l4-s1-3', wer: 'schaf + lama', tut: 'wischt + schläft', was: '', satz: 'Das Schaf wischt. Schlaf, La-ma, schlaf!', bild: 'Am selben Ufer wischt ein Schaf mit einem Mopp den Holzsteg, daneben liegt das Lama im Gras und schläft.' }
           ]
         }
       ]
@@ -141,8 +141,8 @@ window.LAUTBUCH_TEILE.i = {
       richtig: 'sz-i-boss-1',
       wahl: [
         { s: 'sz-i-boss-1', wer: 'schaf', tut: 'staunt', was: 'lila', bild: 'Ein lila Schaf steht staunend auf einer Wiese, um es herum funkeln kleine Sterne.' },
-        { s: 'sz-i-boss-2', wer: 'lama', tut: 'staunt', was: 'lila', bild: 'Ein lila Lama steht staunend auf derselben Wiese, um es herum funkeln kleine Sterne.' },
-        { s: 'sz-i-boss-3', wer: 'schaf', tut: 'staunt', was: 'grün', bild: 'Ein grünes Schaf steht staunend auf derselben Wiese, um es herum funkeln kleine Sterne.' }
+        { s: 'sz-i-boss-2', wer: 'lama', tut: 'staunt', was: 'lila', satz: 'Sim-sa-la-bim! Das La-ma ist li-la!', bild: 'Ein lila Lama steht staunend auf derselben Wiese, um es herum funkeln kleine Sterne.' },
+        { s: 'sz-i-boss-3', wer: 'schaf', tut: 'staunt', was: 'grün', ohneSatz: 'holprig nach Pruefer 02.11. (PRUEFUNG_SAETZE.md), Zero: rausnehmen; nie Ziel der Geschichte', bild: 'Ein grünes Schaf steht staunend auf derselben Wiese, um es herum funkeln kleine Sterne.' }
       ]
     },
     sinnMehr: [
@@ -151,8 +151,8 @@ window.LAUTBUCH_TEILE.i = {
         richtig: 'sz-i-boss-s1-1',
         wahl: [
           { s: 'sz-i-boss-s1-1', wer: 'lama', tut: 'filmt', was: 'schaf', bild: 'Ein Lama hält eine kleine Kamera und filmt ein Schaf, das in einem bunten Tipi sitzt.' },
-          { s: 'sz-i-boss-s1-2', wer: 'lama', tut: 'malt', was: 'schaf', bild: 'Ein Lama hält einen Pinsel und malt das Schaf, das im selben bunten Tipi sitzt, auf ein Blatt.' },
-          { s: 'sz-i-boss-s1-3', wer: 'lama', tut: 'filmt', was: 'rehkitz', bild: 'Ein Lama hält eine kleine Kamera und filmt ein Rehkitz, das im selben bunten Tipi sitzt.' }
+          { s: 'sz-i-boss-s1-2', wer: 'lama', tut: 'malt', was: 'schaf', satz: 'Das La-ma malt das Schaf im Ti-pi.', bild: 'Ein Lama hält einen Pinsel und malt das Schaf, das im selben bunten Tipi sitzt, auf ein Blatt.' },
+          { s: 'sz-i-boss-s1-3', wer: 'lama', tut: 'filmt', was: 'rehkitz', satz: 'Das La-ma filmt Bam-bi im Ti-pi.', bild: 'Ein Lama hält eine kleine Kamera und filmt ein Rehkitz, das im selben bunten Tipi sitzt.' }
         ]
       },
       {
@@ -160,8 +160,8 @@ window.LAUTBUCH_TEILE.i = {
         richtig: 'sz-i-boss-s3-1',
         wahl: [
           { s: 'sz-i-boss-s3-1', wer: 'lila schaf', tut: 'fischt', was: 'kiwis', bild: 'Ein lila Schaf steht am Ufer eines Sees und zieht mit einer Angel drei Kiwis aus dem Wasser.' },
-          { s: 'sz-i-boss-s3-2', wer: 'weißes schaf', tut: 'fischt', was: 'kiwis', bild: 'Ein weißes Schaf steht am selben Ufer und zieht mit einer Angel drei Kiwis aus dem Wasser.' },
-          { s: 'sz-i-boss-s3-3', wer: 'lila schaf', tut: 'fischt', was: 'fisch', bild: 'Ein lila Schaf steht am selben Ufer und zieht mit einer Angel einen Fisch aus dem Wasser.' }
+          { s: 'sz-i-boss-s3-2', wer: 'weißes schaf', tut: 'fischt', was: 'kiwis', ohneSatz: 'holprig nach Pruefer 02.11. (PRUEFUNG_SAETZE.md), Zero: rausnehmen; nie Ziel der Geschichte', bild: 'Ein weißes Schaf steht am selben Ufer und zieht mit einer Angel drei Kiwis aus dem Wasser.' },
+          { s: 'sz-i-boss-s3-3', wer: 'lila schaf', tut: 'fischt', was: 'fisch', satz: 'Hi-hi! Das li-la Schaf fischt Fisch.', bild: 'Ein lila Schaf steht am selben Ufer und zieht mit einer Angel einen Fisch aus dem Wasser.' }
         ]
       }
     ]

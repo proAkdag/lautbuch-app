@@ -55,8 +55,8 @@ window.LAUTBUCH_TEILE.r2 = {
         richtig: 'sz-r2-l2-1',
         wahl: [
           { s: 'sz-r2-l2-1', wer: 'hund', tut: 'hilft', was: 'clownsnase', bild: 'Auf dem roten Dach reicht der kleine braune Hund mit einer roten Clownsnase dem Elch mit Kochmütze eine Schüssel Teig.' },
-          { s: 'sz-r2-l2-2', wer: 'lama', tut: 'hilft', was: 'clownsnase', bild: 'Auf demselben roten Dach reicht das Lama mit einer roten Clownsnase dem Elch mit Kochmütze eine Schüssel Teig.' },
-          { s: 'sz-r2-l2-3', wer: 'hund', tut: 'hilft', was: 'sonnenbrille', bild: 'Auf demselben roten Dach reicht der kleine braune Hund mit einer Sonnenbrille dem Elch mit Kochmütze eine Schüssel Teig.' }
+          { s: 'sz-r2-l2-2', wer: 'lama', tut: 'hilft', was: 'clownsnase', satz: 'Das La-ma hilft mit ro-ter Clowns-na-se.', bild: 'Auf demselben roten Dach reicht das Lama mit einer roten Clownsnase dem Elch mit Kochmütze eine Schüssel Teig.' },
+          { s: 'sz-r2-l2-3', wer: 'hund', tut: 'hilft', was: 'sonnenbrille', ohneSatz: 'holprig nach Pruefer 02.11. (PRUEFUNG_SAETZE.md), Zero: rausnehmen; nie Ziel der Geschichte', bild: 'Auf demselben roten Dach reicht der kleine braune Hund mit einer Sonnenbrille dem Elch mit Kochmütze eine Schüssel Teig.' }
         ]
       },
       sinnMehr: [
@@ -65,8 +65,8 @@ window.LAUTBUCH_TEILE.r2 = {
           richtig: 'sz-r2-l2-s1-1',
           wahl: [
             { s: 'sz-r2-l2-s1-1', wer: 'elch', tut: 'kocht', was: 'dach', bild: 'Auf einem roten Dach steht ein Elch mit Kochmütze und rührt in einem großen Kochtopf.' },
-            { s: 'sz-r2-l2-s1-2', wer: 'hirsch', tut: 'kocht', was: 'dach', bild: 'Auf demselben roten Dach steht ein Hirsch mit Kochmütze und rührt in demselben großen Kochtopf.' },
-            { s: 'sz-r2-l2-s1-3', wer: 'elch', tut: 'kocht', was: 'küche', bild: 'In einer Küche steht ein Elch mit Kochmütze und rührt in demselben großen Kochtopf.' }
+            { s: 'sz-r2-l2-s1-2', wer: 'hirsch', tut: 'kocht', was: 'dach', satz: 'Vor dem Fest kocht der Hirsch auf dem Dach.', bild: 'Auf demselben roten Dach steht ein Hirsch mit Kochmütze und rührt in demselben großen Kochtopf.' },
+            { s: 'sz-r2-l2-s1-3', wer: 'elch', tut: 'kocht', was: 'küche', satz: 'Vor dem Fest kocht der Elch in der Kü-che.', bild: 'In einer Küche steht ein Elch mit Kochmütze und rührt in demselben großen Kochtopf.' }
           ]
         },
         {
@@ -74,8 +74,8 @@ window.LAUTBUCH_TEILE.r2 = {
           richtig: 'sz-r2-l2-s3-1',
           wahl: [
             { s: 'sz-r2-l2-s3-1', wer: 'schaf', tut: 'nascht', was: 'kuchen', bild: 'Neben dem Kochtopf auf dem roten Dach nascht ein Schaf heimlich von einem großen Kuchen.' },
-            { s: 'sz-r2-l2-s3-2', wer: 'drache', tut: 'nascht', was: 'kuchen', bild: 'Neben dem Kochtopf auf demselben roten Dach nascht ein kleiner grüner Drache heimlich von demselben großen Kuchen.' },
-            { s: 'sz-r2-l2-s3-3', wer: 'schaf', tut: 'nascht', was: 'milch', bild: 'Neben dem Kochtopf auf demselben roten Dach nascht ein Schaf heimlich aus einer Schüssel Milch.' }
+            { s: 'sz-r2-l2-s3-2', wer: 'drache', tut: 'nascht', was: 'kuchen', satz: 'Und der Dra-che? Er nascht vom Ku-chen!', bild: 'Neben dem Kochtopf auf demselben roten Dach nascht ein kleiner grüner Drache heimlich von demselben großen Kuchen.' },
+            { s: 'sz-r2-l2-s3-3', wer: 'schaf', tut: 'nascht', was: 'milch', satz: 'Und das Schaf? Es nascht von der Milch!', bild: 'Neben dem Kochtopf auf demselben roten Dach nascht ein Schaf heimlich aus einer Schüssel Milch.' }
           ]
         }
       ]
@@ -99,8 +99,8 @@ window.LAUTBUCH_TEILE.r2 = {
       richtig: 'sz-r2-boss-1',
       wahl: [
         { s: 'sz-r2-boss-1', wer: 'drachenbaby', tut: 'schaut', was: 'ei', bild: 'Ein kleines grünes Drachenbaby schaut neugierig aus einer aufgebrochenen Eierschale in einem Nest.' },
-        { s: 'sz-r2-boss-2', wer: 'küken', tut: 'schaut', was: 'ei', bild: 'Ein kleines gelbes Küken schaut neugierig aus einer aufgebrochenen Eierschale in einem Nest.' },
-        { s: 'sz-r2-boss-3', wer: 'drachenbaby', tut: 'schaut', was: 'loch', bild: 'Ein kleines grünes Drachenbaby schaut neugierig aus einem Astloch in einem Baumstamm direkt neben einem leeren Nest.' }
+        { s: 'sz-r2-boss-2', wer: 'küken', tut: 'schaut', was: 'ei', satz: 'Huch, aus dem Ei schaut ein Kü-ken her-vor!', bild: 'Ein kleines gelbes Küken schaut neugierig aus einer aufgebrochenen Eierschale in einem Nest.' },
+        { s: 'sz-r2-boss-3', wer: 'drachenbaby', tut: 'schaut', was: 'loch', satz: 'Huch, aus dem Loch im Baum schaut ein Dra-chen-ba-by!', bild: 'Ein kleines grünes Drachenbaby schaut neugierig aus einem Astloch in einem Baumstamm direkt neben einem leeren Nest.' }
       ]
     },
     sinnMehr: [
@@ -109,8 +109,8 @@ window.LAUTBUCH_TEILE.r2 = {
         richtig: 'sz-r2-boss-s1-1',
         wahl: [
           { s: 'sz-r2-boss-s1-1', wer: 'drachen', tut: 'hat loch', was: 'ei', bild: 'In einem großen Nest liegt ein grün gesprenkeltes Drachenei mit einem gezackten Loch in der Schale, daneben steht ein großer grüner Drache und schaut erstaunt.' },
-          { s: 'sz-r2-boss-s1-2', wer: 'huhn', tut: 'hat loch', was: 'ei', bild: 'In demselben Nest liegt ein weißes Hühnerei mit einem gezackten Loch in der Schale, daneben steht ein Huhn und schaut erstaunt.' },
-          { s: 'sz-r2-boss-s1-3', wer: 'drachen', tut: 'ist heil', was: 'ei', bild: 'In demselben Nest liegt das grün gesprenkelte Drachenei ganz heil, daneben steht der große grüne Drache und schaut erstaunt.' }
+          { s: 'sz-r2-boss-s1-2', wer: 'huhn', tut: 'hat loch', was: 'ei', satz: 'Krach! Das Ei vom Vo-gel hat ein Loch.', bild: 'In demselben Nest liegt ein weißes Hühnerei mit einem gezackten Loch in der Schale, daneben steht ein Huhn und schaut erstaunt.' },
+          { s: 'sz-r2-boss-s1-3', wer: 'drachen', tut: 'ist heil', was: 'ei', satz: 'Na-nu? Das Ei vom Dra-chen ist ganz heil.', bild: 'In demselben Nest liegt das grün gesprenkelte Drachenei ganz heil, daneben steht der große grüne Drache und schaut erstaunt.' }
         ]
       },
       {
@@ -118,8 +118,8 @@ window.LAUTBUCH_TEILE.r2 = {
         richtig: 'sz-r2-boss-s4-1',
         wahl: [
           { s: 'sz-r2-boss-s4-1', wer: 'drachenbaby', tut: 'pustet feuer', was: 'ofen', bild: 'Auf dem roten Dach pustet das kleine grüne Drachenbaby eine Flamme in die offene Klappe eines Backofens, der Elch mit Kochmütze hält strahlend ein Blech mit Kuchenteig bereit.' },
-          { s: 'sz-r2-boss-s4-2', wer: 'drache', tut: 'pustet feuer', was: 'ofen', bild: 'Auf demselben roten Dach pustet der große grüne Drache eine Flamme in die offene Klappe desselben Backofens, der Elch hält das Blech mit Kuchenteig bereit.' },
-          { s: 'sz-r2-boss-s4-3', wer: 'drachenbaby', tut: 'pustet feuer', was: 'kuchen', bild: 'Auf demselben roten Dach pustet das kleine grüne Drachenbaby eine Flamme direkt auf das Blech mit Kuchenteig, das der Elch erschrocken hochhält; die Ofenklappe bleibt zu.' }
+          { s: 'sz-r2-boss-s4-2', wer: 'drache', tut: 'pustet feuer', was: 'ofen', satz: 'Der Dra-che pus-tet viel Feu-er in den O-fen.', bild: 'Auf demselben roten Dach pustet der große grüne Drache eine Flamme in die offene Klappe desselben Backofens, der Elch hält das Blech mit Kuchenteig bereit.' },
+          { s: 'sz-r2-boss-s4-3', wer: 'drachenbaby', tut: 'pustet feuer', was: 'kuchen', satz: 'Das Dra-chen-ba-by pus-tet Feu-er auf den Ku-chen.', bild: 'Auf demselben roten Dach pustet das kleine grüne Drachenbaby eine Flamme direkt auf das Blech mit Kuchenteig, das der Elch erschrocken hochhält; die Ofenklappe bleibt zu.' }
         ]
       },
       {
@@ -127,8 +127,8 @@ window.LAUTBUCH_TEILE.r2 = {
         richtig: 'sz-r2-boss-s3-1',
         wahl: [
           { s: 'sz-r2-boss-s3-1', wer: 'drachenbaby + schaf', tut: 'naschen', was: 'kuchen', bild: 'Ein kleines grünes Drachenbaby und ein Schaf sitzen nebeneinander am Nest und naschen gemeinsam von einem großen Kuchen.' },
-          { s: 'sz-r2-boss-s3-2', wer: 'drachenbaby + elch', tut: 'naschen', was: 'kuchen', bild: 'Ein kleines grünes Drachenbaby und ein Elch sitzen nebeneinander am selben Nest und naschen gemeinsam von demselben großen Kuchen.' },
-          { s: 'sz-r2-boss-s3-3', wer: 'drachenbaby + schaf', tut: 'naschen', was: 'milch', bild: 'Ein kleines grünes Drachenbaby und ein Schaf sitzen nebeneinander am selben Nest und naschen gemeinsam aus einer Schüssel Milch.' }
+          { s: 'sz-r2-boss-s3-2', wer: 'drachenbaby + elch', tut: 'naschen', was: 'kuchen', satz: 'Das Dra-chen-ba-by nascht Ku-chen. Der Elch auch!', bild: 'Ein kleines grünes Drachenbaby und ein Elch sitzen nebeneinander am selben Nest und naschen gemeinsam von demselben großen Kuchen.' },
+          { s: 'sz-r2-boss-s3-3', wer: 'drachenbaby + schaf', tut: 'naschen', was: 'milch', satz: 'Das Dra-chen-ba-by nascht Milch. Das Schaf auch!', bild: 'Ein kleines grünes Drachenbaby und ein Schaf sitzen nebeneinander am selben Nest und naschen gemeinsam aus einer Schüssel Milch.' }
         ]
       }
     ]

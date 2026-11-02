@@ -54,8 +54,8 @@ window.LAUTBUCH_TEILE.eu = {
         richtig: 'sz-eu-l2-1',
         wahl: [
           { s: 'sz-eu-l2-1', wer: 'eule', tut: 'räumt aus', was: 'beutel', bild: 'Eine Eule sitzt in einer Scheune im Heu und holt aus einem offenen Stoffbeutel einen Hut, einen Würfel und eine Flöte.' },
-          { s: 'sz-eu-l2-2', wer: 'maus', tut: 'räumt aus', was: 'beutel', bild: 'Eine kleine Maus sitzt in einer Scheune im Heu und holt aus einem offenen Stoffbeutel einen Hut, einen Würfel und eine Flöte.' },
-          { s: 'sz-eu-l2-3', wer: 'eule', tut: 'schläft', was: 'beutel', bild: 'Eine Eule sitzt in einer Scheune im Heu und schläft mit geschlossenen Augen neben einem zugebundenen Stoffbeutel.' }
+          { s: 'sz-eu-l2-2', wer: 'maus', tut: 'räumt aus', was: 'beutel', satz: 'Ei-ne Maus räumt den Beu-tel aus.', bild: 'Eine kleine Maus sitzt in einer Scheune im Heu und holt aus einem offenen Stoffbeutel einen Hut, einen Würfel und eine Flöte.' },
+          { s: 'sz-eu-l2-3', wer: 'eule', tut: 'schläft', was: 'beutel', satz: 'Eu-le Lu-na schläft ne-ben dem Beu-tel.', bild: 'Eine Eule sitzt in einer Scheune im Heu und schläft mit geschlossenen Augen neben einem zugebundenen Stoffbeutel.' }
         ]
       },
       sinnMehr: [
@@ -64,8 +64,8 @@ window.LAUTBUCH_TEILE.eu = {
           richtig: 'sz-eu-l2-s1-1',
           wahl: [
             { s: 'sz-eu-l2-s1-1', wer: 'schaf', tut: 'träumt', was: '', bild: 'Ein Schaf liegt in der Scheune im Heu und träumt mit geschlossenen Augen, über seinem Kopf schwebt eine Traumwolke, ringsum liegen Sachen durcheinander.' },
-            { s: 'sz-eu-l2-s1-2', wer: 'eule', tut: 'träumt', was: '', bild: 'Eine Eule liegt in derselben Scheune im Heu und träumt mit geschlossenen Augen, über ihrem Kopf schwebt eine Traumwolke, ringsum liegen Sachen durcheinander.' },
-            { s: 'sz-eu-l2-s1-3', wer: 'schaf', tut: 'räumt', was: '', bild: 'Ein Schaf steht in derselben Scheune und räumt mit einem Besen die Sachen zusammen, die ringsum durcheinander liegen.' }
+            { s: 'sz-eu-l2-s1-2', wer: 'eule', tut: 'träumt', was: '', satz: 'Räumt die Eu-le? Nein, sie träumt!', bild: 'Eine Eule liegt in derselben Scheune im Heu und träumt mit geschlossenen Augen, über ihrem Kopf schwebt eine Traumwolke, ringsum liegen Sachen durcheinander.' },
+            { s: 'sz-eu-l2-s1-3', wer: 'schaf', tut: 'räumt', was: '', satz: 'Träumt das Schaf? Nein, es räumt!', bild: 'Ein Schaf steht in derselben Scheune und räumt mit einem Besen die Sachen zusammen, die ringsum durcheinander liegen.' }
           ]
         },
         {
@@ -73,8 +73,8 @@ window.LAUTBUCH_TEILE.eu = {
           richtig: 'sz-eu-l2-s3-1',
           wahl: [
             { s: 'sz-eu-l2-s3-1', wer: 'beutel', tut: 'liegt', was: 'hut + würfel + buch', bild: 'In der Scheune liegt Lunas offener Stoffbeutel im Heu, darin sieht man Opas grünen Filzhut mit Feder, einen großen Würfel und ein Buch, auf dessen Umschlag ein Kuchen mit Beeren gemalt ist.' },
-            { s: 'sz-eu-l2-s3-2', wer: 'korb', tut: 'liegt', was: 'hut + würfel + buch', bild: 'In derselben Scheune steht ein offener Weidenkorb im Heu, darin sieht man denselben grünen Filzhut, den Würfel und das Buch mit dem Kuchen auf dem Umschlag.' },
-            { s: 'sz-eu-l2-s3-3', wer: 'beutel', tut: 'liegt', was: 'hut + würfel + löffel', bild: 'In derselben Scheune liegt Lunas offener Stoffbeutel im Heu, darin sieht man denselben grünen Filzhut, den Würfel und einen Löffel.' }
+            { s: 'sz-eu-l2-s3-2', wer: 'korb', tut: 'liegt', was: 'hut + würfel + buch', satz: 'Im Korb in der Scheu-ne: O-pas Hut, Le-os Wür-fel, ein Buch.', bild: 'In derselben Scheune steht ein offener Weidenkorb im Heu, darin sieht man denselben grünen Filzhut, den Würfel und das Buch mit dem Kuchen auf dem Umschlag.' },
+            { s: 'sz-eu-l2-s3-3', wer: 'beutel', tut: 'liegt', was: 'hut + würfel + löffel', ohneSatz: 'holprig nach Pruefer 02.11. (PRUEFUNG_SAETZE.md), Zero: rausnehmen; nie Ziel der Geschichte', bild: 'In derselben Scheune liegt Lunas offener Stoffbeutel im Heu, darin sieht man denselben grünen Filzhut, den Würfel und einen Löffel.' }
           ]
         }
       ]
@@ -98,8 +98,8 @@ window.LAUTBUCH_TEILE.eu = {
       richtig: 'sz-eu-boss-1',
       wahl: [
         { s: 'sz-eu-boss-1', wer: 'eule', tut: 'läutet', was: 'glocke', bild: 'Eine Eule sitzt im Scheunentor und zieht an einem Seil, oben schwingt eine große Glocke.' },
-        { s: 'sz-eu-boss-2', wer: 'eule', tut: 'heult', was: 'glocke', bild: 'Eine Eule sitzt im Scheunentor unter einer stillen großen Glocke, hebt den Kopf und ruft mit weit offenem Schnabel.' },
-        { s: 'sz-eu-boss-3', wer: 'schaf', tut: 'läutet', was: 'glocke', bild: 'Ein Schaf steht im Scheunentor und zieht an einem Seil, oben schwingt eine große Glocke.' }
+        { s: 'sz-eu-boss-2', wer: 'eule', tut: 'heult', was: 'glocke', satz: 'Eu-le Lu-na ruft: Hu-hu!', bild: 'Eine Eule sitzt im Scheunentor unter einer stillen großen Glocke, hebt den Kopf und ruft mit weit offenem Schnabel.' },
+        { s: 'sz-eu-boss-3', wer: 'schaf', tut: 'läutet', was: 'glocke', satz: 'Das Schaf läu-tet: Bim, bam, bum!', bild: 'Ein Schaf steht im Scheunentor und zieht an einem Seil, oben schwingt eine große Glocke.' }
       ]
     },
     sinnMehr: [
@@ -108,8 +108,8 @@ window.LAUTBUCH_TEILE.eu = {
         richtig: 'sz-eu-boss-s1-1',
         wahl: [
           { s: 'sz-eu-boss-s1-1', wer: 'kühe + mäuse + schweine', tut: 'üben', was: '', bild: 'Im Scheunentor feiern zwei Kühe, drei Mäuse und zwei Schweine unter Girlanden und Luftballons und tanzen fröhlich.' },
-          { s: 'sz-eu-boss-s1-2', wer: 'kühe + mäuse + schafe', tut: 'üben', was: '', bild: 'Im selben Scheunentor feiern zwei Kühe, drei Mäuse und zwei Schafe unter Girlanden und Luftballons und tanzen fröhlich.' },
-          { s: 'sz-eu-boss-s1-3', wer: 'kühe + mäuse + schweine', tut: 'schlafen', was: '', bild: 'Im selben Scheunentor liegen zwei Kühe, drei Mäuse und zwei Schweine unter den Girlanden und schlafen.' }
+          { s: 'sz-eu-boss-s1-2', wer: 'kühe + mäuse + schafe', tut: 'üben', was: '', satz: 'Kü-he, Mäu-se, Scha-fe ü-ben für das Fest.', bild: 'Im selben Scheunentor feiern zwei Kühe, drei Mäuse und zwei Schafe unter Girlanden und Luftballons und tanzen fröhlich.' },
+          { s: 'sz-eu-boss-s1-3', wer: 'kühe + mäuse + schweine', tut: 'schlafen', was: '', satz: 'Kü-he, Mäu-se, Schwei-ne schla-fen nach dem Fest.', bild: 'Im selben Scheunentor liegen zwei Kühe, drei Mäuse und zwei Schweine unter den Girlanden und schlafen.' }
         ]
       },
       {
@@ -117,8 +117,8 @@ window.LAUTBUCH_TEILE.eu = {
         richtig: 'sz-eu-boss-s3-1',
         wahl: [
           { s: 'sz-eu-boss-s3-1', wer: 'schaf', tut: 'träumt', was: 'heuhaufen', bild: 'In der Scheune liegt ein Schaf tief in einem Heuhaufen und träumt mit geschlossenen Augen, über ihm schwebt eine kleine Traumwolke.' },
-          { s: 'sz-eu-boss-s3-2', wer: 'kuh', tut: 'träumt', was: 'heuhaufen', bild: 'In derselben Scheune liegt eine Kuh tief im Heuhaufen und träumt mit geschlossenen Augen, über ihr schwebt eine kleine Traumwolke.' },
-          { s: 'sz-eu-boss-s3-3', wer: 'schaf', tut: 'träumt', was: 'bank', bild: 'In derselben Scheune liegt ein Schaf auf einer Holzbank und träumt mit geschlossenen Augen, über ihm schwebt eine kleine Traumwolke.' }
+          { s: 'sz-eu-boss-s3-2', wer: 'kuh', tut: 'träumt', was: 'heuhaufen', ohneSatz: 'holprig nach Pruefer 02.11. (PRUEFUNG_SAETZE.md), Zero: rausnehmen; nie Ziel der Geschichte', bild: 'In derselben Scheune liegt eine Kuh tief im Heuhaufen und träumt mit geschlossenen Augen, über ihr schwebt eine kleine Traumwolke.' },
+          { s: 'sz-eu-boss-s3-3', wer: 'schaf', tut: 'träumt', was: 'bank', ohneSatz: 'holprig nach Pruefer 02.11. (PRUEFUNG_SAETZE.md), Zero: rausnehmen; nie Ziel der Geschichte', bild: 'In derselben Scheune liegt ein Schaf auf einer Holzbank und träumt mit geschlossenen Augen, über ihm schwebt eine kleine Traumwolke.' }
         ]
       }
     ]

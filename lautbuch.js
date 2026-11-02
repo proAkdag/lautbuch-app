@@ -749,26 +749,27 @@
   };
   const DRUCK_JE = [1, 2, 4, 6];
   const druckJe = (art) => { const n = (einst.druckJe || {})[art]; return DRUCK_JE.includes(n) ? n : art === 'linie' ? 2 : 6; };
-  const druckSeite = (woerter, art, mitWort, je, bilder) => {
-    const seite = el('section', 'druck-seite je-' + je);
+  const druckQuer = (art) => !!(einst.druckQuer || {})[art];
+  const druckSeite = (woerter, art, mitWort, je, quer) => {
+    const seite = el('section', 'druck-seite je-' + je + (quer ? ' quer' : ''));
     for (const w of woerter) {
       const sz = szeneVon.get(w), schl = sz ? w : bildSchluessel(w);
       const f = el('figure', 'druck-bild' + (sz ? ' druck-szene' : '')), roh = (window.LB_BILDDATEN || {})[schl];
-      if (roh && roh.farbe) { const im = new Image(); im.alt = ''; im.src = art === 'linie' && roh.linie ? roh.linie : roh.farbe; if (bilder) bilder.push(im); f.append(im); }
+      if (roh && roh.farbe) { const im = new Image(); im.alt = ''; im.src = art === 'linie' && roh.linie ? roh.linie : roh.farbe; f.append(im); }
       else f.append(sz ? window.LB.szeneBild(sz.b) : bild(schl));
       if (mitWort) f.append(el('figcaption', 'druck-wort', satz(sz ? sz.sz : w)));
       seite.append(f);
     }
     return seite;
   };
-  const druckblatt = (woerter, art, mitWort = false, je = druckJe(art)) => {
+  const druckblatt = (woerter, art, mitWort = false, je = druckJe(art), quer = druckQuer(art)) => {
     if (!woerter.length) return;
     const seiten = [];
     for (let i = 0; i < woerter.length; i += je) {
-      const s = druckSeite(woerter.slice(i, i + je), art, mitWort, je); s.classList.add('vorschau');
+      const s = druckSeite(woerter.slice(i, i + je), art, mitWort, je, quer); s.classList.add('vorschau');
       seiten.push(el('div', 'druck-pdf ' + art + (mitWort ? ' mit-wort' : ''), s));
     }
-    window.LB_AUSGABE.pdf(seiten, art === 'linie' ? 'Lautbuch zum Ausmalen.pdf' : 'Lautbuch Bilder.pdf');
+    window.LB_AUSGABE.pdf(seiten, art === 'linie' ? 'Lautbuch zum Ausmalen.pdf' : 'Lautbuch Bilder.pdf', { quer });
   };
   function druckRaum(woerter, art) {
     leer();
@@ -778,11 +779,12 @@
     box.dataset.ort = 'druck'; box.dataset.haupt = '';
     const stapel = el('div', 'druck-stapel ' + art);
     const zeigen = (neu) => {
-      const je = druckJe(art), seiten = Math.ceil(woerter.length / je);
+      const je = druckJe(art), seiten = Math.ceil(woerter.length / je), quer = druckQuer(art);
       stapel.classList.toggle('mit-wort', !!einst.druckWort);
+      stapel.classList.toggle('quer', quer); box.classList.toggle('quer', quer);
       stapel.replaceChildren();
       for (let i = Math.min(seiten, 3) - 1; i > 0; i--) stapel.append(el('div', 'druck-unterblatt u' + i));
-      const s = druckSeite(woerter.slice(0, je), art, !!einst.druckWort, je);
+      const s = druckSeite(woerter.slice(0, je), art, !!einst.druckWort, je, quer);
       s.classList.add('vorschau'); stapel.append(s);
       if (neu) kommt(s, 0, 0, 260);
     };
@@ -794,14 +796,16 @@
       });
       g.append(...ks.map(([, k]) => k)); return g;
     };
-    const seiteIkon = (n) => { const s = el('span', 'seite-ikon je-' + n); s.setAttribute('aria-hidden', 'true'); for (let i = 0; i < n; i++) s.append(el('i')); return s; };
+    const seiteIkon = (n, quer) => { const s = el('span', 'seite-ikon je-' + n + (quer ? ' quer' : '')); s.setAttribute('aria-hidden', 'true'); for (let i = 0; i < n; i++) s.append(el('i')); return s; };
+    const lage = gruppe('druck-lage', 'Seite', [[false, [seiteIkon(0), el('span', null, 'hoch')], 'Seite hoch'], [true, [seiteIkon(0, true), el('span', null, 'quer')], 'Seite quer']], druckQuer(art),
+      (q) => { einst.druckQuer = Object.assign({}, einst.druckQuer, { [art]: q }); });
     const format = gruppe('druck-format', 'Bilder je Seite', DRUCK_JE.map(n => [n, seiteIkon(n), n === 1 ? 'ein Bild je Seite' : n + ' Bilder je Seite']), druckJe(art),
       (n) => { einst.druckJe = Object.assign({}, einst.druckJe, { [art]: n }); });
     const wort = gruppe('druck-wort-wahl', 'Wort', [[true, 'mit Wort', 'mit Wort'], [false, 'ohne Wort', 'ohne Wort']], !!einst.druckWort,
       (w) => { einst.druckWort = w; });
-    const los = knopf('druck-los', [sym('bild'), el('span', null, 'drucken')], () => druckblatt(woerter, art, !!einst.druckWort, druckJe(art)), 'drucken');
+    const los = knopf('druck-los', [sym('bild'), el('span', null, 'drucken')], () => druckblatt(woerter, art, !!einst.druckWort, druckJe(art), druckQuer(art)), 'drucken');
     const steuer = el('div', 'druck-steuer');
-    steuer.append(format, wort, los);
+    steuer.append(lage, format, wort, los);
     box.append(stapel, steuer);
     main.append(box);
     zeigen(false);
@@ -2270,21 +2274,30 @@
     return { zeigen: (an) => ruhe(k, !an), weg: () => k.remove(), k };
   };
 
+  const geschichteZiel = new Map();
+  const zielVon = (sn) => {
+    const moeglich = sn.wahl.filter(b => b.s === sn.richtig || b.satz), letztes = geschichteZiel.get(sn.richtig);
+    const frei = moeglich.length > 1 ? moeglich.filter(b => b.s !== letztes) : moeglich;
+    const b = frei[Math.floor(Math.random() * frei.length)];
+    geschichteZiel.set(sn.richtig, b.s);
+    return { s: b.s, satz: b.s === sn.richtig ? sn.satz : b.satz };
+  };
   function geschichte(teil, buehne, ctx = {}) {
-    const sn = ctx.zieh(), fall = el('div', 'serien-fall'), feld = el('div', 'sinn geschichte');
+    const sn = ctx.zieh(), ziel = zielVon(sn), fall = el('div', 'serien-fall'), feld = el('div', 'sinn geschichte');
     const wahl = el('div', 'sinn-wahl');
     let fehler = false, fertig = false;
     for (const b of mische(sn.wahl.slice())) {
       const kn = knopf('sinn-bild', window.LB.szeneBild(b, '', true), () => {
         if (fertig || kn.classList.contains('erloschen')) return;
-        if (b.s !== sn.richtig) { kn.classList.add('erloschen'); kn.setAttribute('aria-disabled', 'true'); fehler = true; if (ctx.fehler) ctx.fehler(); return; }
-        fertig = true; kn.classList.add('gold'); wahl.classList.add('entschieden'); sammleSzene(sn.richtig);
+        if (b.s !== ziel.s) { kn.classList.add('erloschen'); kn.setAttribute('aria-disabled', 'true'); fehler = true; if (ctx.fehler) ctx.fehler(); return; }
+        fertig = true; kn.classList.add('gold'); wahl.classList.add('entschieden'); sammleSzene(ziel.s);
         setTimeout(() => { if (fall.isConnected && ctx.fertig) ctx.fertig(fall, !fehler); }, ruhig() ? 0 : 700);
       });
       kn.dataset.s = b.s; kn.setAttribute('aria-label', 'Bild ' + (wahl.children.length + 1));
       wahl.append(kn);
     }
-    feld.append(el('div', 'sinn-satz', satz(sn.satz)), wahl);
+    feld.append(el('div', 'sinn-satz', satz(ziel.satz)), wahl);
+    feld.dataset.ziel = ziel.s;
     fall.append(feld);
     buehne.replaceChildren(fall);
     return fall;

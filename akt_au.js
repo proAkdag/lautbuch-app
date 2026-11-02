@@ -52,8 +52,8 @@ window.LAUTBUCH_TEILE.au = {
         richtig: 'sz-au-l2-1',
         wahl: [
           { s: 'sz-au-l2-1', wer: 'maus', tut: 'baut', was: 'haus', bild: 'Eine kleine graue Maus steht auf einer Wiese und baut aus Holzklötzen ein kleines Haus mit Dach.' },
-          { s: 'sz-au-l2-2', wer: 'taube', tut: 'baut', was: 'haus', bild: 'Eine graue Taube steht auf einer Wiese und baut aus Holzklötzen ein kleines Haus mit Dach.' },
-          { s: 'sz-au-l2-3', wer: 'maus', tut: 'baut', was: 'auto', bild: 'Eine kleine graue Maus steht auf einer Wiese und baut aus Holzklötzen ein kleines Auto mit Rädern.' }
+          { s: 'sz-au-l2-2', wer: 'taube', tut: 'baut', was: 'haus', satz: 'Ei-ne Tau-be baut ein Haus.', bild: 'Eine graue Taube steht auf einer Wiese und baut aus Holzklötzen ein kleines Haus mit Dach.' },
+          { s: 'sz-au-l2-3', wer: 'maus', tut: 'baut', was: 'auto', satz: 'Ei-ne Maus baut ein Au-to.', bild: 'Eine kleine graue Maus steht auf einer Wiese und baut aus Holzklötzen ein kleines Auto mit Rädern.' }
         ]
       },
       sinnMehr: [
@@ -62,8 +62,8 @@ window.LAUTBUCH_TEILE.au = {
           richtig: 'sz-au-l2-s1-1',
           wahl: [
             { s: 'sz-au-l2-s1-1', wer: 'schaf', tut: 'schaukelt', was: 'maus', bild: 'Auf einer Wiese am Bauernhof schubst ein Schaf eine Schaukel an, auf der eine kleine graue Maus sitzt und jubelt.' },
-            { s: 'sz-au-l2-s1-2', wer: 'taube', tut: 'schaukelt', was: 'maus', bild: 'Auf derselben Wiese schubst eine graue Taube die Schaukel an, auf der die kleine graue Maus sitzt und jubelt.' },
-            { s: 'sz-au-l2-s1-3', wer: 'schaf', tut: 'schaukelt', was: 'raupe', bild: 'Auf derselben Wiese schubst ein Schaf die Schaukel an, auf der eine grüne Raupe sitzt und jubelt.' }
+            { s: 'sz-au-l2-s1-2', wer: 'taube', tut: 'schaukelt', was: 'maus', satz: 'Die Tau-be schau-kelt ei-ne Maus. Hui!', bild: 'Auf derselben Wiese schubst eine graue Taube die Schaukel an, auf der die kleine graue Maus sitzt und jubelt.' },
+            { s: 'sz-au-l2-s1-3', wer: 'schaf', tut: 'schaukelt', was: 'raupe', satz: 'Das Schaf schau-kelt ei-ne Rau-pe. Hui!', bild: 'Auf derselben Wiese schubst ein Schaf die Schaukel an, auf der eine grüne Raupe sitzt und jubelt.' }
           ]
         },
         {
@@ -71,8 +71,8 @@ window.LAUTBUCH_TEILE.au = {
           richtig: 'sz-au-l2-s3-1',
           wahl: [
             { s: 'sz-au-l2-s3-1', wer: 'schaf', tut: 'haut', was: 'pauke', bild: 'Auf derselben Wiese schlägt ein Schaf mit einem Schlegel kräftig auf eine große Pauke.' },
-            { s: 'sz-au-l2-s3-2', wer: 'maus', tut: 'haut', was: 'pauke', bild: 'Auf derselben Wiese schlägt die kleine graue Maus mit einem Schlegel kräftig auf dieselbe große Pauke.' },
-            { s: 'sz-au-l2-s3-3', wer: 'schaf', tut: 'haut', was: 'kochtopf', bild: 'Auf derselben Wiese schlägt ein Schaf mit einem Schlegel kräftig auf einen großen Kochtopf.' }
+            { s: 'sz-au-l2-s3-2', wer: 'maus', tut: 'haut', was: 'pauke', satz: 'Bum! Die Maus haut auf ei-ne Pau-ke.', bild: 'Auf derselben Wiese schlägt die kleine graue Maus mit einem Schlegel kräftig auf dieselbe große Pauke.' },
+            { s: 'sz-au-l2-s3-3', wer: 'schaf', tut: 'haut', was: 'kochtopf', satz: 'Bum! Das Schaf haut auf ei-nen Koch-topf.', bild: 'Auf derselben Wiese schlägt ein Schaf mit einem Schlegel kräftig auf einen großen Kochtopf.' }
           ]
         },
         {
@@ -80,8 +80,8 @@ window.LAUTBUCH_TEILE.au = {
           richtig: 'sz-au-l2-s4-1',
           wahl: [
             { s: 'sz-au-l2-s4-1', wer: 'haus', tut: 'haut um', was: '', bild: 'Das kleine Klötzchenhaus der Maus kippt um und die Klötze purzeln, daneben hält sich die Maus die Ohren zu und das Schaf steht mit der Pauke da.' },
-            { s: 'sz-au-l2-s4-2', wer: 'auto', tut: 'haut um', was: '', bild: 'Ein kleines Klötzchenauto der Maus kippt um und die Klötze purzeln, daneben hält sich die Maus die Ohren zu und das Schaf steht mit der Pauke da.' },
-            { s: 'sz-au-l2-s4-3', wer: 'haus', tut: 'steht', was: '', bild: 'Das kleine Klötzchenhaus der Maus steht fest und heil, daneben hält sich die Maus die Ohren zu und das Schaf steht mit der Pauke da.' }
+            { s: 'sz-au-l2-s4-2', wer: 'auto', tut: 'haut um', was: '', satz: 'Au-a! Das haut das Au-to um.', bild: 'Ein kleines Klötzchenauto der Maus kippt um und die Klötze purzeln, daneben hält sich die Maus die Ohren zu und das Schaf steht mit der Pauke da.' },
+            { s: 'sz-au-l2-s4-3', wer: 'haus', tut: 'steht', was: '', satz: 'Au-a! A-ber das Haus bleibt heil.', bild: 'Das kleine Klötzchenhaus der Maus steht fest und heil, daneben hält sich die Maus die Ohren zu und das Schaf steht mit der Pauke da.' }
           ]
         }
       ]
@@ -105,8 +105,8 @@ window.LAUTBUCH_TEILE.au = {
       richtig: 'sz-au-boss-1',
       wahl: [
         { s: 'sz-au-boss-1', wer: 'lama', tut: 'zaubert', was: 'maus', bild: 'Ein Lama schwingt einen Zauberstab mit Funken über einem schwarzen Zylinderhut, aus dem eine kleine Maus herausschaut.' },
-        { s: 'sz-au-boss-2', wer: 'lama', tut: 'zaubert', was: 'raupe', bild: 'Ein Lama schwingt einen Zauberstab mit Funken über einem schwarzen Zylinderhut, aus dem eine grüne Raupe herausschaut.' },
-        { s: 'sz-au-boss-3', wer: 'taube', tut: 'zaubert', was: 'maus', bild: 'Eine graue Taube schwingt einen Zauberstab mit Funken über einem schwarzen Zylinderhut, aus dem eine kleine Maus herausschaut.' }
+        { s: 'sz-au-boss-2', wer: 'lama', tut: 'zaubert', was: 'raupe', satz: 'Das La-ma zau-bert ei-ne Rau-pe aus dem Hut.', bild: 'Ein Lama schwingt einen Zauberstab mit Funken über einem schwarzen Zylinderhut, aus dem eine grüne Raupe herausschaut.' },
+        { s: 'sz-au-boss-3', wer: 'taube', tut: 'zaubert', was: 'maus', satz: 'Die Tau-be zau-bert ei-ne Maus aus dem Hut.', bild: 'Eine graue Taube schwingt einen Zauberstab mit Funken über einem schwarzen Zylinderhut, aus dem eine kleine Maus herausschaut.' }
       ]
     },
     sinnMehr: [
@@ -115,8 +115,8 @@ window.LAUTBUCH_TEILE.au = {
         richtig: 'sz-au-boss-s4-1',
         wahl: [
           { s: 'sz-au-boss-s4-1', wer: 'zauberer', tut: 'sucht', was: 'zauberhut', bild: 'Auf der Wiese am Bauernhof kniet ein freundlicher Zauberer mit langem Bart, aber ohne Hut, und schaut suchend unter einen Busch; über ihm schwebt ein Gedankenbild: ein schwarzer Zylinderhut mit goldenen Sternen.' },
-          { s: 'sz-au-boss-s4-2', wer: 'maus', tut: 'sucht', was: 'zauberhut', bild: 'Auf derselben Wiese kniet die kleine graue Maus und schaut suchend unter denselben Busch; über ihr schwebt ein Gedankenbild: ein schwarzer Zylinderhut mit goldenen Sternen.' },
-          { s: 'sz-au-boss-s4-3', wer: 'zauberer', tut: 'sucht', was: 'zauberstab', bild: 'Auf derselben Wiese kniet der Zauberer mit langem Bart ohne Hut und schaut suchend unter denselben Busch; über ihm schwebt ein Gedankenbild: ein Zauberstab mit Sternchen an der Spitze.' }
+          { s: 'sz-au-boss-s4-2', wer: 'maus', tut: 'sucht', was: 'zauberhut', satz: 'Die Maus sucht den Zau-ber-hut.', bild: 'Auf derselben Wiese kniet die kleine graue Maus und schaut suchend unter denselben Busch; über ihr schwebt ein Gedankenbild: ein schwarzer Zylinderhut mit goldenen Sternen.' },
+          { s: 'sz-au-boss-s4-3', wer: 'zauberer', tut: 'sucht', was: 'zauberstab', satz: 'Der Zau-be-rer sucht sei-nen Zau-ber-stab.', bild: 'Auf derselben Wiese kniet der Zauberer mit langem Bart ohne Hut und schaut suchend unter denselben Busch; über ihm schwebt ein Gedankenbild: ein Zauberstab mit Sternchen an der Spitze.' }
         ]
       },
       {
@@ -124,8 +124,8 @@ window.LAUTBUCH_TEILE.au = {
         richtig: 'sz-au-boss-s1-1',
         wahl: [
           { s: 'sz-au-boss-s1-1', wer: 'lama', tut: 'hat', was: 'zauberhut', bild: 'Ein Lama mit Kapitänsmütze hält stolz einen schwarzen Zylinderhut mit goldenen Sternen zwischen den Vorderhufen.' },
-          { s: 'sz-au-boss-s1-2', wer: 'taube', tut: 'hat', was: 'zauberhut', bild: 'Eine graue Taube hält stolz denselben schwarzen Zylinderhut mit goldenen Sternen zwischen den Flügeln.' },
-          { s: 'sz-au-boss-s1-3', wer: 'lama', tut: 'hat', was: 'strohhut', bild: 'Ein Lama mit Kapitänsmütze hält stolz einen gelben Strohhut zwischen den Vorderhufen.' }
+          { s: 'sz-au-boss-s1-2', wer: 'taube', tut: 'hat', was: 'zauberhut', satz: 'Die Tau-be hat den Zau-ber-hut.', bild: 'Eine graue Taube hält stolz denselben schwarzen Zylinderhut mit goldenen Sternen zwischen den Flügeln.' },
+          { s: 'sz-au-boss-s1-3', wer: 'lama', tut: 'hat', was: 'strohhut', satz: 'Ka-pi-tän La-ma hat ei-nen gel-ben Hut, kei-nen Zau-ber-hut.', bild: 'Ein Lama mit Kapitänsmütze hält stolz einen gelben Strohhut zwischen den Vorderhufen.' }
         ]
       },
       {
@@ -133,8 +133,8 @@ window.LAUTBUCH_TEILE.au = {
         richtig: 'sz-au-boss-s3-1',
         wahl: [
           { s: 'sz-au-boss-s3-1', wer: 'schaf', tut: 'haut', was: 'pauke', bild: 'Neben dem Lama mit dem Zylinderhut schlägt ein Schaf fröhlich mit einem Schlegel auf eine große Pauke.' },
-          { s: 'sz-au-boss-s3-2', wer: 'maus', tut: 'haut', was: 'pauke', bild: 'Neben dem Lama mit dem Zylinderhut schlägt die kleine Maus fröhlich mit einem Schlegel auf dieselbe große Pauke.' },
-          { s: 'sz-au-boss-s3-3', wer: 'schaf', tut: 'haut', was: 'kochtopf', bild: 'Neben dem Lama mit dem Zylinderhut schlägt ein Schaf fröhlich mit einem Schlegel auf einen großen Kochtopf.' }
+          { s: 'sz-au-boss-s3-2', wer: 'maus', tut: 'haut', was: 'pauke', satz: 'Ju-hu! Die Maus haut auf ei-ne Pau-ke: Bum, bum!', bild: 'Neben dem Lama mit dem Zylinderhut schlägt die kleine Maus fröhlich mit einem Schlegel auf dieselbe große Pauke.' },
+          { s: 'sz-au-boss-s3-3', wer: 'schaf', tut: 'haut', was: 'kochtopf', satz: 'Ju-hu! Das Schaf haut auf ei-nen Koch-topf: Bum, bum!', bild: 'Neben dem Lama mit dem Zylinderhut schlägt ein Schaf fröhlich mit einem Schlegel auf einen großen Kochtopf.' }
         ]
       }
     ]

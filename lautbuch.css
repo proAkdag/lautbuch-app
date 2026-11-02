@@ -1607,9 +1607,23 @@
   .seite-ikon i { border-radius: 1px; background: currentColor; opacity: .5; }
   .knopf.wahl[aria-pressed="true"] .seite-ikon { opacity: 1; }
   .knopf.druck-los { min-height: 60px; font-size: 21px; }
+
+  .druck-stapel.quer { aspect-ratio: 297 / 210; height: auto; width: clamp(300px, min(calc(100vw - 560px), calc((100 * var(--vh) - 190px) * 297 / 210)), 1075px); }
+  .druck-seite.vorschau.quer { gap: 2.69cqw; padding: 4.71cqw; border-radius: 1.06cqw; }
+  .vorschau.quer .druck-bild { border-width: .11cqw; border-radius: .99cqw; padding: 1.34cqw; }
+  .mit-wort .vorschau.quer .druck-bild { gap: .71cqw; }
+  .vorschau.quer .druck-wort { font-size: 2.83cqw; }
+  .linie .vorschau.quer .druck-wort { font-size: 4.03cqw; }
+  :is(.druck-seite, .seite-ikon).quer.je-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: minmax(0, 1fr); }
+  :is(.druck-seite, .seite-ikon).quer.je-6 { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); }
+  .seite-ikon.quer, .druck-raum.quer .druck-format .seite-ikon { width: 36px; height: 26px; }
+  .druck-raum.quer .druck-format .seite-ikon.je-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: minmax(0, 1fr); }
+  .druck-raum.quer .druck-format .seite-ikon.je-6 { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); }
+  .druck-lage .knopf.wahl { gap: 8px; }
   @media (orientation: portrait) {
     .druck-raum { flex-direction: column; gap: 18px; }
     .druck-stapel { height: auto; width: min(80vw, calc((100 * var(--vh) - 360px) * 210 / 297)); }
+    .druck-stapel.quer { width: min(90vw, calc((100 * var(--vh) - 420px) * 297 / 210)); }
     .druck-steuer { width: min(100%, 420px); }
   }
   .druckblatt { display: none; }

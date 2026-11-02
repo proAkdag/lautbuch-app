@@ -49,8 +49,8 @@ window.LAUTBUCH_TEILE.o = {
         richtig: 'sz-o-l2-1',
         wahl: [
           { s: 'sz-o-l2-1', wer: 'nashorn', tut: 'steht', was: 'hof', bild: 'Ein Nashorn steht mitten auf einem Bauernhof zwischen Hühnern vor einem roten Stall.' },
-          { s: 'sz-o-l2-2', wer: 'koala', tut: 'steht', was: 'hof', bild: 'Ein Koala steht mitten auf demselben Bauernhof zwischen Hühnern vor dem roten Stall.' },
-          { s: 'sz-o-l2-3', wer: 'nashorn', tut: 'steht', was: 'zoo', bild: 'Ein Nashorn steht in einem Zoogehege hinter einem Holzzaun.' }
+          { s: 'sz-o-l2-2', wer: 'koala', tut: 'steht', was: 'hof', satz: 'Ko-a-la am Hof? O-ho!', bild: 'Ein Koala steht mitten auf demselben Bauernhof zwischen Hühnern vor dem roten Stall.' },
+          { s: 'sz-o-l2-3', wer: 'nashorn', tut: 'steht', was: 'zoo', ohneSatz: 'holprig nach Pruefer 02.11. (PRUEFUNG_SAETZE.md), Zero: rausnehmen; nie Ziel der Geschichte', bild: 'Ein Nashorn steht in einem Zoogehege hinter einem Holzzaun.' }
         ]
       },
       szene: { heft: 'Wer steht am Hof? Was ist ein Hof? Ein Nashorn gehört da eigentlich nicht hin.' }
@@ -79,8 +79,8 @@ window.LAUTBUCH_TEILE.o = {
         richtig: 'sz-o-l3-1',
         wahl: [
           { s: 'sz-o-l3-1', wer: 'dino', tut: 'hopst', was: 'kino', bild: 'Ein kleiner grüner Dino hüpft in einem Kino vor der großen Leinwand zwischen roten Sesseln hoch.' },
-          { s: 'sz-o-l3-2', wer: 'dino', tut: 'klatscht', was: 'kino', bild: 'Ein kleiner grüner Dino sitzt im selben Kino auf einem roten Sessel und klatscht in die Hände.' },
-          { s: 'sz-o-l3-3', wer: 'dino', tut: 'hopst', was: 'hof', bild: 'Ein kleiner grüner Dino hüpft auf einem Bauernhof vor einem roten Stall hoch.' }
+          { s: 'sz-o-l3-2', wer: 'dino', tut: 'klatscht', was: 'kino', satz: 'Di-no klatscht im Ki-no!', bild: 'Ein kleiner grüner Dino sitzt im selben Kino auf einem roten Sessel und klatscht in die Hände.' },
+          { s: 'sz-o-l3-3', wer: 'dino', tut: 'hopst', was: 'hof', satz: 'Di-no hopst am Hof!', bild: 'Ein kleiner grüner Dino hüpft auf einem Bauernhof vor einem roten Stall hoch.' }
         ]
       }
     },
@@ -109,8 +109,8 @@ window.LAUTBUCH_TEILE.o = {
         richtig: 'sz-o-l4-1',
         wahl: [
           { s: 'sz-o-l4-1', wer: 'schaf', tut: 'nascht', was: 'schoko', bild: 'Ein Schaf steht vor einem kleinen Kiosk und nascht eine Tafel Schokolade, ein kleiner Roboter schaut erstaunt zu.' },
-          { s: 'sz-o-l4-2', wer: 'frosch', tut: 'nascht', was: 'schoko', bild: 'Ein Frosch sitzt vor demselben Kiosk und nascht eine Tafel Schokolade, der kleine Roboter schaut erstaunt zu.' },
-          { s: 'sz-o-l4-3', wer: 'schaf', tut: 'nascht', was: 'brot', bild: 'Ein Schaf steht vor demselben Kiosk und nascht ein Brot, der kleine Roboter schaut erstaunt zu.' }
+          { s: 'sz-o-l4-2', wer: 'frosch', tut: 'nascht', was: 'schoko', satz: 'Frosch nascht Ro-bos Scho-ko.', bild: 'Ein Frosch sitzt vor demselben Kiosk und nascht eine Tafel Schokolade, der kleine Roboter schaut erstaunt zu.' },
+          { s: 'sz-o-l4-3', wer: 'schaf', tut: 'nascht', was: 'brot', satz: 'Das Schaf nascht Ro-bos Brot.', bild: 'Ein Schaf steht vor demselben Kiosk und nascht ein Brot, der kleine Roboter schaut erstaunt zu.' }
         ]
       },
       sinnMehr: [
@@ -119,8 +119,8 @@ window.LAUTBUCH_TEILE.o = {
           richtig: 'sz-o-l4-s1-1',
           wahl: [
             { s: 'sz-o-l4-s1-1', wer: 'robo', tut: 'holt', was: 'schoko', bild: 'Ein kleiner Roboter steht vor einem kleinen Kiosk und nimmt eine Tafel Schokolade aus der Auslage.' },
-            { s: 'sz-o-l4-s1-2', wer: 'frosch', tut: 'holt', was: 'schoko', bild: 'Ein Frosch sitzt vor demselben Kiosk und nimmt eine Tafel Schokolade aus der Auslage.' },
-            { s: 'sz-o-l4-s1-3', wer: 'robo', tut: 'holt', was: 'brot', bild: 'Der kleine Roboter steht vor demselben Kiosk und nimmt ein Brot aus der Auslage.' }
+            { s: 'sz-o-l4-s1-2', wer: 'frosch', tut: 'holt', was: 'schoko', satz: 'Frosch holt Scho-ko am Ki-osk.', bild: 'Ein Frosch sitzt vor demselben Kiosk und nimmt eine Tafel Schokolade aus der Auslage.' },
+            { s: 'sz-o-l4-s1-3', wer: 'robo', tut: 'holt', was: 'brot', satz: 'Ro-bo holt Brot am Ki-osk.', bild: 'Der kleine Roboter steht vor demselben Kiosk und nimmt ein Brot aus der Auslage.' }
           ]
         }
       ]
@@ -143,8 +143,8 @@ window.LAUTBUCH_TEILE.o = {
       richtig: 'sz-o-boss-1',
       wahl: [
         { s: 'sz-o-boss-1', wer: 'oma', tut: 'tanzt', was: 'mit robo', bild: 'Eine Oma tanzt in einem Wohnzimmer mit einem kleinen Roboter, ein Opa sitzt im Sessel und klatscht.' },
-        { s: 'sz-o-boss-2', wer: 'opa', tut: 'tanzt', was: 'mit robo', bild: 'Ein Opa tanzt im selben Wohnzimmer mit dem kleinen Roboter, eine Oma sitzt im Sessel und klatscht.' },
-        { s: 'sz-o-boss-3', wer: 'oma', tut: 'tanzt', was: 'mit koala', bild: 'Eine Oma tanzt im selben Wohnzimmer mit einem Koala, ein Opa sitzt im Sessel und klatscht.' }
+        { s: 'sz-o-boss-2', wer: 'opa', tut: 'tanzt', was: 'mit robo', satz: 'O-pa tanzt mit Ro-bo, O-ma klatscht.', bild: 'Ein Opa tanzt im selben Wohnzimmer mit dem kleinen Roboter, eine Oma sitzt im Sessel und klatscht.' },
+        { s: 'sz-o-boss-3', wer: 'oma', tut: 'tanzt', was: 'mit koala', satz: 'O-ma tanzt mit Ko-a-la, O-pa klatscht.', bild: 'Eine Oma tanzt im selben Wohnzimmer mit einem Koala, ein Opa sitzt im Sessel und klatscht.' }
       ]
     },
     sinnMehr: [
@@ -153,8 +153,8 @@ window.LAUTBUCH_TEILE.o = {
         richtig: 'sz-o-boss-s1-1',
         wahl: [
           { s: 'sz-o-boss-s1-1', wer: 'oma + opa', tut: 'hat', was: 'kakao + schokobrot', bild: 'Oma und Opa sitzen im Wohnzimmer am Tisch; vor Oma steht eine Tasse Kakao, vor Opa liegt ein Schokobrot.' },
-          { s: 'sz-o-boss-s1-2', wer: 'oma + robo', tut: 'hat', was: 'kakao + schokobrot', bild: 'Oma und der kleine Roboter sitzen im selben Wohnzimmer am Tisch; vor Oma steht eine Tasse Kakao, vor dem Roboter liegt ein Schokobrot.' },
-          { s: 'sz-o-boss-s1-3', wer: 'oma + opa', tut: 'hat', was: 'kakao + banane', bild: 'Oma und Opa sitzen im selben Wohnzimmer am Tisch; vor Oma steht eine Tasse Kakao, vor Opa liegt eine Banane.' }
+          { s: 'sz-o-boss-s1-2', wer: 'oma + robo', tut: 'hat', was: 'kakao + schokobrot', satz: 'O-ma hat Ka-ka-o, Ro-bo Scho-ko-brot.', bild: 'Oma und der kleine Roboter sitzen im selben Wohnzimmer am Tisch; vor Oma steht eine Tasse Kakao, vor dem Roboter liegt ein Schokobrot.' },
+          { s: 'sz-o-boss-s1-3', wer: 'oma + opa', tut: 'hat', was: 'kakao + banane', ohneSatz: 'Bild zeigt eine Banane: Banane braucht e, Banana ist verboten (Zero); nie Ziel der Geschichte, bis ein neues Bild kommt', bild: 'Oma und Opa sitzen im selben Wohnzimmer am Tisch; vor Oma steht eine Tasse Kakao, vor Opa liegt eine Banane.' }
         ]
       },
       {
@@ -162,8 +162,8 @@ window.LAUTBUCH_TEILE.o = {
         richtig: 'sz-o-boss-s3-1',
         wahl: [
           { s: 'sz-o-boss-s3-1', wer: 'schaf', tut: 'nascht', was: 'schokobrot', bild: 'Ein Schaf steckt im selben Wohnzimmer den Kopf über den Tisch und nascht Opas Schokobrot, Opa schaut verdutzt zu.' },
-          { s: 'sz-o-boss-s3-2', wer: 'koala', tut: 'nascht', was: 'schokobrot', bild: 'Ein Koala steckt im selben Wohnzimmer den Kopf über den Tisch und nascht Opas Schokobrot, Opa schaut verdutzt zu.' },
-          { s: 'sz-o-boss-s3-3', wer: 'schaf', tut: 'nascht', was: 'kakao', bild: 'Ein Schaf steckt im selben Wohnzimmer den Kopf über den Tisch und nascht aus Omas Tasse Kakao, Opa schaut verdutzt zu.' }
+          { s: 'sz-o-boss-s3-2', wer: 'koala', tut: 'nascht', was: 'schokobrot', satz: 'Ko-a-la? Ko-a-la nascht O-pas Scho-ko-brot!', bild: 'Ein Koala steckt im selben Wohnzimmer den Kopf über den Tisch und nascht Opas Schokobrot, Opa schaut verdutzt zu.' },
+          { s: 'sz-o-boss-s3-3', wer: 'schaf', tut: 'nascht', was: 'kakao', satz: 'Das Schaf? Das Schaf nascht O-mas Ka-ka-o!', bild: 'Ein Schaf steckt im selben Wohnzimmer den Kopf über den Tisch und nascht aus Omas Tasse Kakao, Opa schaut verdutzt zu.' }
         ]
       }
     ]

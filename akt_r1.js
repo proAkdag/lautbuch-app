@@ -54,8 +54,8 @@ window.LAUTBUCH_TEILE.r1 = {
         richtig: 'sz-r1-l2-1',
         wahl: [
           { s: 'sz-r1-l2-1', wer: 'oma', tut: 'holt', was: 'kuchen', bild: 'Oma schleicht auf Zehenspitzen über den Hof und trägt einen großen runden Kuchen auf einer Platte; hinten an der Scheunenwand schläft das Schaf.' },
-          { s: 'sz-r1-l2-2', wer: 'opa', tut: 'holt', was: 'kuchen', bild: 'Opa schleicht auf Zehenspitzen über denselben Hof und trägt einen großen runden Kuchen auf einer Platte; hinten an der Scheunenwand schläft das Schaf.' },
-          { s: 'sz-r1-l2-3', wer: 'oma', tut: 'holt', was: 'milch', bild: 'Oma schleicht auf Zehenspitzen über denselben Hof und trägt eine große Kanne Milch; hinten an der Scheunenwand schläft das Schaf.' }
+          { s: 'sz-r1-l2-2', wer: 'opa', tut: 'holt', was: 'kuchen', satz: 'O-pa holt den Ku-chen.', bild: 'Opa schleicht auf Zehenspitzen über denselben Hof und trägt einen großen runden Kuchen auf einer Platte; hinten an der Scheunenwand schläft das Schaf.' },
+          { s: 'sz-r1-l2-3', wer: 'oma', tut: 'holt', was: 'milch', satz: 'O-ma holt die Milch.', bild: 'Oma schleicht auf Zehenspitzen über denselben Hof und trägt eine große Kanne Milch; hinten an der Scheunenwand schläft das Schaf.' }
         ]
       },
       sinnMehr: [
@@ -64,8 +64,8 @@ window.LAUTBUCH_TEILE.r1 = {
           richtig: 'sz-r1-l2-s1-1',
           wahl: [
             { s: 'sz-r1-l2-s1-1', wer: 'schaf', tut: 'schnarcht', was: '', bild: 'An der Scheunenwand auf dem Hof liegt das Schaf auf dem Rücken und schnarcht mit offenem Mund, über ihm schweben kleine Schnarch-Wölkchen.' },
-            { s: 'sz-r1-l2-s1-2', wer: 'zebra', tut: 'schnarcht', was: '', bild: 'An derselben Scheunenwand liegt das Zebra auf dem Rücken und schnarcht mit offenem Mund, über ihm schweben kleine Schnarch-Wölkchen.' },
-            { s: 'sz-r1-l2-s1-3', wer: 'schaf', tut: 'tanzt', was: '', bild: 'An derselben Scheunenwand tanzt das Schaf hellwach auf den Hinterbeinen.' }
+            { s: 'sz-r1-l2-s1-2', wer: 'zebra', tut: 'schnarcht', was: '', satz: 'Pst! Das Ze-bra schnarcht.', bild: 'An derselben Scheunenwand liegt das Zebra auf dem Rücken und schnarcht mit offenem Mund, über ihm schweben kleine Schnarch-Wölkchen.' },
+            { s: 'sz-r1-l2-s1-3', wer: 'schaf', tut: 'tanzt', was: '', satz: 'Huch! Das Schaf tanzt.', bild: 'An derselben Scheunenwand tanzt das Schaf hellwach auf den Hinterbeinen.' }
           ]
         },
         {
@@ -73,8 +73,8 @@ window.LAUTBUCH_TEILE.r1 = {
           richtig: 'sz-r1-l2-s3-1',
           wahl: [
             { s: 'sz-r1-l2-s3-1', wer: 'schaf', tut: 'riecht', was: 'kuchen', bild: 'Das Schaf schläft an derselben Scheunenwand, hat aber die Nase hoch in der Luft und schnuppert mit geschlossenen Augen; eine feine Duftspur führt zu Omas Kuchen.' },
-            { s: 'sz-r1-l2-s3-2', wer: 'hund', tut: 'riecht', was: 'kuchen', bild: 'Ein kleiner brauner Hund mit Schlappohren liegt an derselben Scheunenwand und schnuppert mit geschlossenen Augen; eine feine Duftspur führt zu Omas Kuchen. Das Schaf ist nicht da.' },
-            { s: 'sz-r1-l2-s3-3', wer: 'schaf', tut: 'riecht', was: 'milch', bild: 'Das Schaf schläft an derselben Scheunenwand, hat aber die Nase hoch in der Luft und schnuppert mit geschlossenen Augen; eine feine Duftspur führt zu einer Kanne Milch.' }
+            { s: 'sz-r1-l2-s3-2', wer: 'hund', tut: 'riecht', was: 'kuchen', satz: 'Der Hund riecht den Ku-chen.', bild: 'Ein kleiner brauner Hund mit Schlappohren liegt an derselben Scheunenwand und schnuppert mit geschlossenen Augen; eine feine Duftspur führt zu Omas Kuchen. Das Schaf ist nicht da.' },
+            { s: 'sz-r1-l2-s3-3', wer: 'schaf', tut: 'riecht', was: 'milch', satz: 'Das Schaf riecht die Milch.', bild: 'Das Schaf schläft an derselben Scheunenwand, hat aber die Nase hoch in der Luft und schnuppert mit geschlossenen Augen; eine feine Duftspur führt zu einer Kanne Milch.' }
           ]
         }
       ]
@@ -105,8 +105,8 @@ window.LAUTBUCH_TEILE.r1 = {
         richtig: 'sz-r1-l3-1',
         wahl: [
           { s: 'sz-r1-l3-1', wer: 'kind', tut: 'pst', was: 'schaf merkt nichts', bild: 'Das Kind in Latzhose legt den Finger an den Mund und versteckt ein großes bemaltes Blatt hinter dem Rücken; weiter hinten auf der Wiese knabbert das Schaf ahnungslos Gras und schaut weg.' },
-          { s: 'sz-r1-l3-2', wer: 'kind', tut: 'ruft laut', was: 'schaf merkt nichts', bild: 'Das Kind in Latzhose ruft mit weit offenem Mund und schwenkt das große bemalte Blatt hoch in der Luft; weiter hinten auf derselben Wiese knabbert das Schaf ahnungslos Gras und schaut weg.' },
-          { s: 'sz-r1-l3-3', wer: 'kind', tut: 'pst', was: 'schaf schaut zu', bild: 'Das Kind in Latzhose legt den Finger an den Mund und versteckt das große bemalte Blatt hinter dem Rücken; direkt daneben steht das Schaf und guckt neugierig über seine Schulter auf das Blatt.' }
+          { s: 'sz-r1-l3-2', wer: 'kind', tut: 'ruft laut', was: 'schaf merkt nichts', satz: 'Das Kind ruft, a-ber das Schaf merkt nichts.', bild: 'Das Kind in Latzhose ruft mit weit offenem Mund und schwenkt das große bemalte Blatt hoch in der Luft; weiter hinten auf derselben Wiese knabbert das Schaf ahnungslos Gras und schaut weg.' },
+          { s: 'sz-r1-l3-3', wer: 'kind', tut: 'pst', was: 'schaf schaut zu', satz: 'Pst! Das Schaf merkt es doch!', bild: 'Das Kind in Latzhose legt den Finger an den Mund und versteckt das große bemalte Blatt hinter dem Rücken; direkt daneben steht das Schaf und guckt neugierig über seine Schulter auf das Blatt.' }
         ]
       },
       sinnMehr: [
@@ -115,8 +115,8 @@ window.LAUTBUCH_TEILE.r1 = {
           richtig: 'sz-r1-l3-s1-1',
           wahl: [
             { s: 'sz-r1-l3-s1-1', wer: 'kind + hund', tut: 'planen', was: 'fest', bild: 'Das Kind in Latzhose und ein kleiner brauner Hund mit Schlappohren liegen bäuchlings im Gras über einem großen Blatt, auf das ein Kuchen, Girlanden und ein Schaf gemalt sind; das Kind zeigt mit dem Stift darauf.' },
-            { s: 'sz-r1-l3-s1-2', wer: 'kind + zebra', tut: 'planen', was: 'fest', bild: 'Das Kind in Latzhose und das Zebra liegen bäuchlings im selben Gras über demselben großen Blatt mit Kuchen, Girlanden und Schaf; das Kind zeigt mit dem Stift darauf.' },
-            { s: 'sz-r1-l3-s1-3', wer: 'kind + hund', tut: 'schlafen', was: 'fest', bild: 'Das Kind in Latzhose und der kleine braune Hund liegen im selben Gras und schlafen mit den Köpfen auf demselben großen Blatt mit Kuchen, Girlanden und Schaf.' }
+            { s: 'sz-r1-l3-s1-2', wer: 'kind + zebra', tut: 'planen', was: 'fest', satz: 'Das Kind und das Ze-bra pla-nen das Fest.', bild: 'Das Kind in Latzhose und das Zebra liegen bäuchlings im selben Gras über demselben großen Blatt mit Kuchen, Girlanden und Schaf; das Kind zeigt mit dem Stift darauf.' },
+            { s: 'sz-r1-l3-s1-3', wer: 'kind + hund', tut: 'schlafen', was: 'fest', satz: 'Das Kind und der Hund schla-fen.', bild: 'Das Kind in Latzhose und der kleine braune Hund liegen im selben Gras und schlafen mit den Köpfen auf demselben großen Blatt mit Kuchen, Girlanden und Schaf.' }
           ]
         }
       ]
@@ -139,8 +139,8 @@ window.LAUTBUCH_TEILE.r1 = {
       richtig: 'sz-r1-boss-1',
       wahl: [
         { s: 'sz-r1-boss-1', wer: 'schaf', tut: 'schnarcht', was: 'hundekorb', bild: 'Am Abend scheint der Mond durchs Scheunenfenster; im kleinen Hundekorb liegt zusammengerollt das Schaf und schnarcht, der kleine braune Hund sitzt davor und staunt.' },
-        { s: 'sz-r1-boss-2', wer: 'hund', tut: 'schnarcht', was: 'hundekorb', bild: 'Am selben Abend scheint der Mond durchs Scheunenfenster; im kleinen Hundekorb liegt zusammengerollt der kleine braune Hund und schnarcht.' },
-        { s: 'sz-r1-boss-3', wer: 'schaf', tut: 'schnarcht', was: 'kiste', bild: 'Am selben Abend scheint der Mond durchs Scheunenfenster; in der Holzkiste der Ziege liegt zusammengerollt das Schaf und schnarcht, der kleine braune Hund sitzt davor und staunt.' }
+        { s: 'sz-r1-boss-2', wer: 'hund', tut: 'schnarcht', was: 'hundekorb', satz: 'Am A-bend schnarcht der Hund im Hun-de-korb.', bild: 'Am selben Abend scheint der Mond durchs Scheunenfenster; im kleinen Hundekorb liegt zusammengerollt der kleine braune Hund und schnarcht.' },
+        { s: 'sz-r1-boss-3', wer: 'schaf', tut: 'schnarcht', was: 'kiste', satz: 'Am A-bend schnarcht das Schaf in der Kis-te.', bild: 'Am selben Abend scheint der Mond durchs Scheunenfenster; in der Holzkiste der Ziege liegt zusammengerollt das Schaf und schnarcht, der kleine braune Hund sitzt davor und staunt.' }
       ]
     },
     sinnMehr: [
@@ -149,8 +149,8 @@ window.LAUTBUCH_TEILE.r1 = {
         richtig: 'sz-r1-boss-s1-1',
         wahl: [
           { s: 'sz-r1-boss-s1-1', wer: 'kind', tut: 'legt', was: 'kuchen', bild: 'In der Scheune legt das Kind in Latzhose vorsichtig Omas runden Kuchen in den kleinen Hundekorb und deckt ihn halb mit der Hundedecke zu.' },
-          { s: 'sz-r1-boss-s1-2', wer: 'oma', tut: 'legt', was: 'kuchen', bild: 'In derselben Scheune legt Oma vorsichtig den runden Kuchen in den kleinen Hundekorb und deckt ihn halb mit der Hundedecke zu.' },
-          { s: 'sz-r1-boss-s1-3', wer: 'kind', tut: 'legt', was: 'buch', bild: 'In derselben Scheune legt das Kind in Latzhose vorsichtig ein dickes Buch in den kleinen Hundekorb und deckt es halb mit der Hundedecke zu.' }
+          { s: 'sz-r1-boss-s1-2', wer: 'oma', tut: 'legt', was: 'kuchen', satz: 'O-ma legt den Ku-chen in den Hun-de-korb.', bild: 'In derselben Scheune legt Oma vorsichtig den runden Kuchen in den kleinen Hundekorb und deckt ihn halb mit der Hundedecke zu.' },
+          { s: 'sz-r1-boss-s1-3', wer: 'kind', tut: 'legt', was: 'buch', satz: 'Das Kind legt das Buch in den Hun-de-korb.', bild: 'In derselben Scheune legt das Kind in Latzhose vorsichtig ein dickes Buch in den kleinen Hundekorb und deckt es halb mit der Hundedecke zu.' }
         ]
       },
       {
@@ -158,8 +158,8 @@ window.LAUTBUCH_TEILE.r1 = {
         richtig: 'sz-r1-boss-s3-1',
         wahl: [
           { s: 'sz-r1-boss-s3-1', wer: 'schaf', tut: 'hat am mund', was: 'kuchen', bild: 'Nahaufnahme im selben Hundekorb: Das Schaf schläft selig, um sein Maul kleben Kuchenkrümel und Sahne, neben ihm liegt die leere Kuchenplatte.' },
-          { s: 'sz-r1-boss-s3-2', wer: 'hund', tut: 'hat am mund', was: 'kuchen', bild: 'Nahaufnahme am selben Hundekorb: Der kleine braune Hund hat Kuchenkrümel und Sahne um die Schnauze, neben ihm liegt die leere Kuchenplatte; das Schaf schläft sauber im Korb.' },
-          { s: 'sz-r1-boss-s3-3', wer: 'schaf', tut: 'hat am mund', was: 'milch', bild: 'Nahaufnahme im selben Hundekorb: Das Schaf schläft selig mit einem weißen Milchbart um das Maul, neben ihm liegt eine umgekippte Milchkanne.' }
+          { s: 'sz-r1-boss-s3-2', wer: 'hund', tut: 'hat am mund', was: 'kuchen', satz: 'Und der Ku-chen? Der Hund hat Ku-chen am Mund!', bild: 'Nahaufnahme am selben Hundekorb: Der kleine braune Hund hat Kuchenkrümel und Sahne um die Schnauze, neben ihm liegt die leere Kuchenplatte; das Schaf schläft sauber im Korb.' },
+          { s: 'sz-r1-boss-s3-3', wer: 'schaf', tut: 'hat am mund', was: 'milch', satz: 'Und die Milch? Das Schaf hat Milch am Mund!', bild: 'Nahaufnahme im selben Hundekorb: Das Schaf schläft selig mit einem weißen Milchbart um das Maul, neben ihm liegt eine umgekippte Milchkanne.' }
         ]
       }
     ]

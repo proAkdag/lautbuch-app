@@ -48,8 +48,8 @@ window.LAUTBUCH_TEILE.a = {
         richtig: 'sz-a-l2-1',
         wahl: [
           { s: 'sz-a-l2-1', wer: 'zwei lamas', tut: 'frisst', was: 'ananas', bild: 'Zwei Lamas stehen nebeneinander auf einer Wiese und knabbern gemeinsam an einer großen Ananas.' },
-          { s: 'sz-a-l2-2', wer: 'lama', tut: 'frisst', was: 'ananas', bild: 'Ein einzelnes Lama steht auf derselben Wiese und knabbert an einer großen Ananas.' },
-          { s: 'sz-a-l2-3', wer: 'zwei lamas', tut: 'frisst', was: 'salat', bild: 'Zwei Lamas stehen nebeneinander auf derselben Wiese und knabbern gemeinsam an einem großen Salatkopf.' }
+          { s: 'sz-a-l2-2', wer: 'lama', tut: 'frisst', was: 'ananas', satz: 'A-na-nas? Ham-ham, La-ma!', bild: 'Ein einzelnes Lama steht auf derselben Wiese und knabbert an einer großen Ananas.' },
+          { s: 'sz-a-l2-3', wer: 'zwei lamas', tut: 'frisst', was: 'salat', satz: 'Sa-lat? Ham-ham, La-mas!', bild: 'Zwei Lamas stehen nebeneinander auf derselben Wiese und knabbern gemeinsam an einem großen Salatkopf.' }
         ]
       },
       szene: { heft: 'Lama oder Lamas? Ein Tier oder mehrere. Hier macht das S aus einem Lama mehrere – bei Ananas nicht.' }
@@ -77,8 +77,8 @@ window.LAUTBUCH_TEILE.a = {
         richtig: 'sz-a-l3-1',
         wahl: [
           { s: 'sz-a-l3-1', wer: 'lama', tut: 'malt an', was: 'panda', bild: 'Ein Lama hält einen Pinsel im Maul und tupft bunte Farbpunkte auf das Fell eines Pandas, der still auf einem Hocker sitzt.' },
-          { s: 'sz-a-l3-2', wer: 'schaf', tut: 'malt an', was: 'panda', bild: 'Ein Schaf hält einen Pinsel im Maul und tupft bunte Farbpunkte auf das Fell eines Pandas, der still auf demselben Hocker sitzt.' },
-          { s: 'sz-a-l3-3', wer: 'lama', tut: 'füttert', was: 'panda', bild: 'Ein Lama hält dem Panda, der still auf demselben Hocker sitzt, einen Teller Pasta hin.' }
+          { s: 'sz-a-l3-2', wer: 'schaf', tut: 'malt an', was: 'panda', satz: 'Das Schaf malt Pan-da an!', bild: 'Ein Schaf hält einen Pinsel im Maul und tupft bunte Farbpunkte auf das Fell eines Pandas, der still auf demselben Hocker sitzt.' },
+          { s: 'sz-a-l3-3', wer: 'lama', tut: 'füttert', was: 'panda', satz: 'Das La-ma hat Pas-ta da. Ham-ham, Pan-da!', bild: 'Ein Lama hält dem Panda, der still auf demselben Hocker sitzt, einen Teller Pasta hin.' }
         ]
       }
     },
@@ -107,8 +107,8 @@ window.LAUTBUCH_TEILE.a = {
         richtig: 'sz-a-l4-1',
         wahl: [
           { s: 'sz-a-l4-1', wer: 'panda', tut: 'tanzt', was: '', bild: 'Ein Panda mit bunten Farbpunkten im Fell tanzt fröhlich auf einer Wiese, die Arme hoch in der Luft.' },
-          { s: 'sz-a-l4-2', wer: 'schaf', tut: 'tanzt', was: '', bild: 'Ein Schaf tanzt fröhlich auf derselben Wiese, die Vorderbeine hoch in der Luft.' },
-          { s: 'sz-a-l4-3', wer: 'panda', tut: 'klatscht', was: '', bild: 'Ein Panda mit bunten Farbpunkten im Fell steht auf derselben Wiese und klatscht in die Pfoten.' }
+          { s: 'sz-a-l4-2', wer: 'schaf', tut: 'tanzt', was: '', satz: 'Ha-ha! Das Schaf tanzt Sal-sa!', bild: 'Ein Schaf tanzt fröhlich auf derselben Wiese, die Vorderbeine hoch in der Luft.' },
+          { s: 'sz-a-l4-3', wer: 'panda', tut: 'klatscht', was: '', satz: 'Ha-ha! Pan-da klatscht!', bild: 'Ein Panda mit bunten Farbpunkten im Fell steht auf derselben Wiese und klatscht in die Pfoten.' }
         ]
       },
       sinnMehr: [
@@ -117,8 +117,8 @@ window.LAUTBUCH_TEILE.a = {
           richtig: 'sz-a-l4-s1-1',
           wahl: [
             { s: 'sz-a-l4-s1-1', wer: 'schaf', tut: 'tanzt', was: '', bild: 'Ein Schaf tanzt fröhlich auf einer Wiese, die Vorderbeine hoch in der Luft.' },
-            { s: 'sz-a-l4-s1-2', wer: 'lama', tut: 'tanzt', was: '', bild: 'Ein Lama tanzt fröhlich auf derselben Wiese, die Vorderbeine hoch in der Luft.' },
-            { s: 'sz-a-l4-s1-3', wer: 'schaf', tut: 'klatscht', was: '', bild: 'Ein Schaf steht auf derselben Wiese und klatscht in die Vorderhufe.' }
+            { s: 'sz-a-l4-s1-2', wer: 'lama', tut: 'tanzt', was: '', satz: 'Das La-ma tanzt Sal-sa.', bild: 'Ein Lama tanzt fröhlich auf derselben Wiese, die Vorderbeine hoch in der Luft.' },
+            { s: 'sz-a-l4-s1-3', wer: 'schaf', tut: 'klatscht', was: '', satz: 'Das Schaf klatscht.', bild: 'Ein Schaf steht auf derselben Wiese und klatscht in die Vorderhufe.' }
           ]
         }
       ]
@@ -141,8 +141,8 @@ window.LAUTBUCH_TEILE.a = {
       richtig: 'sz-a-boss-1',
       wahl: [
         { s: 'sz-a-boss-1', wer: 'schaf', tut: 'nascht', was: 'pasta', bild: 'Ein Schaf stellt sich mit den Vorderhufen auf einen Stuhl am Küchentisch und nascht aus einem Teller Pasta, eine Nudel hängt ihm aus dem Maul.' },
-        { s: 'sz-a-boss-2', wer: 'lama', tut: 'nascht', was: 'pasta', bild: 'Ein Lama steckt seinen langen Hals über denselben Küchentisch und nascht aus einem Teller Pasta.' },
-        { s: 'sz-a-boss-3', wer: 'schaf', tut: 'nascht', was: 'salat', bild: 'Ein Schaf stellt sich mit den Vorderhufen auf denselben Stuhl am Küchentisch und nascht aus einer Schüssel Salat, ein Salatblatt hängt ihm aus dem Maul.' }
+        { s: 'sz-a-boss-2', wer: 'lama', tut: 'nascht', was: 'pasta', satz: 'Pa-pa! Das La-ma nascht Pas-ta!', bild: 'Ein Lama steckt seinen langen Hals über denselben Küchentisch und nascht aus einem Teller Pasta.' },
+        { s: 'sz-a-boss-3', wer: 'schaf', tut: 'nascht', was: 'salat', satz: 'Pa-pa! Das Schaf nascht Sa-lat!', bild: 'Ein Schaf stellt sich mit den Vorderhufen auf denselben Stuhl am Küchentisch und nascht aus einer Schüssel Salat, ein Salatblatt hängt ihm aus dem Maul.' }
       ]
     },
     sinnMehr: [
@@ -151,8 +151,8 @@ window.LAUTBUCH_TEILE.a = {
         richtig: 'sz-a-boss-s1-1',
         wahl: [
           { s: 'sz-a-boss-s1-1', wer: 'papa + mama', tut: 'hat', was: 'pasta + salat', bild: 'Papa und Mama sitzen nebeneinander am Küchentisch; vor Papa steht ein Teller Pasta, vor Mama eine Schüssel Salat.' },
-          { s: 'sz-a-boss-s1-2', wer: 'papa + lama', tut: 'hat', was: 'pasta + salat', bild: 'Papa sitzt am selben Küchentisch, neben ihm steht ein Lama an Mamas Platz; vor Papa steht ein Teller Pasta, vor dem Lama eine Schüssel Salat.' },
-          { s: 'sz-a-boss-s1-3', wer: 'papa + mama', tut: 'hat', was: 'pasta + ananas', bild: 'Papa und Mama sitzen nebeneinander am selben Küchentisch; vor Papa steht ein Teller Pasta, vor Mama eine Ananas.' }
+          { s: 'sz-a-boss-s1-2', wer: 'papa + lama', tut: 'hat', was: 'pasta + salat', satz: 'Pa-pa hat Pas-ta, La-ma Sa-lat.', bild: 'Papa sitzt am selben Küchentisch, neben ihm steht ein Lama an Mamas Platz; vor Papa steht ein Teller Pasta, vor dem Lama eine Schüssel Salat.' },
+          { s: 'sz-a-boss-s1-3', wer: 'papa + mama', tut: 'hat', was: 'pasta + ananas', satz: 'Pa-pa hat Pas-ta, Ma-ma A-na-nas.', bild: 'Papa und Mama sitzen nebeneinander am selben Küchentisch; vor Papa steht ein Teller Pasta, vor Mama eine Ananas.' }
         ]
       },
       {
@@ -160,8 +160,8 @@ window.LAUTBUCH_TEILE.a = {
         richtig: 'sz-a-boss-s3-1',
         wahl: [
           { s: 'sz-a-boss-s3-1', wer: 'papa', tut: 'tanzt', was: '', bild: 'Papa tanzt fröhlich in derselben Küche neben dem Küchentisch, die Arme hoch in der Luft.' },
-          { s: 'sz-a-boss-s3-2', wer: 'mama', tut: 'tanzt', was: '', bild: 'Mama tanzt fröhlich in derselben Küche neben dem Küchentisch, die Arme hoch in der Luft.' },
-          { s: 'sz-a-boss-s3-3', wer: 'papa', tut: 'klatscht', was: '', bild: 'Papa steht in derselben Küche neben dem Küchentisch und klatscht in die Hände.' }
+          { s: 'sz-a-boss-s3-2', wer: 'mama', tut: 'tanzt', was: '', satz: 'Ma-ma? Ma-ma tanzt Sal-sa!', bild: 'Mama tanzt fröhlich in derselben Küche neben dem Küchentisch, die Arme hoch in der Luft.' },
+          { s: 'sz-a-boss-s3-3', wer: 'papa', tut: 'klatscht', was: '', satz: 'Pa-pa? Pa-pa klatscht!', bild: 'Papa steht in derselben Küche neben dem Küchentisch und klatscht in die Hände.' }
         ]
       }
     ]

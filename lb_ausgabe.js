@@ -51,6 +51,16 @@
     }
   };
 
+  const einpassen = (wurzel) => {
+    for (const im of wurzel.querySelectorAll('img')) {
+      const nw = im.naturalWidth, nh = im.naturalHeight;
+      if (!nw || !nh || getComputedStyle(im).objectFit !== 'contain') continue;
+      const r = im.getBoundingClientRect(); if (!r.width || !r.height) continue;
+      const s = Math.min(r.width / nw, r.height / nh);
+      im.style.width = (nw * s).toFixed(2) + 'px'; im.style.height = (nh * s).toFixed(2) + 'px'; im.style.objectFit = 'fill';
+    }
+  };
+
   let laeuft = false;
   function pdf(seiten, fn, opt = {}) {
     if (laeuft || !seiten.length) return;
@@ -68,6 +78,7 @@
     const aktiv = () => !navigator.userActivation || navigator.userActivation.isActive;
     requestAnimationFrame(() => requestAnimationFrame(() => {
       Promise.all(bilder.map(i => i.decode ? i.decode().catch(() => {}) : null)).then(async () => {
+        einpassen(buehne);
         const JsPDF = window.jspdf.jsPDF;
         const doc = new JsPDF({ unit: 'mm', format: 'a4', orientation: opt.quer ? 'landscape' : 'portrait' });
         const [pw, ph] = opt.quer ? [297, 210] : [210, 297];

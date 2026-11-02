@@ -52,8 +52,8 @@ window.LAUTBUCH_TEILE.ue = {
         richtig: 'sz-ue-l2-1',
         wahl: [
           { s: 'sz-ue-l2-1', wer: 'kühe', tut: 'radeln', was: 'hügel', bild: 'Zwei fröhliche Kühe fahren auf Fahrrädern einen Weg entlang auf einen grünen Hügel zu.' },
-          { s: 'sz-ue-l2-2', wer: 'küken', tut: 'radeln', was: 'hügel', bild: 'Zwei fröhliche Küken fahren auf kleinen Fahrrädern einen Weg entlang auf einen grünen Hügel zu.' },
-          { s: 'sz-ue-l2-3', wer: 'kühe', tut: 'radeln', was: 'kürbis', bild: 'Zwei fröhliche Kühe fahren auf Fahrrädern einen Weg entlang auf einen riesigen orangen Kürbis zu.' }
+          { s: 'sz-ue-l2-2', wer: 'küken', tut: 'radeln', was: 'hügel', satz: 'Kü-ken ra-deln zum Hü-gel.', bild: 'Zwei fröhliche Küken fahren auf kleinen Fahrrädern einen Weg entlang auf einen grünen Hügel zu.' },
+          { s: 'sz-ue-l2-3', wer: 'kühe', tut: 'radeln', was: 'kürbis', satz: 'Kü-he ra-deln zum Kür-bis.', bild: 'Zwei fröhliche Kühe fahren auf Fahrrädern einen Weg entlang auf einen riesigen orangen Kürbis zu.' }
         ]
       },
       sinnMehr: [
@@ -62,8 +62,8 @@ window.LAUTBUCH_TEILE.ue = {
           richtig: 'sz-ue-l2-s1-1',
           wahl: [
             { s: 'sz-ue-l2-s1-1', wer: 'löwe', tut: 'würfelt', was: 'fünf', bild: 'Ein freundlicher Löwe sitzt auf dem Deck eines Schiffs und hat gerade einen großen Würfel geworfen, der fünf Augen zeigt.' },
-            { s: 'sz-ue-l2-s1-2', wer: 'küken', tut: 'würfelt', was: 'fünf', bild: 'Ein kleines gelbes Küken sitzt auf demselben Deck und hat gerade denselben großen Würfel geworfen, der fünf Augen zeigt.' },
-            { s: 'sz-ue-l2-s1-3', wer: 'löwe', tut: 'würfelt', was: 'drei', bild: 'Ein freundlicher Löwe sitzt auf demselben Deck und hat gerade einen großen Würfel geworfen, der drei Augen zeigt.' }
+            { s: 'sz-ue-l2-s1-2', wer: 'küken', tut: 'würfelt', was: 'fünf', satz: 'Das Kü-ken wür-felt: fünf!', bild: 'Ein kleines gelbes Küken sitzt auf demselben Deck und hat gerade denselben großen Würfel geworfen, der fünf Augen zeigt.' },
+            { s: 'sz-ue-l2-s1-3', wer: 'löwe', tut: 'würfelt', was: 'drei', ohneSatz: 'holprig nach Pruefer 02.11. (PRUEFUNG_SAETZE.md), Zero: rausnehmen; nie Ziel der Geschichte', bild: 'Ein freundlicher Löwe sitzt auf demselben Deck und hat gerade einen großen Würfel geworfen, der drei Augen zeigt.' }
           ]
         }
       ]
@@ -87,8 +87,8 @@ window.LAUTBUCH_TEILE.ue = {
       richtig: 'sz-ue-boss-1',
       wahl: [
         { s: 'sz-ue-boss-1', wer: 'fünf kühe', tut: 'tragen', was: 'hüte', bild: 'Fünf Kühe stehen nebeneinander auf einer Wiese, jede trägt einen bunten Hut auf dem Kopf.' },
-        { s: 'sz-ue-boss-2', wer: 'zwei kühe', tut: 'tragen', was: 'hüte', bild: 'Zwei Kühe stehen nebeneinander auf einer Wiese, jede trägt einen bunten Hut auf dem Kopf.' },
-        { s: 'sz-ue-boss-3', wer: 'fünf kühe', tut: 'tragen', was: 'tüten', bild: 'Fünf Kühe stehen nebeneinander auf einer Wiese, jede trägt eine braune Papiertüte im Maul, die Köpfe sind frei.' }
+        { s: 'sz-ue-boss-2', wer: 'zwei kühe', tut: 'tragen', was: 'hüte', ohneSatz: 'holprig nach Pruefer 02.11. (PRUEFUNG_SAETZE.md), Zero: rausnehmen; nie Ziel der Geschichte', bild: 'Zwei Kühe stehen nebeneinander auf einer Wiese, jede trägt einen bunten Hut auf dem Kopf.' },
+        { s: 'sz-ue-boss-3', wer: 'fünf kühe', tut: 'tragen', was: 'tüten', satz: 'Fünf Kü-he tra-gen Tü-ten!', bild: 'Fünf Kühe stehen nebeneinander auf einer Wiese, jede trägt eine braune Papiertüte im Maul, die Köpfe sind frei.' }
       ]
     },
     sinnMehr: [
@@ -97,8 +97,8 @@ window.LAUTBUCH_TEILE.ue = {
         richtig: 'sz-ue-boss-s1-1',
         wahl: [
           { s: 'sz-ue-boss-s1-1', wer: 'küken', tut: 'bügelt', was: 'fünf hüte', bild: 'Ein kleines gelbes Küken steht an einem Bügelbrett und bügelt einen bunten Hut, daneben liegt ein Stapel aus vier weiteren gebügelten Hüten.' },
-          { s: 'sz-ue-boss-s1-2', wer: 'kuh', tut: 'bügelt', was: 'fünf hüte', bild: 'Eine Kuh steht am selben Bügelbrett und bügelt einen bunten Hut, daneben liegt derselbe Stapel aus vier weiteren gebügelten Hüten.' },
-          { s: 'sz-ue-boss-s1-3', wer: 'küken', tut: 'bügelt', was: 'fünf tüten', bild: 'Ein kleines gelbes Küken steht am selben Bügelbrett und bügelt eine braune Papiertüte, daneben liegt ein Stapel aus vier weiteren gebügelten Tüten.' }
+          { s: 'sz-ue-boss-s1-2', wer: 'kuh', tut: 'bügelt', was: 'fünf hüte', ohneSatz: 'holprig nach Pruefer 02.11. (PRUEFUNG_SAETZE.md), Zero: rausnehmen; nie Ziel der Geschichte', bild: 'Eine Kuh steht am selben Bügelbrett und bügelt einen bunten Hut, daneben liegt derselbe Stapel aus vier weiteren gebügelten Hüten.' },
+          { s: 'sz-ue-boss-s1-3', wer: 'küken', tut: 'bügelt', was: 'fünf tüten', satz: 'Das Kü-ken bü-gelt fünf Tü-ten für das Fest.', bild: 'Ein kleines gelbes Küken steht am selben Bügelbrett und bügelt eine braune Papiertüte, daneben liegt ein Stapel aus vier weiteren gebügelten Tüten.' }
         ]
       },
       {
@@ -106,8 +106,8 @@ window.LAUTBUCH_TEILE.ue = {
         richtig: 'sz-ue-boss-s3-1',
         wahl: [
           { s: 'sz-ue-boss-s3-1', wer: 'schaf', tut: 'schläft', was: 'mit hut', bild: 'Ein Schaf liegt auf einem grünen Hügel im Gras und schläft, auf dem Kopf trägt es einen bunten Hut.' },
-          { s: 'sz-ue-boss-s3-2', wer: 'schaf', tut: 'radelt', was: 'mit hut', bild: 'Ein Schaf fährt auf einem Fahrrad denselben grünen Hügel hinauf, auf dem Kopf trägt es einen bunten Hut.' },
-          { s: 'sz-ue-boss-s3-3', wer: 'schaf', tut: 'schläft', was: 'ohne hut', bild: 'Ein Schaf liegt auf demselben grünen Hügel im Gras und schläft, sein Kopf ist ohne Hut.' }
+          { s: 'sz-ue-boss-s3-2', wer: 'schaf', tut: 'radelt', was: 'mit hut', satz: 'Das Schaf? Es ra-delt mit Hut am Hü-gel.', bild: 'Ein Schaf fährt auf einem Fahrrad denselben grünen Hügel hinauf, auf dem Kopf trägt es einen bunten Hut.' },
+          { s: 'sz-ue-boss-s3-3', wer: 'schaf', tut: 'schläft', was: 'ohne hut', satz: 'Das Schaf? Es schläft am Hü-gel. Der Hut ist weg!', bild: 'Ein Schaf liegt auf demselben grünen Hügel im Gras und schläft, sein Kopf ist ohne Hut.' }
         ]
       }
     ]

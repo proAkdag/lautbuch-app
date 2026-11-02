@@ -56,8 +56,8 @@ window.LAUTBUCH_TEILE.r3 = {
         richtig: 'sz-r3-l2-1',
         wahl: [
           { s: 'sz-r3-l2-1', wer: 'pinguin', tut: 'singt', was: '', bild: 'Ein Pinguin sitzt am Steuer eines gelben Taxis und singt mit weit offenem Schnabel.' },
-          { s: 'sz-r3-l2-2', wer: 'pinguin', tut: 'trinkt', was: '', bild: 'Ein Pinguin sitzt am Steuer eines gelben Taxis und trinkt aus einem Becher.' },
-          { s: 'sz-r3-l2-3', wer: 'schlange', tut: 'singt', was: '', bild: 'Eine grüne Schlange sitzt am Steuer eines gelben Taxis und singt mit weit offenem Maul.' }
+          { s: 'sz-r3-l2-2', wer: 'pinguin', tut: 'trinkt', was: '', satz: 'Der Pin-gu-in trinkt.', bild: 'Ein Pinguin sitzt am Steuer eines gelben Taxis und trinkt aus einem Becher.' },
+          { s: 'sz-r3-l2-3', wer: 'schlange', tut: 'singt', was: '', satz: 'Die Schlan-ge singt.', bild: 'Eine grüne Schlange sitzt am Steuer eines gelben Taxis und singt mit weit offenem Maul.' }
         ]
       },
       sinnMehr: [
@@ -66,8 +66,8 @@ window.LAUTBUCH_TEILE.r3 = {
           richtig: 'sz-r3-l2-s1-1',
           wahl: [
             { s: 'sz-r3-l2-s1-1', wer: 'pinguin', tut: 'winkt + hupt', was: 'taxi', bild: 'Ein Pinguin sitzt am Steuer eines gelben Taxis, winkt mit einem Flügel aus dem Fenster und drückt mit dem anderen auf die Hupe.' },
-            { s: 'sz-r3-l2-s1-2', wer: 'schlange', tut: 'winkt + hupt', was: 'taxi', bild: 'Eine grüne Schlange sitzt am Steuer desselben gelben Taxis, winkt mit der Schwanzspitze aus dem Fenster und drückt mit dem Kopf auf die Hupe.' },
-            { s: 'sz-r3-l2-s1-3', wer: 'pinguin', tut: 'winkt', was: 'taxi', bild: 'Ein Pinguin sitzt am Steuer desselben gelben Taxis, winkt mit einem Flügel aus dem Fenster und hält den anderen still auf dem Lenkrad.' }
+            { s: 'sz-r3-l2-s1-2', wer: 'schlange', tut: 'winkt + hupt', was: 'taxi', satz: 'Ei-ne Schlan-ge im Ta-xi? Quatsch! Doch, sie winkt und hupt.', bild: 'Eine grüne Schlange sitzt am Steuer desselben gelben Taxis, winkt mit der Schwanzspitze aus dem Fenster und drückt mit dem Kopf auf die Hupe.' },
+            { s: 'sz-r3-l2-s1-3', wer: 'pinguin', tut: 'winkt', was: 'taxi', satz: 'Ein Pin-gu-in im Ta-xi? Quatsch! Doch, er winkt, a-ber er hupt nicht.', bild: 'Ein Pinguin sitzt am Steuer desselben gelben Taxis, winkt mit einem Flügel aus dem Fenster und hält den anderen still auf dem Lenkrad.' }
           ]
         },
         {
@@ -75,8 +75,8 @@ window.LAUTBUCH_TEILE.r3 = {
           richtig: 'sz-r3-l2-s3-1',
           wahl: [
             { s: 'sz-r3-l2-s3-1', wer: 'schaf', tut: 'trinkt', was: 'apfelsaft', bild: 'Auf der Rückbank des gelben Taxis sitzt ein Schaf und trinkt mit einem Strohhalm aus einem Glas goldgelbem Apfelsaft, daneben liegt ein Apfel.' },
-            { s: 'sz-r3-l2-s3-2', wer: 'lama', tut: 'trinkt', was: 'apfelsaft', bild: 'Auf derselben Rückbank sitzt ein Lama und trinkt mit einem Strohhalm aus einem Glas goldgelbem Apfelsaft, daneben liegt ein Apfel.' },
-            { s: 'sz-r3-l2-s3-3', wer: 'schaf', tut: 'trinkt', was: 'milch', bild: 'Auf derselben Rückbank sitzt ein Schaf und trinkt mit einem Strohhalm aus einem Glas weißer Milch.' }
+            { s: 'sz-r3-l2-s3-2', wer: 'lama', tut: 'trinkt', was: 'apfelsaft', satz: 'Das La-ma trinkt Ap-fel-saft.', bild: 'Auf derselben Rückbank sitzt ein Lama und trinkt mit einem Strohhalm aus einem Glas goldgelbem Apfelsaft, daneben liegt ein Apfel.' },
+            { s: 'sz-r3-l2-s3-3', wer: 'schaf', tut: 'trinkt', was: 'milch', satz: 'Das Schaf trinkt Milch.', bild: 'Auf derselben Rückbank sitzt ein Schaf und trinkt mit einem Strohhalm aus einem Glas weißer Milch.' }
           ]
         },
         {
@@ -84,8 +84,8 @@ window.LAUTBUCH_TEILE.r3 = {
           richtig: 'sz-r3-l2-s4-1',
           wahl: [
             { s: 'sz-r3-l2-s4-1', wer: 'lama', tut: 'singt falsch', was: '', bild: 'Auf der Rückbank des gelben Taxis singt ein Lama aus voller Kehle, über ihm fliegen schiefe, zackige Noten, und das Schaf neben ihm hält sich die Ohren zu.' },
-            { s: 'sz-r3-l2-s4-2', wer: 'schaf', tut: 'singt falsch', was: '', bild: 'Auf derselben Rückbank singt das Schaf aus voller Kehle, über ihm fliegen schiefe, zackige Noten, und das Lama neben ihm hält sich die Ohren zu.' },
-            { s: 'sz-r3-l2-s4-3', wer: 'lama', tut: 'singt schön', was: '', bild: 'Auf derselben Rückbank singt das Lama aus voller Kehle, über ihm schweben runde, schöne Noten, und das Schaf neben ihm lächelt.' }
+            { s: 'sz-r3-l2-s4-2', wer: 'schaf', tut: 'singt falsch', was: '', satz: 'Und das Schaf singt mit, ganz falsch!', bild: 'Auf derselben Rückbank singt das Schaf aus voller Kehle, über ihm fliegen schiefe, zackige Noten, und das Lama neben ihm hält sich die Ohren zu.' },
+            { s: 'sz-r3-l2-s4-3', wer: 'lama', tut: 'singt schön', was: '', satz: 'Und das La-ma singt mit, wun-der-schön!', bild: 'Auf derselben Rückbank singt das Lama aus voller Kehle, über ihm schweben runde, schöne Noten, und das Schaf neben ihm lächelt.' }
           ]
         }
       ]
@@ -109,8 +109,8 @@ window.LAUTBUCH_TEILE.r3 = {
       richtig: 'sz-r3-boss-1',
       wahl: [
         { s: 'sz-r3-boss-1', wer: 'pinguin', tut: 'trägt', was: 'strumpfhose', bild: 'Ein Pinguin steht da und trägt eine bunt geringelte Strumpfhose als Hut auf dem Kopf, die Beine hängen wie Ohren herab.' },
-        { s: 'sz-r3-boss-2', wer: 'frosch', tut: 'trägt', was: 'strumpfhose', bild: 'Ein Frosch steht da und trägt eine bunt geringelte Strumpfhose als Hut auf dem Kopf, die Beine hängen wie Ohren herab.' },
-        { s: 'sz-r3-boss-3', wer: 'pinguin', tut: 'trägt', was: 'topf', bild: 'Ein Pinguin steht da und trägt einen Kochtopf als Hut auf dem Kopf.' }
+        { s: 'sz-r3-boss-2', wer: 'frosch', tut: 'trägt', was: 'strumpfhose', satz: 'Der Frosch trägt ei-ne Strumpf-ho-se als Hut!', bild: 'Ein Frosch steht da und trägt eine bunt geringelte Strumpfhose als Hut auf dem Kopf, die Beine hängen wie Ohren herab.' },
+        { s: 'sz-r3-boss-3', wer: 'pinguin', tut: 'trägt', was: 'topf', satz: 'Der Pin-gu-in trägt ei-nen Topf als Hut!', bild: 'Ein Pinguin steht da und trägt einen Kochtopf als Hut auf dem Kopf.' }
       ]
     },
     sinnMehr: [
@@ -119,8 +119,8 @@ window.LAUTBUCH_TEILE.r3 = {
         richtig: 'sz-r3-boss-s1-1',
         wahl: [
           { s: 'sz-r3-boss-s1-1', wer: 'pinguin', tut: 'steigt aus', was: 'taxi', bild: 'Das gelbe Taxi steht am Straßenrand, die Fahrertür ist offen, und ein Pinguin steigt gerade aus.' },
-          { s: 'sz-r3-boss-s1-2', wer: 'schaf', tut: 'steigt aus', was: 'taxi', bild: 'Das gelbe Taxi steht am selben Straßenrand, die hintere Tür ist offen, und ein Schaf steigt gerade aus.' },
-          { s: 'sz-r3-boss-s1-3', wer: 'pinguin', tut: 'fährt weiter', was: 'taxi', bild: 'Das gelbe Taxi fährt auf derselben Straße weiter, am Steuer sitzt der Pinguin.' }
+          { s: 'sz-r3-boss-s1-2', wer: 'schaf', tut: 'steigt aus', was: 'taxi', satz: 'Das Ta-xi hält. Das Schaf steigt aus.', bild: 'Das gelbe Taxi steht am selben Straßenrand, die hintere Tür ist offen, und ein Schaf steigt gerade aus.' },
+          { s: 'sz-r3-boss-s1-3', wer: 'pinguin', tut: 'fährt weiter', was: 'taxi', satz: 'Das Ta-xi hält nicht. Der Pin-gu-in saust wei-ter.', bild: 'Das gelbe Taxi fährt auf derselben Straße weiter, am Steuer sitzt der Pinguin.' }
         ]
       },
       {
@@ -128,8 +128,8 @@ window.LAUTBUCH_TEILE.r3 = {
         richtig: 'sz-r3-boss-s3-1',
         wahl: [
           { s: 'sz-r3-boss-s3-1', wer: 'lama', tut: 'singt', was: 'strumpfhose', bild: 'Neben dem Pinguin, der eine bunt geringelte Strumpfhose als Hut trägt, steht ein Lama und singt fröhlich mit weit offenem Maul.' },
-          { s: 'sz-r3-boss-s3-2', wer: 'frosch', tut: 'singt', was: 'strumpfhose', bild: 'Neben demselben Pinguin mit der Strumpfhose als Hut steht ein Frosch und singt fröhlich mit weit offenem Maul.' },
-          { s: 'sz-r3-boss-s3-3', wer: 'lama', tut: 'singt', was: 'topf', bild: 'Neben dem Pinguin, der einen Kochtopf als Hut trägt, steht ein Lama und singt fröhlich mit weit offenem Maul.' }
+          { s: 'sz-r3-boss-s3-2', wer: 'frosch', tut: 'singt', was: 'strumpfhose', satz: 'Der Frosch singt da-zu: Strumpf-ho-se, Strumpf-ho-se!', bild: 'Neben demselben Pinguin mit der Strumpfhose als Hut steht ein Frosch und singt fröhlich mit weit offenem Maul.' },
+          { s: 'sz-r3-boss-s3-3', wer: 'lama', tut: 'singt', was: 'topf', satz: 'Das La-ma singt da-zu: Topf als Hut, Topf als Hut!', bild: 'Neben dem Pinguin, der einen Kochtopf als Hut trägt, steht ein Lama und singt fröhlich mit weit offenem Maul.' }
         ]
       },
       {
@@ -137,8 +137,8 @@ window.LAUTBUCH_TEILE.r3 = {
         richtig: 'sz-r3-boss-s4-1',
         wahl: [
           { s: 'sz-r3-boss-s4-1', wer: 'lama', tut: 'trägt', was: 'strumpfhose', bild: 'Neben dem gelben Taxi trägt jetzt das Lama die bunt geringelte Strumpfhose als Hut, die Beine hängen ihm wie Ohren herab; der Pinguin fasst sich verdutzt an den leeren Kopf.' },
-          { s: 'sz-r3-boss-s4-2', wer: 'schaf', tut: 'trägt', was: 'strumpfhose', bild: 'Neben demselben Taxi trägt jetzt das Schaf die bunt geringelte Strumpfhose als Hut, die Beine hängen ihm wie Ohren herab; der Pinguin fasst sich verdutzt an den leeren Kopf.' },
-          { s: 'sz-r3-boss-s4-3', wer: 'lama', tut: 'trägt', was: 'topf', bild: 'Neben demselben Taxi trägt jetzt das Lama einen Kochtopf als Hut; der Pinguin mit der Strumpfhose auf dem Kopf schaut verdutzt.' }
+          { s: 'sz-r3-boss-s4-2', wer: 'schaf', tut: 'trägt', was: 'strumpfhose', satz: 'Und schon trägt das Schaf die Strumpf-ho-se.', bild: 'Neben demselben Taxi trägt jetzt das Schaf die bunt geringelte Strumpfhose als Hut, die Beine hängen ihm wie Ohren herab; der Pinguin fasst sich verdutzt an den leeren Kopf.' },
+          { s: 'sz-r3-boss-s4-3', wer: 'lama', tut: 'trägt', was: 'topf', satz: 'Und schon trägt das La-ma ei-nen Topf als Hut.', bild: 'Neben demselben Taxi trägt jetzt das Lama einen Kochtopf als Hut; der Pinguin mit der Strumpfhose auf dem Kopf schaut verdutzt.' }
         ]
       }
     ]

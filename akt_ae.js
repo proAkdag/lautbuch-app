@@ -52,8 +52,8 @@ window.LAUTBUCH_TEILE.ae = {
         richtig: 'sz-ae-l2-1',
         wahl: [
           { s: 'sz-ae-l2-1', wer: 'lama', tut: 'bindet', was: 'wäsche', bild: 'Ein Lama mit Kapitänsmütze steht in einem kleinen Kajak mit Mast und bindet bunte Wäsche (Hemd, Hose, Socken) als Segel an den Mast.' },
-          { s: 'sz-ae-l2-2', wer: 'lama', tut: 'bindet', was: 'äste', bild: 'Ein Lama mit Kapitänsmütze steht in einem kleinen Kajak mit Mast und bindet ein Bündel Äste an den Mast.' },
-          { s: 'sz-ae-l2-3', wer: 'schaf', tut: 'bindet', was: 'wäsche', bild: 'Ein Schaf steht in einem kleinen Kajak mit Mast und bindet bunte Wäsche (Hemd, Hose, Socken) als Segel an den Mast.' }
+          { s: 'sz-ae-l2-2', wer: 'lama', tut: 'bindet', was: 'äste', satz: 'Ka-pi-tän La-ma bin-det Äs-te an den Mast.', bild: 'Ein Lama mit Kapitänsmütze steht in einem kleinen Kajak mit Mast und bindet ein Bündel Äste an den Mast.' },
+          { s: 'sz-ae-l2-3', wer: 'schaf', tut: 'bindet', was: 'wäsche', satz: 'Das Schaf bin-det die Wä-sche an den Mast.', bild: 'Ein Schaf steht in einem kleinen Kajak mit Mast und bindet bunte Wäsche (Hemd, Hose, Socken) als Segel an den Mast.' }
         ]
       },
       sinnMehr: [
@@ -62,8 +62,8 @@ window.LAUTBUCH_TEILE.ae = {
           richtig: 'sz-ae-l2-s2-1',
           wahl: [
             { s: 'sz-ae-l2-s2-1', wer: 'schaf', tut: 'wäscht', was: 'wäsche', bild: 'Ein Schaf steht am Ufer neben dem kleinen Kajak und wäscht bunte Wäsche (Hemd, Hose, Socken) in einem Waschzuber.' },
-            { s: 'sz-ae-l2-s2-2', wer: 'lama', tut: 'wäscht', was: 'wäsche', bild: 'Ein Lama mit Kapitänsmütze steht am selben Ufer neben dem Kajak und wäscht dieselbe bunte Wäsche in einem Waschzuber.' },
-            { s: 'sz-ae-l2-s2-3', wer: 'schaf', tut: 'wäscht', was: 'käse', bild: 'Ein Schaf steht am selben Ufer neben dem Kajak und wäscht ein großes Stück Käse in einem Waschzuber.' }
+            { s: 'sz-ae-l2-s2-2', wer: 'lama', tut: 'wäscht', was: 'wäsche', satz: 'Das La-ma wäscht Wä-sche.', bild: 'Ein Lama mit Kapitänsmütze steht am selben Ufer neben dem Kajak und wäscht dieselbe bunte Wäsche in einem Waschzuber.' },
+            { s: 'sz-ae-l2-s2-3', wer: 'schaf', tut: 'wäscht', was: 'käse', satz: 'Das Schaf wäscht Kä-se.', bild: 'Ein Schaf steht am selben Ufer neben dem Kajak und wäscht ein großes Stück Käse in einem Waschzuber.' }
           ]
         },
         {
@@ -71,8 +71,8 @@ window.LAUTBUCH_TEILE.ae = {
           richtig: 'sz-ae-l2-s3-1',
           wahl: [
             { s: 'sz-ae-l2-s3-1', wer: 'schaf + lama', tut: 'fragt + pst', was: '', bild: 'Im kleinen Kajak mit Wäschesegel schaut das Schaf fragend zu Kapitän Lama hoch, über dem Schaf schwebt ein Fragezeichen; das Lama mit Kapitänsmütze legt verschmitzt einen Huf an den Mund.' },
-            { s: 'sz-ae-l2-s3-2', wer: 'krähe + lama', tut: 'fragt + pst', was: '', bild: 'Im selben Kajak mit Wäschesegel schaut eine schwarze Krähe fragend zu Kapitän Lama hoch, über der Krähe schwebt ein Fragezeichen; das Lama legt verschmitzt einen Huf an den Mund.' },
-            { s: 'sz-ae-l2-s3-3', wer: 'schaf + lama', tut: 'fragt + zeigt', was: '', bild: 'Im selben Kajak mit Wäschesegel schaut das Schaf fragend zu Kapitän Lama hoch, über dem Schaf schwebt ein Fragezeichen; das Lama zeigt mit dem Huf weit hinaus auf eine Insel.' }
+            { s: 'sz-ae-l2-s3-2', wer: 'krähe + lama', tut: 'fragt + pst', was: '', satz: 'Die Krä-he fragt: Wo-hin? Ka-pi-tän La-ma: Pst!', bild: 'Im selben Kajak mit Wäschesegel schaut eine schwarze Krähe fragend zu Kapitän Lama hoch, über der Krähe schwebt ein Fragezeichen; das Lama legt verschmitzt einen Huf an den Mund.' },
+            { s: 'sz-ae-l2-s3-3', wer: 'schaf + lama', tut: 'fragt + zeigt', was: '', satz: 'Das Schaf fragt: Wo-hin? Ka-pi-tän La-ma: Da, zur In-sel!', bild: 'Im selben Kajak mit Wäschesegel schaut das Schaf fragend zu Kapitän Lama hoch, über dem Schaf schwebt ein Fragezeichen; das Lama zeigt mit dem Huf weit hinaus auf eine Insel.' }
           ]
         }
       ]
@@ -96,8 +96,8 @@ window.LAUTBUCH_TEILE.ae = {
       richtig: 'sz-ae-boss-1',
       wahl: [
         { s: 'sz-ae-boss-1', wer: 'krähe', tut: 'nascht', was: 'käse', bild: 'Eine schwarze Krähe steht am Fuß des Masts eines kleinen Segelkajaks und pickt fröhlich an einem großen Stück Käse.' },
-        { s: 'sz-ae-boss-2', wer: 'schaf', tut: 'nascht', was: 'käse', bild: 'Ein Schaf steht am Fuß des Masts eines kleinen Segelkajaks und knabbert fröhlich an einem großen Stück Käse.' },
-        { s: 'sz-ae-boss-3', wer: 'krähe', tut: 'wäscht', was: 'käse', bild: 'Eine schwarze Krähe steht am Fuß des Masts eines kleinen Segelkajaks und wäscht ein großes Stück Käse in einer Schüssel mit Wasser.' }
+        { s: 'sz-ae-boss-2', wer: 'schaf', tut: 'nascht', was: 'käse', satz: 'Das Schaf nascht Kä-se am Mast.', bild: 'Ein Schaf steht am Fuß des Masts eines kleinen Segelkajaks und knabbert fröhlich an einem großen Stück Käse.' },
+        { s: 'sz-ae-boss-3', wer: 'krähe', tut: 'wäscht', was: 'käse', satz: 'Krä-he Ka-la wäscht Kä-se am Mast.', bild: 'Eine schwarze Krähe steht am Fuß des Masts eines kleinen Segelkajaks und wäscht ein großes Stück Käse in einer Schüssel mit Wasser.' }
       ]
     },
     sinnMehr: [
@@ -106,8 +106,8 @@ window.LAUTBUCH_TEILE.ae = {
         richtig: 'sz-ae-boss-s1-1',
         wahl: [
           { s: 'sz-ae-boss-s1-1', wer: 'kajak + schaf', tut: 'segelt + schläft', was: 'käse', bild: 'Ein kleines Kajak mit Wäschesegel segelt über das Wasser, im Boot schläft ein Schaf zusammengerollt in einem großen Käselaib mit Löchern.' },
-          { s: 'sz-ae-boss-s1-2', wer: 'kajak + schaf', tut: 'segelt + nascht', was: 'käse', bild: 'Dasselbe Kajak mit Wäschesegel segelt über das Wasser, im Boot sitzt das Schaf hellwach in dem großen Käselaib und knabbert daran.' },
-          { s: 'sz-ae-boss-s1-3', wer: 'kajak + schaf', tut: 'segelt + schläft', was: 'korb', bild: 'Dasselbe Kajak mit Wäschesegel segelt über das Wasser, im Boot schläft das Schaf zusammengerollt in einem Wäschekorb.' }
+          { s: 'sz-ae-boss-s1-2', wer: 'kajak + schaf', tut: 'segelt + nascht', was: 'käse', satz: 'Das Ka-jak se-gelt, das Schaf nascht am Kä-se.', bild: 'Dasselbe Kajak mit Wäschesegel segelt über das Wasser, im Boot sitzt das Schaf hellwach in dem großen Käselaib und knabbert daran.' },
+          { s: 'sz-ae-boss-s1-3', wer: 'kajak + schaf', tut: 'segelt + schläft', was: 'korb', satz: 'Das Ka-jak se-gelt, das Schaf schläft im Wä-sche-korb.', bild: 'Dasselbe Kajak mit Wäschesegel segelt über das Wasser, im Boot schläft das Schaf zusammengerollt in einem Wäschekorb.' }
         ]
       },
       {
@@ -115,8 +115,8 @@ window.LAUTBUCH_TEILE.ae = {
         richtig: 'sz-ae-boss-s3-1',
         wahl: [
           { s: 'sz-ae-boss-s3-1', wer: 'krähe', tut: 'plumpst + lacht', was: 'käse', bild: 'Im selben Segelkajak ist die schwarze Krähe kopfüber in den großen Käselaib geplumpst, in dem das Schaf schläft; sie steckt bis zum Bauch im Käse, hat Käse am Schnabel und lacht über sich selbst, das Schaf schläft weiter.' },
-          { s: 'sz-ae-boss-s3-2', wer: 'lama', tut: 'plumpst + lacht', was: 'käse', bild: 'Im selben Segelkajak ist das Lama mit Kapitänsmütze kopfüber in den großen Käselaib geplumpst, in dem das Schaf schläft; es hat Käse an der Nase und lacht über sich selbst, das Schaf schläft weiter.' },
-          { s: 'sz-ae-boss-s3-3', wer: 'krähe', tut: 'plumpst + lacht', was: 'wasser', bild: 'Neben dem selben Segelkajak ist die schwarze Krähe mit einem Platsch ins Wasser geplumpst, sie paddelt mit den Flügeln und lacht über sich selbst; im Boot schläft das Schaf im Käse.' }
+          { s: 'sz-ae-boss-s3-2', wer: 'lama', tut: 'plumpst + lacht', was: 'käse', satz: 'Rums! Das La-ma plumpst in den Kä-se und lacht: Hä-hä!', bild: 'Im selben Segelkajak ist das Lama mit Kapitänsmütze kopfüber in den großen Käselaib geplumpst, in dem das Schaf schläft; es hat Käse an der Nase und lacht über sich selbst, das Schaf schläft weiter.' },
+          { s: 'sz-ae-boss-s3-3', wer: 'krähe', tut: 'plumpst + lacht', was: 'wasser', satz: 'Platsch! Ka-la plumpst ne-ben das Ka-jak und lacht: Hä-hä!', bild: 'Neben dem selben Segelkajak ist die schwarze Krähe mit einem Platsch ins Wasser geplumpst, sie paddelt mit den Flügeln und lacht über sich selbst; im Boot schläft das Schaf im Käse.' }
         ]
       }
     ]

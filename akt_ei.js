@@ -54,8 +54,8 @@ window.LAUTBUCH_TEILE.ei = {
         richtig: 'sz-ei-l2-1',
         wahl: [
           { s: 'sz-ei-l2-1', wer: 'schaf', tut: 'rast', was: 'mais', bild: 'Ein Schaf rennt mit wehenden Ohren mitten in ein hohes Maisfeld hinein.' },
-          { s: 'sz-ei-l2-2', wer: 'schwein', tut: 'rast', was: 'mais', bild: 'Ein rosa Schwein rennt mit wehenden Ohren mitten in ein hohes Maisfeld hinein.' },
-          { s: 'sz-ei-l2-3', wer: 'schaf', tut: 'rast', was: 'reifen', bild: 'Ein Schaf rennt mit wehenden Ohren mitten durch einen großen Reifen hindurch, ohne Maisfeld.' }
+          { s: 'sz-ei-l2-2', wer: 'schwein', tut: 'rast', was: 'mais', satz: 'Das Schwein rast in den Mais.', bild: 'Ein rosa Schwein rennt mit wehenden Ohren mitten in ein hohes Maisfeld hinein.' },
+          { s: 'sz-ei-l2-3', wer: 'schaf', tut: 'rast', was: 'reifen', satz: 'Das Schaf rast durch ei-nen Rei-fen.', bild: 'Ein Schaf rennt mit wehenden Ohren mitten durch einen großen Reifen hindurch, ohne Maisfeld.' }
         ]
       },
       sinnMehr: [
@@ -64,8 +64,8 @@ window.LAUTBUCH_TEILE.ei = {
           richtig: 'sz-ei-l2-s1-1',
           wahl: [
             { s: 'sz-ei-l2-s1-1', wer: 'meisen', tut: 'binden', was: 'schleife', bild: 'Zwei kleine Meisen flattern um ein rosa Schwein und binden ihm eine große rote Schleife um den Hals.' },
-            { s: 'sz-ei-l2-s1-2', wer: 'ara', tut: 'binden', was: 'schleife', bild: 'Ein bunter Ara flattert um dasselbe rosa Schwein und bindet ihm eine große rote Schleife um den Hals.' },
-            { s: 'sz-ei-l2-s1-3', wer: 'meisen', tut: 'binden', was: 'schal', bild: 'Zwei kleine Meisen flattern um dasselbe rosa Schwein und binden ihm einen blauen Schal um den Hals.' }
+            { s: 'sz-ei-l2-s1-2', wer: 'ara', tut: 'binden', was: 'schleife', satz: 'Ein A-ra bin-det dem Schwein ei-ne ro-te Schlei-fe.', bild: 'Ein bunter Ara flattert um dasselbe rosa Schwein und bindet ihm eine große rote Schleife um den Hals.' },
+            { s: 'sz-ei-l2-s1-3', wer: 'meisen', tut: 'binden', was: 'schal', satz: 'Mei-sen bin-den dem Schwein ei-nen Schal um.', bild: 'Zwei kleine Meisen flattern um dasselbe rosa Schwein und binden ihm einen blauen Schal um den Hals.' }
           ]
         },
         {
@@ -73,8 +73,8 @@ window.LAUTBUCH_TEILE.ei = {
           richtig: 'sz-ei-l2-s2-1',
           wahl: [
             { s: 'sz-ei-l2-s2-1', wer: 'ara', tut: 'schreit', was: 'hai', bild: 'Ein bunter Ara sitzt auf einem Ast am Wasser und schreit mit weit offenem Schnabel, im Wasser ragt eine spitze graue Flosse heraus.' },
-            { s: 'sz-ei-l2-s2-2', wer: 'meise', tut: 'schreit', was: 'hai', bild: 'Eine kleine Meise sitzt auf demselben Ast am Wasser und schreit mit weit offenem Schnabel, im Wasser ragt dieselbe spitze graue Flosse heraus.' },
-            { s: 'sz-ei-l2-s2-3', wer: 'ara', tut: 'schreit', was: 'ente', bild: 'Ein bunter Ara sitzt auf demselben Ast am Wasser und schreit mit weit offenem Schnabel, im Wasser schwimmt eine gelbe Badeente.' }
+            { s: 'sz-ei-l2-s2-2', wer: 'meise', tut: 'schreit', was: 'hai', satz: 'Ei-ne Mei-se schreit: Ein Hai!', bild: 'Eine kleine Meise sitzt auf demselben Ast am Wasser und schreit mit weit offenem Schnabel, im Wasser ragt dieselbe spitze graue Flosse heraus.' },
+            { s: 'sz-ei-l2-s2-3', wer: 'ara', tut: 'schreit', was: 'ente', satz: 'A-ra schreit: Ei-ne En-te!', bild: 'Ein bunter Ara sitzt auf demselben Ast am Wasser und schreit mit weit offenem Schnabel, im Wasser schwimmt eine gelbe Badeente.' }
           ]
         }
       ]
@@ -98,8 +98,8 @@ window.LAUTBUCH_TEILE.ei = {
       richtig: 'sz-ei-boss-1',
       wahl: [
         { s: 'sz-ei-boss-1', wer: 'zwei schweine', tut: 'teilen', was: 'seife', bild: 'Zwei rosa Schweine sitzen zusammen in einer Badewanne voller Schaum und halten gemeinsam ein Stück Seife.' },
-        { s: 'sz-ei-boss-2', wer: 'drei schweine', tut: 'teilen', was: 'seife', bild: 'Drei rosa Schweine sitzen zusammen in einer Badewanne voller Schaum und halten gemeinsam ein Stück Seife.' },
-        { s: 'sz-ei-boss-3', wer: 'zwei schweine', tut: 'teilen', was: 'schleife', bild: 'Zwei rosa Schweine sitzen zusammen in einer Badewanne voller Schaum und halten gemeinsam eine große rote Schleife.' }
+        { s: 'sz-ei-boss-2', wer: 'drei schweine', tut: 'teilen', was: 'seife', satz: 'Drei Schwei-ne tei-len ei-ne Sei-fe.', bild: 'Drei rosa Schweine sitzen zusammen in einer Badewanne voller Schaum und halten gemeinsam ein Stück Seife.' },
+        { s: 'sz-ei-boss-3', wer: 'zwei schweine', tut: 'teilen', was: 'schleife', satz: 'Zwei Schwei-ne tei-len ei-ne Schlei-fe.', bild: 'Zwei rosa Schweine sitzen zusammen in einer Badewanne voller Schaum und halten gemeinsam eine große rote Schleife.' }
       ]
     },
     sinnMehr: [
@@ -108,8 +108,8 @@ window.LAUTBUCH_TEILE.ei = {
         richtig: 'sz-ei-boss-s1-1',
         wahl: [
           { s: 'sz-ei-boss-s1-1', wer: 'zwei schweine', tut: 'baden', was: 'brei', bild: 'Zwei rosa Schweine sitzen vergnügt in einer Badewanne voller dickem, hellem Brei.' },
-          { s: 'sz-ei-boss-s1-2', wer: 'drei schweine', tut: 'baden', was: 'brei', bild: 'Drei rosa Schweine sitzen vergnügt in derselben Badewanne voller dickem, hellem Brei.' },
-          { s: 'sz-ei-boss-s1-3', wer: 'zwei schweine', tut: 'baden', was: 'wasser', bild: 'Zwei rosa Schweine sitzen vergnügt in derselben Badewanne voller klarem Wasser.' }
+          { s: 'sz-ei-boss-s1-2', wer: 'drei schweine', tut: 'baden', was: 'brei', satz: 'Ha-ha! Drei Schwei-ne ba-den im Brei.', bild: 'Drei rosa Schweine sitzen vergnügt in derselben Badewanne voller dickem, hellem Brei.' },
+          { s: 'sz-ei-boss-s1-3', wer: 'zwei schweine', tut: 'baden', was: 'wasser', ohneSatz: 'holprig nach Pruefer 02.11. (PRUEFUNG_SAETZE.md), Zero: rausnehmen; nie Ziel der Geschichte', bild: 'Zwei rosa Schweine sitzen vergnügt in derselben Badewanne voller klarem Wasser.' }
         ]
       },
       {
@@ -117,8 +117,8 @@ window.LAUTBUCH_TEILE.ei = {
         richtig: 'sz-ei-boss-s3-1',
         wahl: [
           { s: 'sz-ei-boss-s3-1', wer: 'schaf', tut: 'schreit', was: 'seife', bild: 'Neben der Badewanne mit den zwei Schweinen steht ein Schaf, schreit und hebt abwehrend die Vorderhufe gegen das Stück Seife, das ihm ein Schwein hinhält.' },
-          { s: 'sz-ei-boss-s3-2', wer: 'ara', tut: 'schreit', was: 'seife', bild: 'Neben derselben Badewanne sitzt ein bunter Ara, schreit und hebt abwehrend die Flügel gegen das Stück Seife, das ihm ein Schwein hinhält.' },
-          { s: 'sz-ei-boss-s3-3', wer: 'schaf', tut: 'schreit', was: 'schleife', bild: 'Neben derselben Badewanne steht ein Schaf, schreit und hebt abwehrend die Vorderhufe gegen die große rote Schleife, die ihm ein Schwein hinhält.' }
+          { s: 'sz-ei-boss-s3-2', wer: 'ara', tut: 'schreit', was: 'seife', satz: 'A-ra schreit: Sei-fe? Nein! Kei-ne Sei-fe!', bild: 'Neben derselben Badewanne sitzt ein bunter Ara, schreit und hebt abwehrend die Flügel gegen das Stück Seife, das ihm ein Schwein hinhält.' },
+          { s: 'sz-ei-boss-s3-3', wer: 'schaf', tut: 'schreit', was: 'schleife', satz: 'Das Schaf schreit: Schlei-fe? Nein! Kei-ne Schlei-fe!', bild: 'Neben derselben Badewanne steht ein Schaf, schreit und hebt abwehrend die Vorderhufe gegen die große rote Schleife, die ihm ein Schwein hinhält.' }
         ]
       }
     ]

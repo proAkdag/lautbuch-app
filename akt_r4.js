@@ -56,8 +56,8 @@ window.LAUTBUCH_TEILE.r4 = {
         richtig: 'sz-r4-l2-1',
         wahl: [
           { s: 'sz-r4-l2-1', wer: 'kuh', tut: 'liest', was: 'buch', bild: 'Auf einer Wiese sitzt eine Kuh mit Brille und liest in einem aufgeschlagenen roten Buch.' },
-          { s: 'sz-r4-l2-2', wer: 'kuh', tut: 'liegt', was: 'buch', bild: 'Auf einer Wiese liegt eine Kuh mit Brille bäuchlings auf einem großen zugeklappten roten Buch.' },
-          { s: 'sz-r4-l2-3', wer: 'ziege', tut: 'liest', was: 'buch', bild: 'Auf einer Wiese sitzt eine Ziege mit Brille und liest in einem aufgeschlagenen roten Buch.' }
+          { s: 'sz-r4-l2-2', wer: 'kuh', tut: 'liegt', was: 'buch', satz: 'Die Kuh liegt auf ei-nem Buch.', bild: 'Auf einer Wiese liegt eine Kuh mit Brille bäuchlings auf einem großen zugeklappten roten Buch.' },
+          { s: 'sz-r4-l2-3', wer: 'ziege', tut: 'liest', was: 'buch', satz: 'Die Zie-ge mit Bril-le liest ein Buch.', bild: 'Auf einer Wiese sitzt eine Ziege mit Brille und liest in einem aufgeschlagenen roten Buch.' }
         ]
       },
       sinnMehr: [
@@ -66,8 +66,8 @@ window.LAUTBUCH_TEILE.r4 = {
           richtig: 'sz-r4-l2-s1-1',
           wahl: [
             { s: 'sz-r4-l2-s1-1', wer: 'ziege', tut: 'zieht an', was: 'vier schuhe', bild: 'Auf einer Wiese sitzt eine Ziege und zieht sich gerade rote Turnschuhe an, an allen vier Füßen einen.' },
-            { s: 'sz-r4-l2-s1-2', wer: 'kuh', tut: 'zieht an', was: 'vier schuhe', bild: 'Auf derselben Wiese sitzt eine Kuh und zieht sich gerade rote Turnschuhe an, an allen vier Füßen einen.' },
-            { s: 'sz-r4-l2-s1-3', wer: 'ziege', tut: 'zieht an', was: 'zwei schuhe', bild: 'Auf derselben Wiese sitzt eine Ziege und zieht sich gerade rote Turnschuhe an, nur an den zwei Vorderfüßen.' }
+            { s: 'sz-r4-l2-s1-2', wer: 'kuh', tut: 'zieht an', was: 'vier schuhe', satz: 'Die Kuh zieht Schu-he an. Vier Schu-he!', bild: 'Auf derselben Wiese sitzt eine Kuh und zieht sich gerade rote Turnschuhe an, an allen vier Füßen einen.' },
+            { s: 'sz-r4-l2-s1-3', wer: 'ziege', tut: 'zieht an', was: 'zwei schuhe', satz: 'Die Zie-ge zieht Schu-he an. Zwei Schu-he!', bild: 'Auf derselben Wiese sitzt eine Ziege und zieht sich gerade rote Turnschuhe an, nur an den zwei Vorderfüßen.' }
           ]
         },
         {
@@ -75,8 +75,8 @@ window.LAUTBUCH_TEILE.r4 = {
           richtig: 'sz-r4-l2-s3-1',
           wahl: [
             { s: 'sz-r4-l2-s3-1', wer: 'biene', tut: 'landet', was: 'nase', bild: 'Eine kleine Biene landet auf der Nase der Kuh mit Brille, die auf der Wiese mit ihrem roten Buch sitzt und schielend auf die Biene schaut.' },
-            { s: 'sz-r4-l2-s3-2', wer: 'marienkäfer', tut: 'landet', was: 'nase', bild: 'Ein kleiner Marienkäfer landet auf der Nase derselben Kuh mit Brille, die auf der Wiese mit ihrem roten Buch sitzt und schielend auf den Käfer schaut.' },
-            { s: 'sz-r4-l2-s3-3', wer: 'biene', tut: 'landet', was: 'buch', bild: 'Eine kleine Biene landet auf dem roten Buch derselben Kuh mit Brille, die auf der Wiese sitzt und auf die Biene schaut.' }
+            { s: 'sz-r4-l2-s3-2', wer: 'marienkäfer', tut: 'landet', was: 'nase', satz: 'Ein Ma-ri-en-kä-fer lan-det auf ih-rer Na-se.', bild: 'Ein kleiner Marienkäfer landet auf der Nase derselben Kuh mit Brille, die auf der Wiese mit ihrem roten Buch sitzt und schielend auf den Käfer schaut.' },
+            { s: 'sz-r4-l2-s3-3', wer: 'biene', tut: 'landet', was: 'buch', satz: 'Ei-ne Bie-ne lan-det auf ih-rem Buch.', bild: 'Eine kleine Biene landet auf dem roten Buch derselben Kuh mit Brille, die auf der Wiese sitzt und auf die Biene schaut.' }
           ]
         },
         {
@@ -84,8 +84,8 @@ window.LAUTBUCH_TEILE.r4 = {
           richtig: 'sz-r4-l2-s4-1',
           wahl: [
             { s: 'sz-r4-l2-s4-1', wer: 'kuh', tut: 'niest', was: '', bild: 'Die Kuh mit Brille niest auf der Wiese so kräftig, dass ihr rotes Buch wackelt, und die kleine Biene fliegt erschrocken davon.' },
-            { s: 'sz-r4-l2-s4-2', wer: 'ziege', tut: 'niest', was: '', bild: 'Eine Ziege niest auf derselben Wiese so kräftig, dass das rote Buch wackelt, und die kleine Biene fliegt erschrocken davon.' },
-            { s: 'sz-r4-l2-s4-3', wer: 'kuh', tut: 'lacht', was: '', bild: 'Die Kuh mit Brille lacht auf derselben Wiese über ihrem roten Buch, und die kleine Biene fliegt davon.' }
+            { s: 'sz-r4-l2-s4-2', wer: 'ziege', tut: 'niest', was: '', satz: 'Hat-schi, jetzt niest die Zie-ge!', bild: 'Eine Ziege niest auf derselben Wiese so kräftig, dass das rote Buch wackelt, und die kleine Biene fliegt erschrocken davon.' },
+            { s: 'sz-r4-l2-s4-3', wer: 'kuh', tut: 'lacht', was: '', satz: 'Ha-ha, die Kuh lacht!', bild: 'Die Kuh mit Brille lacht auf derselben Wiese über ihrem roten Buch, und die kleine Biene fliegt davon.' }
           ]
         }
       ]
@@ -109,8 +109,8 @@ window.LAUTBUCH_TEILE.r4 = {
       richtig: 'sz-r4-boss-1',
       wahl: [
         { s: 'sz-r4-boss-1', wer: 'schaf', tut: 'fährt', was: 'karussell', bild: 'Auf einem Spielplatz fährt ein fröhliches Schaf Karussell; daneben steht ein Lama mit Kringelaugen und hält sich schwindelig den Kopf.' },
-        { s: 'sz-r4-boss-2', wer: 'ziege', tut: 'fährt', was: 'karussell', bild: 'Auf einem Spielplatz fährt eine fröhliche Ziege Karussell; daneben steht ein Lama mit Kringelaugen und hält sich schwindelig den Kopf.' },
-        { s: 'sz-r4-boss-3', wer: 'schaf', tut: 'fährt', was: 'fahrrad', bild: 'Auf einem Spielplatz fährt ein fröhliches Schaf Fahrrad im Kreis; daneben steht ein Lama mit Kringelaugen und hält sich schwindelig den Kopf.' }
+        { s: 'sz-r4-boss-2', wer: 'ziege', tut: 'fährt', was: 'karussell', satz: 'Die Zie-ge fährt Ka-rus-sell. Dem La-ma wird schwin-de-lig!', bild: 'Auf einem Spielplatz fährt eine fröhliche Ziege Karussell; daneben steht ein Lama mit Kringelaugen und hält sich schwindelig den Kopf.' },
+        { s: 'sz-r4-boss-3', wer: 'schaf', tut: 'fährt', was: 'fahrrad', satz: 'Das Schaf fährt Fahr-rad im Kreis. Dem La-ma wird schwin-de-lig!', bild: 'Auf einem Spielplatz fährt ein fröhliches Schaf Fahrrad im Kreis; daneben steht ein Lama mit Kringelaugen und hält sich schwindelig den Kopf.' }
       ]
     },
     sinnMehr: [
@@ -119,8 +119,8 @@ window.LAUTBUCH_TEILE.r4 = {
         richtig: 'sz-r4-boss-s1-1',
         wahl: [
           { s: 'sz-r4-boss-s1-1', wer: 'ziege + kuh + schnecke', tut: 'kommen mit', was: '', bild: 'Hinter einem Lama und einem Schaf laufen eine Ziege, eine Kuh und eine Schnecke fröhlich zum Spielplatz mit dem Karussell.' },
-          { s: 'sz-r4-boss-s1-2', wer: 'ziege + kuh + biene', tut: 'kommen mit', was: '', bild: 'Hinter dem Lama und dem Schaf laufen eine Ziege, eine Kuh und eine Biene fröhlich zum selben Spielplatz mit dem Karussell.' },
-          { s: 'sz-r4-boss-s1-3', wer: 'ziege + kuh + schnecke', tut: 'bleiben', was: '', bild: 'Das Lama und das Schaf gehen zum selben Spielplatz, eine Ziege, eine Kuh und eine Schnecke bleiben weit hinten auf der Wiese liegen.' }
+          { s: 'sz-r4-boss-s1-2', wer: 'ziege + kuh + biene', tut: 'kommen mit', was: '', satz: 'Die Zie-ge, die Kuh und die Bie-ne kom-men mit.', bild: 'Hinter dem Lama und dem Schaf laufen eine Ziege, eine Kuh und eine Biene fröhlich zum selben Spielplatz mit dem Karussell.' },
+          { s: 'sz-r4-boss-s1-3', wer: 'ziege + kuh + schnecke', tut: 'bleiben', was: '', satz: 'Die Zie-ge, die Kuh und die Schne-cke blei-ben lie-gen.', bild: 'Das Lama und das Schaf gehen zum selben Spielplatz, eine Ziege, eine Kuh und eine Schnecke bleiben weit hinten auf der Wiese liegen.' }
         ]
       },
       {
@@ -128,8 +128,8 @@ window.LAUTBUCH_TEILE.r4 = {
         richtig: 'sz-r4-boss-s3-1',
         wahl: [
           { s: 'sz-r4-boss-s3-1', wer: 'schnecke', tut: 'fährt schneller', was: 'karussell', bild: 'Auf dem Karussell des Spielplatzes sitzt eine Schnecke und saust im Kreis, Wirbellinien zeigen, wie schnell es sich dreht.' },
-          { s: 'sz-r4-boss-s3-2', wer: 'ziege', tut: 'fährt schneller', was: 'karussell', bild: 'Auf demselben Karussell sitzt eine Ziege und saust im Kreis, Wirbellinien zeigen, wie schnell es sich dreht.' },
-          { s: 'sz-r4-boss-s3-3', wer: 'schnecke', tut: 'steht still', was: 'karussell', bild: 'Auf demselben Karussell sitzt eine Schnecke, und das Karussell steht ganz still.' }
+          { s: 'sz-r4-boss-s3-2', wer: 'ziege', tut: 'fährt schneller', was: 'karussell', satz: 'Und die Zie-ge? Sie fährt im-mer schnel-ler!', bild: 'Auf demselben Karussell sitzt eine Ziege und saust im Kreis, Wirbellinien zeigen, wie schnell es sich dreht.' },
+          { s: 'sz-r4-boss-s3-3', wer: 'schnecke', tut: 'steht still', was: 'karussell', satz: 'Und die Schne-cke? Das Ka-rus-sell steht still!', bild: 'Auf demselben Karussell sitzt eine Schnecke, und das Karussell steht ganz still.' }
         ]
       },
       {
@@ -137,8 +137,8 @@ window.LAUTBUCH_TEILE.r4 = {
         richtig: 'sz-r4-boss-s4-1',
         wahl: [
           { s: 'sz-r4-boss-s4-1', wer: 'kuh', tut: 'liest', was: 'schild', bild: 'Am Rand des Spielplatzes steht die gefleckte Kuh mit runder Brille vor einem hölzernen Wegweiser mit einem gemalten Leuchtturm und einem Pfeil und liest ihn vor; Lama, Schaf, Ziege und Schnecke schauen zu ihr hoch.' },
-          { s: 'sz-r4-boss-s4-2', wer: 'ziege', tut: 'liest', was: 'schild', bild: 'Am Rand desselben Spielplatzes steht die weiße Ziege vor demselben Wegweiser mit dem gemalten Leuchtturm und liest ihn vor; Lama, Schaf, Kuh und Schnecke schauen zu ihr hoch.' },
-          { s: 'sz-r4-boss-s4-3', wer: 'kuh', tut: 'liest', was: 'buch', bild: 'Am Rand desselben Spielplatzes sitzt die gefleckte Kuh mit runder Brille auf einer Bank und liest in ihrem roten Buch; Lama, Schaf, Ziege und Schnecke schauen zu ihr hoch.' }
+          { s: 'sz-r4-boss-s4-2', wer: 'ziege', tut: 'liest', was: 'schild', satz: 'Die Zie-ge liest das Schild: Zum Leucht-turm!', bild: 'Am Rand desselben Spielplatzes steht die weiße Ziege vor demselben Wegweiser mit dem gemalten Leuchtturm und liest ihn vor; Lama, Schaf, Kuh und Schnecke schauen zu ihr hoch.' },
+          { s: 'sz-r4-boss-s4-3', wer: 'kuh', tut: 'liest', was: 'buch', satz: 'Die Kuh liest ihr ro-tes Buch.', bild: 'Am Rand desselben Spielplatzes sitzt die gefleckte Kuh mit runder Brille auf einer Bank und liest in ihrem roten Buch; Lama, Schaf, Ziege und Schnecke schauen zu ihr hoch.' }
         ]
       }
     ]

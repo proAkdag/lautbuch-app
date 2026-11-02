@@ -52,8 +52,8 @@ window.LAUTBUCH_TEILE.oe = {
         richtig: 'sz-oe-l2-1',
         wahl: [
           { s: 'sz-oe-l2-1', wer: 'löwe', tut: 'wirft', was: 'brot', bild: 'Ein freundlicher Löwe steht am Strand und wirft mit der Pfote Brotstücke in die Luft.' },
-          { s: 'sz-oe-l2-2', wer: 'möwe', tut: 'wirft', was: 'brot', bild: 'Eine Möwe steht am Strand und wirft mit dem Flügel Brotstücke in die Luft.' },
-          { s: 'sz-oe-l2-3', wer: 'löwe', tut: 'wirft', was: 'körbe', bild: 'Ein freundlicher Löwe steht am Strand und wirft mit der Pfote kleine Körbe in die Luft.' }
+          { s: 'sz-oe-l2-2', wer: 'möwe', tut: 'wirft', was: 'brot', satz: 'Die Mö-we wirft Brot.', bild: 'Eine Möwe steht am Strand und wirft mit dem Flügel Brotstücke in die Luft.' },
+          { s: 'sz-oe-l2-3', wer: 'löwe', tut: 'wirft', was: 'körbe', satz: 'Lö-we Le-o wirft Kör-be.', bild: 'Ein freundlicher Löwe steht am Strand und wirft mit der Pfote kleine Körbe in die Luft.' }
         ]
       },
       sinnMehr: [
@@ -62,8 +62,8 @@ window.LAUTBUCH_TEILE.oe = {
           richtig: 'sz-oe-l2-s1-1',
           wahl: [
             { s: 'sz-oe-l2-s1-1', wer: 'wölfe', tut: 'tragen', was: 'körbe', bild: 'Zwei freundliche Wölfe gehen auf einem Waldweg zu einem kleinen Haus, an dessen Fenster eine Oma winkt, und tragen jeder einen Korb.' },
-            { s: 'sz-oe-l2-s1-2', wer: 'löwen', tut: 'tragen', was: 'körbe', bild: 'Zwei freundliche Löwen gehen auf demselben Waldweg zum selben Haus, an dessen Fenster die Oma winkt, und tragen jeder einen Korb.' },
-            { s: 'sz-oe-l2-s1-3', wer: 'wölfe', tut: 'tragen', was: 'brote', bild: 'Zwei freundliche Wölfe gehen auf demselben Waldweg zum selben Haus, an dessen Fenster die Oma winkt, und tragen jeder einen großen Laib Brot.' }
+            { s: 'sz-oe-l2-s1-2', wer: 'löwen', tut: 'tragen', was: 'körbe', satz: 'Hö-hö! Lö-wen tra-gen Kör-be zu O-ma.', bild: 'Zwei freundliche Löwen gehen auf demselben Waldweg zum selben Haus, an dessen Fenster die Oma winkt, und tragen jeder einen Korb.' },
+            { s: 'sz-oe-l2-s1-3', wer: 'wölfe', tut: 'tragen', was: 'brote', satz: 'Hö-hö! Wöl-fe tra-gen Bro-te zu O-ma.', bild: 'Zwei freundliche Wölfe gehen auf demselben Waldweg zum selben Haus, an dessen Fenster die Oma winkt, und tragen jeder einen großen Laib Brot.' }
           ]
         },
         {
@@ -71,8 +71,8 @@ window.LAUTBUCH_TEILE.oe = {
           richtig: 'sz-oe-l2-s3-1',
           wahl: [
             { s: 'sz-oe-l2-s3-1', wer: 'möwen', tut: 'landen', was: 'schwanz', bild: 'Am Strand landen drei Möwen auf dem langen Schwanz eines freundlichen Löwen, der stolz über die Schulter schaut.' },
-            { s: 'sz-oe-l2-s3-2', wer: 'tauben', tut: 'landen', was: 'schwanz', bild: 'Am selben Strand landen drei Tauben auf dem langen Schwanz desselben Löwen, der stolz über die Schulter schaut.' },
-            { s: 'sz-oe-l2-s3-3', wer: 'möwen', tut: 'landen', was: 'kopf', bild: 'Am selben Strand landen drei Möwen auf dem Kopf desselben Löwen, der stolz nach oben schaut.' }
+            { s: 'sz-oe-l2-s3-2', wer: 'tauben', tut: 'landen', was: 'schwanz', ohneSatz: 'holprig nach Pruefer 02.11. (PRUEFUNG_SAETZE.md), Zero: rausnehmen; nie Ziel der Geschichte', bild: 'Am selben Strand landen drei Tauben auf dem langen Schwanz desselben Löwen, der stolz über die Schulter schaut.' },
+            { s: 'sz-oe-l2-s3-3', wer: 'möwen', tut: 'landen', was: 'kopf', satz: 'Mö-wen lan-den am Kopf.', bild: 'Am selben Strand landen drei Möwen auf dem Kopf desselben Löwen, der stolz nach oben schaut.' }
           ]
         }
       ]
@@ -96,8 +96,8 @@ window.LAUTBUCH_TEILE.oe = {
       richtig: 'sz-oe-boss-1',
       wahl: [
         { s: 'sz-oe-boss-1', wer: 'löwe', tut: 'trötet', was: 'regen', bild: 'Ein freundlicher Löwe steht im Regen auf einer Wiese und bläst fröhlich in eine bunte Tröte mit großem Trichter.' },
-        { s: 'sz-oe-boss-2', wer: 'löwe', tut: 'flötet', was: 'regen', bild: 'Ein freundlicher Löwe steht im Regen auf einer Wiese und spielt fröhlich auf einer geraden Blockflöte mit Grifflöchern.' },
-        { s: 'sz-oe-boss-3', wer: 'löwe', tut: 'trötet', was: 'sonne', bild: 'Ein freundlicher Löwe steht bei Sonnenschein auf einer Wiese und bläst fröhlich in eine bunte Tröte mit großem Trichter.' }
+        { s: 'sz-oe-boss-2', wer: 'löwe', tut: 'flötet', was: 'regen', satz: 'Lö-we Le-o flö-tet im Re-gen.', bild: 'Ein freundlicher Löwe steht im Regen auf einer Wiese und spielt fröhlich auf einer geraden Blockflöte mit Grifflöchern.' },
+        { s: 'sz-oe-boss-3', wer: 'löwe', tut: 'trötet', was: 'sonne', ohneSatz: 'holprig nach Pruefer 02.11. (PRUEFUNG_SAETZE.md), Zero: rausnehmen; nie Ziel der Geschichte', bild: 'Ein freundlicher Löwe steht bei Sonnenschein auf einer Wiese und bläst fröhlich in eine bunte Tröte mit großem Trichter.' }
       ]
     },
     sinnMehr: [
@@ -106,8 +106,8 @@ window.LAUTBUCH_TEILE.oe = {
         richtig: 'sz-oe-boss-s1-1',
         wahl: [
           { s: 'sz-oe-boss-s1-1', wer: 'möwen + wölfe + schaf', tut: 'huschen', was: 'regen', bild: 'Es regnet auf der Wiese, und zwei Möwen, zwei Wölfe und ein Schaf rennen eilig unter einen großen Baum.' },
-          { s: 'sz-oe-boss-s1-2', wer: 'möwen + wölfe + lama', tut: 'huschen', was: 'regen', bild: 'Es regnet auf derselben Wiese, und zwei Möwen, zwei Wölfe und ein Lama rennen eilig unter denselben großen Baum.' },
-          { s: 'sz-oe-boss-s1-3', wer: 'möwen + wölfe + schaf', tut: 'huschen', was: 'sonne', bild: 'Die Sonne scheint auf dieselbe Wiese, und zwei Möwen, zwei Wölfe und ein Schaf rennen eilig unter denselben großen Baum.' }
+          { s: 'sz-oe-boss-s1-2', wer: 'möwen + wölfe + lama', tut: 'huschen', was: 'regen', satz: 'Re-gen! Mö-wen, Wöl-fe, La-ma: Husch, husch!', bild: 'Es regnet auf derselben Wiese, und zwei Möwen, zwei Wölfe und ein Lama rennen eilig unter denselben großen Baum.' },
+          { s: 'sz-oe-boss-s1-3', wer: 'möwen + wölfe + schaf', tut: 'huschen', was: 'sonne', ohneSatz: 'holprig nach Pruefer 02.11. (PRUEFUNG_SAETZE.md), Zero: rausnehmen; nie Ziel der Geschichte', bild: 'Die Sonne scheint auf dieselbe Wiese, und zwei Möwen, zwei Wölfe und ein Schaf rennen eilig unter denselben großen Baum.' }
         ]
       },
       {
@@ -115,8 +115,8 @@ window.LAUTBUCH_TEILE.oe = {
         richtig: 'sz-oe-boss-s3-1',
         wahl: [
           { s: 'sz-oe-boss-s3-1', wer: 'schaf + leo', tut: 'flötet + ruft', was: '', bild: 'Im Regen auf der Wiese spielt ein Schaf auf einer geraden Blockflöte, daneben steht ein freundlicher Löwe mit seiner bunten Tröte und ruft begeistert.' },
-          { s: 'sz-oe-boss-s3-2', wer: 'möwe + leo', tut: 'flötet + ruft', was: '', bild: 'Im Regen auf derselben Wiese spielt eine Möwe auf einer geraden Blockflöte, daneben steht derselbe Löwe mit seiner bunten Tröte und ruft begeistert.' },
-          { s: 'sz-oe-boss-s3-3', wer: 'schaf + leo', tut: 'trötet + ruft', was: '', bild: 'Im Regen auf derselben Wiese bläst ein Schaf in eine zweite bunte Tröte mit großem Trichter, daneben steht derselbe Löwe mit seiner Tröte und ruft begeistert.' }
+          { s: 'sz-oe-boss-s3-2', wer: 'möwe + leo', tut: 'flötet + ruft', was: '', satz: 'Die Mö-we flö-tet mit. Le-o ruft: So schön!', bild: 'Im Regen auf derselben Wiese spielt eine Möwe auf einer geraden Blockflöte, daneben steht derselbe Löwe mit seiner bunten Tröte und ruft begeistert.' },
+          { s: 'sz-oe-boss-s3-3', wer: 'schaf + leo', tut: 'trötet + ruft', was: '', satz: 'Das Schaf trö-tet mit. Le-o ruft: So schön!', bild: 'Im Regen auf derselben Wiese bläst ein Schaf in eine zweite bunte Tröte mit großem Trichter, daneben steht derselbe Löwe mit seiner Tröte und ruft begeistert.' }
         ]
       }
     ]
