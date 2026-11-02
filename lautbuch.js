@@ -2135,6 +2135,7 @@
     let punkte = 0, modus = 'zuordnen';
     const goldSchl = () => modus === 'tippen' ? 'tippen' : modus === 'geschichte' ? 'geschichte' : 'bilder';
     const gesichert = () => !!opt.galerie || !!licht[teil.id][goldSchl()];
+    const golden = () => !opt.galerie && !!licht[teil.id][goldSchl()];
     const serieStand = () => opt.galerie ? 0 : Math.min(ZIEL - 1, (licht[teil.id].serie || {})[goldSchl()] | 0);
     const serieSetzen = (n) => {
       const o = licht[teil.id];
@@ -2179,6 +2180,7 @@
         : modus === 'tippen' && tippOk
         ? abtippen(teil, daten, buehne, { fehler: amFehler, fertig: amEnde, pruefPlatz: knopfPlatz })
         : zuordnen(teil, daten, buehne, { treffer: vier(), fehler: amFehler, fertig: amEnde, pruefPlatz: knopfPlatz });
+      if (f && golden()) f.classList.add('golden');
       setTimeout(vorausziehen, 400);
       return f;
     };

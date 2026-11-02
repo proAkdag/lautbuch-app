@@ -708,6 +708,12 @@
   }
   @keyframes freude-ein { from { background-color: rgb(255 246 220 / 0); box-shadow: 0 0 0 6px rgb(255 246 220 / 0), 0 0 0 9px rgb(200 134 10 / 0); } }
   .serien-fall.erloschen { border-style: dashed; border-color: var(--asche); background-color: var(--asche-grund); }
+
+  .serien-fall.golden, .serien-fall.golden.erloschen {
+    border-style: solid; border-color: var(--gold-grund); background-color: var(--gold-grund);
+    box-shadow: 0 0 0 6px var(--gold-grund), 0 0 0 9px var(--gold);
+  }
+  .serien-fall.golden.freude { animation: none; }
   .raum-bilder > .tafel-rahmen { padding: 12px; }
   .serie-knopf, .serie-knopf:empty { min-height: 52px; }
 
