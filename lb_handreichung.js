@@ -19,7 +19,7 @@ window.LAUTBUCH_HANDREICHUNG = {
     {
       id: 'weg', titel: 'Der Weg', symbol: 'welt',
       teile: [
-        { p: 'Beim Öffnen steht das Lautbuch Ihres Kindes im Regal. Auf dem Rücken stehen seine Figur und sein Name, dazu für jeden geschafften Ort ein goldener Punkt. Ein Tipp nimmt das Buch heraus und schlägt es auf: Auf dem Deckel leuchten die Vokale, deren Boss geschafft ist, dann öffnet sich die Karte. Die zwei freien Plätze daneben sind für weitere Kinder gedacht und kommen mit einer späteren Fassung. Zurück zum Regal geht es über die Schublade „Begleitung“.' },
+        { p: 'Beim Öffnen steht das Lautbuch Ihres Kindes im Regal. Auf dem Rücken stehen seine Figur und für jeden geschafften Ort ein goldener Punkt; sein Name steht dort, sobald Sie ihn zum ersten Mal eingetragen haben (auf der Titelseite des ersten Buchs, das Ihr Kind findet). Ein Tipp nimmt das Buch heraus und schlägt es auf: Auf dem Deckel leuchten die Vokale, deren Boss geschafft ist, dann öffnet sich die Karte über beide Seiten. Die zwei freien Plätze daneben sind für weitere Kinder gedacht und kommen mit einer späteren Fassung. Zurück zum Regal geht es über die Schublade „Begleitung“.' },
         { p: 'Auf der Karte hat jeder Ort die Gestalt seines Buchstabens. Was noch nicht erforscht ist, liegt im Nebel. Ein Ort öffnet sich, wenn der Boss des vorigen Orts geschafft ist.' },
         { liste: [
           'Prolog: drei Orte für die Konsonanten, als Laut, groß und klein.',

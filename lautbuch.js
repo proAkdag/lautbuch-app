@@ -812,6 +812,7 @@
   }
   const oeffne = (l) => { const t = TEILE[l.teil]; if (t) zumOrt(ortZu(t, l.frei)); };
 
+  const nachRegal = (fn) => (window.LB_START && window.LB_START.offen() ? window.LB_START.nachher(fn) : fn());
   function weg() {
     leer();
     document.body.classList.add('auf-weg', 'ohne-unten');
@@ -829,7 +830,7 @@
     const zeig = neu ? wegStand(neu.id) : Object.assign({}, stand);
     schreib(WEG_KEY, WEG.teile.filter(w => stand[w.id] === 'meister').map(w => w.id));
     const K = wegZeichnen(land, zeig);
-    if (neu) setTimeout(() => { if (land.isConnected) wegLichtung(K, WEG.teile.indexOf(neu), stand); }, ruhig() ? 0 : 700);
+    if (neu) nachRegal(() => setTimeout(() => { if (land.isConnected) wegLichtung(K, WEG.teile.indexOf(neu), stand); }, ruhig() ? 0 : 700));
     let tR = null;
     hoere(window, 'resize', () => { clearTimeout(tR); tR = setTimeout(() => { if (land.isConnected) { land.replaceChildren(); wegZeichnen(land, wegStand()); } }, 160); });
   }
@@ -1309,7 +1310,7 @@
     schreib(PLATZ_KEY, Object.assign(lies(PLATZ_KEY, {}) || {}, { [platzLage]: platzNeu }));
     if (window.LB_FIGUREN) window.LB_FIGUREN(K, { ruhig, LEBENSRAUM, heraus: ausgezogen,
       einziehen: zimmerDa && window.LB_ZIMMER.einziehen ? (s) => window.LB_ZIMMER.einziehen(s, zimmerApi()) : null });
-    figurNachher(K);
+    nachRegal(() => { if (K.E.dinge.isConnected) figurNachher(K); });
   }
   const LEBENSRAUM = {
     'bw-delfin': 'wasser', 'bw-moewe': 'wasser', 'bw-pinguin': 'wasser', 'bw-storch': 'wasser',
@@ -3212,7 +3213,7 @@
     }
     if (window.LB_START) {
       const zr = el('div', 'schublade-zeile');
-      zr.append(el('span', null, 'Startbildschirm'), knopf('', mitSymbol('band', 'Regal'), () => zu().then(startZeigen), 'zum Regal'));
+      zr.append(el('span', null, 'Startbildschirm'), knopf('', mitSymbol('band', 'Regal'), () => zu().then(() => startZeigen(true)), 'zum Regal'));
       d.append(zr);
     }
     if (vollbildDa && getComputedStyle(sVoll).display === 'none') {
@@ -3363,8 +3364,9 @@
     return { name: String(lies('lautbuch.name.v1', '') || '').trim(), bild: k && D[k] ? (D[k].klein || D[k].farbe) : null,
       orte: WEG.teile.filter(w => st[w.id] === 'meister').length, vokale: ['a', 'i', 'o', 'u', 'e'].map(id => !!(licht[id] && licht[id].boss)) };
   };
-  const startZeigen = () => window.LB_START.zeigen({ buch: startBuch(), weg, ruhig, main });
+  const startZeigen = (zurueck) => window.LB_START.zeigen({ buch: startBuch(), weg, ruhig, main, zurueck: zurueck === true });
   window.LB_VORLADEN = { starten: vorladen, gehalten: () => HALT.size };
-  if (window.LB_START) startZeigen(); else weg();
+  if (window.LB_START) startZeigen();
+  weg();
   setTimeout(vorladen, 1200);
 })();
