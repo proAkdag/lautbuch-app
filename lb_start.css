@@ -14,6 +14,8 @@
 .st-konsole { position: absolute; transform-origin: 0 0; background: url(start/st-konsole.png) 0 0 / 100% 100% no-repeat; }
 .st-fleck { position: absolute; border-radius: 50%; background: radial-gradient(closest-side, rgb(70 35 10 / .5), rgb(70 35 10 / .18) 60%, rgb(70 35 10 / 0)); }
 
+.st-schleier { position: absolute; inset: 0; z-index: 10; background: linear-gradient(#f9efe2, #efd6b8); }
+
 .st-vorn > * { opacity: 0; }
 
 .st-buch { position: absolute; left: 0; top: 0; width: var(--st-w); height: var(--st-h); padding: 0; border: 0; background: none; cursor: pointer;

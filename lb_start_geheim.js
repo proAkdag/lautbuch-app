@@ -38,6 +38,8 @@
     const nacht = () => (nachtWahl != null ? nachtWahl : tageszeit === 'nacht');
     const szene = ctx.szene || raum;
     const zu = (e, vor) => { e.setAttribute('aria-hidden', 'true'); if (vor) vor.parentNode.insertBefore(e, vor); else raum.append(e); return e; };
+    const wand = zu(el('div', 'sg-wand'), szene.parentNode === raum ? szene : raum.firstChild);
+    const zuWand = (e) => { e.setAttribute('aria-hidden', 'true'); wand.append(e); return e; };
     const zuSzene = (e) => { e.setAttribute('aria-hidden', 'true'); szene.append(e); return e; };
     const zuHinten = (e) => { const b = [...szene.children].find(c => c.classList.contains('st-buch')); e.setAttribute('aria-hidden', 'true'); szene.insertBefore(e, b || null); return e; };
 
@@ -47,7 +49,7 @@
     dunkel.style.setProperty('--sg-x', px((links + rechts) / 2)); dunkel.style.setProperty('--sg-y', px(fuss - (fuss - oben) * .4));
 
     const fw = schmal ? VW * .32 : Math.min(VW * .16, (fuss - VH * .24) / 1.17), fh = fw * 896 / 768;
-    const fenster = zu(el('div', 'sg-fenster'));
+    const fenster = zuWand(el('div', 'sg-fenster'));
     setze(fenster, { left: px(schmal ? VW * .1 : VW * .1), top: px(schmal ? VH * .07 : VH * .08), width: px(fw), height: px(fh) });
     const blick = el('div', 'sg-blick'), himmel = el('div', 'sg-himmel'), rahmen = el('div', 'sg-rahmen');
     fenster.append(blick, himmel, rahmen);
@@ -85,13 +87,13 @@
     });
 
     const lw = schmal ? VW * .13 : VW * .065, lh = lw * 512 / 384;
-    const lampe = zu(el('div', 'sg-lampe')), schein = zu(el('div', 'sg-schein'));
+    const lampe = zuWand(el('div', 'sg-lampe')), schein = zuWand(el('div', 'sg-schein'));
     const lx = schmal ? VW * .74 : VW * .8, ly = schmal ? VH * .09 : VH * .1;
     setze(lampe, { left: px(lx), top: px(ly), width: px(lw), height: px(lh) });
     setze(schein, { left: px(lx + lw / 2 - lw * 2.2), top: px(ly + lh * .55 - lw * 2.2), width: px(lw * 4.4), height: px(lw * 4.4) });
     const lampeSchein = () => setze(schein, { opacity: nacht() ? .9 : .35 });
     lampeSchein();
-    const schatten = zu(el('div', 'sg-schatten-wand'));
+    const schatten = zuWand(el('div', 'sg-schatten-wand'));
     const lampeTipp = zu(el('button', 'sg-tipp'));
     lampeTipp.type = 'button'; lampeTipp.tabIndex = -1;
     setze(lampeTipp, { left: px(lx - 8), top: px(ly - 8), width: px(Math.max(lw + 16, 48)), height: px(Math.max(lh + 16, 48)) });
@@ -224,7 +226,7 @@
     };
     const falterFlug = () => {
       if (falter) return;
-      falter = zu(el('div', 'sg-falter')); falter.append(el('i', 'sg-fluegel'));
+      falter = zuWand(el('div', 'sg-falter')); falter.append(el('i', 'sg-fluegel'));
       const g = Math.max(28, lw * .6), zx = lx + lw * .5 - g / 2, zy = ly + lh * .78;
       setze(falter, { left: px(zx), top: px(zy), width: px(g), height: px(g) });
       const sx = (schmal ? -VW * .2 : -VW * .35), sy = VH * .5;

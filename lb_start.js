@@ -340,10 +340,25 @@
     neu();
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (!laeuft && raum) { zuletzt = ''; neu(); } });
     const erstes = buecher[aktiv] && buecher[aktiv].buch;
+    const einblenden = (dann) => {
+      const quellen = new Set();
+      [raum, ...raum.querySelectorAll('*')].forEach(e => {
+        for (const u of getComputedStyle(e).backgroundImage.matchAll(/url\("?([^")]+)"?\)/g)) quellen.add(u[1]);
+        if (e.tagName === 'IMG' && e.src) quellen.add(e.src);
+      });
+      const bilder = [...quellen].map(u => { const im = new Image(); im.src = u; return im; });
+      if (bilder.every(im => im.complete)) { dann(); return; }
+      const schleier = el('div', 'st-schleier'); raum.append(schleier);
+      Promise.race([Promise.all(bilder.map(im => im.decode().catch(() => {}))), new Promise(ok => setTimeout(ok, 2500))]).then(() => {
+        if (!schleier.isConnected) return;
+        schleier.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 500, easing: 'ease-out', fill: 'forwards' }).onfinish = () => schleier.remove();
+        dann();
+      });
+    };
     if (api.zurueck) rueckweg();
     else if (oeffne >= 0) {
       requestAnimationFrame(() => requestAnimationFrame(() => { if (raum && !laeuft) oeffnen(oeffne, gezupftBei >= 0 ? Z.zupfen : 0); }));
-    } else if (erstes) erstes.focus({ preventScroll: true });
+    } else if (erstes) einblenden(() => erstes.focus({ preventScroll: true }));
   }
   function erweiterungenAn() {
     erweiterungenAus();

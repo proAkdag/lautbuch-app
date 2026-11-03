@@ -2,6 +2,8 @@
 [class^="sg-"], [class*=" sg-"] { position: absolute; pointer-events: none; }
 .sg-tipp { pointer-events: auto; padding: 0; margin: 0; border: 0; background: none; cursor: pointer; z-index: 5; -webkit-tap-highlight-color: transparent; outline: none; }
 
+.sg-wand { inset: 0; z-index: 0; }
+
 .sg-licht { inset: 0; z-index: 4; }
 .sg-zeit-morgen { background: linear-gradient(rgb(200 222 255 / .16), rgb(220 235 255 / .06)); }
 .sg-zeit-abend { background: linear-gradient(rgb(255 170 90 / .05), rgb(255 140 60 / .14)); }
