@@ -1,0 +1,51 @@
+
+[class^="sg-"], [class*=" sg-"] { position: absolute; pointer-events: none; }
+.sg-tipp { pointer-events: auto; padding: 0; margin: 0; border: 0; background: none; cursor: pointer; z-index: 5; -webkit-tap-highlight-color: transparent; outline: none; }
+
+.sg-licht { inset: 0; z-index: 4; }
+.sg-zeit-morgen { background: linear-gradient(rgb(200 222 255 / .16), rgb(220 235 255 / .06)); }
+.sg-zeit-abend { background: linear-gradient(rgb(255 170 90 / .05), rgb(255 140 60 / .14)); }
+.sg-dunkel { inset: 0; z-index: 4; background: radial-gradient(circle at var(--sg-x) var(--sg-y), rgb(30 24 40 / .05), rgb(24 26 58 / .35) 30%, rgb(14 18 46 / .62) 70%); }
+
+.sg-fenster { z-index: 4; }
+.sg-blick { inset: 0; background: center / 100% 100% no-repeat; clip-path: inset(12.17% 13.93% 15.85% 13.8%); }
+.sg-himmel { inset: 12.17% 13.93% 15.85% 13.8%; overflow: hidden; }
+.sg-tag { background-image: url(start/sg-fenster-tag.jpg); }
+.sg-herbst { background-image: url(start/sg-fenster-herbst.jpg); }
+.sg-winter { background-image: url(start/sg-fenster-winter.jpg); }
+.sg-nacht { background-image: url(start/sg-fenster-nacht.jpg); }
+.sg-rahmen { inset: 0; background: url(start/sg-fenster-rahmen.png) center / 100% 100% no-repeat; filter: saturate(.85) drop-shadow(0 3px 4px rgb(90 50 20 / .3)); }
+.sg-stern { transform: translate(-50%, -50%); font: 700 13px Andika, sans-serif; color: #f7e7a8; text-shadow: 0 0 6px rgb(247 231 168 / .7); }
+.sg-stern:empty { width: 3px; height: 3px; border-radius: 50%; background: #f7e7a8; }
+.sg-flocke { width: 5px; height: 5px; border-radius: 50%; background: #fff; opacity: .85; }
+.sg-blatt { width: 7px; height: 5px; border-radius: 60% 0; background: #c47a2c; }
+
+.sg-lampe { z-index: 4; background: url(start/sg-lampe.png) center / 100% 100% no-repeat; }
+.sg-schein { z-index: 3; border-radius: 50%; background: radial-gradient(closest-side, rgb(255 214 140 / .55), rgb(255 200 120 / .2) 55%, rgb(255 200 120 / 0)); }
+.sg-schatten-wand { inset: 0; z-index: 2; }
+.sg-schatten { filter: brightness(0); opacity: 0; transform-origin: 50% 100%; }
+
+.sg-falter { z-index: 5; }
+.sg-fluegel { inset: 0; background: url(start/sg-falter.png) center / contain no-repeat; }
+
+.sg-schlaf { left: -9%; top: -9%; width: 118%; height: 118%; object-fit: cover; object-position: 50% 12%; }
+
+.sg-vorrat { background-image: url(start/sg-schlaeft-junge.webp), url(start/sg-schlaeft-maedchen.webp), url(start/sg-schlaeft-brille.webp), url(start/sg-schlaeft-elif.webp),
+  url(start/sg-schlaeft-conrad.webp), url(start/sg-schlaeft-locken.webp), url(start/sg-schlaeft-kopftuch.webp), url(start/sg-schlaeft-schaf.webp),
+  url(start/sg-schlaeft-lama.webp), url(start/sg-schlaeft-luna.webp), url(start/sg-schlaeft-maus.webp); }
+
+.sg-bewohner, .sg-lama img { object-fit: contain; object-position: 50% 100%; }
+.sg-lama { overflow: hidden; }
+.sg-lama img { width: 100%; height: 100%; }
+.sg-buchstabe { z-index: 3; font: 700 clamp(18px, 4.2vh, 34px) / 1 Andika, sans-serif; color: #7a4e1c; text-shadow: 0 1px 0 rgb(255 240 210 / .6), 0 2px 3px rgb(70 35 10 / .3); }
+.sg-staub, .sg-wolke { width: 12px; height: 12px; border-radius: 50%; background: rgb(236 222 196 / .9); }
+.sg-wolke { z-index: 3; }
+.sg-wort { z-index: 3; display: flex; gap: .04em; font-family: Andika, sans-serif; font-weight: 700; line-height: 1; color: #7a4e1c; text-shadow: 0 1px 0 rgb(255 240 210 / .6), 0 2px 3px rgb(70 35 10 / .3); }
+.sg-wort span { position: relative; display: inline-block; }
+.sg-zz { z-index: 3; font: 700 clamp(15px, 2.8vh, 24px) Andika, sans-serif; color: #7a5a24; }
+.sg-zz b { position: absolute; left: 0; top: 0; opacity: 0; }
+
+.sg-turm { position: relative; width: 62%; height: auto; flex: none; filter: drop-shadow(0 0 4px rgb(255 226 150 / .8)); }
+.sg-band { width: 9px; transform-origin: 50% 0; border-radius: 0 0 2px 2px;
+  background: linear-gradient(90deg, #6f7f5a, #8a9a72 50%, #6f7f5a);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 86%, 0 100%); }

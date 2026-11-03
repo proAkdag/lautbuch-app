@@ -417,6 +417,12 @@
   .schublade-kopf .knopf.ikon { font-size: 30px; line-height: 1; }
   .schublade > .knopf.leise { margin-top: 18px; }
 
+  .profil-zeile { padding: 8px 10px; border-radius: 14px; border: 2px solid transparent; }
+  .profil-zeile.profil-aktiv { border-color: var(--rand); }
+  .profil-zeile .schublade-knoepfe { margin-top: 0; }
+  .profil-platz { min-width: 9em; }
+  .profil-name { flex: 1 1 8em; min-width: 6em; font: inherit; font-size: 17px; padding: 6px 10px; border: 2px solid var(--rand); border-radius: 10px; background: var(--karte); color: var(--tinte); }
+
   dialog.schublade.loeschen { width: min(720px, calc(100vw - 32px)); max-height: calc(calc(100 * var(--vh)) - 32px); padding: 0; display: flex; flex-direction: column; overflow: hidden; }
   dialog.schublade.loeschen:not([open]) { display: none; }
   .loeschen .schublade-kopf { padding: 18px 22px 12px; border-bottom: 1px solid var(--rand); }

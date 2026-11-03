@@ -1,7 +1,24 @@
 window.LAUTBUCH_HANDREICHUNG = {
   titel: 'So begleiten Sie Ihr Kind',
-  einleitung: 'Mein Lautbuch ist ein Leseanfang für Kinder von etwa fünf bis sechs Jahren. Es ist nicht zum Alleinspielen gedacht. Sie sitzen daneben, Ihr Kind liest, und Sie sprechen: Das Lautbuch hat keine Stimme. Diese Seite erklärt, wie das Programm aufgebaut ist, wie Sie es bedienen und wie Sie es im Alltag gut einsetzen.',
+  einleitung: 'Mein Lautbuch ist ein Leseanfang für Kinder von etwa fünf bis sechs Jahren. Es ist nicht zum Alleinspielen gedacht. Sie sitzen daneben, Ihr Kind liest, und Sie sprechen: Das Lautbuch hat keine Stimme.',
   abschnitte: [
+    {
+      id: 'kurz', titel: 'Kurz gefasst: So nutzen Sie das Lautbuch', symbol: 'hinweis',
+      teile: [
+        { liste: [
+          'Täglich, ein Bereich: Möglichst jeden Tag, zehn bis zwanzig Minuten. Ein Bereich reicht für einen Tag: Silben, Ketten oder Wörter. Eine ganze Lektion ist machbar, wenn die Routine sitzt. Mag Ihr Kind länger und bleibt konzentriert, ist das gut. Hören Sie auf, wenn die Konzentration nachlässt.',
+          'Aufrecht und ruhig: Aufrecht sitzen, die Aufgabe ernst nehmen, nicht herumspielen, nichts, was ablenkt. Klare Regeln helfen, und Sie dürfen den Fokus verlangen. Figuren, Zimmer und Galerie erst nach der Arbeit. Konzentriert zu sitzen ist selbst eine Übung für die Schule.',
+          'Prolog überspringen: Kennt Ihr Kind zu jedem Buchstaben den Laut („mmm“, nicht „em“), beginnen Sie beim A.',
+          'Geduld beim A: Hier verbindet Ihr Kind zum ersten Mal Laute. Das braucht viel Geduld und wird mit der Zeit leichter.',
+          'Mit dem Stift zeigen: Zeigen Sie auf die Laute, die Ihr Kind gerade liest. Ohne Stift lässt der Fokus schnell nach, und Ihr Kind fängt an zu raten. Jeder Stift geht; ein Apple Pencil darf das Display berühren, mit dem Finger aufpassen, er löst Aktionen aus. Zeigen Sie zuerst selbst (sonst wird der Stift leicht zum Spielzeug), geben Sie ihn Stück für Stück ab und übernehmen Sie bei nachlassendem Fokus wieder.',
+          'Direkt ins Loch-Blatt: Anfangs nur ausgewählte Zeilen (Haken setzen, im Loch-Blatt „abgehakt“), damit sich das Gehirn auf das Verbinden der Laute konzentrieren kann und das Arbeitsgedächtnis entlastet wird. Später „alles“.',
+          'Zeigen und Boss ohne Hilfe, aber nachsichtig: Vereinbaren Sie vorher, dass Sie nicht helfen. Lassen Sie Zeit zum Entziffern, denn Ihr Kind soll Fortschritt spüren. Langsames Lesen gilt als „gelesen“; mussten Sie vorsagen, tippen Sie ehrlich „vorgezeigt“. Bitten Sie ab und zu, das Wort noch einmal flüssiger zu lesen, ganz flüssig muss es nicht sein. Bei Fehlern zeigen Sie auf die Stelle und fragen: „Welcher Laut gehört zu diesem Buchstaben?“',
+          'Bilder und Truhe: Wort zu Bild geht schnell, das Wort abtippen braucht Zeit. Die Geschichte zuzuordnen motiviert. Die Truhe („Schatz“) lesen Sie Stück für Stück.',
+          'Mehrere Kinder: Bis zu drei Kinder haben je ein eigenes Buch im Regal, mit eigenem Stand. Mehr dazu in „Mehrere Kinder an einem Gerät“.'
+        ] },
+        { tipp: 'Alles Weitere steht in den Abschnitten darunter.' }
+      ]
+    },
     {
       id: 'idee', titel: 'Worum es geht', symbol: 'stern',
       teile: [
@@ -19,7 +36,7 @@ window.LAUTBUCH_HANDREICHUNG = {
     {
       id: 'weg', titel: 'Der Weg', symbol: 'welt',
       teile: [
-        { p: 'Beim Öffnen steht das Lautbuch Ihres Kindes im Regal. Auf dem Rücken stehen seine Figur und für jeden geschafften Ort ein goldener Punkt; sein Name steht dort, sobald Sie ihn zum ersten Mal eingetragen haben (auf der Titelseite des ersten Buchs, das Ihr Kind findet). Ein Tipp nimmt das Buch heraus und schlägt es auf: Auf dem Deckel leuchten die Vokale, deren Boss geschafft ist, dann öffnet sich die Karte über beide Seiten. Die zwei freien Plätze daneben sind für weitere Kinder gedacht und kommen mit einer späteren Fassung. Zurück zum Regal geht es über die Schublade „Begleitung“.' },
+        { p: 'Beim Öffnen steht das Lautbuch Ihres Kindes im Regal. Auf dem Rücken stehen seine Figur und für jeden geschafften Ort ein goldener Punkt; sein Name steht dort, sobald Sie ihn zum ersten Mal eingetragen haben (auf der Titelseite des ersten Buchs, das Ihr Kind findet, oder in der Schublade „Begleitung“ unter „Profile“). Ein Tipp nimmt das Buch heraus und schlägt es auf: Auf dem Deckel leuchten die Vokale, deren Boss geschafft ist, dann öffnet sich die Karte über beide Seiten. Auf den freien Plätzen daneben können Sie Bücher für weitere Kinder anlegen (siehe „Mehrere Kinder an einem Gerät“). Zurück zum Regal geht es über die Schublade „Begleitung“.' },
         { p: 'Auf der Karte hat jeder Ort die Gestalt seines Buchstabens. Was noch nicht erforscht ist, liegt im Nebel. Ein Ort öffnet sich, wenn der Boss des vorigen Orts geschafft ist.' },
         { liste: [
           'Prolog: drei Orte für die Konsonanten, als Laut, groß und klein.',
@@ -50,10 +67,10 @@ window.LAUTBUCH_HANDREICHUNG = {
           'Zeigestock: Tippen Sie auf ein Feld. Es wird hervorgehoben, die anderen Reihen treten zurück. Nochmal tippen nimmt den Stock wieder weg.',
           'Lesefinger: Tippen Sie auf ein Wort. Die Silbenbögen leuchten nacheinander auf. Ihr Kind liest im gleichen Takt mit.',
           'Das Band links an jeder Zeile ist das eine Lesezeichen: „Hier arbeiten wir gerade.“ Es gibt immer nur eins.',
-          'Der Haken rechts heißt: „Diese Zeile sitzt.“ Davon dürfen Sie beliebig viele setzen.',
+          'Der Haken rechts heißt: „Diese Zeile sitzt“ oder „Diese Zeile üben wir gerade“. Davon dürfen Sie beliebig viele setzen.',
           'Langes Drücken auf ein Feld legt es zu den Stolpersteinen, ein zweites langes Drücken nimmt es wieder heraus.'
         ] },
-        { p: 'Unten liegt das Loch-Blatt. Es zeigt eine einzige Karte in der Mitte, in freier Reihenfolge. So liest Ihr Kind nicht die auswendig gelernte Folge, sondern wirklich das Feld vor sich. Sie wählen: alles (Stapel), abgehakt (Haken: Zeilen mit Haken) oder offen (Zeilen ohne Haken). Stehen Haken an einigen Zeilen, beginnt das Loch-Blatt mit genau diesen. Langes Drücken auf die Karte oder der Knopf „Stolperstein“ legt die Karte zu den Stolpersteinen; im Reiter Stolpersteine wählen Sie, ob nur diese Lektion oder alle Lektionen dieses Orts abgefragt werden. Zur nächsten Karte kommen Sie mit „vor“ unter der Karte oder mit einem Wisch nach links, zurück mit „zurück“ oder einem Wisch nach rechts; auch die Tasten Pfeil rechts, Leertaste und Pfeil links blättern. Ein Tipp auf die Karte blättert nicht, damit nichts versehentlich weiterspringt. Auf der ersten Karte ruht „zurück“.' },
+        { p: 'Unten liegt das Loch-Blatt. Es zeigt eine einzige Karte in der Mitte, in freier Reihenfolge. So liest Ihr Kind nicht die auswendig gelernte Folge, sondern wirklich das Feld vor sich. Sie wählen: alles (Stapel), abgehakt (Haken: Zeilen mit Haken) oder offen (Zeilen ohne Haken). Stehen Haken an einigen Zeilen, beginnt das Loch-Blatt mit genau diesen. Unsere Empfehlung: erst „abgehakt“ mit wenigen ausgewählten Zeilen, später „alles“. Langes Drücken auf die Karte oder der Knopf „Stolperstein“ legt die Karte zu den Stolpersteinen; im Reiter Stolpersteine wählen Sie, ob nur diese Lektion oder alle Lektionen dieses Orts abgefragt werden. Zur nächsten Karte kommen Sie mit „vor“ unter der Karte oder mit einem Wisch nach links, zurück mit „zurück“ oder einem Wisch nach rechts; auch die Tasten Pfeil rechts, Leertaste und Pfeil links blättern. Ein Tipp auf die Karte blättert nicht, damit nichts versehentlich weiterspringt. Auf der ersten Karte ruht „zurück“.' },
         { p: 'Der Reiter „Stolpersteine“ sammelt die Felder dieser Lektion, die noch wackeln: was Sie selbst dazugelegt haben und was im Zeigen vorgezeigt wurde. Sitzt ein Stein, nehmen Sie ihn heraus: den Stempel „kann ich“ aufnehmen, die sicheren Steine antippen (oder „alle“) und „herausnehmen“ tippen.' },
         { p: 'An der Tafel liegt der Knopf „Stolperstein“ immer bereit. Ist ein Feld gezeigt, legt er genau dieses zu den Stolpersteinen. Sonst nimmt er den Stempel auf: Jedes Feld, das Sie dann antippen, wird ein Stolperstein, ein zweiter Tipp nimmt es wieder heraus. Ein Tipp auf den Knopf legt den Stempel ab.' },
         { p: 'Mit dem Schalter für die Schreibung wechseln Sie zwischen GROSS und klein (im Prolog stehen groß und klein fest). Die Haken gelten je Schreibung. Wer in GROSS sicher ist, darf in klein noch üben.' },
@@ -104,7 +121,7 @@ window.LAUTBUCH_HANDREICHUNG = {
           'Zimmer: das Zimmer Ihres Kindes mit Bildern, Lauten, Büchern, Bewohnern und der Pinnwand.',
           'Vollbild: blendet die Leisten des Browsers aus, ein zweiter Tipp holt sie zurück. Der Knopf erscheint nur, wo das Gerät Vollbild erlaubt; fehlt er in der Leiste (Handy hochkant), steht er in der Schublade.',
           'Hinweis: ein kurzer Tipp zur aktuellen Lektion. Er erscheint beim ersten Öffnen einmal von selbst.',
-          'Begleitung: die Schublade für Sie, mit Hinweis, dieser Handreichung, der Sicherung, dem Weg zurück zum Regal (Startbildschirm), den Zeilen der App (Aktualisieren, Stand auf ein anderes Gerät) und „Lichter löschen“. Eine neue Fassung der App zeigt ein kleiner Punkt an diesem Knopf an. Diese Handreichung lässt sich oben im Fenster mit „Als PDF speichern“ als Datei sichern oder teilen (Mein_Lautbuch_Handreichung.pdf).'
+          'Begleitung: die Schublade für Sie, mit Hinweis, dieser Handreichung, den Profilen (Bücher anlegen, wechseln, löschen), der Sicherung, dem Weg zurück zum Regal (Startbildschirm), den Zeilen der App (Aktualisieren, Stand auf ein anderes Gerät) und „Lichter löschen“. Eine neue Fassung der App zeigt ein kleiner Punkt an diesem Knopf an. Diese Handreichung lässt sich oben im Fenster mit „Als PDF speichern“ als Datei sichern oder teilen (Mein_Lautbuch_Handreichung.pdf).'
         ] },
         { p: 'Lesen Sie den Hinweis kurz, bevor Ihr Kind eine neue Lektion beginnt. Er sagt in ein bis drei Sätzen, worauf es dort ankommt.' }
       ]
@@ -112,11 +129,11 @@ window.LAUTBUCH_HANDREICHUNG = {
     {
       id: 'einsatz', titel: 'Unsere Empfehlung zum Einsatz', symbol: 'band',
       teile: [
-        { p: 'Kurz und oft hilft mehr als lang und selten. Rechnen Sie mit fünf bis fünfzehn Minuten, möglichst an vielen Tagen der Woche. Für den Anfang reicht eine Lektion oder sogar nur ein Blatt.' },
+        { p: 'Kurz und oft hilft mehr als lang und selten. Rechnen Sie mit zehn bis zwanzig Minuten, möglichst an vielen Tagen der Woche. Ein Bereich pro Tag reicht: Silben, Ketten oder Wörter. Mag Ihr Kind länger und bleibt konzentriert, ist das gut. Hören Sie auf, wenn die Konzentration nachlässt.' },
         { liste: [
           'Ein festes Ritual: dieselbe Tageszeit, derselbe ruhige Platz, derselbe Ablauf. Zum Beispiel erst das Lesezeichen, dann Üben, dann Zeigen.',
           'Am Anfang aufwärmen: am Feuer auf der Karte zehn Karten wiederholen, einen Stolperstein von gestern lesen oder kurz in die Laute-Sammlung schauen. Dann erst das Neue.',
-          'Aufhören, wenn es am schönsten ist, auch wenn Ihr Kind weitermachen möchte. Die Vorfreude auf morgen ist viel wert.',
+          'Arbeitsregeln: Aufrecht sitzen, die Aufgabe ernst nehmen, nicht herumspielen und sich nicht ablenken lassen. Figuren, Zimmer und Galerie erst nach der Arbeit. Konzentriert zu sitzen ist selbst eine Übung für die Schule.',
           'Pausen sind erlaubt. Nichts verfällt, nichts wird schlechter. Nach einer Pause ruhig ein Stück zurückgehen und mit etwas Leichtem beginnen.',
           'Nicht zu schnell weiterziehen. Ein Ort darf mehrere Tage dauern. Sicherheit ist wichtiger als Tempo.',
           'Das Gerät ruhig halten: am iPad hilft der „Geführte Zugriff“, damit nichts anderes aufspringt.'
@@ -132,10 +149,11 @@ window.LAUTBUCH_HANDREICHUNG = {
         { liste: [
           'Nicht vorsagen. Geben Sie Ihrem Kind Zeit. Zählen Sie innerlich bis fünf, bevor Sie helfen.',
           'Im Üben einen Fehler ruhig richtig nennen. Ihr Kind wiederholt, dann geht es weiter. Kein „falsch“, kein Seufzen.',
-          'Im Zeigen still sein. Hilft nur ein Vorzeigen, dann einmal ruhig vorzeigen, ohne Kommentar, und „vorgezeigt“ tippen.',
+          'Im Zeigen und im Boss nicht vorsagen. Vereinbaren Sie vorher, dass Sie nicht helfen, und seien Sie trotzdem nachsichtig: Lassen Sie Zeit zum Entziffern, langsames Lesen gilt als gelesen. Nach dem Wort dürfen Sie bitten, es noch einmal etwas flüssiger zu lesen. Bei einer Fehlerstelle zeigen Sie darauf und fragen: „Welcher Laut gehört zu diesem Buchstaben?“ Hilft nur ein Vorzeigen, dann einmal ruhig vorzeigen und „vorgezeigt“ tippen.',
           'Die Anstrengung loben, nicht die Begabung: „Du hast dir das Wort selbst erarbeitet“ statt „Du bist so schlau“.',
           'Zum Zusammenziehen den Laut halten und in den Vokal gleiten: mmm-aaa. Erst langsam, dann schneller.',
-          'Bei Wörtern mit dem Finger unter den Bögen entlangfahren, Silbe für Silbe.',
+          'Mit einem Stift auf die Laute zeigen, die Ihr Kind gerade liest. Ohne Stift lässt der Fokus schnell nach, und Kinder fangen an zu raten. Jeder Stift oder Gegenstand geht; ein Apple Pencil darf das Display berühren, mit dem Finger aufpassen, denn er löst Aktionen aus (zum Beispiel Zeigestock oder Lesefinger). Zeigen Sie anfangs selbst, geben Sie den Stift Stück für Stück ab und übernehmen Sie wieder, wenn der Fokus nachlässt.',
+          'Bei Wörtern mit dem Finger oder dem Stift unter den Bögen entlangfahren, Silbe für Silbe.',
           'Bei Wörtern, die Ihr Kind vielleicht nicht kennt (etwa Ara, Fasan oder Schakal), vorher kurz darüber sprechen. Ein Wort, das man nicht kennt, kann man lesen, aber nicht wiedererkennen.'
         ] },
         { tipp: 'Ein guter Satz für Ihr Kind: „Lass dir Zeit. Lies selbst bis zum ganzen Wort.“' }
@@ -145,12 +163,12 @@ window.LAUTBUCH_HANDREICHUNG = {
       id: 'hakt', titel: 'Wenn es hakt', symbol: 'stein',
       teile: [
         { p: 'Ihr Kind rät nach dem Bild. Decken Sie das Bild mit der Hand ab oder lassen Sie es weg. Erst das Wort lesen, dann das Bild suchen. Das Bild ist die Bestätigung, nicht die Hilfe.' },
-        { p: 'Ihr Kind rät nach dem ersten Buchstaben. Mit dem Lesefinger oder Ihrem Finger Silbe für Silbe gehen. Wer die erste Silbe hat, liest die zweite.' },
+        { p: 'Ihr Kind rät nach dem ersten Buchstaben. Mit dem Lesefinger oder mit Ihrem Finger oder Stift Silbe für Silbe gehen. Wer die erste Silbe hat, liest die zweite.' },
         { p: 'Ihr Kind verwechselt b und d. Das ist in diesem Alter häufig. Nicht vorsagen, sondern auf den Bauch des Buchstabens zeigen und in Ruhe vergleichen. Die ähnlichen Formen haben im Prolog eine eigene Lektion. Legen Sie das Feld zu den Stolpersteinen.' },
         { p: 'Ihr Kind sagt den Buchstabennamen („em“, „be“). Den Laut einmal vorzeigen und weitermachen. Bei kurzen Lauten wie P, T, K kein „e“ anhängen: „p“, nicht „pe“.' },
         { p: 'Das S klingt anders als erwartet. Am Wortanfang summt das S in vielen Gegenden wie eine Biene (Sofa), am Ende zischt es (Bus). Beides ist richtig. Im Süden zischt es oft auch vorn. Sprechen Sie das S so, wie es in Ihrer Gegend klingt.' },
         { p: 'Ein Wort klingt anders, als es dasteht. Kakao zum Beispiel liest sich Ka-ka-o, gesprochen wird es oft „Ka-kau“. Es gibt Wörter, die man etwas anders ausspricht, als man sie liest, und hier begegnet Ihr Kind einem davon. Erklären Sie es in Ruhe: Manche Wörter lernt man auswendig und erkennt sie dann wieder.' },
-        { p: 'Ihr Kind liest sehr langsam. Das ist am Anfang normal. Genau zu lesen ist der erste Schritt, flüssig zu lesen kommt später. Ketten und Wörter, die schon einen Haken haben, im Loch-Blatt wiederholen. Mit der Zeit wird es schneller.' },
+        { p: 'Ihr Kind liest sehr langsam. Das ist am Anfang normal. Genau zu lesen ist der erste Schritt, flüssig zu lesen kommt später; ganz flüssig muss es nicht werden. Ketten und Wörter, die schon einen Haken haben, im Loch-Blatt wiederholen. Mit der Zeit wird es schneller.' },
         { p: 'Ihr Kind will nicht. Nicht drängen. Kürzer machen, morgen wieder. Eine Truhe lesen, in der Laute-Sammlung stöbern oder ein Bilder-Spiel wählen. Manchmal hilft es, eine Lektion zurückzugehen, damit sich das Lesen wieder leicht anfühlt.' },
         { p: 'Ihr Kind kann ein Wort im Üben, aber nicht im Zeigen. Das ist ein gutes Zeichen, dass das Zeigen echt prüft. Das Wort wird ein Stolperstein und kommt wieder.' },
         { p: 'Der Stern leuchtet nicht. Kein Problem. Morgen noch einmal. Die Lektion wartet.' },
@@ -166,12 +184,26 @@ window.LAUTBUCH_HANDREICHUNG = {
       ]
     },
     {
+      id: 'profile', titel: 'Mehrere Kinder an einem Gerät', symbol: 'haus',
+      teile: [
+        { p: 'Bis zu drei Kinder können das Lautbuch an einem Gerät nutzen. Jedes Kind hat sein eigenes Buch im Regal und seinen eigenen Stand. Was ein Kind liest, sammelt und einrichtet, bleibt in seinem Buch. Das Buch, das gerade offen ist, heißt in der Schublade „aufgeschlagen“.' },
+        { liste: [
+          'Anlegen: Begleitung → „Profile“ → bei einem freien Platz auf Wunsch einen Namen tippen, dann „Anlegen“. Das Kind wählt seine Figur danach selbst auf der Karte; an ihr erkennt es sein Buch.',
+          'Wechseln: Das Kind tippt im Regal auf sein Buch. Gehört es einem anderen Kind als zuletzt, lädt das Lautbuch kurz neu und schlägt dann dieses Buch auf. In der Schublade geht es auch über „Wechseln“ in der Zeile des Buchs.',
+          'Name: in der Zeile des Buchs unter „Profile“ eintragen oder ändern.',
+          'Löschen: Begleitung → „Profile“ → „Löschen“ und zur Bestätigung noch einmal tippen. Nur dieses Buch wird geleert, die anderen bleiben unberührt. Das letzte Buch lässt sich nicht löschen; dafür gibt es „Lichter löschen“, das immer nur im aufgeschlagenen Buch löscht.',
+          'Sichern: „Sichern“ unter „Sicherung“ legt eine Datei mit allen Büchern dieses Geräts ab. „Buch sichern“ in der Zeile eines Kindes sichert nur sein Buch, etwa für den Umzug auf ein anderes Gerät.',
+          'Zurückholen: „Laden“, die Datei wählen. Eine Datei mit allen Büchern: zweimal „Einspielen“, sie ersetzt alle Bücher. Die Datei eines einzelnen Buchs: zweimal „In dieses Buch“ (ersetzt das aufgeschlagene Buch) oder „Als neues Buch“ auf einen freien Platz. Sicherungen aus früheren Fassungen sind Dateien eines einzelnen Buchs.'
+        ] }
+      ]
+    },
+    {
       id: 'daten', titel: 'Speichern, Sichern, Umziehen, Löschen', symbol: 'stapel',
       teile: [
         { p: 'Der Fortschritt wird bei jedem Schritt sofort auf diesem Gerät gespeichert, im Speicher der App. Es wird nichts verschickt, es gibt kein Konto und keine Anmeldung.' },
-        { p: 'Nach jedem geschafften Boss erscheint auf der Karte ein leises Band: „Neues Gold · Stand sichern?“. „Sichern“ erstellt die Sicherungsdatei. „Später“ blendet das Band aus, bis wieder ein Boss geschafft ist. Bricht das Teilen-Fenster am iPad ab, gilt der Stand nicht als gesichert, und das Band bleibt stehen.' },
-        { p: 'Eine Sicherung geht auch jederzeit von Hand. In der Schublade „Begleitung“ tippen Sie unter „Sicherung“ auf „Sichern“. Das Lautbuch erstellt eine kleine Datei (Mein_Lautbuch_Sicherung_mit Datum.json). Am Computer landet sie bei den Downloads, am iPad öffnet sich das Teilen-Menü: Wählen Sie „In Dateien sichern“. Zum Zurückholen tippen Sie auf „Laden“, wählen die Datei und tippen zweimal auf „Einspielen“. Das ersetzt den Stand auf dem Gerät. Ältere Sicherungen als Text lassen sich ebenfalls laden, wenn sie als Datei vorliegen.' },
-        { p: 'Auf ein anderes eigenes Gerät ziehen Sie mit der Sicherungsdatei um oder per QR-Code, ganz ohne Server. Auf dem alten Gerät tippen Sie in der Schublade unter „App“ auf „QR zeigen“. Es erscheinen nacheinander ein oder mehrere Codes. Auf dem neuen Gerät tippen Sie auf „QR lesen“, erlauben die Kamera und halten sie auf die wechselnden Codes, bis alle gelesen sind („gelesen: 2 von 4“). Dann tippen Sie zweimal auf „Einspielen“. Das ersetzt den Stand auf dem neuen Gerät. Die Codes tragen den ganzen Stand, auch den Namen Ihres Kindes. Zeigen Sie sie nur auf eigenen Geräten.' },
+        { p: 'Nach jedem geschafften Boss erscheint auf der Karte ein leises Band: „Neues Gold · Stand sichern?“. „Sichern“ erstellt die Sicherungsdatei mit allen Büchern. „Später“ blendet das Band aus, bis wieder ein Boss geschafft ist. Bricht das Teilen-Fenster am iPad ab, gilt der Stand nicht als gesichert, und das Band bleibt stehen.' },
+        { p: 'Eine Sicherung geht auch jederzeit von Hand. In der Schublade „Begleitung“ tippen Sie unter „Sicherung“ auf „Sichern“. Das Lautbuch erstellt eine kleine Datei (Mein_Lautbuch_Sicherung_mit Datum.json). Am Computer landet sie bei den Downloads, am iPad öffnet sich das Teilen-Menü: Wählen Sie „In Dateien sichern“. Sie enthält alle Bücher des Geräts; ein einzelnes Buch sichert „Buch sichern“ unter „Profile“. Zum Zurückholen tippen Sie auf „Laden“, wählen die Datei und tippen zweimal auf „Einspielen“ (bei einem einzelnen Buch „In dieses Buch“ oder „Als neues Buch“). Ältere Sicherungen als Text lassen sich ebenfalls laden, wenn sie als Datei vorliegen.' },
+        { p: 'Auf ein anderes eigenes Gerät ziehen Sie mit der Sicherungsdatei um oder per QR-Code, ganz ohne Server. Auf dem alten Gerät tippen Sie in der Schublade unter „App“ auf „QR zeigen“. Es erscheinen nacheinander ein oder mehrere Codes. Auf dem neuen Gerät tippen Sie auf „QR lesen“, erlauben die Kamera und halten sie auf die wechselnden Codes, bis alle gelesen sind („gelesen: 2 von 4“). Dann tippen Sie zweimal auf „Einspielen“. Die Codes tragen alle Bücher des Geräts; sind es zu viele für einmal, tragen sie nur das aufgeschlagene Buch, und das Fenster sagt es. Dann übertragen Sie die anderen Bücher nacheinander (Buch wechseln, wieder „QR zeigen“) und spielen sie am neuen Gerät mit „Als neues Buch“ ein. Die Codes tragen den ganzen Stand, auch den Namen Ihres Kindes. Zeigen Sie sie nur auf eigenen Geräten.' },
         { p: 'Unten in der Schublade steht „Lichter löschen“. Es öffnet ein Fenster, in dem Sie wählen:' },
         { liste: [
           'Den Bereich: „Alles“ oder „Ab einer Lektion“. Bei „Ab einer Lektion“ tippen Sie erst den Ort (Prolog, A a, I i … bis zum Leuchtturm, die Regel-Tore heißen Tor 1 bis Tor 4), dann die Lektion. Alles davor bleibt stehen. Die gewählte Lektion und alles danach fällt weg, auch der Boss ihres Orts; Truhe, Staffelei, Bewohner und ein noch nicht aufgehobenes Buch verschwinden von der Karte. Schon aufgehobene Bücher bleiben im Zimmer, außer Sie kreuzen „Bücher“ an.',

@@ -10,8 +10,9 @@
   const unten = document.querySelector('.leiste-unten');
   const RUHIG = matchMedia('(prefers-reduced-motion: reduce)');
 
-  const lies = (k, ersatz) => { try { const v = localStorage.getItem(k); return v == null ? ersatz : JSON.parse(v); } catch { return ersatz; } };
-  const schreib = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
+  const PROFIL = window.LB_PROFIL, PK = (k) => PROFIL ? PROFIL.k(k) : k;
+  const lies = (k, ersatz) => { try { const v = localStorage.getItem(PK(k)); return v == null ? ersatz : JSON.parse(v); } catch { return ersatz; } };
+  const schreib = (k, v) => { try { localStorage.setItem(PK(k), JSON.stringify(v)); } catch {} };
   const schluessel = (id) => 'lautbuch.akt.' + id + '.v1';
   const licht = {};
   for (const id of Object.keys(TEILE)) licht[id] = lies(schluessel(id), {}) || {};
@@ -204,7 +205,7 @@
     return { w, t, lv, ids };
   };
   const ortZu = (teil, id) => { const os = WEG.teile.filter(w => (w.teil || w.id) === teil.id).map(ortVon).filter(Boolean); return os.find(o => o.ids.includes(id)) || os[0] || null; };
-  const ortMeister = (o) => o.ids.includes('boss') ? !!licht[o.t.id].boss : o.ids.every(id => licht[o.t.id][id]);
+  const ortMeister = (o, L = licht) => { const s = L[o.t.id] || {}; return o.ids.includes('boss') ? !!s.boss : o.ids.every(id => s[id]); };
   const zumOrt = (o) => o ? titel(o.t, { ort: o.w.id }) : weg();
   const zumWeg = () => knopf('ikon', sym('welt'), () => weg(), 'zum Weg');
   let schieneZustand = { aktiv: null, lv: null, teil: null };
@@ -443,15 +444,15 @@
   const SVGNS = 'http://www.w3.org/2000/svg';
   const sv = WEG.s, pf = WEG.pfad;
   const START_OFFEN = new Set(['a']);
-  const wegStand = (ohne) => {
+  const wegStand = (ohne, L = licht) => {
     const st = {}; let rand = false;
-    const meister = (w) => { const o = ortVon(w); return !!o && w.id !== ohne && ortMeister(o); };
+    const meister = (w) => { const o = ortVon(w); return !!o && w.id !== ohne && ortMeister(o, L); };
     const bossGold = (tid) => { const b = WEG.teile.filter(w => (w.teil || w.id) === tid && w.boss !== false).pop(); return !!b && meister(b); };
     const roh = WEG.teile.map((w, i) => {
       const tid = w.teil || w.id;
       const vorig = WEG.teile.slice(0, i).reverse().find(v => (v.teil || v.id) !== tid);
       const o = ortVon(w);
-      return { m: meister(w), spur: !!o && o.ids.some(id => licht[o.t.id][id]),
+      return { m: meister(w), spur: !!o && o.ids.some(id => (L[o.t.id] || {})[id]),
                offen: !!o && (!vorig || START_OFFEN.has(w.id) || bossGold(vorig.teil || vorig.id)) };
     });
     const letzter = roh.map(r => r.m || r.spur).lastIndexOf(true);
@@ -691,9 +692,9 @@
     werkzeug.append(ueben, farbig, malen);
     unten.append(werkzeug);
   }
-  const bewohnerJetzt = () => {
-    const stand = wegStand(), liste = [];
-    WEG.teile.forEach((w, i) => { const o = ortVon(w); if (o && stand[w.id] === 'meister' && o.ids.includes('boss')) for (const b of o.t.bewohner || []) if (b.s !== figurBewohner()) liste.push([b, i]); });
+  const bewohnerJetzt = (L = licht, fs) => {
+    const stand = wegStand(undefined, L), liste = [], selbst = figurBewohner(fs);
+    WEG.teile.forEach((w, i) => { const o = ortVon(w); if (o && stand[w.id] === 'meister' && o.ids.includes('boss')) for (const b of o.t.bewohner || []) if (b.s !== selbst) liste.push([b, i]); });
     return liste;
   };
   let wegKarte = null, imGang = false;
@@ -830,7 +831,7 @@
     const zeig = neu ? wegStand(neu.id) : Object.assign({}, stand);
     schreib(WEG_KEY, WEG.teile.filter(w => stand[w.id] === 'meister').map(w => w.id));
     const K = wegZeichnen(land, zeig);
-    if (neu) nachRegal(() => setTimeout(() => { if (land.isConnected) wegLichtung(K, WEG.teile.indexOf(neu), stand); }, ruhig() ? 0 : 700));
+    if (neu) nachRegal(() => setTimeout(() => nachRegal(() => { if (land.isConnected) wegLichtung(K, WEG.teile.indexOf(neu), stand); }), ruhig() ? 0 : 700));
     let tR = null;
     hoere(window, 'resize', () => { clearTimeout(tR); tR = setTimeout(() => { if (land.isConnected) { land.replaceChildren(); wegZeichnen(land, wegStand()); } }, 160); });
   }
@@ -992,7 +993,7 @@
   const figurAnker = (f) => /-vorn$/.test(figurBild(f) || '') ? (VORN[f.s] || f.a) : f.a;
   const figurWahlen = () => FIGUREN.filter(figurBild);
   const figurVon = (s) => figurWahlen().find(f => f.s === s) || null;
-  const figurBewohner = () => { const f = figurVon(figurStand().wer); return f ? (f.bw || f.s) : null; };
+  const figurBewohner = (fs = figurStand()) => { const f = figurVon(fs.wer); return f ? (f.bw || f.s) : null; };
   const mbId = (m) => m[0] + '.' + m[1];
   const mbStand = (t) => lies('lautbuch.akt.' + t + '.v1', {}) || {};
   const mbGelesen = (teil, lv) => {
@@ -2917,6 +2918,12 @@
   const SCHATZ_QUER = '(orientation: landscape) and (min-aspect-ratio: 5/4)';
 
   const HR_PDF_NAME = 'Mein_Lautbuch_Handreichung.pdf';
+  const hrKurz = (H) => !!(H.abschnitte && H.abschnitte[0] && H.abschnitte[0].id === 'kurz');
+  const hrPunkt = (tag, cls, x) => {
+    const e = el(tag, cls), i = x.indexOf(': ');
+    if (i > 0) e.append(el('strong', null, x.slice(0, i + 1)), x.slice(i + 1)); else e.textContent = x;
+    return e;
+  };
   const handreichungSeiten = () => {
     const H = window.LAUTBUCH_HANDREICHUNG;
     const bloecke = [];
@@ -2932,7 +2939,8 @@
       z.append(el('span', 'hr-pdf-verz-titel', (i + 1) + '. ' + a.titel), el('span', 'hr-pdf-verz-punkte'), nr);
       verz.append(z); verzZeilen.push([z, nr]);
     });
-    bloecke.push([verz]);
+    const kurz = hrKurz(H);
+    if (!kurz) bloecke.push([verz]);
     (H.abschnitte || []).forEach((a, i) => {
       const h = el('h2'), hoch = el('span', 'hr-pdf-hoch', '↑ Inhalt');
       h.append(el('span', null, (i + 1) + '. ' + a.titel), hoch); titelKoepfe.push(h); hochMarken.push(hoch);
@@ -2940,10 +2948,11 @@
       for (const t of a.teile || []) {
         if (t.p) teile.push(el('p', 'hr-pdf-p', t.p));
         if (t.tipp) teile.push(el('p', 'hr-pdf-tipp', t.tipp));
-        if (t.liste) for (const x of t.liste) teile.push(el('p', 'hr-pdf-punkt', x));
+        if (t.liste) for (const x of t.liste) teile.push(kurz ? hrPunkt('p', 'hr-pdf-punkt', x) : el('p', 'hr-pdf-punkt', x));
       }
       bloecke.push([h, ...teile.splice(0, 1)]);
       for (const t of teile) bloecke.push([t]);
+      if (kurz && i === 0) bloecke.push([verz]);
     });
     const bank = el('div', 'hr-pdf-bank'); document.body.append(bank);
     const seiten = [];
@@ -2993,7 +3002,8 @@
     const inhalt = el('div', 'hr-inhalt');
     if (H.einleitung) inhalt.append(el('p', 'hr-einleitung', H.einleitung));
     const verzeichnis = el('nav', 'hr-verzeichnis'); verzeichnis.setAttribute('aria-label', 'Inhalt');
-    inhalt.append(verzeichnis);
+    const kurz = hrKurz(H);
+    if (!kurz) inhalt.append(verzeichnis);
     const springe = (e) => e.scrollIntoView({ behavior: ruhig() ? 'auto' : 'smooth', block: 'start' });
     (H.abschnitte || []).forEach((a, i) => {
       const sek = el('section', 'hr-abschnitt'), nr = (i + 1) + '. ';
@@ -3004,9 +3014,10 @@
       for (const t of a.teile || []) {
         if (t.p) sek.append(el('p', null, t.p));
         if (t.tipp) sek.append(el('p', 'hr-tipp', t.tipp));
-        if (t.liste) { const ul = el('ul'); for (const x of t.liste) ul.append(el('li', null, x)); sek.append(ul); }
+        if (t.liste) { const ul = el('ul'); for (const x of t.liste) ul.append(kurz ? hrPunkt('li', null, x) : el('li', null, x)); sek.append(ul); }
       }
       inhalt.append(sek);
+      if (kurz && i === 0) inhalt.append(verzeichnis);
       verzeichnis.append(knopf('hr-sprung', nr + a.titel, () => springe(sek)));
     });
     d.append(kopf, inhalt);
@@ -3039,7 +3050,7 @@
   ];
   const LOESCH_KEYS = { bwGesehen: 'lautbuch.bewohner.gesehen.v1', bwPlatz: 'lautbuch.bewohner.platz.v1', zimmer: ['lautbuch.zimmer.v1', 'lautbuch.zimmer.karten.v1', 'lautbuch.zimmer.rad.v1'],
     buecher: 'lautbuch.buecher.v1', name: 'lautbuch.name.v1', einst: [EINST_KEY, 'lautbuch.schreibung.v1'] };
-  const entferne = (k) => { try { localStorage.removeItem(k); } catch {} };
+  const entferne = (k) => { try { localStorage.removeItem(PK(k)); } catch {} };
   const loeschTeile = () => ((window.LAUTBUCH_FOLGE || {}).FOLGE || []).map(f => TEILE[f.teil]).filter(Boolean);
   const loescheWahl = (start, umfang) => {
     const F = loeschTeile(), ab = !!start;
@@ -3198,6 +3209,44 @@
     kommt(d, 0, 16, 360);
   }
 
+  const profilBlock = (profilSichern) => {
+    const s = el('div', 'schublade-block profil-block'), zeilen = el('div', 'profil-zeilen'), hinweis = el('p', 'meldung');
+    const mal = () => {
+      const P = PROFIL.plaetze(), belegt = P.filter(Boolean).length;
+      zeilen.replaceChildren(...P.map((p, i) => {
+        const nr = i + 1, z = el('div', 'schublade-zeile profil-zeile'), kn = el('span', 'schublade-knoepfe');
+        z.dataset.platz = String(nr); if (p && p.aktiv) z.classList.add('profil-aktiv');
+        const name = el('input', 'profil-name'); name.type = 'text'; name.maxLength = 30; name.autocomplete = 'off'; name.spellcheck = false;
+        name.placeholder = 'Name'; name.setAttribute('aria-label', 'Name für Buch ' + nr);
+        if (!p) {
+          kn.append(knopf('profil-anlegen', 'Anlegen', () => {
+            hinweis.textContent = PROFIL.anlegen(nr, name.value) ? 'Buch ' + nr + ' ist angelegt. Das Kind tippt im Regal darauf.' : 'Nicht angelegt: der Speicher ist voll.';
+            mal();
+          }));
+          z.append(el('span', 'profil-platz', 'Buch ' + nr + ' · frei'), name, kn);
+          return z;
+        }
+        name.value = p.name;
+        name.addEventListener('change', () => { const v = name.value.trim(); if (p.aktiv) schreib('lautbuch.name.v1', v); else PROFIL.schreibIn(nr, 'lautbuch.name.v1', v); });
+        if (!p.aktiv) kn.append(knopf('profil-wechseln', 'Wechseln', () => PROFIL.waehle(nr)));
+        kn.append(knopf('profil-sichern', 'Buch sichern', () => profilSichern(nr)));
+        if (belegt > 1) {
+          const l = knopf('leise profil-loeschen', 'Löschen', () => {
+            if (!bestaetigt(l, 'Wirklich löschen?')) return;
+            if (!PROFIL.loeschen(nr)) { hinweis.textContent = 'Nicht gelöscht.'; return; }
+            if (p.aktiv) location.reload(); else { hinweis.textContent = 'Buch ' + nr + ' ist gelöscht.'; mal(); }
+          });
+          kn.append(l);
+        }
+        z.append(el('span', 'profil-platz', 'Buch ' + nr + (p.aktiv ? ' · aufgeschlagen' : '')), name, kn);
+        return z;
+      }));
+    };
+    mal();
+    s.append(el('h3', null, 'Profile'), el('p', 'meldung', 'Bis zu drei Kinder, jedes mit seinem Buch. Das Kind erkennt sein Buch im Regal an seiner Figur.'), zeilen, hinweis);
+    return s;
+  };
+
   function schublade(teil, lv) {
     const d = el('dialog', 'schublade');
     d.setAttribute('aria-label', 'Für die Begleitung');
@@ -3230,23 +3279,35 @@
     const lesen = (t) => {
       t = String(t || '').trim();
       try {
-        if (t.startsWith('LAUTBUCH1:')) return JSON.parse(decodeURIComponent(escape(atob(t.slice(10)))));
+        if (t.startsWith('LAUTBUCH1:')) return { umfang: 'profil', daten: JSON.parse(decodeURIComponent(escape(atob(t.slice(10))))) };
         const j = JSON.parse(t);
-        return j && j.art === 'Mein Lautbuch Sicherung' && j.daten && typeof j.daten === 'object' ? j.daten : null;
+        if (!(j && j.art === 'Mein Lautbuch Sicherung' && j.daten && typeof j.daten === 'object')) return null;
+        return j.umfang === 'geraet' && j.profile ? { umfang: 'geraet', daten: j.daten, profile: j.profile } : { umfang: 'profil', daten: j.daten, name: j.name || '' };
       } catch { return null; }
     };
     const meldung = el('span', 'meldung');
-    const sichern = knopf('', 'Sichern', () => {
-      const heute = new Date(), tag = heute.getFullYear() + '-' + String(heute.getMonth() + 1).padStart(2, '0') + '-' + String(heute.getDate()).padStart(2, '0');
-      const inhalt = JSON.stringify({ art: 'Mein Lautbuch Sicherung', version: 1, datum: heute.toISOString(), daten: eintraege() });
-      const blob = new Blob([inhalt], { type: 'application/json' });
+    const tagHeute = () => { const h = new Date(); return h.getFullYear() + '-' + String(h.getMonth() + 1).padStart(2, '0') + '-' + String(h.getDate()).padStart(2, '0'); };
+    const alsDatei = (inhalt, datei, ok) => {
+      const blob = new Blob([JSON.stringify(inhalt)], { type: 'application/json' });
       let eingebettet = false; try { eingebettet = window.self !== window.top; } catch { eingebettet = true; }
       meldung.textContent = eingebettet ? 'Sicherung erstellt. Kommt keine Datei: das Lautbuch im Browser öffnen und dort sichern.' : 'Sicherung erstellt';
-      if (window.LB_AUSGABE) window.LB_AUSGABE.sichern(blob, 'Mein_Lautbuch_Sicherung_' + tag + '.json', '', {
-        ok: () => window.dispatchEvent(new Event('lautbuch:gesichert')),
+      if (window.LB_AUSGABE) window.LB_AUSGABE.sichern(blob, datei, '', {
+        ok,
         fehlt: () => { meldung.textContent = 'Hier kann das Lautbuch keine Datei ablegen. Bitte das Lautbuch im Browser öffnen (Safari oder Chrome) und dort „Sichern“ tippen.'; }
       });
+    };
+    const sichern = knopf('', 'Sichern', () => {
+      const tag = tagHeute(), g = PROFIL ? PROFIL.geraet() : null;
+      const inhalt = g ? { art: 'Mein Lautbuch Sicherung', version: 2, umfang: 'geraet', datum: new Date().toISOString(), profile: g.profile, daten: g.daten }
+        : { art: 'Mein Lautbuch Sicherung', version: 1, datum: new Date().toISOString(), daten: eintraege() };
+      alsDatei(inhalt, 'Mein_Lautbuch_Sicherung_' + tag + '.json',
+        () => window.dispatchEvent(new Event('lautbuch:gesichert')));
     });
+    const profilSichern = (nr) => {
+      const name = String(PROFIL.liesIn(nr, 'lautbuch.name.v1', '') || '').trim(), datei = name.replace(/[^\p{L}\p{N}]+/gu, '_').replace(/^_+|_+$/g, '') || 'Buch_' + nr;
+      alsDatei({ art: 'Mein Lautbuch Sicherung', version: 2, umfang: 'profil', name, datum: new Date().toISOString(), daten: PROFIL.eintraege(nr) },
+        'Mein_Lautbuch_' + datei + '_' + tagHeute() + '.json', () => window.dispatchEvent(new CustomEvent('lautbuch:gesichert-profil', { detail: { nr } })));
+    };
     let geladen = null;
     const wahl = document.createElement('input');
     wahl.type = 'file'; wahl.accept = '.json,application/json,.txt,text/plain'; wahl.hidden = true;
@@ -3256,34 +3317,47 @@
       const r = new FileReader();
       r.onload = () => {
         geladen = lesen(r.result);
+        const buch = geladen && geladen.umfang === 'profil';
         einspielen.hidden = !geladen;
-        meldung.textContent = geladen ? 'Sicherung gefunden: zweimal „Einspielen“ tippen' : 'keine Sicherung erkannt';
+        einspielen.textContent = buch && PROFIL ? 'In dieses Buch' : 'Einspielen';
+        alsNeu.hidden = !(buch && PROFIL && PROFIL.frei());
+        meldung.textContent = !geladen ? 'keine Sicherung erkannt'
+          : !buch ? 'Sicherung aller Bücher gefunden: zweimal „Einspielen“ tippen'
+          : PROFIL ? 'Sicherung eines Buchs gefunden' + (geladen.name ? ' (' + geladen.name + ')' : '') + ': zweimal „In dieses Buch“ tippen' + (PROFIL.frei() ? ' oder „Als neues Buch“' : '')
+          : 'Sicherung gefunden: zweimal „Einspielen“ tippen';
       };
       r.onerror = () => { meldung.textContent = 'Datei nicht lesbar'; };
       r.readAsText(f);
     });
     const laden = knopf('', 'Laden', () => wahl.click());
+    const eingespielt = (ok) => {
+      if (!ok) { meldung.textContent = 'Nicht eingespielt, der alte Stand ist unverändert.'; return; }
+      window.dispatchEvent(new Event('lautbuch:eingespielt'));
+      location.reload();
+    };
     const einspielen = knopf('', 'Einspielen', () => {
       const o = geladen;
       if (!o) { meldung.textContent = 'erst eine Sicherung laden'; return; }
       if (!bestaetigt(einspielen, 'Wirklich ersetzen?')) return;
+      if (PROFIL) { eingespielt(o.umfang === 'geraet' ? PROFIL.geraetEinspielen(o) : PROFIL.ersetze(PROFIL.aktiv(), o.daten)); return; }
       try {
         for (let k = localStorage.length - 1; k >= 0; k--) { const n = localStorage.key(k); if (n.startsWith('lautbuch.')) localStorage.removeItem(n); }
-        for (const [n, v] of Object.entries(o)) if (n.startsWith('lautbuch.')) localStorage.setItem(n, v);
+        for (const [n, v] of Object.entries(o.daten)) if (n.startsWith('lautbuch.')) localStorage.setItem(n, v);
       } catch {}
-      for (const id of Object.keys(TEILE)) licht[id] = lies(schluessel(id), {}) || {};
-      markenWandeln();
-      bereinigeV55();
-      Object.assign(einst, { schreibung: 'gross' }, lies(EINST_KEY, {})); delete einst.ruhig;
-      window.dispatchEvent(new Event('lautbuch:eingespielt'));
-      d.close(); weg();
+      eingespielt(true);
+    });
+    const alsNeu = knopf('', 'Als neues Buch', () => {
+      const nr = PROFIL && PROFIL.frei();
+      if (geladen && nr) eingespielt(PROFIL.ersetze(nr, geladen.daten));
     });
     const s = el('div', 'schublade-block');
-    einspielen.hidden = true;
-    const sk = el('div', 'schublade-knoepfe'); sk.append(sichern, laden, einspielen, meldung, wahl);
+    einspielen.hidden = true; alsNeu.hidden = true;
+    const sk = el('div', 'schublade-knoepfe'); sk.append(sichern, laden, einspielen, alsNeu, meldung, wahl);
     s.append(el('h3', null, 'Sicherung'),
-      el('p', 'meldung', '„Sichern“ speichert den Stand als Datei. Zum Zurückholen „Laden“ tippen, die Datei wählen und zweimal „Einspielen“ tippen.'),
+      el('p', 'meldung', PROFIL ? '„Sichern“ speichert alle Bücher als Datei, „Buch sichern“ unter „Profile“ nur eines. Zum Zurückholen „Laden“ tippen, die Datei wählen und zweimal „Einspielen“ tippen.'
+        : '„Sichern“ speichert den Stand als Datei. Zum Zurückholen „Laden“ tippen, die Datei wählen und zweimal „Einspielen“ tippen.'),
       sk);
+    if (PROFIL) d.append(profilBlock(profilSichern));
     d.append(s);
 
     const loeschen = knopf('leise', 'Lichter löschen', () => loeschenDialog(d));
@@ -3359,12 +3433,34 @@
     };
     if (warteschlange.length) warte(schritt);
   };
-  const startBuch = () => {
-    const st = wegStand(), D = window.LB_BILDDATEN || {}, k = (FIGUR_BILD[figurStand().wer] || [])[0];
-    return { name: String(lies('lautbuch.name.v1', '') || '').trim(), bild: k && D[k] ? (D[k].klein || D[k].farbe) : null,
-      orte: WEG.teile.filter(w => st[w.id] === 'meister').length, vokale: ['a', 'i', 'o', 'u', 'e'].map(id => !!(licht[id] && licht[id].boss)) };
+  const buchVon = (L, fs, name) => {
+    const st = wegStand(undefined, L), D = window.LB_BILDDATEN || {}, k = (FIGUR_BILD[fs.wer] || [])[0], letzter = WEG.teile[WEG.teile.length - 1];
+    const laute = [];
+    for (const z of WELT.zonen) for (const l of z.laute) if (WELT.stand(l, L) !== 'nebel' && !laute.includes(l.k)) laute.push(l.k);
+    return { name: String(name || '').trim(), bild: k && D[k] ? (D[k].klein || D[k].farbe) : null,
+      orte: WEG.teile.filter(w => st[w.id] === 'meister').length, vokale: ['a', 'i', 'o', 'u', 'e'].map(id => !!(L[id] && L[id].boss)),
+      bewohner: bewohnerJetzt(L, fs).map(([b]) => b.s), laute, fertig: st[letzter.id] === 'meister', hier: (WEG.teile.find(w => st[w.id] === 'hier') || {}).id || null };
   };
-  const startZeigen = (zurueck) => window.LB_START.zeigen({ buch: startBuch(), weg, ruhig, main, zurueck: zurueck === true });
+  const startBuch = () => buchVon(licht, figurStand(), lies('lautbuch.name.v1', ''));
+  const startBuecher = () => {
+    if (!PROFIL) return [startBuch(), null, null];
+    return PROFIL.plaetze().map(p => {
+      if (!p) return null;
+      if (p.aktiv) return Object.assign(startBuch(), { aktiv: true });
+      const L = {}; for (const id of Object.keys(TEILE)) L[id] = PROFIL.liesIn(p.nr, schluessel(id), {}) || {};
+      return Object.assign(buchVon(L, Object.assign({ wer: null, gezeigt: [] }, PROFIL.liesIn(p.nr, FIGUR_KEY, {}) || {}), p.name), { aktiv: false });
+    });
+  };
+  const oeffneNachWechsel = PROFIL ? PROFIL.oeffne() : null;
+  let gezeigt = false;
+  const startZeigen = (zurueck) => {
+    const buecher = startBuecher(), oeffne = !gezeigt && oeffneNachWechsel ? oeffneNachWechsel - 1 : null; gezeigt = true;
+    const aktiv = Math.max(0, buecher.findIndex(b => b && b.aktiv));
+    window.LB_START.zeigen({ buch: buecher[aktiv], buecher, aktiv, oeffne,
+      waehle: (i) => PROFIL ? PROFIL.waehle(i + 1) : Promise.resolve(i === 0),
+      handreichung: () => { if (window.LAUTBUCH_HANDREICHUNG) handreichung(); },
+      weg, ruhig, main, zurueck: zurueck === true });
+  };
   window.LB_VORLADEN = { starten: vorladen, gehalten: () => HALT.size };
   if (window.LB_START) startZeigen();
   weg();

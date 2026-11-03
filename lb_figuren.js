@@ -239,7 +239,8 @@
   const huepf = (T, ms = 700, h = -14) => reihe([[0, 0], [.2, 0, 0, 1.06, .9], [.5, h], [.8, 0, 0, 1.04, .96], [1, 0]], ms, T);
   const wipp = (T, ms, mal, r) => reihe([[0, 0], ...Array.from({ length: mal }, (_, i) => [(i + 1) / (mal + 1), 0, i % 2 ? -r : r]), [1, 0, 0]], ms, T);
   const nachts = () => { const h = new Date().getHours(); return h >= 18 || h < 7; };
-  const gemeistert = (teil) => { try { return JSON.parse(localStorage.getItem(`lautbuch.akt.${teil}.v1`) || '{}').boss === true; } catch (_) { return false; } };
+  const PK = (k) => window.LB_PROFIL ? window.LB_PROFIL.k(k) : k;
+  const gemeistert = (teil) => { try { return JSON.parse(localStorage.getItem(PK(`lautbuch.akt.${teil}.v1`)) || '{}').boss === true; } catch (_) { return false; } };
   const buegelt = (T, wort) => {
     const h = T.ding(wort, 24, 13, 17);
     if (h) T.lauf(h, [...auf(), { opacity: 1, transform: 'scale(1,1)', offset: .3 }, { opacity: 1, transform: 'translateY(2px) scale(1.12,.8)', offset: .5 }, { opacity: 1, transform: 'translateY(4px) scale(1.3,.55)', offset: .7 }, { opacity: 0, transform: 'translateY(4px) scale(1.3,.55)' }], 2400);

@@ -1,8 +1,10 @@
 (() => {
   'use strict';
-  const APP_VERSION = '1.0.19';
+  const APP_VERSION = '1.0.20';
   const VOR = 'lautbuch.';
-  const GESICHERT_KEY = 'lautbuch-app.gesichert.v1', SPAETER_KEY = 'lautbuch-app.spaeter.v1';
+  const PROFIL = window.LB_PROFIL || null, NR = PROFIL ? PROFIL.aktiv() : 1;
+  const appKey = (basis, nr) => nr === 1 ? basis : basis.replace(/\.v1$/, '.p' + nr + '.v1');
+  const GESICHERT_KEY = appKey('lautbuch-app.gesichert.v1', NR), SPAETER_KEY = appKey('lautbuch-app.spaeter.v1', NR);
   const TEIL_LAENGE = 675, TAKT_MS = 800, MAX_TEILE = 40, MAX_KLAR = 1048576;
 
   const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
@@ -11,16 +13,24 @@
   const schreib = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
 
   const eintraege = () => {
+    if (PROFIL) return PROFIL.eintraege(NR);
     const o = {};
     try { for (let k = 0; k < localStorage.length; k++) { const n = localStorage.key(k); if (n.startsWith(VOR)) o[n] = localStorage.getItem(n); } } catch {}
     return o;
   };
-  const sicherung = () => ({ art: 'Mein Lautbuch Sicherung', version: 1, datum: new Date().toISOString(), daten: eintraege() });
+  const sicherung = (buch) => {
+    const datum = new Date().toISOString();
+    if (!PROFIL) return { art: 'Mein Lautbuch Sicherung', version: 1, datum, daten: eintraege() };
+    if (buch) return { art: 'Mein Lautbuch Sicherung', version: 2, umfang: 'profil', name: String(PROFIL.liesIn(NR, 'lautbuch.name.v1', '') || '').trim(), datum, daten: eintraege() };
+    const g = PROFIL.geraet();
+    return { art: 'Mein Lautbuch Sicherung', version: 2, umfang: 'geraet', datum, profile: g.profile, daten: g.daten };
+  };
   const ersetzeAlle = (daten) => {
     for (let k = localStorage.length - 1; k >= 0; k--) { const n = localStorage.key(k); if (n.startsWith(VOR)) localStorage.removeItem(n); }
     for (const [n, v] of Object.entries(daten)) if (n.startsWith(VOR) && typeof v === 'string') localStorage.setItem(n, v);
   };
   const einspielen = (daten) => {
+    if (PROFIL) return PROFIL.ersetze(NR, daten);
     const alt = eintraege();
     try { ersetzeAlle(daten); return true; } catch { try { ersetzeAlle(alt); } catch {} return false; }
   };
@@ -81,13 +91,15 @@
   if (lies(GESICHERT_KEY, null) === null) schreib(GESICHERT_KEY, bossGold());
   let band = null;
   const merkeGesichert = () => { schreib(GESICHERT_KEY, bossGold()); try { localStorage.removeItem(SPAETER_KEY); } catch {} bandPruefen(); };
+  const merkeBuch = (nr) => { if (nr === NR) return merkeGesichert(); schreib(appKey('lautbuch-app.gesichert.v1', nr), bossGold(PROFIL.eintraege(nr))); try { localStorage.removeItem(appKey('lautbuch-app.spaeter.v1', nr)); } catch {} };
+  const merkeAlle = () => { if (PROFIL) PROFIL.plaetze().forEach((p) => { if (p && p.nr !== NR) merkeBuch(p.nr); }); merkeGesichert(); };
   const sichernJetzt = () => {
     const heute = new Date(), tag = heute.getFullYear() + '-' + String(heute.getMonth() + 1).padStart(2, '0') + '-' + String(heute.getDate()).padStart(2, '0');
     const blob = new Blob([JSON.stringify(sicherung())], { type: 'application/json' });
     const A = window.LB_AUSGABE;
     if (!A) return;
-    if (A.mitOk) A.sichern(blob, 'Mein_Lautbuch_Sicherung_' + tag + '.json', '', { ok: merkeGesichert });
-    else { A.sichern(blob, 'Mein_Lautbuch_Sicherung_' + tag + '.json', ''); merkeGesichert(); }
+    if (A.mitOk) A.sichern(blob, 'Mein_Lautbuch_Sicherung_' + tag + '.json', '', { ok: merkeAlle });
+    else { A.sichern(blob, 'Mein_Lautbuch_Sicherung_' + tag + '.json', ''); merkeAlle(); }
   };
   function bandPruefen() {
     const aufWeg = document.body && document.body.classList.contains('auf-weg');
@@ -107,8 +119,9 @@
       document.body.append(band);
     } else if (!zeigen && band) { band.remove(); band = null; }
   }
-  window.addEventListener('lautbuch:gesichert', merkeGesichert);
-  window.addEventListener('lautbuch:eingespielt', merkeGesichert);
+  window.addEventListener('lautbuch:gesichert', merkeAlle);
+  window.addEventListener('lautbuch:gesichert-profil', (e) => { if (PROFIL && e.detail && e.detail.nr) merkeBuch(e.detail.nr); });
+  window.addEventListener('lautbuch:eingespielt', merkeAlle);
   const starteBeobachter = () => {
     new MutationObserver(bandPruefen).observe(document.body, { attributes: true, attributeFilter: ['class'] });
     bandPruefen();
@@ -134,12 +147,18 @@
     return aus;
   };
   const sha16 = async (text) => Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text))).slice(0, 8), (b) => b.toString(16).padStart(2, '0')).join('');
-  async function qrTeile() {
-    const roh = await strom(new TextEncoder().encode(JSON.stringify(sicherung())), new CompressionStream('deflate-raw'));
-    const ganz = b64url.an(roh), kennung = await sha16(ganz);
-    const n = Math.max(1, Math.ceil(ganz.length / TEIL_LAENGE));
-    if (n > MAX_TEILE) throw new Error('zu groß');
-    return Array.from({ length: n }, (_, i) => 'LB1/' + kennung + '/' + (i + 1) + '/' + n + '/' + ganz.slice(i * TEIL_LAENGE, (i + 1) * TEIL_LAENGE));
+  async function qrTeile(max = MAX_TEILE) {
+    for (const buch of PROFIL ? [false, true] : [false]) {
+      const s = sicherung(buch);
+      const roh = await strom(new TextEncoder().encode(JSON.stringify(s)), new CompressionStream('deflate-raw'));
+      const ganz = b64url.an(roh), kennung = await sha16(ganz);
+      const n = Math.max(1, Math.ceil(ganz.length / TEIL_LAENGE));
+      if (n > max) continue;
+      const teile = Array.from({ length: n }, (_, i) => 'LB1/' + kennung + '/' + (i + 1) + '/' + n + '/' + ganz.slice(i * TEIL_LAENGE, (i + 1) * TEIL_LAENGE));
+      teile.umfang = s.umfang || 'profil';
+      return teile;
+    }
+    throw new Error('zu groß');
   }
   function sammler() {
     const staende = new Map();
@@ -153,9 +172,10 @@
         if (!klar) return { ok: false, grund: 'zu groß' };
         const j = JSON.parse(new TextDecoder().decode(klar));
         if (!j || j.art !== 'Mein Lautbuch Sicherung' || !j.daten || typeof j.daten !== 'object') return { ok: false, grund: 'kein Lautbuch-Stand' };
-        const daten = {};
+        const daten = {}, geraet = j.umfang === 'geraet' && j.profile && typeof j.profile === 'object';
         for (const [kk, v] of Object.entries(j.daten)) if (kk.startsWith(VOR) && typeof v === 'string') daten[kk] = v;
-        return { ok: true, datum: j.datum, daten };
+        if (geraet) for (const [kk, v] of Object.entries(j.daten)) if (/^lautbuch-p[23]\./.test(kk) && typeof v === 'string') daten[kk] = v;
+        return geraet ? { ok: true, datum: j.datum, daten, umfang: 'geraet', profile: j.profile } : { ok: true, datum: j.datum, daten, umfang: 'profil', name: String(j.name || '') };
       } catch { return { ok: false, grund: 'nicht lesbar' }; }
     };
     return {
@@ -203,7 +223,8 @@
     try { teile = await qrTeile(); } catch { text.textContent = 'Dieses Gerät kann den Stand nicht verpacken. Bitte „Sichern“ und die Datei übertragen.'; return; }
     if (typeof qrcode !== 'function') { text.textContent = 'Der QR-Baustein fehlt.'; return; }
     const svgs = teile.map(svgVon);
-    text.textContent = 'Am anderen Gerät: Begleitung → „QR lesen“, die Kamera auf diese Codes halten, bis alle gelesen sind.';
+    text.textContent = (PROFIL && teile.umfang === 'profil' ? 'Zu groß für einmal: diese Codes tragen nur das aufgeschlagene Buch, die anderen danach einzeln (Buch wechseln, dann „QR zeigen“). ' : '')
+      + 'Am anderen Gerät: Begleitung → „QR lesen“, die Kamera auf diese Codes halten, bis alle gelesen sind.';
     let i = 0;
     const zeige = () => { box.innerHTML = svgs[i]; box.dataset.teil = String(i + 1); i = (i + 1) % svgs.length; };
     zeige();
@@ -259,16 +280,22 @@
     };
     const fertig = (e) => {
       video.hidden = true;
-      const n = bossGold(e.daten).length;
-      text.textContent = 'Stand vom ' + datumText(e.datum) + ' gefunden' + (n ? ' · ' + n + (n === 1 ? ' Boss' : ' Bosse') + ' gold' : '') + '. Er ersetzt den Stand auf diesem Gerät.';
+      const n = bossGold(e.daten).length, alle = e.umfang === 'geraet';
+      text.textContent = alle ? 'Stand aller Bücher vom ' + datumText(e.datum) + ' gefunden. Er ersetzt alle Bücher auf diesem Gerät.'
+        : 'Stand ' + (e.name ? 'von ' + e.name + ' ' : '') + 'vom ' + datumText(e.datum) + ' gefunden' + (n ? ' · ' + n + (n === 1 ? ' Boss' : ' Bosse') + ' gold' : '') + '. Er ersetzt ' + (PROFIL ? 'das aufgeschlagene Buch.' : 'den Stand auf diesem Gerät.');
       stand.textContent = '';
       const ein = knopf('', 'Einspielen', () => {
         if (!ein.dataset.frage) { ein.dataset.frage = '1'; ein.textContent = 'Wirklich ersetzen?'; setTimeout(() => { delete ein.dataset.frage; ein.textContent = 'Einspielen'; }, 4000); return; }
-        if (!einspielen(e.daten)) { text.textContent = 'Nicht eingespielt, der alte Stand ist unverändert.'; return; }
-        schreib(GESICHERT_KEY, bossGold()); try { localStorage.removeItem(SPAETER_KEY); } catch {}
+        if (!(alle ? PROFIL.geraetEinspielen(e) : einspielen(e.daten))) { text.textContent = 'Nicht eingespielt, der alte Stand ist unverändert.'; return; }
+        merkeAlle();
         location.reload();
       });
       knoepfe.append(ein);
+      const frei = !alle && PROFIL && PROFIL.frei();
+      if (frei) knoepfe.append(knopf('lb-app-qr-neu', 'Als neues Buch', () => {
+        if (!PROFIL.ersetze(frei, e.daten)) { text.textContent = 'Nicht eingespielt, der alte Stand ist unverändert.'; return; }
+        merkeBuch(frei); location.reload();
+      }));
     };
     tick();
   }

@@ -1,8 +1,9 @@
 (() => {
   'use strict';
   const NAME_KEY = 'lautbuch.name.v1', STAND_KEY = 'lautbuch.buecher.v1';
-  const lies = (k, e) => { try { const v = localStorage.getItem(k); return v == null ? e : JSON.parse(v); } catch { return e; } };
-  const schreib = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
+  const PK = (k) => window.LB_PROFIL ? window.LB_PROFIL.k(k) : k;
+  const lies = (k, e) => { try { const v = localStorage.getItem(PK(k)); return v == null ? e : JSON.parse(v); } catch { return e; } };
+  const schreib = (k, v) => { try { localStorage.setItem(PK(k), JSON.stringify(v)); } catch {} };
   const stand = () => Object.assign({ gefunden: {}, seite: {}, ohneName: false }, lies(STAND_KEY, {}) || {});
   const merke = (f) => { const s = stand(); f(s); schreib(STAND_KEY, s); };
   const name = () => String(lies(NAME_KEY, '') || '').trim();

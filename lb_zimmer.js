@@ -83,8 +83,9 @@
     return gesammelteBilder().some(k => !ges.includes(k));
   };
   const PLAETZE = 3;
-  const zLesen = (api) => { if (api && api.lies) return api.lies(K_ZIMMER, {}) || {}; try { return JSON.parse(localStorage.getItem(K_ZIMMER) || '{}') || {}; } catch { return {}; } };
-  const zSchreiben = (api, z) => { if (api && api.schreib) api.schreib(K_ZIMMER, z); else localStorage.setItem(K_ZIMMER, JSON.stringify(z)); };
+  const PK = (k) => window.LB_PROFIL ? window.LB_PROFIL.k(k) : k;
+  const zLesen = (api) => { if (api && api.lies) return api.lies(K_ZIMMER, {}) || {}; try { return JSON.parse(localStorage.getItem(PK(K_ZIMMER)) || '{}') || {}; } catch { return {}; } };
+  const zSchreiben = (api, z) => { if (api && api.schreib) api.schreib(K_ZIMMER, z); else localStorage.setItem(PK(K_ZIMMER), JSON.stringify(z)); };
   const heute = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
   const abgelaufen = (z, s) => { const t = (z.seit || {})[s]; return typeof t === 'string' && t < heute(); };
   const einziehen = (s, api) => {
@@ -826,7 +827,7 @@
     bauen,
     neu: (api) => { try { return neuDa(api); } catch { return false; } },
     einziehen: (schluessel, api) => { try { return einziehen(schluessel, api); } catch { return { drin: false, raus: null }; } },
-    drinnen: () => { try { const v = JSON.parse(localStorage.getItem(K_ZIMMER) || '{}'); return Array.isArray(v.drinnen) ? v.drinnen.filter(s => !abgelaufen(v, s)).slice(0, 3) : []; } catch { return []; } },
+    drinnen: () => { try { const v = JSON.parse(localStorage.getItem(PK(K_ZIMMER)) || '{}'); return Array.isArray(v.drinnen) ? v.drinnen.filter(s => !abgelaufen(v, s)).slice(0, 3) : []; } catch { return []; } },
     auszug: (api) => { try { return auszug(api); } catch { return []; } }
   };
 })();
