@@ -5,6 +5,8 @@
 .sg-wand { inset: 0; z-index: 0; }
 
 .sg-licht { inset: 0; z-index: 4; }
+
+.sg-licht, .sg-dunkel { will-change: opacity; }
 .sg-zeit-morgen { background: linear-gradient(rgb(200 222 255 / .16), rgb(220 235 255 / .06)); }
 .sg-zeit-abend { background: linear-gradient(rgb(255 170 90 / .05), rgb(255 140 60 / .14)); }
 .sg-dunkel { inset: 0; z-index: 4; background: radial-gradient(circle at var(--sg-x) var(--sg-y), rgb(30 24 40 / .05), rgb(24 26 58 / .35) 30%, rgb(14 18 46 / .62) 70%); }

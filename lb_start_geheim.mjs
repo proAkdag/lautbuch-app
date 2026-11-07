@@ -48,6 +48,7 @@ import LAUTBUCH_WEG_BILDER from './lb_weg_daten.mjs';
 
     const licht = zu(el('div', 'sg-licht sg-zeit-' + tageszeit));
     const dunkel = zu(el('div', 'sg-dunkel'));
+    if (ctx.verblasst) { ctx.verblasst(licht); ctx.verblasst(dunkel); }
     setze(dunkel, { opacity: nacht() ? 1 : 0, backgroundPosition: '0 0' });
     dunkel.style.setProperty('--sg-x', px((links + rechts) / 2)); dunkel.style.setProperty('--sg-y', px(fuss - (fuss - oben) * .4));
 

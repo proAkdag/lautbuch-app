@@ -43,7 +43,7 @@
   };
   const zeiten = () => { const n = Math.ceil(ENDE / SCHRITT), r = []; for (let i = 0; i <= n; i++) r.push(ENDE * i / n); return r; };
 
-  let raum = null, szene = null, nah = null, laeuft = false, instanz = null;
+  let raum = null, szene = null, nah = null, laeuft = false, instanz = null, lichter = [];
   const spaeter = [];
   const erweiterungen = []; let griffe = [];
 
@@ -107,8 +107,8 @@
         const ruecken = el('div', 'st-ruecken');
         if (b) {
           const siegel = el('div', 'st-siegel'); for (let k = 0; k < (b.orte || 0); k++) siegel.append(el('i'));
-          ruecken.append(bildVon(b), el('span', 'st-titel', 'Mein Lautbuch'), siegel);
-          if (b.name) ruecken.append(el('span', 'st-name', b.name));
+          ruecken.append(bildVon(b), siegel);
+          if (b.name) { ruecken.append(el('span', 'st-name', b.name)); ruecken.style.setProperty('--st-n', [...b.name].length); }
         }
         const innen = el('div', 'st-innen'); innen.append(el('div', 'st-schatten'));
         const deckel = el('div', 'st-deckel'), vorn = el('div', 'st-vorn');
@@ -186,7 +186,7 @@
     };
     let angehalten = [];
     const karteAnhalten = (b) => {
-      angehalten = api.main.getAnimations({ subtree: true }).filter(a => a.playState === 'running');
+      angehalten = api.main.getAnimations({ subtree: true }).filter(a => a.playState === 'running' && a.id !== 'lb-ruhe');
       angehalten.forEach(a => { try { a.pause(); } catch (e) {} });
       (b.spiegel || []).forEach(([a, s]) => { try { s.currentTime = a.currentTime; } catch (e) {} });
     };
@@ -244,6 +244,8 @@
       const flaechen = (e) => [...e.children].flatMap(c => c.classList.contains('st-deckel') ? [...c.children] : [c]);
       buecher.filter(x => x !== b).forEach(x => flaechen(x.buch).forEach(f => an(f, k.andere)));
       if (begleit) { flaechen(begleit.knopf).forEach(f => an(f, k.andere)); an(begleit.fleck, k.andere); }
+      (b.lichter || []).forEach(([e, o]) => an(e, sanft(Z.zupfen, Z.zugewandt, o, 0)));
+      ruheKamera(false);
       an(nah, k.szene); an(raum, k.raum); an(api.main, k.mainT); an(api.main, k.mainC);
       return alle;
     };
@@ -255,6 +257,7 @@
       if (!m.schmal && (!b.innenseite.firstChild || b.abbildFuer !== mr.width + 'x' + mr.height)) abbild(b, mr);
       karteAnhalten(b);
       b.leisten = leisten();
+      b.lichter = lichter.filter(e => e.isConnected).map(e => [e, +getComputedStyle(e).opacity]).filter(([, o]) => o > 0);
       return mr;
     };
     const wackeln = (i) => {
@@ -304,6 +307,7 @@
       erweiterungenAus();
       if (ruhig()) await fertig(raum.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 400, easing: 'ease-out' }), 400);
       else {
+        b.abbildFuer = null;
         const mr = bereit(b), k = spuren(b, mr, true);
         const weg = b.leisten.map(e => e.animate([{ opacity: 1 }, { opacity: 0 }], Object.assign({ fill: 'forwards' }, LEISTEN)));
         if (weg.length) await fertig(weg[0], LEISTEN.duration);
@@ -317,16 +321,30 @@
       }
       laeuft = false;
       b.buch.focus({ preventScroll: true });
-      if (!aufKarte()) api.weg();
+      const neuGebaut = !aufKarte();
+      if (neuGebaut) api.weg();
+      vorbereiten(neuGebaut);
       erweiterungenAn();
-      setTimeout(vorbereiten, 300);
     }
-    const vorbereiten = () => {
+    let ruhen = [];
+    const ruheKamera = (an, mr) => {
+      ruhen.splice(0).forEach(a => { try { a.cancel(); } catch (e) {} });
+      if (!an || !nah || !m) return;
+      const A1 = aufSeite(flaeche(seiteVon(mitteL(true))), mr), c1 = Math.max(1, 1 / A1.k) / platz(aktiv).s, z = 'translate(0px, 0px) scale(1)';
+      const leer = { clipPath: 'inset(0px 0px 0px 100%)' }, lang = { duration: 1e9 };
+      ruhen = [nah.animate([{ offset: 0, transform: z }, { offset: .999999, transform: z }, { offset: 1, transform: `translate(0px, 0px) scale(${c1})` }], lang),
+        api.main.animate([{ transform: z }, { transform: z }], lang), api.main.animate([leer, leer], lang)];
+      ruhen.forEach(a => { a.id = 'lb-ruhe'; });
+    };
+    const vorbereiten = (neu = false) => {
       const b = buecher[aktiv];
-      if (laeuft || !raum || !m || m.schmal || !b || !aufKarte()) return;
-      abbild(b, api.main.getBoundingClientRect());
+      if (laeuft || !raum || !m || !b || !aufKarte()) return;
+      const mr = api.main.getBoundingClientRect();
+      if (!m.schmal && (neu || !b.innenseite.firstChild || b.abbildFuer !== mr.width + 'x' + mr.height)) abbild(b, mr);
+      ruheKamera(true, mr);
     };
     const schliessen = () => {
+      ruheKamera(false);
       erweiterungenAus();
       removeEventListener('resize', neu); if (raum) raum.remove(); raum = null; laeuft = false; instanz = null;
       api.main.classList.remove('st-bereit');
@@ -335,7 +353,8 @@
     let zuletzt = '';
     const neu = () => { const g = innerWidth + 'x' + innerHeight; if (g !== zuletzt && !laeuft && raum) { zuletzt = g; bauen(); setTimeout(vorbereiten, 600); } };
     instanz = { kontext: () => ({ raum, szene, nah, buecher: buecher.map(({ i, buch, ruecken, deckel, vorn, leer, daten: d }) => ({ i, knopf: buch, ruecken, deckel, vorn, leer, daten: d })),
-      begleit: begleit ? begleit.knopf : null, m, lage: lage(), ruhig, still: () => !laeuft }) };
+      begleit: begleit ? begleit.knopf : null, m, lage: lage(), ruhig, still: () => !laeuft,
+      verblasst: (e) => { lichter = lichter.filter(x => x.isConnected); if (e && !lichter.includes(e)) lichter.push(e); } }) };
     addEventListener('resize', neu);
     neu();
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (!laeuft && raum) { zuletzt = ''; neu(); } });

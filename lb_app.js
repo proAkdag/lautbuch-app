@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const APP_VERSION = '1.0.23';
+  const APP_VERSION = '1.0.24';
   const VOR = 'lautbuch.';
   const PROFIL = window.LB_PROFIL || null, NR = PROFIL ? PROFIL.aktiv() : 1;
   const appKey = (basis, nr) => nr === 1 ? basis : basis.replace(/\.v1$/, '.p' + nr + '.v1');

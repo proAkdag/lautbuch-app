@@ -46,12 +46,12 @@
   display: grid; place-items: center; overflow: hidden; flex: none; font-size: calc(var(--st-d) * .3); font-weight: 700; color: #9c7130; }
 .st-bild img { width: 118%; height: 118%; object-fit: cover; object-position: 50% 12%; }
 
-.st-ruecken .st-titel { writing-mode: vertical-rl; font-size: calc(var(--st-d) * .24); font-weight: 700; color: var(--st-messing-hell); letter-spacing: .06em; flex: none;
-  text-shadow: 0 1px 0 rgb(60 32 8 / .7), 0 -1px 0 rgb(255 250 232 / .25); }
-.st-ruecken .st-siegel { display: flex; flex-direction: column; gap: calc(var(--st-d) * .07); flex: 1; justify-content: center; }
-.st-ruecken .st-siegel i { width: calc(var(--st-d) * .14); height: calc(var(--st-d) * .14); border-radius: 50%;
+.st-ruecken .st-siegel { flex: 1 1 0; min-height: 0; width: calc(var(--st-d) * .48); display: flex; flex-wrap: wrap; gap: calc(var(--st-d) * .06);
+  justify-content: center; align-content: flex-start; }
+.st-ruecken .st-siegel i { width: calc(var(--st-d) * .12); height: calc(var(--st-d) * .12); border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #fff4c8, #f2c14e 45%, #b8860b); box-shadow: 0 0 0 1px rgb(110 70 10 / .45), 0 0 5px rgb(242 193 78 / .55); }
-.st-ruecken .st-name { writing-mode: vertical-rl; transform: rotate(180deg); font-size: calc(var(--st-d) * .27); font-weight: 700; flex: none;
+.st-ruecken .st-name { writing-mode: vertical-rl; transform: rotate(180deg); order: 3; flex: none;
+  font-size: min(calc(var(--st-d) * .27), calc(var(--st-d) * 1.5 / (var(--st-n, 8) * .62 + .9))); font-weight: 700;
   padding: .45em .22em; border-radius: 2px; color: var(--st-messing-hell); text-shadow: 0 1px 0 rgb(0 0 0 / .5);
   background: linear-gradient(90deg, #3a2213, #5c3620 45%, #3a2213); box-shadow: inset 0 0 0 1px rgb(216 191 134 / .8), inset 0 0 0 3px rgb(58 34 19 / .9), inset 0 0 0 4px rgb(216 191 134 / .45), 0 1px 2px rgb(0 0 0 / .35); }
 .st-schnitt { left: calc((var(--st-w) - var(--st-d)) / 2); top: 4px; width: calc(var(--st-d) - 4px); height: calc(var(--st-h) - 8px);

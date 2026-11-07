@@ -10,6 +10,9 @@ export function karteikarteModul(_A) {
   const mittigAlle = (...x) => _A.mittigAlle(...x);
   const SCHWELLE_WISCHEN = 60;
   const WISCHEN_STEIL = 1.5;
+  const SCHWUNG_MS = 300;
+  const ECKE = 72;
+  const STIFT_MS = 2000;
   function karteikarte(buehne, quelle, opt = {}) {
     const folgeVon = (liste) => { let i = 0; return () => liste[i++ % liste.length]; };
     let naechste = (opt.folge ? folgeVon : ziehung)(quelle.schluessel());
@@ -59,21 +62,34 @@ export function karteikarteModul(_A) {
       const schl = naechste(); verlauf.push(schl); pos = verlauf.length - 1; zeige(schl, 1);
     };
     const zurueck = () => { if (pos > 0) { pos--; zeige(verlauf[pos], -1); } };
-    let x0 = null, y0 = null, langT = null, langFertig = false;
+    let x0 = null, y0 = null, t0 = 0, langT = null, langFertig = false;
+    let zeiger = null, nurZeigen = false, stiftBis = 0;
     const langWeg = () => { clearTimeout(langT); langT = null; if (aktuell) aktuell.classList.remove('drueckt'); };
+    const inEcke = (e) => { const r = aktuell && aktuell.getBoundingClientRect(); return !!r && e.clientX >= r.right - ECKE && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.top + ECKE; };
+    const stift = (e) => { if (e.pointerType === 'pen') stiftBis = performance.now() + STIFT_MS; };
     flaeche.addEventListener('pointerdown', (e) => {
-      x0 = e.clientX; y0 = e.clientY; langFertig = false; langWeg();
-      if (!opt.lang) return;
+      stift(e);
+      if (zeiger != null) return;
+      zeiger = e.pointerId; x0 = e.clientX; y0 = e.clientY; t0 = performance.now(); langFertig = false; langWeg();
+      nurZeigen = e.pointerType === 'pen' || performance.now() < stiftBis;
+      if (!opt.lang || nurZeigen || !inEcke(e)) return;
       if (aktuell) aktuell.classList.add('drueckt');
       langT = setTimeout(() => { langT = null; langFertig = true; if (aktuell) aktuell.classList.remove('drueckt'); opt.lang(); }, 600);
     });
-    flaeche.addEventListener('pointermove', (e) => { if (langT && x0 != null && Math.abs(e.clientX - x0) > 12) langWeg(); });
-    ['pointerleave', 'pointercancel'].forEach(ev => flaeche.addEventListener(ev, langWeg));
+    flaeche.addEventListener('pointermove', (e) => { stift(e); if (e.pointerId === zeiger && langT && x0 != null && Math.abs(e.clientX - x0) > 12) langWeg(); });
+    const ende = (e) => { if (e.pointerId === zeiger) { langWeg(); zeiger = null; } };
+    ['pointerleave', 'pointercancel'].forEach(ev => flaeche.addEventListener(ev, ende));
     if (opt.lang) flaeche.addEventListener('contextmenu', (e) => e.preventDefault());
-    flaeche.addEventListener('pointerup', (e) => { langWeg(); if (langFertig) { langFertig = false; x0 = y0 = null; e.stopImmediatePropagation(); } });
+    flaeche.addEventListener('pointerup', (e) => {
+      stift(e);
+      if (e.pointerId !== zeiger) { e.stopImmediatePropagation(); return; }
+      langWeg(); zeiger = null;
+      if (langFertig || nurZeigen) { langFertig = false; x0 = y0 = null; e.stopImmediatePropagation(); }
+    });
     flaeche.addEventListener('pointerup', tipp((e) => {
-      const dx = x0 == null ? 0 : e.clientX - x0, dy = y0 == null ? 0 : e.clientY - y0; x0 = y0 = null;
+      const dx = x0 == null ? 0 : e.clientX - x0, dy = y0 == null ? 0 : e.clientY - y0, dauer = performance.now() - t0; x0 = y0 = null;
       if (Math.abs(dx) < SCHWELLE_WISCHEN || Math.abs(dx) < WISCHEN_STEIL * Math.abs(dy)) return;
+      if (dauer > SCHWUNG_MS) return;
       if (dx < 0) vor(); else zurueck();
     }));
     vor();
